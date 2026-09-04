@@ -102,26 +102,26 @@ export default function HeroSection() {
       <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 20px 48px' }}>
 
         {/* ── Section tag ── */}
-        <div style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold)', display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18 }}>
+        <div className="mobile-center-tag" style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold)', display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18 }}>
           <span style={{ display: 'inline-block', width: 24, height: 1.5, background: 'var(--gold)' }} />
           Dossier Digital Exclusivo · Domaine XXV
         </div>
 
         {/* ── Family-focused headline ── */}
-        <h1 style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: 'clamp(1.9rem, 4.5vw, 3.4rem)', lineHeight: 1.14, letterSpacing: '-0.02em', color: 'var(--text-primary)', maxWidth: 820, marginBottom: 16 }}>
+        <h1 className="hero-headline mobile-center-title" style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: 'clamp(1.9rem, 4.5vw, 3.4rem)', lineHeight: 1.14, letterSpacing: '-0.02em', color: 'var(--text-primary)', maxWidth: 820, marginBottom: 16 }}>
           A moradia onde a sua família vai crescer,{' '}
           <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>com espaço para viver a sério.</span>
         </h1>
 
         {/* ── Descriptive subheadline ── */}
-        <p style={{ fontSize: 'clamp(0.95rem, 2vw, 1.05rem)', lineHeight: 1.7, color: 'var(--text-body)', maxWidth: 660, marginBottom: 26 }}>
+        <p className="hero-subheadline mobile-center-desc" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.05rem)', lineHeight: 1.7, color: 'var(--text-body)', maxWidth: 660, marginBottom: 26 }}>
           Moradia T3 independente e térrea com aproveitamento em Oliveirinha — <strong>3 quartos</strong> com luz natural,
           sala e cozinha em open space, <strong>jardim privativo de ~82 m²</strong> para momentos em família, garagem coberta para 2 viaturas
           e sótão amplo com 34 m². Chave na mão em 10 meses e personalização total ao vosso gosto.
         </p>
 
         {/* ── Key badges ── */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 30 }}>
+        <div className="hero-badges mobile-center-flex" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 30 }}>
           {[
             '🏡 T3 Independente · 185 m²',
             '🌳 Jardim Privado ~82 m²',
@@ -137,12 +137,12 @@ export default function HeroSection() {
         </div>
 
         {/* ── Primary CTA ── */}
-        <div style={{ marginBottom: 44 }}>
+        <div className="hero-cta-wrap mobile-center-btn-wrap" style={{ marginBottom: 44 }}>
           <a
             href={WA_VISIT}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn btn-gold pulse-gold"
+            className="btn btn-gold pulse-gold mobile-center-btn"
             style={{ display: 'inline-flex', fontSize: '0.98rem', padding: '15px 32px', borderRadius: 10, textDecoration: 'none' }}
           >
             <span>💬</span> Marcar Visita ao Terreno no WhatsApp
@@ -151,7 +151,7 @@ export default function HeroSection() {
 
         {/* ── Web Doc Presentation Video ── */}
         <div>
-          <div style={{ fontSize:'0.7rem', fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-muted)', display:'flex', alignItems:'center', gap:10, marginBottom:14 }}>
+          <div className="mobile-center-tag" style={{ fontSize:'0.7rem', fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-muted)', display:'flex', alignItems:'center', gap:10, marginBottom:14 }}>
             <span style={{ display:'block', width:28, height:1.5, background:'var(--border)' }} />
             Vídeo de Apresentação Oficial
             <span style={{ display:'block', width:28, height:1.5, background:'var(--border)' }} />
@@ -174,6 +174,7 @@ export default function HeroSection() {
               poster="/images/Exterior%20Capa.png"
               loop={false}
               playsInline
+              preload="metadata"
               onEnded={handleEnded}
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             >

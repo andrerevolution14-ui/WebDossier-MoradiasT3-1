@@ -27,14 +27,14 @@ export default function GallerySection() {
         <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 16px' }}>
 
           {/* Header */}
-          <div style={{ fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--gold)', display:'flex', alignItems:'center', gap:10, marginBottom:14 }}>
+          <div className="mobile-center-tag" style={{ fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--gold)', display:'flex', alignItems:'center', gap:10, marginBottom:14 }}>
             <span style={{ display:'inline-block', width:24, height:1.5, background:'var(--gold)' }} />
             Galeria Fotográfica & Renders
           </div>
-          <h2 style={{ fontFamily:'var(--serif)', fontWeight:600, fontSize:'clamp(1.7rem, 3.5vw, 2.6rem)', lineHeight:1.15, color:'var(--text-primary)', marginBottom:10 }}>
+          <h2 className="mobile-center-title" style={{ fontFamily:'var(--serif)', fontWeight:600, fontSize:'clamp(1.7rem, 3.5vw, 2.6rem)', lineHeight:1.15, color:'var(--text-primary)', marginBottom:10 }}>
             Conheça o espaço <span style={{ fontStyle:'italic', color:'var(--gold)' }}>em detalhe</span>
           </h2>
-          <p style={{ fontSize:'0.88rem', color:'var(--text-muted)', marginBottom:36 }}>
+          <p className="mobile-center-desc" style={{ fontSize:'0.88rem', color:'var(--text-muted)', marginBottom:36 }}>
             Clique em qualquer fotografia para abrir a galeria em ecrã inteiro.
           </p>
 

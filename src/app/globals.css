@@ -285,3 +285,93 @@ body {
     display: none !important;
   }
 }
+
+/* ─── MOBILE RESPONSIVE CENTERING (< 768px) ────────── */
+@media (max-width: 768px) {
+  /* Section headers centering */
+  .section-tag,
+  .mobile-center-tag {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .mobile-center-title,
+  .section-header-wrap h2,
+  .section-header-wrap .heading {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .mobile-center-desc,
+  .section-header-wrap p {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .mobile-center-flex {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .mobile-center-btn-wrap {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .mobile-center-btn {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .mobile-center-box {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .mobile-center-card-header {
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  .hero-tag {
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .hero-headline {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .hero-subheadline {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .hero-badges {
+    justify-content: center !important;
+  }
+
+  .hero-cta-wrap {
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
+

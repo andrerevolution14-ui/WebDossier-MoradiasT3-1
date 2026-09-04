@@ -1711,3 +1711,64 @@ h1, h2, h3, h4 {
 .tracker-toast.show {
   transform: translateX(0);
 }
+
+/* ==========================================================================
+   MOBILE CENTERING & RESPONSIVENESS (< 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .section-tag,
+  .hero-pill-badge,
+  .brand-badge {
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-title,
+  .section-desc,
+  .hero-title,
+  .hero-subtitle {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .presenter-meta {
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .presenter-info {
+    text-align: center;
+  }
+
+  .presenter-info h4 {
+    justify-content: center;
+  }
+
+  .presenter-quote {
+    text-align: center;
+  }
+
+  .video-playlist-tabs {
+    justify-content: center;
+  }
+
+  .hero-cta-group,
+  .cta-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .btn-primary,
+  .btn-whatsapp {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}
+

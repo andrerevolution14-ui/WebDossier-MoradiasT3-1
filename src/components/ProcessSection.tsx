@@ -44,12 +44,12 @@ export default function ProcessSection() {
     <section id="processo" className="section" style={{ background: 'var(--bg)' }}>
       <div className="wrap">
 
-        <div className="section-tag">Como Funciona</div>
-        <h2 className="heading" style={{ marginBottom: 12 }}>
+        <div className="section-tag mobile-center-tag">Como Funciona</div>
+        <h2 className="heading mobile-center-title" style={{ marginBottom: 12 }}>
           Três passos.{' '}
           <span className="serif-i" style={{ color: 'var(--gold)' }}>Total clareza.</span>
         </h2>
-        <p style={{ color: 'var(--text-body)', fontSize: '0.9rem', lineHeight: 1.65, maxWidth: 500, marginBottom: 52 }}>
+        <p className="mobile-center-desc" style={{ color: 'var(--text-body)', fontSize: '0.9rem', lineHeight: 1.65, maxWidth: 500, marginBottom: 52 }}>
           Processo simples, transparente e com proteção contratual em cada etapa.
           Sem surpresas, sem desvios.
         </p>

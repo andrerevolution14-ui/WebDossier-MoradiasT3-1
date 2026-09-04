@@ -31,12 +31,12 @@ export default function CreditSection() {
     <section id="credito" className="section" style={{ background: 'var(--bg-alt)' }}>
       <div className="wrap">
 
-        <div className="section-tag">Apoio ao Financiamento</div>
-        <h2 className="heading" style={{ maxWidth: 640, marginBottom: 12 }}>
+        <div className="section-tag mobile-center-tag">Apoio ao Financiamento</div>
+        <h2 className="heading mobile-center-title" style={{ maxWidth: 640, marginBottom: 12 }}>
           Teste de Viabilidade de Crédito{' '}
           <span className="serif-i" style={{ color: 'var(--gold)' }}>100% Gratuito</span>
         </h2>
-        <p style={{ color: 'var(--text-body)', fontSize: '0.95rem', lineHeight: 1.65, maxWidth: 580, marginBottom: 44 }}>
+        <p className="mobile-center-desc" style={{ color: 'var(--text-body)', fontSize: '0.95rem', lineHeight: 1.65, maxWidth: 580, marginBottom: 44 }}>
           Queremos que a sua família avance com total certeza e segurança. Disponibilizamos
           gratuitamente um intermediário de crédito vinculado para tratar de todo o processo
           bancário, sem custos e sem perda de tempo.

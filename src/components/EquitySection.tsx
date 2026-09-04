@@ -8,12 +8,12 @@ export default function EquitySection() {
     <section id="condicoes" className="section" style={{ background: 'var(--bg-alt)' }}>
       <div className="wrap">
 
-        <div className="section-tag">Condições & Segurança Familiar</div>
-        <h2 className="heading" style={{ maxWidth: 640, marginBottom: 12 }}>
+        <div className="section-tag mobile-center-tag">Condições & Segurança Familiar</div>
+        <h2 className="heading mobile-center-title" style={{ maxWidth: 640, marginBottom: 12 }}>
           Transparência total{' '}
           <span className="serif-i" style={{ color: 'var(--gold)' }}>e poupança para a sua família</span>
         </h2>
-        <p style={{ color: 'var(--text-body)', fontSize: '0.95rem', lineHeight: 1.65, maxWidth: 580, marginBottom: 48 }}>
+        <p className="mobile-center-desc" style={{ color: 'var(--text-body)', fontSize: '0.95rem', lineHeight: 1.65, maxWidth: 580, marginBottom: 48 }}>
           Comprar em planta com a nossa estrutura permite à sua família poupar dezenas de milhares
           de euros em impostos, ter o terreno logo escriturado em seu nome e proteger 100% do seu capital.
         </p>

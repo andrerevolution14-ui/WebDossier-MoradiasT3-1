@@ -13,16 +13,16 @@ export default function ManagerSection() {
 
           {/* ── Left — copy ── */}
           <div>
-            <div style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 14 }}>
+            <div className="mobile-center-tag" style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 14 }}>
               <span style={{ display: 'inline-block', width: 24, height: 1.5, background: 'var(--gold)', marginRight: 8, verticalAlign: 'middle' }} />
               Acompanhamento Dedicado à Sua Família
             </div>
 
-            <h2 className="heading" style={{ color: '#fff', marginBottom: 16 }}>
+            <h2 className="heading mobile-center-title" style={{ color: '#fff', marginBottom: 16 }}>
               Acompanho a sua família,{' '}
               <span className="serif-i" style={{ color: 'var(--gold-light)' }}>em cada detalhe</span>
             </h2>
-            <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.95rem', lineHeight: 1.7, maxWidth: 460, marginBottom: 32 }}>
+            <p className="mobile-center-desc" style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.95rem', lineHeight: 1.7, maxWidth: 460, marginBottom: 32 }}>
               Apoio os clientes de forma direta e pessoal desde o primeiro contacto e visita ao terreno,
               passando pela personalização dos acabamentos, até à entrega da chave da vossa nova moradia.
             </p>
@@ -44,15 +44,17 @@ export default function ManagerSection() {
             </div>
 
             {/* Main CTA */}
-            <a
-              href={WA_VISIT}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-gold pulse-gold"
-              style={{ fontSize: '1rem', padding: '16px 32px', display: 'inline-flex' }}
-            >
-              <span>💬</span> Agendar Visita ao Terreno no WhatsApp
-            </a>
+            <div className="mobile-center-btn-wrap">
+              <a
+                href={WA_VISIT}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-gold pulse-gold mobile-center-btn"
+                style={{ fontSize: '1rem', padding: '16px 32px', display: 'inline-flex' }}
+              >
+                <span>💬</span> Agendar Visita ao Terreno no WhatsApp
+              </a>
+            </div>
           </div>
 
           {/* ── Right — profile card ── */}

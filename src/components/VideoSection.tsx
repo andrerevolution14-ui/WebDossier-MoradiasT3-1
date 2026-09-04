@@ -1,5 +1,5 @@
 'use client';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 
 /* ─── Video Tours Section: 3D Exterior and Interior ─────────────────────── */
 const TOURS = [
@@ -19,7 +19,32 @@ const TOURS = [
 
 export default function VideoSection() {
   const [mutedStates, setMutedStates] = useState<boolean[]>([true, true]);
-  const videoRefs = [useRef<HTMLVideoElement>(null), useRef<HTMLVideoElement>(null)];
+  const video0Ref = useRef<HTMLVideoElement>(null);
+  const video1Ref = useRef<HTMLVideoElement>(null);
+  const videoRefs = [video0Ref, video1Ref];
+
+  // Smart lazy-play: only play when in view to save mobile bandwidth and GPU decode resources
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          const video = entry.target as HTMLVideoElement;
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { rootMargin: '150px' }
+    );
+
+    videoRefs.forEach(ref => {
+      if (ref.current) observer.observe(ref.current);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const toggleSound = (idx: number) => {
     const v = videoRefs[idx].current;
@@ -36,14 +61,14 @@ export default function VideoSection() {
     <section id="videos" style={{ background: 'var(--bg-alt)', padding: '80px 0' }}>
       <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 20px' }}>
 
-        <div style={{ fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--gold)', display:'flex', alignItems:'center', gap:10, marginBottom:14 }}>
+        <div className="mobile-center-tag" style={{ fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--gold)', display:'flex', alignItems:'center', gap:10, marginBottom:14 }}>
           <span style={{ display:'inline-block', width:24, height:1.5, background:'var(--gold)' }} />
           Tours Virtuais 3D
         </div>
-        <h2 style={{ fontFamily:'var(--serif)', fontWeight:600, fontSize:'clamp(1.7rem, 3.5vw, 2.6rem)', lineHeight:1.15, color:'var(--text-primary)', marginBottom:10 }}>
+        <h2 className="mobile-center-title" style={{ fontFamily:'var(--serif)', fontWeight:600, fontSize:'clamp(1.7rem, 3.5vw, 2.6rem)', lineHeight:1.15, color:'var(--text-primary)', marginBottom:10 }}>
           Sinta a experiência <span style={{ fontStyle:'italic', color:'var(--gold)' }}>de estar em casa</span>
         </h2>
-        <p style={{ fontSize:'0.88rem', color:'var(--text-muted)', marginBottom:36, maxWidth:580 }}>
+        <p className="mobile-center-desc" style={{ fontSize:'0.88rem', color:'var(--text-muted)', marginBottom:36, maxWidth:580 }}>
           Tours 3D contínuos para explorar o enquadramento exterior e a harmonia dos espaços interiores da sua futura moradia.
         </p>
 
@@ -66,10 +91,10 @@ export default function VideoSection() {
               <div style={{ position:'relative', aspectRatio:'16/9', background:'#111' }}>
                 <video
                   ref={videoRefs[i]}
-                  autoPlay
                   loop
                   muted={mutedStates[i]}
                   playsInline
+                  preload="metadata"
                   poster={tour.poster}
                   style={{ width:'100%', height:'100%', objectFit:'cover', display:'block' }}
                 >
@@ -103,11 +128,11 @@ export default function VideoSection() {
               </div>
 
               {/* Caption */}
-              <div style={{ padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 4 }}>
-                <h3 style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--text-primary)', margin: 0 }}>
+              <div className="mobile-center-box" style={{ padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 4 }}>
+                <h3 className="mobile-center-title" style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--text-primary)', margin: 0 }}>
                   {tour.title}
                 </h3>
-                <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', lineHeight: 1.5, margin: 0 }}>
+                <p className="mobile-center-desc" style={{ fontSize: '0.84rem', color: 'var(--text-muted)', lineHeight: 1.5, margin: 0 }}>
                   {tour.desc}
                 </p>
               </div>
