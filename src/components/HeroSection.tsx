@@ -1,101 +1,128 @@
 'use client';
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { WA_VISIT } from './SiteHeader';
 
-/* ─── Hero Section — Family-focused with instant sound startup ─────────── */
+/* ─── Hero Section — Family-focused with guaranteed presentation playback ─── */
 export default function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [muted, setMuted] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [muted, setMuted] = useState(true);
   const [ended, setEnded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [browserBlockedAudio, setBrowserBlockedAudio] = useState(false);
+  const [hasStartedWithSound, setHasStartedWithSound] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(12);
 
-  // Unmute function with volume 1
-  const unmuteAndPlay = useCallback(() => {
-    const v = videoRef.current;
-    if (!v) return;
-    v.muted = false;
-    v.volume = 1;
-    setMuted(false);
-    setBrowserBlockedAudio(false);
-    v.play().catch(() => {});
-  }, []);
-
-  // Initialize playback with sound as early as possible
+  // Initialize playback on mount (always start muted so browser autoplay succeeds 100%)
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
 
-    v.muted = false;
-    v.volume = 1;
+    v.muted = true;
+    v.play()
+      .then(() => setIsPlaying(true))
+      .catch(() => {
+        // Autoplay fully blocked by browser policy — waiting for user gesture
+        setIsPlaying(false);
+      });
+  }, []);
 
-    const playPromise = v.play();
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          // Playback started unmuted!
-          setMuted(false);
-          setBrowserBlockedAudio(false);
-          setIsPlaying(true);
-        })
-        .catch(() => {
-          // Browser Autoplay Policy blocked unmuted audio:
-          // Fall back to muted playback so visual progress starts immediately
-          v.muted = true;
-          setMuted(true);
-          setBrowserBlockedAudio(true);
-          v.play()
-            .then(() => setIsPlaying(true))
-            .catch(() => {});
-
-          // Unmute on the very first user interaction anywhere on the page
-          const handleFirstGesture = () => {
-            unmuteAndPlay();
-            cleanupListeners();
-          };
-
-          const cleanupListeners = () => {
-            window.removeEventListener('click', handleFirstGesture);
-            window.removeEventListener('touchstart', handleFirstGesture);
-            window.removeEventListener('scroll', handleFirstGesture);
-            window.removeEventListener('keydown', handleFirstGesture);
-          };
-
-          window.addEventListener('click', handleFirstGesture, { once: true });
-          window.addEventListener('touchstart', handleFirstGesture, { once: true, passive: true });
-          window.addEventListener('scroll', handleFirstGesture, { once: true, passive: true });
-          window.addEventListener('keydown', handleFirstGesture, { once: true });
-        });
-    }
-  }, [unmuteAndPlay]);
-
-  const handleEnded = () => {
-    setEnded(true); // video stopped — does NOT loop
-    setIsPlaying(false);
-  };
-
-  const toggleMute = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  // Play with sound from start
+  const playFromStartWithSound = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
     const v = videoRef.current;
     if (!v) return;
-    if (v.muted) {
-      unmuteAndPlay();
-    } else {
-      v.muted = true;
-      setMuted(true);
-    }
-  };
 
-  const handleReplay = () => {
-    const v = videoRef.current;
-    if (!v) return;
     v.currentTime = 0;
     v.muted = false;
     v.volume = 1;
     setMuted(false);
     setEnded(false);
-    v.play().catch(() => {});
+    setHasStartedWithSound(true);
+    v.play()
+      .then(() => setIsPlaying(true))
+      .catch(() => {
+        // Fallback if browser requires muted
+        v.muted = true;
+        setMuted(true);
+        v.play().catch(() => {});
+      });
   };
+
+  // Toggle play/pause
+  const togglePlayPause = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    const v = videoRef.current;
+    if (!v) return;
+
+    if (ended) {
+      playFromStartWithSound(e);
+      return;
+    }
+
+    if (v.paused) {
+      v.play().catch(() => {});
+    } else {
+      v.pause();
+    }
+  };
+
+  // Toggle mute
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const v = videoRef.current;
+    if (!v) return;
+
+    v.muted = !v.muted;
+    setMuted(v.muted);
+    if (!v.muted) {
+      v.volume = 1;
+      setHasStartedWithSound(true);
+    }
+  };
+
+  // Fullscreen
+  const toggleFullscreen = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const c = containerRef.current || videoRef.current;
+    if (!c) return;
+
+    if (!document.fullscreenElement) {
+      if (c.requestFullscreen) {
+        c.requestFullscreen().catch(() => {});
+      } else if ((c as any).webkitRequestFullscreen) {
+        (c as any).webkitRequestFullscreen();
+      }
+    } else {
+      document.exitFullscreen().catch(() => {});
+    }
+  };
+
+  // Handle video end
+  const handleEnded = () => {
+    // If the user hasn't actively engaged with sound yet, loop the visual preview
+    if (!hasStartedWithSound) {
+      const v = videoRef.current;
+      if (v) {
+        v.currentTime = 0;
+        v.play().catch(() => {});
+      }
+      return;
+    }
+    setEnded(true);
+    setIsPlaying(false);
+  };
+
+  // Format time (e.g. 0:08)
+  const formatTime = (secs: number) => {
+    const s = Math.floor(secs || 0);
+    const m = Math.floor(s / 60);
+    const rem = s % 60;
+    return `${m}:${rem < 10 ? '0' : ''}${rem}`;
+  };
+
+  // Progress percentage
+  const progressPercent = duration > 0 ? (currentTime / duration) * 100 : 0;
 
   return (
     <section id="topo" style={{ background: 'var(--bg)', padding: '44px 0 0' }}>
@@ -158,33 +185,40 @@ export default function HeroSection() {
           </div>
 
           <div
-            onClick={muted ? unmuteAndPlay : undefined}
+            ref={containerRef}
+            onClick={muted ? playFromStartWithSound : togglePlayPause}
             style={{
               position: 'relative',
               borderRadius: 16,
               overflow: 'hidden',
-              background: '#111',
-              boxShadow: '0 24px 60px rgba(0,0,0,0.18)',
+              background: '#0a0a0a',
+              boxShadow: '0 24px 60px rgba(0,0,0,0.22)',
               aspectRatio: '16/9',
-              cursor: muted ? 'pointer' : 'default',
+              cursor: 'pointer',
+              userSelect: 'none',
             }}
           >
             <video
               ref={videoRef}
-              poster="/images/Exterior%20Capa.png"
-              loop={false}
+              autoPlay
+              muted={muted}
               playsInline
-              preload="metadata"
+              preload="auto"
+              poster="/images/Exterior%20Capa.png"
+              onPlay={() => setIsPlaying(true)}
+              onPause={() => setIsPlaying(false)}
+              onTimeUpdate={e => setCurrentTime(e.currentTarget.currentTime)}
+              onLoadedMetadata={e => setDuration(e.currentTarget.duration || 12)}
               onEnded={handleEnded}
               style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             >
               <source src="/videos/ApresentacaoWebDocT3.mp4" type="video/mp4" />
             </video>
 
-            {/* Tap to Unmute Gold Banner (shows if browser blocked unmuted autoplay) */}
-            {browserBlockedAudio && isPlaying && !ended && (
+            {/* Top Sound Prompt Pill (shows when playing muted preview) */}
+            {muted && !ended && (
               <div
-                onClick={unmuteAndPlay}
+                onClick={playFromStartWithSound}
                 style={{
                   position: 'absolute',
                   top: 16,
@@ -200,20 +234,55 @@ export default function HeroSection() {
                     background: 'rgba(184,146,74,0.95)',
                     backdropFilter: 'blur(8px)',
                     color: '#fff',
-                    padding: '10px 20px',
+                    padding: '10px 22px',
                     borderRadius: 100,
-                    boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+                    boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: 10,
-                    fontSize: '0.85rem',
+                    fontSize: '0.88rem',
                     fontWeight: 700,
                     cursor: 'pointer',
                     animation: 'shimmer 2s infinite',
                   }}
                 >
-                  <span style={{ fontSize: '1.1rem' }}>🔊</span>
-                  <span>O som está pronto · Toque aqui para Ativar Som</span>
+                  <span style={{ fontSize: '1.15rem' }}>🔊</span>
+                  <span>Clique aqui para Ouvir com Som</span>
+                </div>
+              </div>
+            )}
+
+            {/* Center Play Button Overlay (shows when paused) */}
+            {!isPlaying && !ended && (
+              <div
+                onClick={playFromStartWithSound}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  zIndex: 15,
+                  background: 'rgba(0,0,0,0.3)',
+                }}
+              >
+                <div
+                  style={{
+                    width: 72,
+                    height: 72,
+                    borderRadius: '50%',
+                    background: 'var(--gold)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    boxShadow: '0 10px 30px rgba(184,146,74,0.55)',
+                    color: '#fff',
+                    fontSize: '1.8rem',
+                    paddingLeft: 4,
+                    transition: 'transform 0.2s',
+                  }}
+                >
+                  ▶
                 </div>
               </div>
             )}
@@ -221,26 +290,29 @@ export default function HeroSection() {
             {/* Video Ended Overlay */}
             {ended && (
               <div
+                onClick={e => e.stopPropagation()}
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  background: 'rgba(0,0,0,0.65)',
-                  backdropFilter: 'blur(4px)',
+                  background: 'rgba(10,10,10,0.75)',
+                  backdropFilter: 'blur(6px)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: 16,
+                  gap: 18,
                   zIndex: 30,
+                  padding: 20,
+                  textAlign: 'center',
                 }}
               >
                 <button
-                  onClick={handleReplay}
+                  onClick={playFromStartWithSound}
                   style={{
                     background: 'var(--gold)',
                     border: 'none',
                     borderRadius: 50,
-                    padding: '14px 28px',
+                    padding: '14px 30px',
                     display: 'flex',
                     alignItems: 'center',
                     gap: 10,
@@ -248,66 +320,168 @@ export default function HeroSection() {
                     fontSize: '1rem',
                     fontWeight: 700,
                     color: '#fff',
-                    boxShadow: '0 4px 20px rgba(184,146,74,0.5)',
+                    boxShadow: '0 4px 24px rgba(184,146,74,0.6)',
+                    transition: 'transform 0.15s',
                   }}
                 >
                   <span>▶</span> Rever Apresentação com Som
                 </button>
-                <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.82rem' }}>
-                  Apresentação concluída
-                </span>
+
+                <a
+                  href={WA_VISIT}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: 'rgba(255,255,255,0.9)',
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 6,
+                    borderBottom: '1px dashed var(--gold)',
+                    paddingBottom: 2,
+                  }}
+                >
+                  <span>💬</span> Agendar Visita ao Terreno no WhatsApp →
+                </a>
               </div>
             )}
 
             {/* Controls Bar Overlay */}
             <div
+              onClick={e => e.stopPropagation()}
               style={{
                 position: 'absolute',
                 bottom: 0,
                 left: 0,
                 right: 0,
-                padding: '16px 20px',
-                background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%)',
+                padding: '24px 20px 14px',
+                background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 65%, transparent 100%)',
                 display: 'flex',
-                alignItems: 'flex-end',
-                justifyContent: 'space-between',
-                gap: 12,
-                zIndex: 10,
+                flexDirection: 'column',
+                gap: 10,
+                zIndex: 25,
               }}
             >
-              <div>
-                <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: 2 }}>
-                  Apresentação Domaine XXV
-                </div>
-                <div style={{ fontFamily: 'var(--serif)', color: '#fff', fontWeight: 600, fontSize: 'clamp(0.88rem, 2vw, 1.05rem)' }}>
-                  Moradia T3 · Oliveirinha, Aveiro
-                </div>
-              </div>
-
-              {/* Sound Toggle Button */}
-              <button
-                onClick={toggleMute}
-                aria-label={muted ? 'Ativar som' : 'Silenciar'}
+              {/* Progress track bar */}
+              <div
+                onClick={e => {
+                  const rect = e.currentTarget.getBoundingClientRect();
+                  const clickX = e.clientX - rect.left;
+                  const ratio = Math.max(0, Math.min(1, clickX / rect.width));
+                  if (videoRef.current) {
+                    videoRef.current.currentTime = ratio * duration;
+                  }
+                }}
                 style={{
-                  background: muted ? 'var(--gold)' : 'rgba(255,255,255,0.2)',
-                  backdropFilter: 'blur(8px)',
-                  border: '1px solid rgba(255,255,255,0.35)',
-                  borderRadius: 10,
-                  color: '#fff',
-                  padding: '8px 14px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 8,
-                  fontSize: '0.82rem',
-                  fontWeight: 600,
+                  width: '100%',
+                  height: 4,
+                  background: 'rgba(255,255,255,0.25)',
+                  borderRadius: 100,
                   cursor: 'pointer',
-                  flexShrink: 0,
-                  transition: 'background 0.2s',
+                  position: 'relative',
                 }}
               >
-                <span>{muted ? '🔇' : '🔊'}</span>
-                <span>{muted ? 'Ativar Som' : 'Som Ativo'}</span>
-              </button>
+                <div
+                  style={{
+                    width: `${progressPercent}%`,
+                    height: '100%',
+                    background: 'var(--gold)',
+                    borderRadius: 100,
+                    transition: 'width 0.1s linear',
+                  }}
+                />
+              </div>
+
+              {/* Bottom tools row */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: 12,
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  {/* Play / Pause button */}
+                  <button
+                    onClick={togglePlayPause}
+                    aria-label={isPlaying ? 'Pausar' : 'Reproduzir'}
+                    style={{
+                      background: 'rgba(255,255,255,0.15)',
+                      border: '1px solid rgba(255,255,255,0.3)',
+                      borderRadius: 8,
+                      color: '#fff',
+                      width: 34,
+                      height: 34,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      fontSize: '0.9rem',
+                    }}
+                  >
+                    {isPlaying ? '⏸' : '▶'}
+                  </button>
+
+                  {/* Title & Time */}
+                  <div>
+                    <div style={{ fontFamily: 'var(--serif)', color: '#fff', fontWeight: 600, fontSize: 'clamp(0.85rem, 2vw, 0.95rem)', lineHeight: 1.2 }}>
+                      Moradia T3 · Domaine XXV
+                    </div>
+                    <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.72rem', fontWeight: 500, marginTop: 2 }}>
+                      {formatTime(currentTime)} / {formatTime(duration)}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right controls: Sound & Fullscreen */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <button
+                    onClick={toggleMute}
+                    aria-label={muted ? 'Ativar som' : 'Silenciar'}
+                    style={{
+                      background: muted ? 'var(--gold)' : 'rgba(255,255,255,0.2)',
+                      backdropFilter: 'blur(8px)',
+                      border: '1px solid rgba(255,255,255,0.35)',
+                      borderRadius: 8,
+                      color: '#fff',
+                      padding: '7px 12px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: 6,
+                      fontSize: '0.78rem',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      transition: 'background 0.2s',
+                    }}
+                  >
+                    <span>{muted ? '🔇' : '🔊'}</span>
+                    <span>{muted ? 'Ativar Som' : 'Som Ativo'}</span>
+                  </button>
+
+                  <button
+                    onClick={toggleFullscreen}
+                    aria-label="Ecrã inteiro"
+                    style={{
+                      background: 'rgba(255,255,255,0.15)',
+                      border: '1px solid rgba(255,255,255,0.3)',
+                      borderRadius: 8,
+                      color: '#fff',
+                      width: 34,
+                      height: 34,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      fontSize: '0.9rem',
+                    }}
+                  >
+                    ⛶
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -317,3 +491,4 @@ export default function HeroSection() {
     </section>
   );
 }
+
