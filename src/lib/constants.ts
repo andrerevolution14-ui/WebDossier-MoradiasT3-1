@@ -39,9 +39,9 @@ export const PROPERTY: PropertyData = {
   typology: 'T3 (com opção T4)',
   areaSqm: 185,
   landSqm: 230,
-  addressLine: 'Rua Acácio Simões Vieira, 25',
-  locality: 'Quintas, Oliveirinha, Aveiro',
-  fullAddress: 'Rua Acácio Simões Vieira, 25, Quintas, Oliveirinha, Aveiro',
+  addressLine: 'Rua Acácio Simões Vieira (Lote 25)',
+  locality: 'Oliveirinha, Aveiro',
+  fullAddress: 'Rua Acácio Simões Vieira (Lote 25), 3810-843 Oliveirinha, Aveiro',
   unitsTotal: 3,
   unitsReserved: 1,
   unitsAvailable: 2,
@@ -65,9 +65,9 @@ export const PROPERTY: PropertyData = {
   traditionalImtTaxes: 27180,
   traditionalImtTaxesFormatted: '~27.180€',
   mapsEmbed:
-    'https://maps.google.com/maps?q=Rua+Ac%C3%A1cio+Sim%C3%B5es+Vieira,+25,+Quintas,+Oliveirinha,+Aveiro,+3810-000,+Portugal&hl=pt&z=16&output=embed',
+    'https://maps.google.com/maps?q=R.+Ac%C3%A1cio+Sim%C3%B5es+Vieira,+3810-843+Oliveirinha&hl=pt&z=16&output=embed',
   googleMapsDirections:
-    'https://www.google.com/maps/dir/?api=1&destination=Rua+Ac%C3%A1cio+Sim%C3%B5es+Vieira,+25,+Quintas,+Oliveirinha,+Aveiro',
+    'https://www.google.com/maps/dir/?api=1&destination=R.+Ac%C3%A1cio+Sim%C3%B5es+Vieira,+3810-843+Oliveirinha',
 };
 
 export const WHATSAPP_PHONE = '351910000000'; // Substituir pelo número do gestor quando pretendido

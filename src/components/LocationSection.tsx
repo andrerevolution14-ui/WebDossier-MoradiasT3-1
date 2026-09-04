@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 
 /* ─── Location Section — Live Google Maps with guaranteed Fallback ──────── */
-const MAP_EMBED = 'https://maps.google.com/maps?q=40.61796,-8.59918+(Domaine+XXV+-+Rua+Ac%C3%A1cio+Sim%C3%B5es+Vieira+25)&t=m&z=16&output=embed';
-const MAP_DIRECTIONS = 'https://www.google.com/maps/dir/?api=1&destination=Rua+Ac%C3%A1cio+Sim%C3%B5es+Vieira%2C+25%2C+Oliveirinha%2C+Aveiro%2C+Portugal';
+const MAP_EMBED = 'https://maps.google.com/maps?q=R.+Ac%C3%A1cio+Sim%C3%B5es+Vieira,+3810-843+Oliveirinha&t=m&z=16&output=embed';
+const MAP_DIRECTIONS = 'https://www.google.com/maps/dir/?api=1&destination=R.+Ac%C3%A1cio+Sim%C3%B5es+Vieira,+3810-843+Oliveirinha';
 
 const DISTANCES = [
   { icon: '🚗', bold: '8 min',  rest: 'do Centro Histórico de Aveiro' },
@@ -30,7 +30,7 @@ export default function LocationSection() {
           No coração de <span style={{ fontStyle:'italic', color:'var(--gold)' }}>Oliveirinha</span>
         </h2>
         <p className="mobile-center-desc" style={{ fontSize:'0.88rem', color:'var(--text-body)', lineHeight:1.65, maxWidth:540, marginBottom:36 }}>
-          Rua Acácio Simões Vieira, 25 (Quintas) — tranquilidade residencial exclusiva com acesso rápido a Aveiro e às praias.
+          Rua Acácio Simões Vieira (Lote 25) — tranquilidade residencial exclusiva com acesso rápido a Aveiro e às praias.
         </p>
 
         <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(300px, 1fr))', gap:28, alignItems:'start' }}>
@@ -58,7 +58,7 @@ export default function LocationSection() {
               zIndex: 10,
             }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.76rem', fontWeight: 600, color: 'var(--text-primary)' }}>
-                <span>📍</span> Rua Acácio Simões Vieira, 25
+                <span>📍</span> Rua Acácio Simões Vieira, 3810-843 Oliveirinha
               </div>
               <div style={{ display: 'flex', gap: 6 }}>
                 <button
@@ -123,11 +123,11 @@ export default function LocationSection() {
                     Domaine XXV
                   </div>
                   <div style={{ fontSize: '0.86rem', color: 'var(--text-muted)', marginBottom: 12 }}>
-                    Rua Acácio Simões Vieira, 25<br />
-                    Quintas · Oliveirinha · Aveiro
+                    Rua Acácio Simões Vieira (Lote 25)<br />
+                    3810-843 Oliveirinha · Aveiro
                   </div>
                   <div style={{ fontSize: '0.75rem', fontWeight: 600, color: 'var(--gold)', letterSpacing: '0.04em', marginBottom: 16 }}>
-                    Coordenadas: 40°37&apos;04.7&quot;N 8°35&apos;57.0&quot;W
+                    Coordenadas: 40°34&apos;59.2&quot;N 8°37&apos;02.2&quot;W
                   </div>
                   <a
                     href={MAP_DIRECTIONS}

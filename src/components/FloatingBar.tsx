@@ -28,7 +28,7 @@ export default function FloatingBar() {
 
       {/* Map button (desktop only) */}
       <a
-        href="https://www.google.com/maps/dir/?api=1&destination=Rua+Ac%C3%A1cio+Sim%C3%B5es+Vieira%2C+25%2C+Oliveirinha%2C+Aveiro"
+        href="https://www.google.com/maps/dir/?api=1&destination=R.+Ac%C3%A1cio+Sim%C3%B5es+Vieira,+3810-843+Oliveirinha"
         target="_blank"
         rel="noopener noreferrer"
         className="btn btn-ghost-white hidden md:inline-flex"

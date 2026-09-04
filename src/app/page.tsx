@@ -81,7 +81,7 @@ export default function HomePage() {
               Domaine XXV
             </div>
             <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: 24 }}>
-              Rua Acácio Simões Vieira, 25 · Quintas, Oliveirinha · 3800-000 Aveiro
+              Rua Acácio Simões Vieira (Lote 25) · 3810-843 Oliveirinha · Aveiro
             </div>
 
             <a
