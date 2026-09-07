@@ -142,7 +142,7 @@ export default function HeroSection() {
 
         {/* ── Descriptive subheadline ── */}
         <p className="hero-subheadline mobile-center-desc" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.05rem)', lineHeight: 1.7, color: 'var(--text-body)', maxWidth: 660, marginBottom: 26 }}>
-          Moradia T3 independente e térrea com aproveitamento em Oliveirinha — <strong>3 quartos</strong> com luz natural,
+          Moradia T3 independente com aproveitamento em Oliveirinha — <strong>3 quartos</strong> com luz natural,
           sala e cozinha em open space, <strong>jardim privativo de ~82 m²</strong> para momentos em família, garagem coberta para 2 viaturas
           e sótão amplo com 34 m². Chave na mão em 10 meses e personalização total ao vosso gosto.
         </p>
