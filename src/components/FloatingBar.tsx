@@ -19,10 +19,10 @@ export default function FloatingBar() {
           textTransform: 'uppercase', color: 'var(--gold)',
           lineHeight: 1, marginBottom: 3,
         }}>
-          Domaine XXV · 329.000€
+          Domaine XXV · 335.000€ (c/ IMT e Selo)
         </div>
         <div style={{ fontSize: '0.82rem', fontWeight: 500, color: '#fff', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-          Moradia T3 · Jardim ~82 m² · Oliveirinha
+          Moradia T3 100% Equipada · Jardim ~82 m² · Oliveirinha
         </div>
       </div>
 

@@ -9,10 +9,10 @@ const STEPS = [
     title: 'Informação & Validação',
     icon: '📋',
     items: [
-      'Apresentação completa do dossier e projeto',
-      'Escolha de acabamentos e personalização',
+      'Apresentação completa do dossier e visita ao terreno',
+      'Escolha de personalizações (cozinha, acabamentos e climatização)',
       'Estudo de viabilidade bancária gratuito',
-      'Análise de benefícios fiscais aplicáveis',
+      'Enquadramento legal na taxa reduzida de 6% de IVA',
     ],
   },
   {
@@ -20,10 +20,10 @@ const STEPS = [
     title: 'Reserva Protegida',
     icon: '🛡️',
     items: [
-      'Escritura do terreno em nome do comprador',
+      'Escritura do terreno registada em nome da sua família',
       'CPCV com sinal de 38.500€ 100% protegido',
-      'Cláusula de devolução se banco recusar crédito',
-      'Início formal do processo construtivo',
+      'Cláusula de devolução integral se banco recusar crédito',
+      'Preço blindado: 335.000€ com IMT e Selo incluídos',
     ],
   },
   {
@@ -32,9 +32,9 @@ const STEPS = [
     icon: '🏠',
     items: [
       '10 meses de construção em LSF certificado A+',
-      'Relatório fotográfico semanal de obra',
-      'Gestor de projeto dedicado disponível 24/7',
-      'Entrega completa, equipada e registada',
+      'Toda equipada (cozinha completa e climatização eficiente)',
+      'Recebimento do reembolso do IVA antes do fim da obra',
+      'Entrega chave na mão contratualizada sem derrapes',
     ],
   },
 ];
@@ -105,11 +105,11 @@ export default function ProcessSection() {
           marginTop: 32,
           background: 'var(--bg-alt)', border: '1px solid var(--border)',
           borderRadius: 12, padding: '16px 20px',
-          fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.6,
+          fontSize: '0.84rem', color: 'var(--text-muted)', lineHeight: 1.6,
           textAlign: 'center',
         }}>
           ⏱️ &nbsp;Da reserva à escritura final: <strong style={{ color: 'var(--text-primary)' }}>10 meses</strong>.
-          &nbsp;Da decisão ao regresso a casa: <strong style={{ color: 'var(--text-primary)' }}>um processo simples e protegido</strong>.
+          &nbsp;Valor fechado em contrato: <strong style={{ color: 'var(--gold)' }}>335.000€ com IMT e Imposto de Selo incluídos</strong>, sem derrapes orçamentais.
         </div>
 
       </div>

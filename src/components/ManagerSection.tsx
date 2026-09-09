@@ -28,11 +28,11 @@ export default function ManagerSection() {
             </p>
 
             {/* Services */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 36 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 32 }}>
               {[
                 'Visita guiada ao lote do terreno em Oliveirinha',
-                'Estudo de viabilidade de crédito 100% gratuito',
-                'Catálogo de acabamentos e opções de personalização',
+                'Estudo de viabilidade de crédito 100% gratuito (335.000€ c/ IMT e Selo)',
+                'Personalização total da cozinha equipada, acabamentos e climatização',
                 'Relatório fotográfico semanal durante os 10 meses de obra',
                 'Contacto direto sem intermediários pelo 920 601 070',
               ].map((item, i) => (
@@ -54,6 +54,9 @@ export default function ManagerSection() {
               >
                 <span>💬</span> Agendar Visita ao Terreno no WhatsApp
               </a>
+              <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.6)', marginTop: 10, display: 'flex', alignItems: 'center', gap: 6 }}>
+                <span>✓</span> Preço Chave na Mão: <strong>335.000€ com IMT e Imposto de Selo incluídos</strong> · Sem derrapes
+              </div>
             </div>
           </div>
 

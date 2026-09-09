@@ -23,7 +23,7 @@ export default function CreditSection() {
     {
       icon: '🏗️',
       title: 'Financiamento Terreno + Construção',
-      desc: 'Crédito estruturado por tranches com libertação por autos de medição. Durante os 10 meses de obra, paga apenas juros (~289€/mês).',
+      desc: 'Crédito estruturado por tranches com libertação por autos de medição. Durante os 10 meses de obra, paga apenas juros (~289€/mês). Processo bancário seguro e formalizado.',
     },
   ];
 
@@ -39,7 +39,7 @@ export default function CreditSection() {
         <p className="mobile-center-desc" style={{ color: 'var(--text-body)', fontSize: '0.95rem', lineHeight: 1.65, maxWidth: 580, marginBottom: 44 }}>
           Queremos que a sua família avance com total certeza e segurança. Disponibilizamos
           gratuitamente um intermediário de crédito vinculado para tratar de todo o processo
-          bancário, sem custos e sem perda de tempo.
+          bancário da moradia (<strong>335.000€ com IMT e Imposto de Selo incluídos</strong>), sem custos e sem perda de tempo.
         </p>
 
         {/* Benefits Grid */}
@@ -88,8 +88,7 @@ export default function CreditSection() {
               </span>
             </div>
             <p style={{ fontSize: '0.88rem', color: 'var(--text-body)', lineHeight: 1.6, margin: 0 }}>
-              Envie-nos uma mensagem e realizamos o estudo de viabilidade gratuito com os bancos.
-              Sem qualquer obrigação de compra.
+              Envie-nos uma mensagem e realizamos o estudo de viabilidade gratuito com os bancos para o valor chave na mão de <strong>335.000€ com IMT e Imposto de Selo já incluídos</strong>. Sem qualquer compromisso.
             </p>
           </div>
 

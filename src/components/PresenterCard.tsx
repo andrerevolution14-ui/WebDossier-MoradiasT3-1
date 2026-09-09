@@ -126,7 +126,7 @@ export default function PresenterCard() {
 
       {showTranscript && (
         <div className="mt-2 text-xs text-slate-300 border-t border-dashed border-white/10 pt-2 leading-relaxed italic">
-          &ldquo;Olá! Bem-vindo ao dossier do Domaine XXV. Preparei este material especificamente para quem procura uma moradia independente, moderna e energeticamente eficiente em Aveiro, sem pagar margens inflacionadas. Aqui encontras a explicação detalhada de como poupas cerca de 23.700€ em impostos, como recebes 31.500€ de reembolso de IVA pelo Estado antes da conclusão da obra, e como o teu sinal de 38.500€ está 100% blindado caso o banco recuse crédito. Explora a página e estou disponível para uma chamada rápida.&rdquo;
+          &ldquo;Olá! Bem-vindo ao dossier do Domaine XXV. Preparei este material especificamente para quem procura uma moradia independente, moderna e energeticamente eficiente em Aveiro, sem pagar margens inflacionadas. Aqui encontras a explicação detalhada de como a moradia fica por 335.000€ com IMT e Imposto de Selo já incluídos (toda equipada e personalizável), como recebes a devolução do diferencial de IVA antes da conclusão da obra, e como o teu sinal de 38.500€ está 100% blindado caso o banco recuse crédito. Explora a página e estou disponível para uma chamada rápida.&rdquo;
         </div>
       )}
     </div>

@@ -13,6 +13,8 @@ export interface PropertyData {
   deliveryMonths: number;
   price: number;
   priceFormatted: string;
+  priceWithTaxes: number;
+  priceWithTaxesFormatted: string;
   bankProcessValue: number;
   bankProcessValueFormatted: string;
   bankAppraisal: number;
@@ -48,6 +50,8 @@ export const PROPERTY: PropertyData = {
   deliveryMonths: 10,
   price: 329000,
   priceFormatted: '329.000€',
+  priceWithTaxes: 335000,
+  priceWithTaxesFormatted: '335.000€ (c/ IMT e Selo)',
   bankProcessValue: 360000,
   bankProcessValueFormatted: '360.000€',
   bankAppraisal: 450000,

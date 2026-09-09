@@ -140,12 +140,110 @@ export default function FloorplansSection() {
             </div>
           </div>
 
-          {/* Customisation note */}
-          <div style={{ marginTop:16, background:'var(--gold-pale)', border:'1px solid #E8D4AE', borderRadius:10, padding:'14px 18px' }}>
-            <div style={{ fontSize:'0.82rem', fontWeight:700, color:'#7A5C28', marginBottom:4 }}>✏️ Personalização à medida da sua família</div>
-            <p style={{ fontSize:'0.82rem', color:'#7A5C28', lineHeight:1.55, margin:0 }}>
-              Pode escolher cerâmicas, pavimentos, carpintarias, loiças de casa de banho e a disposição dos armários antes do início da construção. Existe também a flexibilidade de adaptar o espaço para tipologia T4 (quarto quarto ou escritório).
-            </p>
+          {/* ── Equipamentos Completos & Personalização ── */}
+          <div style={{ marginTop: 28 }}>
+            <div style={{
+              background: 'var(--white)',
+              border: '1px solid var(--border)',
+              borderRadius: 16,
+              padding: '28px 24px',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.04)',
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, marginBottom: 20 }}>
+                <div>
+                  <div style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 4 }}>
+                    Totalmente Pronta a Habitar
+                  </div>
+                  <h3 style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: '1.35rem', color: 'var(--text-primary)', margin: 0 }}>
+                    100% Equipada & com Múltiplas Opções de Personalização
+                  </h3>
+                </div>
+                <div style={{ background: 'var(--gold-pale)', border: '1px solid #E8D4AE', padding: '6px 14px', borderRadius: 100, fontSize: '0.78rem', fontWeight: 700, color: '#7A5C28' }}>
+                  Sem Custos Ocultos
+                </div>
+              </div>
+
+              {/* 3 Pillars Grid */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20, marginBottom: 22 }}>
+                
+                {/* 1. Cozinha */}
+                <div style={{ background: 'var(--bg)', borderRadius: 12, padding: '20px 18px', border: '1px solid var(--border)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+                    <span style={{ fontSize: '1.5rem' }}>🍳</span>
+                    <h4 style={{ fontWeight: 700, fontSize: '0.96rem', color: 'var(--text-primary)', margin: 0 }}>
+                      Cozinha Toda Equipada
+                    </h4>
+                  </div>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--text-body)', lineHeight: 1.6, margin: '0 0 10px' }}>
+                    Entregue completa com placa de indução, forno, exaustor, micro-ondas encastrado, máquina de lavar louça integrada e combinado.
+                  </p>
+                  <div style={{ fontSize: '0.78rem', color: '#7A5C28', background: 'var(--gold-pale)', padding: '6px 10px', borderRadius: 6, lineHeight: 1.45 }}>
+                    <strong>Personalizações:</strong> Escolha as cores dos armários, tipos de puxadores, balcão em quartzo e arrumação sob medida.
+                  </div>
+                </div>
+
+                {/* 2. Climatização & Águas */}
+                <div style={{ background: 'var(--bg)', borderRadius: 12, padding: '20px 18px', border: '1px solid var(--border)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+                    <span style={{ fontSize: '1.5rem' }}>❄️</span>
+                    <h4 style={{ fontWeight: 700, fontSize: '0.96rem', color: 'var(--text-primary)', margin: 0 }}>
+                      Aquecimentos & Climatização
+                    </h4>
+                  </div>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--text-body)', lineHeight: 1.6, margin: '0 0 10px' }}>
+                    Sistema de climatização / ar condicionado multi-split e <strong>Bomba de Calor A+</strong> de alta eficiência para aquecimento de águas sanitárias.
+                  </p>
+                  <div style={{ fontSize: '0.78rem', color: '#7A5C28', background: 'var(--gold-pale)', padding: '6px 10px', borderRadius: 6, lineHeight: 1.45 }}>
+                    <strong>Personalizações:</strong> Adaptação de grelhas, afinações térmicas por divisão e caixilharia de corte térmico com vidro duplo.
+                  </div>
+                </div>
+
+                {/* 3. Materiais e Acabamentos */}
+                <div style={{ background: 'var(--bg)', borderRadius: 12, padding: '20px 18px', border: '1px solid var(--border)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
+                    <span style={{ fontSize: '1.5rem' }}>🎨</span>
+                    <h4 style={{ fontWeight: 700, fontSize: '0.96rem', color: 'var(--text-primary)', margin: 0 }}>
+                      Acabamentos ao Seu Gosto
+                    </h4>
+                  </div>
+                  <p style={{ fontSize: '0.82rem', color: 'var(--text-body)', lineHeight: 1.6, margin: '0 0 10px' }}>
+                    Selecione livremente pavimentos flutuantes/vinílicos, cerâmicas de casas de banho, louças sanitárias suspensas e carpintarias.
+                  </p>
+                  <div style={{ fontSize: '0.78rem', color: '#7A5C28', background: 'var(--gold-pale)', padding: '6px 10px', borderRadius: 6, lineHeight: 1.45 }}>
+                    <strong>Flexibilidade:</strong> Possibilidade de configurar o sótão aproveitável de ~34 m² como T4, quarto de brincar ou escritório.
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Banner de Preço e Transparência */}
+              <div style={{
+                background: 'linear-gradient(135deg, #242018 0%, #151310 100%)',
+                borderRadius: 12,
+                padding: '16px 20px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: 14,
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <span style={{ fontSize: '1.4rem' }}>🏷️</span>
+                  <div>
+                    <div style={{ color: 'var(--gold)', fontWeight: 700, fontSize: '0.78rem', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                      Preço Chave na Mão com Impostos
+                    </div>
+                    <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}>
+                      <strong style={{ color: 'var(--gold-light)', fontSize: '1.15rem' }}>335.000€</strong> com IMT e Imposto de Selo já incluídos
+                    </div>
+                  </div>
+                </div>
+                <div style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.78rem', maxWidth: 360, lineHeight: 1.4 }}>
+                  Toda equipada, acabamentos à sua escolha e sem derrapes orçamentais durante os 10 meses de obra.
+                </div>
+              </div>
+
+            </div>
           </div>
 
         </div>

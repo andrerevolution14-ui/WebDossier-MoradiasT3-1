@@ -141,23 +141,23 @@ export default function HeroSection() {
         </h1>
 
         {/* ── Descriptive subheadline ── */}
-        <p className="hero-subheadline mobile-center-desc" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.05rem)', lineHeight: 1.7, color: 'var(--text-body)', maxWidth: 660, marginBottom: 26 }}>
-          Moradia T3 independente com aproveitamento em Oliveirinha — <strong>3 quartos</strong> com luz natural,
-          sala e cozinha em open space, <strong>jardim privativo de ~82 m²</strong> para momentos em família, garagem coberta para 2 viaturas
-          e sótão amplo com 34 m². Chave na mão em 10 meses e personalização total ao vosso gosto.
+        <p className="hero-subheadline mobile-center-desc" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.05rem)', lineHeight: 1.7, color: 'var(--text-body)', maxWidth: 680, marginBottom: 24 }}>
+          Moradia T3 independente em Oliveirinha — <strong>cozinha 100% equipada</strong> com eletrodomésticos, sistema de <strong>climatização e aquecimento de águas eficiente</strong>, <strong>jardim privativo de ~82 m²</strong> para momentos em família, garagem coberta e sótão amplo com 34 m². Entrega <strong>chave na mão por 335.000€ com IMT e Imposto de Selo já incluídos</strong>, com total liberdade para personalizar acabamentos e materiais ao vosso gosto.
         </p>
 
         {/* ── Key badges ── */}
-        <div className="hero-badges mobile-center-flex" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 30 }}>
+        <div className="hero-badges mobile-center-flex" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 28 }}>
           {[
-            '🏡 T3 Independente · 185 m²',
+            '🏷️ 335.000€ c/ IMT e Selo Incluídos',
+            '🍳 Cozinha 100% Equipada',
+            '❄️ Climatização & Bomba de Calor A+',
+            '🎨 Personalização Total de Acabamentos',
+            '🏡 T3 Independente · ~185 m²',
             '🌳 Jardim Privado ~82 m²',
             '🚗 Garagem Coberta 30 m²',
             '📅 Chave na mão em 10 meses',
-            '✏️ Personalização total',
-            '⚡ Classe Energética A+',
           ].map(b => (
-            <span key={b} style={{ display:'inline-flex', alignItems:'center', gap:6, padding:'6px 14px', borderRadius:100, fontSize:'0.76rem', fontWeight:600, background:'var(--gold-pale)', border:'1px solid #E8D4AE', color:'#7A5C28' }}>
+            <span key={b} style={{ display:'inline-flex', alignItems:'center', gap:6, padding:'6px 14px', borderRadius:100, fontSize:'0.76rem', fontWeight:600, background: b.startsWith('🏷️') ? 'var(--gold)' : 'var(--gold-pale)', border: b.startsWith('🏷️') ? '1px solid var(--gold)' : '1px solid #E8D4AE', color: b.startsWith('🏷️') ? '#fff' : '#7A5C28' }}>
               {b}
             </span>
           ))}
@@ -165,15 +165,20 @@ export default function HeroSection() {
 
         {/* ── Primary CTA ── */}
         <div className="hero-cta-wrap mobile-center-btn-wrap" style={{ marginBottom: 44 }}>
-          <a
-            href={WA_VISIT}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-gold pulse-gold mobile-center-btn"
-            style={{ display: 'inline-flex', fontSize: '0.98rem', padding: '15px 32px', borderRadius: 10, textDecoration: 'none' }}
-          >
-            <span>💬</span> Marcar Visita ao Terreno no WhatsApp
-          </a>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'flex-start' }} className="mobile-center-flex">
+            <a
+              href={WA_VISIT}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-gold pulse-gold mobile-center-btn"
+              style={{ display: 'inline-flex', fontSize: '0.98rem', padding: '15px 32px', borderRadius: 10, textDecoration: 'none' }}
+            >
+              <span>💬</span> Marcar Visita ao Terreno no WhatsApp
+            </a>
+            <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: 6 }}>
+              <span>✓</span> <strong>335.000€ Chave na Mão</strong> (IMT e Imposto de Selo incluídos) · Sinal 100% protegido
+            </div>
+          </div>
         </div>
 
         {/* ── Web Doc Presentation Video ── */}
