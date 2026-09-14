@@ -67,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               fbq('init', '26022738390737044');
               fbq('track', 'PageView');
 
-              // Global Delegated WhatsApp Click Tracker for Meta Ads
+              // Global Delegated WhatsApp Click Tracker for Meta Ads (Prioridade Máxima: Contact / Contacto)
               document.addEventListener('click', function(e) {
                 var target = e.target.closest('a');
                 if (!target) return;
@@ -75,6 +75,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 if (href.indexOf('wa.me') !== -1 || href.indexOf('whatsapp.com') !== -1) {
                   try {
                     if (typeof fbq === 'function') {
+                      // 1. EVENTO PRINCIPAL / PRIORIDADE MÁXIMA: Contact
+                      fbq('track', 'Contact', {
+                        content_name: 'Contacto WhatsApp - Moradia Oliveirinha',
+                        content_category: 'Imobiliário Aveiro',
+                        currency: 'EUR',
+                        value: 335000,
+                        source: target.id || 'whatsapp_link'
+                      });
+
+                      // 2. Evento complementar: Lead
                       fbq('track', 'Lead', {
                         content_name: 'Moradia Oliveirinha Domaine XXV',
                         content_category: 'Imobiliário',
@@ -82,11 +92,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         value: 335000,
                         source: target.id || 'whatsapp_link'
                       });
-                      fbq('track', 'Contact', {
-                        content_name: 'WhatsApp Lead André Queirós',
-                        source: target.id || 'whatsapp_link'
-                      });
-                      console.log('🎯 [Meta Pixel] Lead & Contact disparados com sucesso!');
+
+                      console.log('🎯 [Meta Pixel] Evento CONTACTO (Prioridade Máxima) disparado com sucesso!');
                     }
                   } catch(err) {
                     console.error('Erro Meta Pixel:', err);

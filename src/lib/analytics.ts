@@ -42,13 +42,24 @@ export function trackEvent(eventName: string, payload: Record<string, unknown> =
 
 /**
  * Disparado especificamente ao clicar em qualquer botão do WhatsApp
- * Envia os eventos Lead e Contact para o Meta Pixel
+ * PRIORIDADE MÁXIMA DE CONVERSÃO NO META ADS: Evento "Contact" (Contacto)
  */
-export function trackWhatsAppLead(source = 'whatsapp_cta', extra: Record<string, unknown> = {}) {
+export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return;
 
   try {
     if (typeof (window as any).fbq === 'function') {
+      // 1. PRIORIDADE MÁXIMA: Contact (Contacto direto via WhatsApp para o Meta Ads otimizar)
+      (window as any).fbq('track', 'Contact', {
+        content_name: 'Contacto WhatsApp - Moradia Oliveirinha',
+        content_category: 'Imobiliário Aveiro',
+        currency: 'EUR',
+        value: 335000,
+        source,
+        ...extra,
+      });
+
+      // 2. Evento complementar: Lead
       (window as any).fbq('track', 'Lead', {
         content_name: 'Moradia Oliveirinha Domaine XXV',
         content_category: 'Imobiliário',
@@ -58,18 +69,16 @@ export function trackWhatsAppLead(source = 'whatsapp_cta', extra: Record<string,
         ...extra,
       });
 
-      (window as any).fbq('track', 'Contact', {
-        content_name: 'WhatsApp Contact Lead',
-        source,
-        ...extra,
-      });
-      console.log('🎯 [Meta Pixel] Disparados eventos Lead e Contact com sucesso!');
+      console.log('🎯 [Meta Pixel] Evento CONTACTO (Prioridade Máxima de Conversão) disparado com sucesso!');
     } else {
       console.warn('⚠️ [Meta Pixel] fbq ainda não carregado no momento do clique.');
     }
   } catch (err) {
-    console.error('Erro ao disparar Meta Pixel Lead:', err);
+    console.error('Erro ao disparar Meta Pixel Contact:', err);
   }
 
-  trackEvent('whatsapp_click_lead', { source, ...extra });
+  trackEvent('whatsapp_click_contact', { source, ...extra });
 }
+
+// Alias para compatibilidade com componentes existentes
+export const trackWhatsAppLead = trackWhatsAppContact;
