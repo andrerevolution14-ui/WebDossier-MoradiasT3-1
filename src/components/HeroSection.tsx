@@ -1,6 +1,7 @@
 'use client';
 import React, { useRef, useState, useEffect } from 'react';
 import { WA_VISIT } from './SiteHeader';
+import { trackWhatsAppLead } from '@/lib/analytics';
 
 /* ─── Hero Section — Family-focused with guaranteed presentation playback ─── */
 export default function HeroSection() {
@@ -129,55 +130,144 @@ export default function HeroSection() {
       <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 20px 48px' }}>
 
         {/* ── Section tag ── */}
-        <div className="mobile-center-tag" style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold)', display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18 }}>
+        <div className="mobile-center-tag" style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 12px', gap: 10 }}>
           <span style={{ display: 'inline-block', width: 24, height: 1.5, background: 'var(--gold)' }} />
           Dossier Digital Exclusivo · Domaine XXV
         </div>
 
-        {/* ── Family-focused headline ── */}
-        <h1 className="hero-headline mobile-center-title" style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: 'clamp(1.9rem, 4.5vw, 3.4rem)', lineHeight: 1.14, letterSpacing: '-0.02em', color: 'var(--text-primary)', maxWidth: 820, marginBottom: 16 }}>
-          A moradia onde a sua família vai crescer,{' '}
-          <span style={{ fontStyle: 'italic', color: 'var(--gold)' }}>com espaço para viver a sério.</span>
+        {/* ── Badges de Urgência & Prova Social — above the fold ── */}
+        <div className="mobile-center-flex" style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center', marginBottom: 18 }}>
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            background: 'linear-gradient(135deg, #B8924A22 0%, #B8924A11 100%)',
+            border: '1.5px solid var(--gold)',
+            borderRadius: 100,
+            padding: '7px 18px',
+            fontSize: '0.82rem',
+            fontWeight: 700,
+            color: 'var(--gold)',
+            letterSpacing: '0.02em',
+          }}>
+            <span>🔥</span>
+            <span>|</span>
+            <span>Início de Obra Imediato</span>
+          </div>
+
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: 7,
+            background: '#F0F7EB',
+            border: '1px solid #7FA864',
+            borderRadius: 100,
+            padding: '7px 16px',
+            fontSize: '0.8rem',
+            fontWeight: 700,
+            color: '#3B6B1D',
+          }}>
+            <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: '#4BA123' }} />
+            <span>Imóvel disponível para visitas esta semana</span>
+          </div>
+        </div>
+
+        {/* ── Headline ── */}
+        <h1 className="hero-headline mobile-center-title" style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: 'clamp(1.9rem, 4.5vw, 3.4rem)', lineHeight: 1.14, letterSpacing: '-0.02em', color: 'var(--text-primary)', maxWidth: 840, margin: '0 auto 16px', textAlign: 'center' }}>
+          A Moradia T4 com Jardim às Portas de Aveiro Que o Mercado Dizia Ser Impossível.
         </h1>
 
-        {/* ── Descriptive subheadline ── */}
-        <p className="hero-subheadline mobile-center-desc" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.05rem)', lineHeight: 1.7, color: 'var(--text-body)', maxWidth: 680, marginBottom: 24 }}>
-          Moradia T3 independente em Oliveirinha — <strong>cozinha 100% equipada</strong> com eletrodomésticos, sistema de <strong>climatização e aquecimento de águas eficiente</strong>, <strong>jardim privativo de ~82 m²</strong> para momentos em família, garagem coberta e sótão amplo com 34 m². Entrega <strong>chave na mão por 335.000€ com IMT e Imposto de Selo já incluídos</strong>, com total liberdade para personalizar acabamentos e materiais ao vosso gosto.
+        {/* ── Descriptive subheadline (Esclarecimento de Risco e Oportunidade Preço/m²) ── */}
+        <p className="hero-subheadline mobile-center-desc" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.05rem)', lineHeight: 1.7, color: 'var(--text-body)', maxWidth: 760, margin: '0 auto 20px', textAlign: 'center' }}>
+          <strong>Projeto 100% aprovado pela Câmara Municipal e avaliação bancária oficial de 450.000€</strong> — sem qualquer impedimento legal ou espera por licenças. A única "impossibilidade" era encontrar no mercado uma moradia com esta área e jardim a 8 minutos de Aveiro por <strong>335.000€ chave-na-mão</strong> (~1.810€/m²). Começo imediato, <strong>entrega em 10 meses</strong> e preço blindado em contrato.
         </p>
 
+        {/* ── Destaque Financeiro ── */}
+        <div className="mobile-center-flex" style={{ marginBottom: 20, justifyContent: 'center' }}>
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8,
+            background: 'var(--gold-pale)',
+            border: '1.5px solid #E8D4AE',
+            borderRadius: 8,
+            padding: '10px 18px',
+            fontSize: '0.95rem',
+            fontWeight: 700,
+            color: '#7A5C28',
+          }}>
+            <span>💰</span>
+            <span>Necessita de apenas <strong>38.500€</strong> de capitais próprios para arrancar.</span>
+          </div>
+        </div>
+
         {/* ── Key badges ── */}
-        <div className="hero-badges mobile-center-flex" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 28 }}>
+        <div className="hero-badges mobile-center-flex" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', marginBottom: 24 }}>
           {[
-            '🏷️ 335.000€ c/ IMT e Selo Incluídos',
+            '🏷️ 335.000€ Chave na Mão',
+            '⏱️ Chave na Mão em 10 Meses',
             '🍳 Cozinha 100% Equipada',
             '❄️ Climatização & Bomba de Calor A+',
             '🎨 Personalização Total de Acabamentos',
-            '🏡 T3 Independente · ~185 m²',
+            '🏡 Moradia T3/T4 · ~185 m²',
             '🌳 Jardim Privado ~82 m²',
             '🚗 Garagem Coberta 30 m²',
-            '📅 Chave na mão em 10 meses',
           ].map(b => (
-            <span key={b} style={{ display:'inline-flex', alignItems:'center', gap:6, padding:'6px 14px', borderRadius:100, fontSize:'0.76rem', fontWeight:600, background: b.startsWith('🏷️') ? 'var(--gold)' : 'var(--gold-pale)', border: b.startsWith('🏷️') ? '1px solid var(--gold)' : '1px solid #E8D4AE', color: b.startsWith('🏷️') ? '#fff' : '#7A5C28' }}>
+            <span key={b} style={{ display:'inline-flex', alignItems:'center', gap:6, padding:'6px 14px', borderRadius:100, fontSize:'0.76rem', fontWeight:600, background: b.startsWith('🏷️') || b.startsWith('⏱️') ? 'var(--gold)' : 'var(--gold-pale)', border: b.startsWith('🏷️') || b.startsWith('⏱️') ? '1px solid var(--gold)' : '1px solid #E8D4AE', color: b.startsWith('🏷️') || b.startsWith('⏱️') ? '#fff' : '#7A5C28' }}>
               {b}
             </span>
           ))}
         </div>
 
-        {/* ── Primary CTA ── */}
-        <div className="hero-cta-wrap mobile-center-btn-wrap" style={{ marginBottom: 44 }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'flex-start' }} className="mobile-center-flex">
+        {/* ── Primary CTA — Focado na Ação & Ganho (Apenas 1 CTA Único) ── */}
+        <div className="hero-cta-wrap mobile-center-btn-wrap" style={{ marginBottom: 24, width: '100%' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center', width: '100%' }} className="mobile-center-flex">
             <a
               href={WA_VISIT}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppLead('hero_agendar_visita')}
               className="btn btn-gold pulse-gold mobile-center-btn"
-              style={{ display: 'inline-flex', fontSize: '0.98rem', padding: '15px 32px', borderRadius: 10, textDecoration: 'none' }}
+              style={{ display: 'inline-flex', fontSize: '1.02rem', padding: '16px 36px', borderRadius: 10, textDecoration: 'none', textAlign: 'center', justifyContent: 'center' }}
             >
-              <span>💬</span> Marcar Visita ao Terreno no WhatsApp
+              <span>📅</span> Quero Agendar a Minha Visita Privada
             </a>
-            <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span>✓</span> <strong>335.000€ Chave na Mão</strong> (IMT e Imposto de Selo incluídos) · Sinal 100% protegido
+
+            <div style={{ fontSize: '0.8rem', color: 'var(--text-body)', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: 6, flexWrap: 'wrap' }}>
+              <span>🛡️</span> Garantia: Sinal 100% protegido no CPCV · Obra chave-na-mão concluída em 10 meses.
             </div>
+          </div>
+        </div>
+
+        {/* ── Selo Institucional de Autoridade & Prova Social ── */}
+        <div className="mobile-center-flex" style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: 16,
+          flexWrap: 'wrap',
+          marginBottom: 36,
+          padding: '10px 18px',
+          background: 'rgba(255,255,255,0.75)',
+          border: '1px solid var(--border)',
+          borderRadius: 12,
+          fontSize: '0.78rem',
+          color: 'var(--text-muted)',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <span>Promotor:</span>
+            <strong style={{ color: 'var(--text-primary)' }}>Silvermont Capital</strong>
+          </div>
+          <span style={{ color: 'var(--border)' }}>•</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <span>Construtora Oficial:</span>
+            <a
+              href="https://grupofreitasrenovacoes.pt"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: 'var(--gold)', fontWeight: 700, textDecoration: 'none' }}
+            >
+              Grupo Freitas Renovações ↗
+            </a>
+          </div>
+          <span style={{ color: 'var(--border)' }}>•</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <span>👥</span>
+            <span><strong>7 visitas</strong> realizadas este mês</span>
           </div>
         </div>
 
@@ -209,7 +299,7 @@ export default function HeroSection() {
               muted={muted}
               playsInline
               preload="auto"
-              poster="/images/Exterior%20Capa.png"
+              poster="/images/exterior-capa.webp"
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
               onTimeUpdate={e => setCurrentTime(e.currentTarget.currentTime)}
@@ -336,6 +426,7 @@ export default function HeroSection() {
                   href={WA_VISIT}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackWhatsAppLead('hero_video_ended_visita')}
                   style={{
                     color: 'rgba(255,255,255,0.9)',
                     fontSize: '0.85rem',

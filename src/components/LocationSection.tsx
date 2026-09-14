@@ -22,15 +22,15 @@ export default function LocationSection() {
       <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 16px' }}>
 
         {/* Header */}
-        <div className="mobile-center-tag" style={{ fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--gold)', display:'flex', alignItems:'center', gap:10, marginBottom:14 }}>
+        <div className="mobile-center-tag" style={{ fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--gold)', display:'flex', alignItems:'center', justifyContent: 'center', margin: '0 auto 14px', gap:10 }}>
           <span style={{ display:'inline-block', width:24, height:1.5, background:'var(--gold)' }} />
-          Localização & Enquadramento
+          Localização &amp; Enquadramento
         </div>
-        <h2 className="mobile-center-title" style={{ fontFamily:'var(--serif)', fontWeight:600, fontSize:'clamp(1.65rem, 4vw, 2.6rem)', lineHeight:1.15, color:'var(--text-primary)', marginBottom:10 }}>
-          No coração de <span style={{ fontStyle:'italic', color:'var(--gold)' }}>Oliveirinha</span>
+        <h2 className="mobile-center-title" style={{ fontFamily:'var(--serif)', fontWeight:600, fontSize:'clamp(1.65rem, 4vw, 2.6rem)', lineHeight:1.15, color:'var(--text-primary)', maxWidth:820, margin: '0 auto 14px', textAlign: 'center' }}>
+          Oliveirinha: A 8 Minutos de Aveiro, com a Qualidade de Vida Que o Centro Perdeu.
         </h2>
-        <p className="mobile-center-desc" style={{ fontSize:'0.88rem', color:'var(--text-body)', lineHeight:1.65, maxWidth:540, marginBottom:36 }}>
-          Rua Acácio Simões Vieira (Lote 25) — tranquilidade residencial exclusiva com acesso rápido a Aveiro e às praias.
+        <p className="mobile-center-desc" style={{ fontSize:'0.95rem', color:'var(--text-body)', lineHeight:1.7, maxWidth:680, margin: '0 auto 36px', textAlign: 'center' }}>
+          Chegue às Glicínias ou à Universidade em escassos minutos, sem o stress do trânsito do centro nem os custos inflacionados por m². O equilíbrio perfeito entre acessibilidade e tranquilidade.
         </p>
 
         <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(300px, 1fr))', gap:28, alignItems:'start' }}>

@@ -9,10 +9,10 @@ const STEPS = [
     title: 'Informação & Validação',
     icon: '📋',
     items: [
-      'Apresentação completa do dossier e visita ao terreno',
-      'Escolha de personalizações (cozinha, acabamentos e climatização)',
-      'Estudo de viabilidade bancária gratuito',
-      'Enquadramento legal na taxa reduzida de 6% de IVA',
+      <><strong>Visita guiada ao terreno</strong> e apresentação completa do dossier</>,
+      <>Escolha das personalizações: cozinha, acabamentos e climatização</>,
+      <><strong>Estudo de viabilidade bancária 100% gratuito</strong> — sem compromisso</>,
+      <>Enquadramento legal na taxa reduzida de <strong>6% de IVA</strong></>,
     ],
   },
   {
@@ -20,10 +20,10 @@ const STEPS = [
     title: 'Reserva Protegida',
     icon: '🛡️',
     items: [
-      'Escritura do terreno registada em nome da sua família',
-      'CPCV com sinal de 38.500€ 100% protegido',
-      'Cláusula de devolução integral se banco recusar crédito',
-      'Preço blindado: 335.000€ com IMT e Selo incluídos',
+      <>Escritura do terreno <strong>registada em nome da sua família</strong></>,
+      <>CPCV com sinal de <strong>38.500€ — 100% protegido contratualmente</strong></>,
+      <><strong>Devolução integral</strong> do sinal se o banco recusar o crédito</>,
+      <><strong>Preço blindado: 335.000€</strong> com IMT e Selo — sem derrapes</>,
     ],
   },
   {
@@ -31,10 +31,10 @@ const STEPS = [
     title: 'Obra & Entrega Chave na Mão',
     icon: '🏠',
     items: [
-      '10 meses de construção em LSF certificado A+',
-      'Toda equipada (cozinha completa e climatização eficiente)',
-      'Recebimento do reembolso do IVA antes do fim da obra',
-      'Entrega chave na mão contratualizada sem derrapes',
+      <><strong>10 meses de construção</strong> em LSF certificado A+</>,
+      <>Entregamos a casa <strong>pronta a morar</strong> — cozinha completa e climatização</>,
+      <>Recebimento do <strong>reembolso do IVA</strong> antes do fim da obra</>,
+      <><strong>Entrega chave na mão contratualizada</strong> sem derrapes orçamentais</>,
     ],
   },
 ];

@@ -4,18 +4,18 @@ import Image from 'next/image';
 
 /* ─── Gallery — 12 curated images, uniform 4:3 rectangles ────────────────── */
 const ALL_IMAGES = [
-  { src: '/images/Exterior%20Capa.png',                       label: 'Fachada Principal & Entrada' },
-  { src: '/Exterior%20traseiro%20completo.png',               label: 'Jardim & Fachada Traseira' },
-  { src: '/images/Sala%20de%20Jantar.png',                    label: 'Sala de Jantar & Estar' },
-  { src: '/images/Cozinha.png',                               label: 'Cozinha Open Space' },
-  { src: '/images/Quarto%20Cama.png',                         label: 'Quarto Suite Principal' },
-  { src: '/images/Exterior%20Traseira%20Longe%20Barbecue.png', label: 'Área Exterior & Barbecue' },
-  { src: '/images/Quarto%20e%20varanda.png',                  label: 'Quarto com Varanda' },
-  { src: '/images/Quarto%20Porta.png',                        label: 'Zona dos Quartos' },
-  { src: '/images/Corredor%20quartos.png',                    label: 'Corredor Piso 1' },
-  { src: '/images/Terceiro%20Andar.png',                      label: 'Sótão Amplo (~34 m² úteis)' },
-  { src: '/images/WC%20F2.png',                               label: 'Casa de Banho Completa' },
-  { src: '/images/Exterior%20Traseiro.jpg',                   label: 'Jardim Privativo de ~82 m²' },
+  { src: '/images/exterior-capa.webp',              label: 'Fachada Principal & Entrada' },
+  { src: '/images/exterior-traseiro-completo.webp', label: 'Jardim & Fachada Traseira' },
+  { src: '/images/sala-de-jantar.webp',             label: 'Sala de Jantar & Estar' },
+  { src: '/images/cozinha.webp',                   label: 'Cozinha Open Space' },
+  { src: '/images/quarto-cama.webp',                label: 'Quarto Suite Principal' },
+  { src: '/images/exterior-barbecue.webp',          label: 'Área Exterior & Barbecue' },
+  { src: '/images/quarto-varanda.webp',             label: 'Quarto com Varanda' },
+  { src: '/images/quarto-porta.webp',               label: 'Zona dos Quartos' },
+  { src: '/images/corredor-quartos.webp',           label: 'Corredor Piso 1' },
+  { src: '/images/terceiro-andar.webp',             label: 'Sótão Amplo (~34 m² úteis)' },
+  { src: '/images/wc-f2.webp',                     label: 'Casa de Banho Completa' },
+  { src: '/images/exterior-traseiro.webp',          label: 'Jardim Privativo de ~82 m²' },
 ];
 
 export default function GallerySection() {
@@ -23,18 +23,18 @@ export default function GallerySection() {
 
   return (
     <>
-      <section id="galeria" style={{ background: 'var(--bg)', padding: '80px 0' }}>
+      <section id="galeria" style={{ background: 'var(--bg)', padding: '56px 0' }}>
         <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 16px' }}>
 
           {/* Header */}
-          <div className="mobile-center-tag" style={{ fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--gold)', display:'flex', alignItems:'center', gap:10, marginBottom:14 }}>
+          <div className="mobile-center-tag" style={{ fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--gold)', display:'flex', alignItems:'center', justifyContent: 'center', margin: '0 auto 14px', gap:10 }}>
             <span style={{ display:'inline-block', width:24, height:1.5, background:'var(--gold)' }} />
-            Galeria Fotográfica & Renders
+            Galeria Fotográfica &amp; Renders
           </div>
-          <h2 className="mobile-center-title" style={{ fontFamily:'var(--serif)', fontWeight:600, fontSize:'clamp(1.7rem, 3.5vw, 2.6rem)', lineHeight:1.15, color:'var(--text-primary)', marginBottom:10 }}>
-            Conheça o espaço <span style={{ fontStyle:'italic', color:'var(--gold)' }}>em detalhe</span>
+          <h2 className="mobile-center-title" style={{ fontFamily:'var(--serif)', fontWeight:600, fontSize:'clamp(1.7rem, 3.5vw, 2.6rem)', lineHeight:1.15, color:'var(--text-primary)', margin: '0 auto 10px', textAlign: 'center' }}>
+            Conheça cada detalhe do seu futuro lar.
           </h2>
-          <p className="mobile-center-desc" style={{ fontSize:'0.88rem', color:'var(--text-muted)', marginBottom:36 }}>
+          <p className="mobile-center-desc" style={{ fontSize:'0.88rem', color:'var(--text-muted)', margin: '0 auto 32px', textAlign: 'center' }}>
             Clique em qualquer fotografia para abrir a galeria em ecrã inteiro.
           </p>
 

@@ -5,8 +5,8 @@ import Image from 'next/image';
 /* ─── Floor Plans — Technical & 3D side by side (no tabs) ─────────────────── */
 const PLANTA_TECNICA = '/images/planta-tecnica.webp';
 const PLANTA_3D = '/images/planta-3d.webp';
-const PLANTA_TECNICA_FALLBACK = '/Planta-tecnica.png';
-const PLANTA_3D_FALLBACK = '/planta-3d.png';
+const PLANTA_TECNICA_FALLBACK = '/planta-tecnica.webp';
+const PLANTA_3D_FALLBACK = '/planta-3d.webp';
 
 const ROOMS = [
   // Piso 0
@@ -55,14 +55,14 @@ export default function FloorplansSection() {
         <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 16px' }}>
 
           {/* Header */}
-          <div className="mobile-center-tag" style={{ fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--gold)', display:'flex', alignItems:'center', gap:10, marginBottom:14 }}>
+          <div className="mobile-center-tag" style={{ fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--gold)', display:'flex', alignItems:'center', justifyContent: 'center', margin: '0 auto 14px', gap:10 }}>
             <span style={{ display:'inline-block', width:24, height:1.5, background:'var(--gold)' }} />
-            Plantas & Distribuição
+            Plantas &amp; Distribuição
           </div>
-          <h2 className="mobile-center-title" style={{ fontFamily:'var(--serif)', fontWeight:600, fontSize:'clamp(1.65rem, 4vw, 2.6rem)', lineHeight:1.15, color:'var(--text-primary)', marginBottom:10 }}>
+          <h2 className="mobile-center-title" style={{ fontFamily:'var(--serif)', fontWeight:600, fontSize:'clamp(1.65rem, 4vw, 2.6rem)', lineHeight:1.15, color:'var(--text-primary)', margin: '0 auto 10px', textAlign: 'center' }}>
             185 m² pensados <span style={{ fontStyle:'italic', color:'var(--gold)' }}>para a sua família</span>
           </h2>
-          <p className="mobile-center-desc" style={{ fontSize:'0.88rem', color:'var(--text-body)', lineHeight:1.65, maxWidth:540, marginBottom:36 }}>
+          <p className="mobile-center-desc" style={{ fontSize:'0.88rem', color:'var(--text-body)', lineHeight:1.65, maxWidth:540, margin: '0 auto 36px', textAlign: 'center' }}>
             Divisões bem iluminadas e integradas, jardim amplo para as crianças e sótão aproveitável.
             Toque nas plantas para ampliar em alta definição.
           </p>

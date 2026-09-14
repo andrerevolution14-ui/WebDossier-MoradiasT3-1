@@ -1,23 +1,22 @@
 'use client';
 import React, { useState } from 'react';
+import { trackWhatsAppLead } from '@/lib/analytics';
 
 // ─── WhatsApp Config — 920601070 ──────────────────────────────────────────
 export const WA_PHONE = '351920601070';
 export const WA_BASE  = `https://wa.me/${WA_PHONE}`;
 
-export const WA_VISIT = `${WA_BASE}?text=${encodeURIComponent(
-  'Olá André, vi o dossier da moradia Domaine XXV em Oliveirinha e gostaria de agendar uma visita ao terreno.'
-)}`;
+// Mensagem de qualificação financeira — filtro automático de leads
+// Obriga o utilizador a confirmar que tem os capitais próprios antes de enviar
+const WA_FILTER_MSG = encodeURIComponent(
+  'Olá André! Vi a Moradia em Oliveirinha no site. Confirmo que tenho os 38.500€ de entrada e quero verificar a viabilidade de avançar.'
+);
 
-export const WA_MANAGER = `${WA_BASE}?text=${encodeURIComponent(
-  'Olá André, vi o dossier do Domaine XXV em Oliveirinha e gostaria de esclarecer algumas dúvidas e agendar uma visita ao terreno.'
-)}`;
-
-export const WA_CREDIT = `${WA_BASE}?text=${encodeURIComponent(
-  'Olá André, vi o dossier do Domaine XXV e gostaria de solicitar a análise e teste de viabilidade de crédito 100% gratuito.'
-)}`;
-
-export const WA_GENERIC = WA_VISIT;
+export const WA_VISIT   = `${WA_BASE}?text=${WA_FILTER_MSG}`;
+export const WA_MANAGER = `${WA_BASE}?text=${WA_FILTER_MSG}`;
+export const WA_CREDIT  = `${WA_BASE}?text=${WA_FILTER_MSG}`;
+export const WA_GENERIC = `${WA_BASE}?text=${WA_FILTER_MSG}`;
+export const WA_DOSSIER = `${WA_BASE}?text=${WA_FILTER_MSG}`;
 
 export default function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -69,6 +68,7 @@ export default function SiteHeader() {
             href={WA_VISIT}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsAppLead('header_desktop_visita')}
             style={{
               flexShrink: 0,
               display: 'inline-flex',
@@ -145,7 +145,10 @@ export default function SiteHeader() {
             href={WA_VISIT}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => setMobileMenuOpen(false)}
+            onClick={() => {
+              trackWhatsAppLead('header_mobile_drawer_visita');
+              setMobileMenuOpen(false);
+            }}
             className="btn btn-gold"
             style={{ marginTop: 8, width: '100%', fontSize: '0.9rem' }}
           >

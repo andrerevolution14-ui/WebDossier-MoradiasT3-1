@@ -14,6 +14,7 @@ export default function CreditSection() {
       icon: '🏛️',
       title: 'Intermediário Registado no Banco de Portugal',
       desc: 'Processo acompanhado por profissionais certificados que negociam diretamente com todos os principais bancos nacionais.',
+      note: 'Tratamos de toda a burocracia bancária por si. Risco zero.',
     },
     {
       icon: '⏱️',
@@ -63,6 +64,11 @@ export default function CreditSection() {
               <p style={{ fontSize: '0.86rem', color: 'var(--text-muted)', lineHeight: 1.6, margin: 0 }}>
                 {b.desc}
               </p>
+              {b.note && (
+                <p style={{ fontSize: '0.84rem', color: 'var(--gold)', fontWeight: 700, lineHeight: 1.5, margin: 0 }}>
+                  ✓ {b.note}
+                </p>
+              )}
             </div>
           ))}
         </div>
