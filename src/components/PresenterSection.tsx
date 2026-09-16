@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-
-const WA_URL = `https://wa.me/351910000000?text=${encodeURIComponent('Olá André, estou a ver o dossier da moradia Domaine XXV em Oliveirinha e gostaria de agendar uma apresentação.')}`;
+import { WA_MANAGER } from './SiteHeader';
+import { trackWhatsAppLead } from '@/lib/analytics';
 
 interface PresenterProps {
   onContact: () => void;
@@ -47,9 +47,10 @@ export default function PresenterSection({ onContact }: PresenterProps) {
             </div>
 
             <a
-              href={WA_URL}
+              href={WA_MANAGER}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackWhatsAppLead('presenter_falar_comigo')}
               className="inline-flex items-center gap-2 bg-[#a07850] hover:bg-[#c5a059] text-white font-semibold text-sm px-7 py-3.5 rounded transition-colors"
             >
               <span>💬</span> Falar Comigo pelo WhatsApp
@@ -74,9 +75,10 @@ export default function PresenterSection({ onContact }: PresenterProps) {
                 <div className="text-white font-semibold text-base">André Queirós</div>
                 <div className="text-white/50 text-xs mt-0.5">Gestor de Projeto · Silvermont Capital</div>
                 <a
-                  href={WA_URL}
+                  href={WA_MANAGER}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackWhatsAppLead('presenter_profile_msg')}
                   className="inline-flex items-center gap-1.5 mt-2 text-xs text-[#a07850] hover:text-[#c5a059] transition-colors"
                 >
                   <span>💬</span> Enviar mensagem no WhatsApp

@@ -6,17 +6,16 @@ import { trackWhatsAppLead } from '@/lib/analytics';
 export const WA_PHONE = '351920601070';
 export const WA_BASE  = `https://wa.me/${WA_PHONE}`;
 
-// Mensagem de qualificação financeira — filtro automático de leads
-// Obriga o utilizador a confirmar que tem os capitais próprios antes de enviar
-const WA_FILTER_MSG = encodeURIComponent(
-  'Olá André! Vi a Moradia em Oliveirinha no site. Confirmo que tenho os 38.500€ de entrada e quero verificar a viabilidade de avançar.'
+// Mensagem automática unificada para todos os botões de contacto
+const WA_MSG = encodeURIComponent(
+  'Olá André! Vi a Moradia Domaine XXV em Oliveirinha e gostaria de agendar uma visita. Como podemos combinar?'
 );
 
-export const WA_VISIT   = `${WA_BASE}?text=${WA_FILTER_MSG}`;
-export const WA_MANAGER = `${WA_BASE}?text=${WA_FILTER_MSG}`;
-export const WA_CREDIT  = `${WA_BASE}?text=${WA_FILTER_MSG}`;
-export const WA_GENERIC = `${WA_BASE}?text=${WA_FILTER_MSG}`;
-export const WA_DOSSIER = `${WA_BASE}?text=${WA_FILTER_MSG}`;
+export const WA_VISIT   = `${WA_BASE}?text=${WA_MSG}`;
+export const WA_MANAGER = `${WA_BASE}?text=${WA_MSG}`;
+export const WA_CREDIT  = `${WA_BASE}?text=${WA_MSG}`;
+export const WA_GENERIC = `${WA_BASE}?text=${WA_MSG}`;
+export const WA_DOSSIER = `${WA_BASE}?text=${WA_MSG}`;
 
 export default function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

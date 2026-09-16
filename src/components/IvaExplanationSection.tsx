@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { WA_VISIT } from './SiteHeader';
+import { trackWhatsAppLead } from '@/lib/analytics';
 
 /* ─── Justificação de Preço & Reembolso do IVA ──────────────────────────── */
 export default function IvaExplanationSection() {
@@ -121,6 +122,7 @@ export default function IvaExplanationSection() {
             href={WA_VISIT}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsAppLead('iva_pedir_estudo')}
             className="btn btn-gold"
             style={{ fontSize: '0.88rem', padding: '12px 22px', whiteSpace: 'nowrap' }}
           >

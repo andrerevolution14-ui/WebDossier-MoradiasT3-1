@@ -84,13 +84,15 @@ export default function HomePage() {
             </div>
 
             <a
+              id="footer_verificar_viabilidade"
+              data-source="footer_verificar_viabilidade"
               href={WA_VISIT}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-gold"
               style={{ display: 'inline-flex', fontSize: '0.92rem', marginBottom: 32 }}
             >
-              <span>💬</span> Verificar Viabilidade no WhatsApp
+              <span>💬</span> Agendar Visita no WhatsApp
             </a>
 
             <div className="divider" style={{ marginBottom: 24 }} />

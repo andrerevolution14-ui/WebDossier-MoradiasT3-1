@@ -2,6 +2,9 @@
 
 import React, { useState } from 'react';
 
+import { WA_PHONE } from './SiteHeader';
+import { trackWhatsAppLead } from '@/lib/analytics';
+
 interface LeadModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -21,14 +24,16 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
     if (!name.trim() || !phone.trim()) return;
     setSending(true);
 
-    const msg = `Olá André! Vi o dossier do Domaine XXV (329.000€ | Avaliação 450.000€).\n\nNome: *${name.trim()}*\nContato: ${phone.trim()}\nInteresse: ${typology}\nHorário: ${timeSlot}\n\nGostaria de receber mais informações e agendar uma apresentação.`;
-    const waUrl = `https://wa.me/351910000000?text=${encodeURIComponent(msg)}`;
+    trackWhatsAppLead('lead_modal_form', { name: name.trim(), typology, timeSlot });
+
+    const msg = `Olá André! Vi a Moradia Domaine XXV em Oliveirinha e gostaria de agendar uma visita. Como podemos combinar?\n\nNome: ${name.trim()}\nContacto: ${phone.trim()}\nInteresse: ${typology}`;
+    const waUrl = `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(msg)}`;
 
     setTimeout(() => {
       setSending(false);
       onClose();
       window.open(waUrl, '_blank');
-    }, 600);
+    }, 400);
   };
 
   return (

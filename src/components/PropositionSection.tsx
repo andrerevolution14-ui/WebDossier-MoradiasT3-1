@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-
-const WA_URL = `https://wa.me/351910000000?text=${encodeURIComponent('Olá André, estou a ver o dossier da moradia Domaine XXV em Oliveirinha e gostaria de agendar uma apresentação.')}`;
+import { WA_MANAGER } from './SiteHeader';
+import { trackWhatsAppLead } from '@/lib/analytics';
 
 interface PropositionProps {
   onContact: () => void;
@@ -171,7 +171,13 @@ export default function PropositionSection({ onContact }: PropositionProps) {
               </p>
             </div>
           </div>
-          <a href={WA_URL} target="_blank" rel="noopener noreferrer" className="btn-primary flex-shrink-0 whitespace-nowrap">
+          <a
+            href={WA_MANAGER}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackWhatsAppLead('proposta_gestor')}
+            className="btn-primary flex-shrink-0 whitespace-nowrap"
+          >
             Falar com o Gestor →
           </a>
         </div>

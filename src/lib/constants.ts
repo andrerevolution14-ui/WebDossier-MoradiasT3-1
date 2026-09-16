@@ -74,7 +74,7 @@ export const PROPERTY: PropertyData = {
     'https://www.google.com/maps/dir/?api=1&destination=R.+Ac%C3%A1cio+Sim%C3%B5es+Vieira,+3810-843+Oliveirinha',
 };
 
-export const WHATSAPP_PHONE = '351910000000'; // Substituir pelo número do gestor quando pretendido
+export const WHATSAPP_PHONE = '351920601070';
 
 export const CRITICAL_MICRO_STATS = [
   {

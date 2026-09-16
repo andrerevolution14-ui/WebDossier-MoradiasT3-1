@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { WA_VISIT } from './SiteHeader';
+import { trackWhatsAppLead } from '@/lib/analytics';
 
 /* ─── Financial Block — 3 Key Numbers + Family Protections ──────────────── */
 export default function EquitySection() {
@@ -138,6 +139,7 @@ export default function EquitySection() {
             href={WA_VISIT}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsAppLead('equity_verificar_viabilidade')}
             className="btn btn-gold mobile-center-btn"
             style={{ fontSize: '0.95rem', padding: '14px 30px', display: 'inline-flex' }}
           >

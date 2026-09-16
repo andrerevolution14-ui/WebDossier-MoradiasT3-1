@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { WA_CREDIT } from './SiteHeader';
+import { trackWhatsAppLead } from '@/lib/analytics';
 
 /* ─── Credit Section: Viability Test with Credit Intermediary ──────────── */
 export default function CreditSection() {
@@ -102,6 +103,7 @@ export default function CreditSection() {
             href={WA_CREDIT}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackWhatsAppLead('credit_pedir_simulacao')}
             className="btn btn-gold"
             style={{ padding: '14px 28px', fontSize: '0.92rem', whiteSpace: 'nowrap' }}
           >
