@@ -3,7 +3,7 @@ export const PROJECT = {
   name: 'DOMAINE DU VINGT-CINQ',
   nameDisplay: 'Domaine du Vingt-Cinq',
   typology: 'T3',
-  areaSqm: '185',
+  areaSqm: '180',
   addressLine: 'Rua Acácio Simões Vieira, 25',
   locality: 'Quintas, Oliveirinha, Aveiro',
   fullAddress: 'Rua Acácio Simões Vieira, 25, Quintas, Oliveirinha, Aveiro',

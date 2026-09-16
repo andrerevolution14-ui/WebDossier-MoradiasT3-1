@@ -175,7 +175,7 @@ export default function HeroSection() {
 
         {/* ── Descriptive subheadline (Esclarecimento de Risco e Oportunidade Preço/m²) ── */}
         <p className="hero-subheadline mobile-center-desc" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.05rem)', lineHeight: 1.7, color: 'var(--text-body)', maxWidth: 760, margin: '0 auto 20px', textAlign: 'center' }}>
-          <strong>Projeto 100% aprovado pela Câmara Municipal e avaliação bancária oficial de 450.000€</strong> — sem qualquer impedimento legal ou espera por licenças. A única "impossibilidade" era encontrar no mercado uma moradia com esta área e jardim a 8 minutos de Aveiro por <strong>335.000€ chave-na-mão</strong> (~1.810€/m²). Começo imediato, <strong>entrega em 10 meses</strong> e preço blindado em contrato.
+          <strong>Projeto 100% aprovado pela Câmara Municipal e avaliação bancária oficial de 450.000€</strong> — sem qualquer impedimento legal ou espera por licenças. A única "impossibilidade" era encontrar no mercado uma moradia com esta área e jardim a 8 minutos de Aveiro por <strong>335.000€ chave-na-mão</strong> (~1.861€/m² ABP). Começo imediato, <strong>entrega em 10 meses</strong> e preço blindado em contrato.
         </p>
 
         {/* ── Destaque Financeiro ── */}
@@ -203,7 +203,7 @@ export default function HeroSection() {
             '🍳 Cozinha 100% Equipada',
             '❄️ Climatização & Bomba de Calor A+',
             '🎨 Personalização Total de Acabamentos',
-            '🏡 Moradia T3/T4 · ~185 m²',
+            '🏡 ~180 m² ABP · ~146 m² Úteis',
             '🌳 Jardim Privado ~82 m²',
             '🚗 Garagem Coberta 30 m²',
           ].map(b => (

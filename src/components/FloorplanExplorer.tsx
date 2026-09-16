@@ -34,9 +34,10 @@ const PLANS = [
     img: '/images/planta-3d.webp',
     desc: 'Volumetria completa da moradia com estrutura em LSF, cobertura inclinada e integração no lote de ~230 m².',
     areas: [
-      { room: 'Área útil habitável', size: '185 m²' },
+      { room: 'Área Bruta Privativa (ABP)', size: '~ 180 m²' },
+      { room: 'Área Útil Habitável (R/C+P1+Sótão)', size: '~ 146,34 m²' },
+      { room: 'Área Dependente Útil', size: '77,65 m²' },
       { room: 'Lote de terreno', size: '~230 m²' },
-      { room: 'Área bruta de construção', size: '235 m²' },
       { room: 'Classe energética', size: 'A+' },
     ],
   },
@@ -59,7 +60,7 @@ export default function FloorplanExplorer() {
               <div className="section-label mb-3">Plantas & Distribuição</div>
               <h2 className="serif font-semibold text-[#1a1714] leading-tight mb-5"
                   style={{ fontSize: 'clamp(1.9rem, 3.5vw, 2.8rem)' }}>
-                185 m² pensados{' '}
+                ~180 m² ABP pensados{' '}
                 <span className="serif-italic text-[#7a5c3e]">para você</span>
               </h2>
 

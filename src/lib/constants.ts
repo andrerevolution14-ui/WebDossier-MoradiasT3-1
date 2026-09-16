@@ -3,6 +3,9 @@ export interface PropertyData {
   nameDisplay: string;
   typology: string;
   areaSqm: number;
+  abpSqm: number;
+  usefulHabitableAreaSqm: number;
+  dependentUsefulAreaSqm: number;
   landSqm: number;
   addressLine: string;
   locality: string;
@@ -39,7 +42,10 @@ export const PROPERTY: PropertyData = {
   name: 'Domaine XXV',
   nameDisplay: 'Domaine du Vingt-Cinq (Domaine XXV)',
   typology: 'T3 (com opção T4)',
-  areaSqm: 185,
+  areaSqm: 180,
+  abpSqm: 180,
+  usefulHabitableAreaSqm: 146.34,
+  dependentUsefulAreaSqm: 77.65,
   landSqm: 230,
   addressLine: 'Rua Acácio Simões Vieira (Lote 25)',
   locality: 'Oliveirinha, Aveiro',

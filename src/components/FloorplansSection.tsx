@@ -60,10 +60,10 @@ export default function FloorplansSection() {
             Plantas &amp; Distribuição
           </div>
           <h2 className="mobile-center-title" style={{ fontFamily:'var(--serif)', fontWeight:600, fontSize:'clamp(1.65rem, 4vw, 2.6rem)', lineHeight:1.15, color:'var(--text-primary)', margin: '0 auto 10px', textAlign: 'center' }}>
-            185 m² pensados <span style={{ fontStyle:'italic', color:'var(--gold)' }}>para a sua família</span>
+            ~180 m² ABP pensados <span style={{ fontStyle:'italic', color:'var(--gold)' }}>para a sua família</span>
           </h2>
-          <p className="mobile-center-desc" style={{ fontSize:'0.88rem', color:'var(--text-body)', lineHeight:1.65, maxWidth:540, margin: '0 auto 36px', textAlign: 'center' }}>
-            Divisões bem iluminadas e integradas, jardim amplo para as crianças e sótão aproveitável.
+          <p className="mobile-center-desc" style={{ fontSize:'0.88rem', color:'var(--text-body)', lineHeight:1.65, maxWidth:580, margin: '0 auto 36px', textAlign: 'center' }}>
+            ~146,34 m² de área útil habitável (R/C, Piso 1 e Sótão central), 77,65 m² de áreas dependentes úteis e jardim privativo traseiro de ~82 m².
             Toque nas plantas para ampliar em alta definição.
           </p>
 
@@ -133,10 +133,52 @@ export default function FloorplansSection() {
               </div>
             ))}
 
-            {/* Total */}
-            <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'14px 18px', background:'var(--bg-alt)', borderTop:'2px solid var(--border)' }}>
-              <span style={{ fontSize:'0.9rem', fontWeight:700, color:'var(--text-primary)' }}>Área Útil Total Estimada</span>
-              <span style={{ fontFamily:'var(--serif)', fontWeight:700, fontSize:'1.1rem', color:'var(--gold)' }}>~185 m²</span>
+            {/* ── Resumo Oficial & Detalhes Técnicos das Áreas ── */}
+            <div style={{ background:'var(--bg-alt)', borderTop:'2px solid var(--border)', padding:'22px 20px' }}>
+              <div style={{ fontSize:'0.72rem', fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--gold)', marginBottom:14, display:'flex', alignItems:'center', gap:8 }}>
+                <span>🎯</span> Resumo Oficial de Parâmetros de Áreas
+              </div>
+              
+              <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(250px, 1fr))', gap:14 }}>
+                {/* 1. Área Útil Habitável */}
+                <div style={{ background:'var(--white)', border:'1px solid var(--border)', borderRadius:12, padding:'16px 18px', display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
+                  <div>
+                    <div style={{ fontSize:'0.78rem', color:'var(--text-muted)', fontWeight:600 }}>Total de Área Útil Habitável</div>
+                    <div style={{ fontFamily:'var(--serif)', fontWeight:700, fontSize:'1.3rem', color:'var(--text-primary)', margin:'6px 0 4px' }}>
+                      ~ 146,34 m²
+                    </div>
+                  </div>
+                  <div style={{ fontSize:'0.74rem', color:'var(--text-body)', lineHeight:1.45, marginTop:4 }}>
+                    R/C + Piso 1 + Sótão central habitável
+                  </div>
+                </div>
+
+                {/* 2. Área Dependente Útil */}
+                <div style={{ background:'var(--white)', border:'1px solid var(--border)', borderRadius:12, padding:'16px 18px', display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
+                  <div>
+                    <div style={{ fontSize:'0.78rem', color:'var(--text-muted)', fontWeight:600 }}>Total de Área Dependente Útil</div>
+                    <div style={{ fontFamily:'var(--serif)', fontWeight:700, fontSize:'1.3rem', color:'var(--text-primary)', margin:'6px 0 4px' }}>
+                      77,65 m²
+                    </div>
+                  </div>
+                  <div style={{ fontSize:'0.74rem', color:'var(--text-body)', lineHeight:1.45, marginTop:4 }}>
+                    Garagem coberta, anexo/arrumos e áreas técnicas
+                  </div>
+                </div>
+
+                {/* 3. Área Bruta Privativa (ABP) */}
+                <div style={{ background:'var(--gold-pale)', border:'1.5px solid #E8D4AE', borderRadius:12, padding:'16px 18px', display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
+                  <div>
+                    <div style={{ fontSize:'0.78rem', color:'#7A5C28', fontWeight:700 }}>Área Bruta Privativa (ABP)</div>
+                    <div style={{ fontFamily:'var(--serif)', fontWeight:700, fontSize:'1.3rem', color:'#7A5C28', margin:'6px 0 4px' }}>
+                      ~ 180 m²
+                    </div>
+                  </div>
+                  <div style={{ fontSize:'0.73rem', color:'#8A6A32', lineHeight:1.45, marginTop:4 }}>
+                    Soma da área bruta do Piso 0 descontando a garagem, mais a área bruta total do Piso 1 e a zona central habitável do Sótão.
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 

@@ -68,8 +68,9 @@ const PLANS_DATA = {
     title: 'Visualização 3D Volumétrica',
     img: 'assets/images/planta-3d.webp',
     areas: [
-      { label: 'Área Bruta de Construção', val: '235,00 m²' },
-      { label: 'Área Útil Habitável', val: '185,00 m²' },
+      { label: 'Área Bruta Privativa (ABP)', val: '~ 180 m²' },
+      { label: 'Área Útil Habitável (R/C+P1+Sótão)', val: '~ 146,34 m²' },
+      { label: 'Área Dependente Útil', val: '77,65 m²' },
       { label: 'Lote de Terreno Privativo', val: '~230 m²' },
       { label: 'Eficiência Energética', val: 'Classe A+' }
     ]
