@@ -14,8 +14,7 @@ export default function ManagerSection() {
 
           {/* ── Left — copy ── */}
           <div>
-            <div className="mobile-center-tag" style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 14 }}>
-              <span style={{ display: 'inline-block', width: 24, height: 1.5, background: 'var(--gold)', marginRight: 8, verticalAlign: 'middle' }} />
+            <div className="section-tag mobile-center-tag">
               Acompanhamento Pessoal &amp; Rigor Construtivo
             </div>
 
@@ -23,22 +22,24 @@ export default function ManagerSection() {
             <div className="mobile-center-flex" style={{ marginBottom: 16 }}>
               <div style={{
                 display: 'inline-flex', alignItems: 'center', gap: 7,
-                background: 'rgba(92, 122, 62, 0.2)',
-                border: '1px solid #5C7A3E',
-                borderRadius: 100,
-                padding: '6px 14px',
-                fontSize: '0.78rem',
+                background: 'rgba(92, 122, 62, 0.15)',
+                border: '1px solid #4D6B26',
+                borderRadius: 'var(--radius-micro)',
+                padding: '5px 12px',
+                fontSize: '0.72rem',
                 fontWeight: 700,
-                color: '#A8D984',
+                color: '#B5E698',
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
               }}>
-                <span style={{ display: 'inline-block', width: 7, height: 7, borderRadius: '50%', background: '#6EE7B7' }} />
-                <span>Imóvel disponível para visitas esta semana · 7 visitas realizadas este mês</span>
+                <span style={{ display: 'inline-block', width: 6, height: 6, background: '#6EE7B7' }} />
+                <span>Disponível para visitas esta semana · 7 visitas este mês</span>
               </div>
             </div>
 
             <h2 className="heading mobile-center-title" style={{ color: '#fff', marginBottom: 16 }}>
               As oportunidades em Aveiro{' '}
-              <span className="serif-i" style={{ color: 'var(--gold-light)' }}>não ficam disponíveis por muito tempo.</span>
+              <span style={{ color: 'var(--gold-light)', fontWeight: 700 }}>não ficam disponíveis por muito tempo.</span>
             </h2>
             <p className="mobile-center-desc" style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.95rem', lineHeight: 1.7, maxWidth: 480, marginBottom: 28 }}>
               Desenvolvido por <strong>André Queirós</strong> em parceria oficial com o <strong>Grupo Freitas Renovações</strong> (<a href="https://grupofreitasrenovacoes.pt" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold-light)', textDecoration: 'underline' }}>grupofreitasrenovacoes.pt</a>). Asseguramos cumprimento escrupuloso de prazos, alvará de construção certificado e apoio direto à sua família.
@@ -54,7 +55,7 @@ export default function ManagerSection() {
                 'Contacto direto sem intermediários pelo 920 601 070',
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                  <span style={{ color: 'var(--gold)', fontSize: '0.85rem', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>—</span>
+                  <span style={{ color: 'var(--gold-light)', fontSize: '0.85rem', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>—</span>
                   <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.88rem', lineHeight: 1.5 }}>{item}</span>
                 </div>
               ))}
@@ -69,92 +70,101 @@ export default function ManagerSection() {
                   rel="noopener noreferrer"
                   onClick={() => trackWhatsAppLead('manager_agendar_visita')}
                   className="btn btn-gold pulse-gold mobile-center-btn"
-                  style={{ fontSize: '1.02rem', padding: '16px 36px', display: 'inline-flex' }}
+                  style={{ fontSize: '0.92rem', padding: '16px 36px', display: 'inline-flex', borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase' }}
                 >
-                  <span>📅</span> Quero Agendar a Minha Visita Privada
+                  Agendar Visita Privada ao Lote →
                 </a>
               </div>
-              <div style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.65)', marginTop: 12, display: 'flex', alignItems: 'center', gap: 6, justifyContent: 'center', textAlign: 'center' }}>
-                <span>🛡️</span> Garantia: Chave na mão em 10 meses · Sinal 100% protegido por salvaguarda no CPCV.
+              <div style={{ fontSize: '0.76rem', color: 'rgba(255,255,255,0.6)', marginTop: 12, display: 'flex', alignItems: 'center', gap: 6, justifyContent: 'center', textAlign: 'center', letterSpacing: '0.02em' }}>
+                <span>Conclusão da obra em 10 meses · Sinal 100% salvaguardado no CPCV</span>
               </div>
             </div>
           </div>
 
           {/* ── Right — profile card ── */}
           <div>
-            <div className="card" style={{ padding: '28px 24px', marginBottom: 20 }}>
+            <div className="card" style={{ padding: '28px 24px', marginBottom: 20, borderRadius: 'var(--radius-card)', background: 'var(--white)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 18, marginBottom: 20 }}>
                 <div style={{
-                  position: 'relative', width: 76, height: 76, flexShrink: 0,
-                  borderRadius: '50%', overflow: 'hidden',
-                  boxShadow: '0 0 0 3px var(--gold), 0 0 0 5px var(--bg-dark)',
+                  position: 'relative', width: 72, height: 72, flexShrink: 0,
+                  borderRadius: 'var(--radius-card-sm)', overflow: 'hidden',
+                  border: '1px solid var(--gold)',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
                 }}>
                   <Image
                     src="/EU1.jpeg"
                     alt="André Queirós — Gestor do Projeto Domaine XXV"
                     fill
-                    sizes="76px"
+                    sizes="72px"
                     style={{ objectFit: 'cover', objectPosition: 'center top' }}
                   />
                 </div>
                 <div>
-                  <div style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--text-primary)', marginBottom: 3 }}>
+                  <div style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--text-primary)' }}>
                     André Queirós
                   </div>
-                  <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
-                    Domaine XXV &amp; Grupo Freitas Renovações
+                  <div style={{ fontSize: '0.76rem', color: 'var(--gold-dark)', fontWeight: 600, marginTop: 2, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                    Gestor do Projeto · Domaine XXV
                   </div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--gold)', fontWeight: 600, marginTop: 2 }}>
-                    WhatsApp: 920 601 070
+                  <div style={{ fontSize: '0.76rem', color: 'var(--text-muted)', marginTop: 2 }}>
+                    Oliveirinha · Aveiro
                   </div>
                 </div>
               </div>
 
-              {/* Final closing CTA Button Grande */}
+              {/* Status pill */}
+              <div style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                background: 'var(--gold-pale)', border: '1px solid #E6D8BC',
+                borderRadius: 'var(--radius-micro)', padding: '5px 12px',
+                fontSize: '0.72rem', fontWeight: 700, color: 'var(--gold-dark)',
+                letterSpacing: '0.04em', textTransform: 'uppercase',
+                marginBottom: 20,
+              }}>
+                <span style={{ display: 'inline-block', width: 6, height: 6, background: 'var(--gold)' }} />
+                <span>Interlocutor Único do CPCV à Escritura</span>
+              </div>
+
               <a
                 href={WA_VISIT}
                 target="_blank"
                 rel="noopener noreferrer"
-                id="final-cta-btn"
-                onClick={() => trackWhatsAppLead('manager_profile_final_cta')}
+                onClick={() => trackWhatsAppLead('manager_card_visita')}
+                className="btn btn-gold"
                 style={{
-                  width: '100%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: 10,
-                  background: 'linear-gradient(135deg, #C9A24F 0%, #B8924A 100%)',
-                  color: '#fff',
-                  fontFamily: 'var(--sans)',
-                  fontWeight: 800,
-                  fontSize: '1rem',
-                  padding: '16px 20px',
-                  borderRadius: 10,
-                  textDecoration: 'none',
-                  boxShadow: '0 4px 20px rgba(184,146,74,0.45)',
-                  letterSpacing: '0.01em',
+                  gap: 8,
+                  width: '100%',
+                  fontSize: '0.85rem',
+                  padding: '13px 20px',
+                  borderRadius: 'var(--radius-btn)',
+                  letterSpacing: '0.04em',
+                  textTransform: 'uppercase',
                   marginBottom: 14,
                 }}
               >
-                <span>📅</span> Quero Agendar a Minha Visita Privada
+                Agendar a Minha Visita Privada →
               </a>
 
               <p style={{
-                fontSize: '0.68rem',
+                fontSize: '0.70rem',
                 color: 'var(--text-muted)',
                 textAlign: 'center',
                 lineHeight: 1.5,
                 margin: 0,
+                letterSpacing: '0.02em',
               }}>
-                👉 Projeto único. Não existem projetos adjacentes nas mesmas condições.
+                Empreendimento exclusivo. Sem projetos adjacentes nas mesmas condições de mercado.
               </p>
             </div>
 
             {/* Partner logos with Promotor & Grupo Freitas Renovações */}
             <div style={{
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(255,255,255,0.12)',
-              borderRadius: 12,
+              background: 'rgba(255,255,255,0.04)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              borderRadius: 'var(--radius-card-sm)',
               padding: '14px 18px',
               display: 'flex',
               alignItems: 'center',

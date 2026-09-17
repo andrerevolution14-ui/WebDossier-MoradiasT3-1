@@ -90,9 +90,9 @@ export default function HomePage() {
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-gold"
-              style={{ display: 'inline-flex', fontSize: '0.92rem', marginBottom: 32 }}
+              style={{ display: 'inline-flex', fontSize: '0.86rem', marginBottom: 32, borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase' }}
             >
-              <span>💬</span> Agendar Visita no WhatsApp
+              Agendar Visita no WhatsApp →
             </a>
 
             <div className="divider" style={{ marginBottom: 24 }} />

@@ -34,7 +34,7 @@ export default function PropositionSection({ onContact }: PropositionProps) {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 mb-12">
 
           {/* ── LEFT — Visual Equity Comparison Card ── */}
-          <div className="bg-white rounded-2xl border border-[#e8dfc9] overflow-hidden shadow-sm">
+          <div className="bg-white rounded-[3px] border border-[#e8dfc9] overflow-hidden shadow-sm">
             <div className="px-6 py-5 border-b border-[#e8dfc9]">
               <div className="section-label mb-0.5">Comparação de Valor</div>
               <h3 className="serif font-semibold text-[#1a1714] text-lg">O seu equity desde o primeiro dia</h3>
@@ -48,8 +48,8 @@ export default function PropositionSection({ onContact }: PropositionProps) {
                   <span className="text-xs font-semibold uppercase tracking-wide text-[#8a7d6f]">Avaliação Bancária</span>
                   <span className="serif font-semibold text-[#1a1714] text-base">450.000€</span>
                 </div>
-                <div className="h-3 bg-[#f0ead8] rounded-full overflow-hidden">
-                  <div className="h-full bg-[#c5a059] rounded-full" style={{ width: '100%' }} />
+                <div className="h-2 bg-[#f0ead8] rounded-[2px] overflow-hidden">
+                  <div className="h-full bg-[#c5a059] rounded-[2px]" style={{ width: '100%' }} />
                 </div>
               </div>
 
@@ -59,18 +59,18 @@ export default function PropositionSection({ onContact }: PropositionProps) {
                   <span className="text-xs font-semibold uppercase tracking-wide text-[#8a7d6f]">Preço de Venda</span>
                   <span className="serif font-semibold text-[#1a1714] text-base">329.000€</span>
                 </div>
-                <div className="h-3 bg-[#f0ead8] rounded-full overflow-hidden">
-                  <div className="h-full bg-[#7a5c3e] rounded-full" style={{ width: `${(329/450)*100}%` }} />
+                <div className="h-2 bg-[#f0ead8] rounded-[2px] overflow-hidden">
+                  <div className="h-full bg-[#7a5c3e] rounded-[2px]" style={{ width: `${(329/450)*100}%` }} />
                 </div>
               </div>
 
               {/* Equity callout */}
-              <div className="rounded-xl bg-[#faf7f2] border border-[#e8dfc9] p-4 flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#7a5c3e]/10 flex items-center justify-center text-xl flex-shrink-0">
-                  💎
+              <div className="rounded-[3px] bg-[#faf7f2] border border-[#e8dfc9] p-4 flex items-center gap-4">
+                <div className="px-2.5 py-1.5 rounded-[2px] bg-[#7a5c3e]/10 text-xs font-serif font-bold text-[#7a5c3e] uppercase tracking-wider flex-shrink-0">
+                  EQUITY
                 </div>
                 <div>
-                  <div className="text-[#8a7d6f] text-xs font-medium mb-0.5">Equity imediato</div>
+                  <div className="text-[#8a7d6f] text-xs font-medium mb-0.5">Margem imediata sobre avaliação</div>
                   <div className="serif font-bold text-[#7a5c3e] text-2xl">+121.000€</div>
                 </div>
               </div>
@@ -99,7 +99,7 @@ export default function PropositionSection({ onContact }: PropositionProps) {
 
           {/* ── RIGHT — What's included + image ── */}
           <div className="space-y-6">
-            <div className="relative rounded-2xl overflow-hidden img-hover shadow-md" style={{ aspectRatio: '3/2' }}>
+            <div className="relative rounded-[3px] overflow-hidden img-hover shadow-md border border-[#e8dfc9]" style={{ aspectRatio: '3/2' }}>
               <Image
                 src="/images/exterior-traseiro-completo.webp"
                 alt="Jardim Privado — Domaine XXV"
@@ -120,7 +120,7 @@ export default function PropositionSection({ onContact }: PropositionProps) {
                 'Licenças, projetos técnicos e CPCV incluídos no preço',
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <span className="text-[#7a5c3e] mt-0.5 flex-shrink-0 font-semibold">✓</span>
+                  <span className="text-[#7a5c3e] mt-0.5 flex-shrink-0 font-semibold text-xs">◆</span>
                   <span className="text-[#4a3f35] text-sm leading-snug">{item}</span>
                 </div>
               ))}
@@ -129,7 +129,7 @@ export default function PropositionSection({ onContact }: PropositionProps) {
         </div>
 
         {/* ── Financial structure ── */}
-        <div className="bg-white rounded-2xl border border-[#e8dfc9] overflow-hidden shadow-sm mb-6">
+        <div className="bg-white rounded-[3px] border border-[#e8dfc9] overflow-hidden shadow-sm mb-6">
           <div className="px-6 py-4 border-b border-[#e8dfc9]">
             <h3 className="serif font-semibold text-[#1a1714] text-lg">Estrutura Financeira</h3>
             <p className="text-[#8a7d6f] text-xs mt-0.5">Como funciona a aquisição em planta</p>
@@ -161,9 +161,11 @@ export default function PropositionSection({ onContact }: PropositionProps) {
         </div>
 
         {/* ── Guarantee + CTA ── */}
-        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between bg-white rounded-2xl px-6 py-5 border border-[#e8dfc9] shadow-sm">
+        <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between bg-white rounded-[3px] px-6 py-5 border border-[#e8dfc9] shadow-sm">
           <div className="flex items-start gap-4">
-            <span className="text-2xl">🛡️</span>
+            <div className="px-2.5 py-1.5 rounded-[2px] bg-[#FAF6EE] border border-[#E8D9BF] text-xs font-bold text-[#8C6D32] tracking-wider uppercase flex-shrink-0">
+              CPCV
+            </div>
             <div>
               <div className="font-semibold text-[#1a1714] text-sm mb-0.5">Sinal 100% protegido por contrato</div>
               <p className="text-[#8a7d6f] text-xs leading-snug max-w-sm">
@@ -176,7 +178,8 @@ export default function PropositionSection({ onContact }: PropositionProps) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackWhatsAppLead('proposta_gestor')}
-            className="btn-primary flex-shrink-0 whitespace-nowrap"
+            className="btn btn-gold flex-shrink-0 whitespace-nowrap"
+            style={{ borderRadius: 3, fontSize: '0.82rem' }}
           >
             Falar com o Gestor →
           </a>

@@ -55,14 +55,13 @@ export default function FloorplansSection() {
         <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 16px' }}>
 
           {/* Header */}
-          <div className="mobile-center-tag" style={{ fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--gold)', display:'flex', alignItems:'center', justifyContent: 'center', margin: '0 auto 14px', gap:10 }}>
-            <span style={{ display:'inline-block', width:24, height:1.5, background:'var(--gold)' }} />
+          <div className="section-tag mobile-center-tag">
             Plantas &amp; Distribuição
           </div>
-          <h2 className="mobile-center-title" style={{ fontFamily:'var(--serif)', fontWeight:600, fontSize:'clamp(1.65rem, 4vw, 2.6rem)', lineHeight:1.15, color:'var(--text-primary)', margin: '0 auto 10px', textAlign: 'center' }}>
-            ~180 m² ABP pensados <span style={{ fontStyle:'italic', color:'var(--gold)' }}>para a sua família</span>
+          <h2 className="heading mobile-center-title" style={{ maxWidth: 820, margin: '0 auto 10px', textAlign: 'center' }}>
+            ~180 m² ABP pensados <span style={{ color:'var(--gold-dark)', fontWeight: 700 }}>para a sua família</span>
           </h2>
-          <p className="mobile-center-desc" style={{ fontSize:'0.88rem', color:'var(--text-body)', lineHeight:1.65, maxWidth:580, margin: '0 auto 36px', textAlign: 'center' }}>
+          <p className="mobile-center-desc" style={{ fontSize:'0.90rem', color:'var(--text-body)', lineHeight:1.65, maxWidth:620, margin: '0 auto 36px', textAlign: 'center' }}>
             ~146,34 m² de área útil habitável (R/C, Piso 1 e Sótão central), 77,65 m² de áreas dependentes úteis e jardim privativo traseiro de ~82 m².
             Toque nas plantas para ampliar em alta definição.
           </p>
@@ -70,16 +69,16 @@ export default function FloorplansSection() {
           {/* ── Two plans side by side ── */}
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(280px, 1fr))', gap:20, marginBottom:40 }}>
             {PLANS.map((plan) => (
-              <div key={plan.label} style={{ background:'var(--white)', border:'1px solid var(--border)', borderRadius:14, overflow:'hidden', boxShadow:'0 4px 16px rgba(0,0,0,0.05)' }}>
+              <div key={plan.label} style={{ background:'var(--white)', border:'1px solid var(--border)', borderRadius:'var(--radius-card)', overflow:'hidden', boxShadow:'var(--shadow-soft)' }}>
                 {/* Plan header */}
                 <div style={{ padding:'14px 18px', borderBottom:'1px solid var(--border)', display:'flex', alignItems:'center', justifyContent:'space-between', background:'var(--bg-alt)' }}>
                   <div>
-                    <div style={{ fontWeight:700, fontSize:'0.92rem', color:'var(--text-primary)' }}>{plan.label}</div>
-                    <div style={{ fontSize:'0.73rem', color:'var(--text-muted)', marginTop:2 }}>{plan.sub}</div>
+                    <div style={{ fontWeight:700, fontSize:'0.90rem', color:'var(--text-primary)' }}>{plan.label}</div>
+                    <div style={{ fontSize:'0.72rem', color:'var(--text-muted)', marginTop:2 }}>{plan.sub}</div>
                   </div>
                   <button
                     onClick={() => setLightbox(plan.src)}
-                    style={{ background:'var(--white)', border:'1px solid var(--border)', borderRadius:7, padding:'6px 12px', fontSize:'0.74rem', fontWeight:600, color:'var(--gold)', cursor:'pointer' }}
+                    style={{ background:'var(--white)', border:'1px solid var(--border)', borderRadius:'var(--radius-micro)', padding:'6px 12px', fontSize:'0.70rem', fontWeight:700, letterSpacing:'0.04em', textTransform:'uppercase', color:'var(--gold-dark)', cursor:'pointer' }}
                   >
                     Ampliar ↗
                   </button>
@@ -105,24 +104,25 @@ export default function FloorplansSection() {
           </div>
 
           {/* ── Specifications table ── */}
-          <div style={{ background:'var(--white)', border:'1px solid var(--border)', borderRadius:14, overflow:'hidden', boxShadow:'0 2px 12px rgba(0,0,0,0.03)' }}>
+          <div style={{ background:'var(--white)', border:'1px solid var(--border)', borderRadius:3, overflow:'hidden', boxShadow:'0 2px 12px rgba(0,0,0,0.03)' }}>
             <div style={{ padding:'14px 18px', borderBottom:'1px solid var(--border)', background:'var(--bg-alt)', display:'flex', alignItems:'center', gap:10 }}>
-              <span style={{ fontSize:'1.1rem' }}>📐</span>
+              <span style={{ display:'block', width:4, height:18, background:'var(--gold)' }} />
               <div>
-                <div style={{ fontWeight:700, fontSize:'0.9rem', color:'var(--text-primary)' }}>Distribuição de Áreas por Piso</div>
-                <div style={{ fontSize:'0.72rem', color:'var(--text-muted)', marginTop:1 }}>Todas as áreas indicadas com símbolo aproximado (~) conforme projeto de arquitetura</div>
+                <div style={{ fontWeight:700, fontSize:'0.90rem', color:'var(--text-primary)', letterSpacing:'0.02em' }}>Distribuição de Áreas por Piso</div>
+                <div style={{ fontSize:'0.72rem', color:'var(--text-muted)', marginTop:1 }}>Valores conforme memória descritiva do projeto de arquitetura aprovado</div>
               </div>
             </div>
 
             {/* Floors grouped */}
             {[
-              { label: 'Piso 0 — Área Social, Exterior & Estacionamento', emoji: '🏡', floors: ROOMS.filter(r => r.floor === 0) },
-              { label: 'Piso 1 — Zona Privada dos Quartos',               emoji: '🛏️', floors: ROOMS.filter(r => r.floor === 1) },
-              { label: 'Sótão Aproveitável',                              emoji: '🔺', floors: ROOMS.filter(r => r.floor === 2) },
+              { label: 'Piso 0 — Área Social, Exterior & Estacionamento', code: 'PISO 0', floors: ROOMS.filter(r => r.floor === 0) },
+              { label: 'Piso 1 — Zona Privada dos Quartos',               code: 'PISO 1', floors: ROOMS.filter(r => r.floor === 1) },
+              { label: 'Sótão Aproveitável',                              code: 'SÓTÃO',  floors: ROOMS.filter(r => r.floor === 2) },
             ].map((group, gi) => (
               <div key={gi}>
-                <div style={{ padding:'10px 18px', background: gi % 2 === 0 ? 'var(--bg)' : 'var(--bg-alt)', borderBottom:'1px solid var(--border)', fontSize:'0.7rem', fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase', color:'var(--gold)', display:'flex', alignItems:'center', gap:8 }}>
-                  <span>{group.emoji}</span> {group.label}
+                <div style={{ padding:'10px 18px', background: gi % 2 === 0 ? 'var(--bg)' : 'var(--bg-alt)', borderBottom:'1px solid var(--border)', fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.10em', textTransform:'uppercase', color:'var(--gold)', display:'flex', alignItems:'center', gap:8 }}>
+                  <span style={{ border:'1px solid var(--border)', padding:'1px 5px', borderRadius:2, background:'var(--white)', fontSize:'0.64rem' }}>{group.code}</span>
+                  <span>{group.label}</span>
                 </div>
                 {group.floors.map((r, i) => (
                   <div key={i} style={{ display:'flex', justifyContent:'space-between', alignItems:'center', padding:'11px 18px', borderBottom:'1px solid var(--border)', background: i % 2 === 0 ? 'var(--white)' : 'var(--bg)' }}>
@@ -134,48 +134,49 @@ export default function FloorplansSection() {
             ))}
 
             {/* ── Resumo Oficial & Detalhes Técnicos das Áreas ── */}
-            <div style={{ background:'var(--bg-alt)', borderTop:'2px solid var(--border)', padding:'22px 20px' }}>
-              <div style={{ fontSize:'0.72rem', fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--gold)', marginBottom:14, display:'flex', alignItems:'center', gap:8 }}>
-                <span>🎯</span> Resumo Oficial de Parâmetros de Áreas
+            <div style={{ background:'var(--bg-alt)', borderTop:'1px solid var(--border)', padding:'22px 20px' }}>
+              <div style={{ fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--gold)', marginBottom:14, display:'flex', alignItems:'center', gap:8 }}>
+                <span style={{ display:'inline-block', width:18, height:1.5, background:'var(--gold)' }} />
+                Resumo Oficial de Parâmetros de Áreas
               </div>
               
               <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(250px, 1fr))', gap:14 }}>
                 {/* 1. Área Útil Habitável */}
-                <div style={{ background:'var(--white)', border:'1px solid var(--border)', borderRadius:12, padding:'16px 18px', display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
+                <div style={{ background:'var(--white)', border:'1px solid var(--border)', borderRadius:'var(--radius-card-sm)', padding:'16px 18px', display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
                   <div>
-                    <div style={{ fontSize:'0.78rem', color:'var(--text-muted)', fontWeight:600 }}>Total de Área Útil Habitável</div>
-                    <div style={{ fontFamily:'var(--serif)', fontWeight:700, fontSize:'1.3rem', color:'var(--text-primary)', margin:'6px 0 4px' }}>
+                    <div style={{ fontSize:'0.72rem', color:'var(--text-muted)', fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' }}>Área Útil Habitável</div>
+                    <div style={{ fontFamily:'var(--serif)', fontWeight:700, fontSize:'1.4rem', color:'var(--text-primary)', margin:'6px 0 4px' }}>
                       ~ 146,34 m²
                     </div>
                   </div>
-                  <div style={{ fontSize:'0.74rem', color:'var(--text-body)', lineHeight:1.45, marginTop:4 }}>
+                  <div style={{ fontSize:'0.76rem', color:'var(--text-body)', lineHeight:1.45, marginTop:4 }}>
                     R/C + Piso 1 + Sótão central habitável
                   </div>
                 </div>
 
                 {/* 2. Área Dependente Útil */}
-                <div style={{ background:'var(--white)', border:'1px solid var(--border)', borderRadius:12, padding:'16px 18px', display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
+                <div style={{ background:'var(--white)', border:'1px solid var(--border)', borderRadius:'var(--radius-card-sm)', padding:'16px 18px', display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
                   <div>
-                    <div style={{ fontSize:'0.78rem', color:'var(--text-muted)', fontWeight:600 }}>Total de Área Dependente Útil</div>
-                    <div style={{ fontFamily:'var(--serif)', fontWeight:700, fontSize:'1.3rem', color:'var(--text-primary)', margin:'6px 0 4px' }}>
+                    <div style={{ fontSize:'0.72rem', color:'var(--text-muted)', fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' }}>Área Dependente Útil</div>
+                    <div style={{ fontFamily:'var(--serif)', fontWeight:700, fontSize:'1.4rem', color:'var(--text-primary)', margin:'6px 0 4px' }}>
                       77,65 m²
                     </div>
                   </div>
-                  <div style={{ fontSize:'0.74rem', color:'var(--text-body)', lineHeight:1.45, marginTop:4 }}>
+                  <div style={{ fontSize:'0.76rem', color:'var(--text-body)', lineHeight:1.45, marginTop:4 }}>
                     Garagem coberta, anexo/arrumos e áreas técnicas
                   </div>
                 </div>
 
                 {/* 3. Área Bruta Privativa (ABP) */}
-                <div style={{ background:'var(--gold-pale)', border:'1.5px solid #E8D4AE', borderRadius:12, padding:'16px 18px', display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
+                <div style={{ background:'var(--gold-pale)', border:'1px solid #E6D8BC', borderRadius:'var(--radius-card-sm)', padding:'16px 18px', display:'flex', flexDirection:'column', justifyContent:'space-between' }}>
                   <div>
-                    <div style={{ fontSize:'0.78rem', color:'#7A5C28', fontWeight:700 }}>Área Bruta Privativa (ABP)</div>
-                    <div style={{ fontFamily:'var(--serif)', fontWeight:700, fontSize:'1.3rem', color:'#7A5C28', margin:'6px 0 4px' }}>
+                    <div style={{ fontSize:'0.72rem', color:'var(--gold-dark)', fontWeight:700, letterSpacing:'0.06em', textTransform:'uppercase' }}>Área Bruta Privativa (ABP)</div>
+                    <div style={{ fontFamily:'var(--serif)', fontWeight:700, fontSize:'1.4rem', color:'var(--gold-dark)', margin:'6px 0 4px' }}>
                       ~ 180 m²
                     </div>
                   </div>
-                  <div style={{ fontSize:'0.73rem', color:'#8A6A32', lineHeight:1.45, marginTop:4 }}>
-                    Soma da área bruta do Piso 0 descontando a garagem, mais a área bruta total do Piso 1 e a zona central habitável do Sótão.
+                  <div style={{ fontSize:'0.76rem', color:'#8A6A32', lineHeight:1.45, marginTop:4 }}>
+                    Soma da área bruta do Piso 0 descontando a garagem, Piso 1 e zona central do Sótão.
                   </div>
                 </div>
               </div>
@@ -187,20 +188,20 @@ export default function FloorplansSection() {
             <div style={{
               background: 'var(--white)',
               border: '1px solid var(--border)',
-              borderRadius: 16,
+              borderRadius: 'var(--radius-card)',
               padding: '28px 24px',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.04)',
+              boxShadow: 'var(--shadow-soft)',
             }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12, marginBottom: 20 }}>
                 <div>
-                  <div style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)', marginBottom: 4 }}>
+                  <div style={{ fontSize: '0.70rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold-dark)', marginBottom: 4 }}>
                     Totalmente Pronta a Habitar
                   </div>
                   <h3 style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: '1.35rem', color: 'var(--text-primary)', margin: 0 }}>
                     100% Equipada & com Múltiplas Opções de Personalização
                   </h3>
                 </div>
-                <div style={{ background: 'var(--gold-pale)', border: '1px solid #E8D4AE', padding: '6px 14px', borderRadius: 100, fontSize: '0.78rem', fontWeight: 700, color: '#7A5C28' }}>
+                <div style={{ background: 'var(--gold-pale)', border: '1px solid #E6D8BC', padding: '5px 12px', borderRadius: 'var(--radius-micro)', fontSize: '0.72rem', fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--gold-dark)' }}>
                   Sem Custos Ocultos
                 </div>
               </div>
@@ -209,49 +210,49 @@ export default function FloorplansSection() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20, marginBottom: 22 }}>
                 
                 {/* 1. Cozinha */}
-                <div style={{ background: 'var(--bg)', borderRadius: 12, padding: '20px 18px', border: '1px solid var(--border)' }}>
+                <div style={{ background: 'var(--bg)', borderRadius: 'var(--radius-card-sm)', padding: '20px 18px', border: '1px solid var(--border)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-                    <span style={{ fontSize: '1.5rem' }}>🍳</span>
-                    <h4 style={{ fontWeight: 700, fontSize: '0.96rem', color: 'var(--text-primary)', margin: 0 }}>
-                      Cozinha Toda Equipada
+                    <span style={{ fontSize: '0.64rem', fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--gold-dark)', background: 'var(--white)', border: '1px solid var(--border)', borderRadius: 'var(--radius-micro)', padding: '3px 6px' }}>01</span>
+                    <h4 style={{ fontWeight: 700, fontSize: '0.94rem', color: 'var(--text-primary)', margin: 0 }}>
+                      Cozinha Totalmente Equipada
                     </h4>
                   </div>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--text-body)', lineHeight: 1.6, margin: '0 0 10px' }}>
+                  <p style={{ fontSize: '0.84rem', color: 'var(--text-body)', lineHeight: 1.6, margin: '0 0 10px' }}>
                     Entregue completa com placa de indução, forno, exaustor, micro-ondas encastrado, máquina de lavar louça integrada e combinado.
                   </p>
-                  <div style={{ fontSize: '0.78rem', color: '#7A5C28', background: 'var(--gold-pale)', padding: '6px 10px', borderRadius: 6, lineHeight: 1.45 }}>
+                  <div style={{ fontSize: '0.78rem', color: '#7A5C28', background: 'var(--gold-pale)', padding: '6px 10px', borderRadius: 'var(--radius-micro)', lineHeight: 1.45 }}>
                     <strong>Personalizações:</strong> Escolha as cores dos armários, tipos de puxadores, balcão em quartzo e arrumação sob medida.
                   </div>
                 </div>
 
                 {/* 2. Climatização & Águas */}
-                <div style={{ background: 'var(--bg)', borderRadius: 12, padding: '20px 18px', border: '1px solid var(--border)' }}>
+                <div style={{ background: 'var(--bg)', borderRadius: 'var(--radius-card-sm)', padding: '20px 18px', border: '1px solid var(--border)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-                    <span style={{ fontSize: '1.5rem' }}>❄️</span>
-                    <h4 style={{ fontWeight: 700, fontSize: '0.96rem', color: 'var(--text-primary)', margin: 0 }}>
+                    <span style={{ fontSize: '0.64rem', fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--gold-dark)', background: 'var(--white)', border: '1px solid var(--border)', borderRadius: 'var(--radius-micro)', padding: '3px 6px' }}>02</span>
+                    <h4 style={{ fontWeight: 700, fontSize: '0.94rem', color: 'var(--text-primary)', margin: 0 }}>
                       Aquecimentos & Climatização
                     </h4>
                   </div>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--text-body)', lineHeight: 1.6, margin: '0 0 10px' }}>
+                  <p style={{ fontSize: '0.84rem', color: 'var(--text-body)', lineHeight: 1.6, margin: '0 0 10px' }}>
                     Sistema de climatização / ar condicionado multi-split e <strong>Bomba de Calor A+</strong> de alta eficiência para aquecimento de águas sanitárias.
                   </p>
-                  <div style={{ fontSize: '0.78rem', color: '#7A5C28', background: 'var(--gold-pale)', padding: '6px 10px', borderRadius: 6, lineHeight: 1.45 }}>
+                  <div style={{ fontSize: '0.78rem', color: '#7A5C28', background: 'var(--gold-pale)', padding: '6px 10px', borderRadius: 'var(--radius-micro)', lineHeight: 1.45 }}>
                     <strong>Personalizações:</strong> Adaptação de grelhas, afinações térmicas por divisão e caixilharia de corte térmico com vidro duplo.
                   </div>
                 </div>
 
                 {/* 3. Materiais e Acabamentos */}
-                <div style={{ background: 'var(--bg)', borderRadius: 12, padding: '20px 18px', border: '1px solid var(--border)' }}>
+                <div style={{ background: 'var(--bg)', borderRadius: 'var(--radius-card-sm)', padding: '20px 18px', border: '1px solid var(--border)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-                    <span style={{ fontSize: '1.5rem' }}>🎨</span>
-                    <h4 style={{ fontWeight: 700, fontSize: '0.96rem', color: 'var(--text-primary)', margin: 0 }}>
-                      Acabamentos ao Seu Gosto
+                    <span style={{ fontSize: '0.64rem', fontWeight: 800, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--gold-dark)', background: 'var(--white)', border: '1px solid var(--border)', borderRadius: 'var(--radius-micro)', padding: '3px 6px' }}>03</span>
+                    <h4 style={{ fontWeight: 700, fontSize: '0.94rem', color: 'var(--text-primary)', margin: 0 }}>
+                      Acabamentos ao Seu Critério
                     </h4>
                   </div>
-                  <p style={{ fontSize: '0.82rem', color: 'var(--text-body)', lineHeight: 1.6, margin: '0 0 10px' }}>
+                  <p style={{ fontSize: '0.84rem', color: 'var(--text-body)', lineHeight: 1.6, margin: '0 0 10px' }}>
                     Selecione livremente pavimentos flutuantes/vinílicos, cerâmicas de casas de banho, louças sanitárias suspensas e carpintarias.
                   </p>
-                  <div style={{ fontSize: '0.78rem', color: '#7A5C28', background: 'var(--gold-pale)', padding: '6px 10px', borderRadius: 6, lineHeight: 1.45 }}>
+                  <div style={{ fontSize: '0.78rem', color: '#7A5C28', background: 'var(--gold-pale)', padding: '6px 10px', borderRadius: 'var(--radius-micro)', lineHeight: 1.45 }}>
                     <strong>Flexibilidade:</strong> Possibilidade de configurar o sótão aproveitável de ~34 m² como T4, quarto de brincar ou escritório.
                   </div>
                 </div>
@@ -260,8 +261,9 @@ export default function FloorplansSection() {
 
               {/* Banner de Preço e Transparência */}
               <div style={{
-                background: 'linear-gradient(135deg, #242018 0%, #151310 100%)',
-                borderRadius: 12,
+                background: '#1A1815',
+                border: '1px solid rgba(184,146,74,0.35)',
+                borderRadius: 'var(--radius-card-sm)',
                 padding: '16px 20px',
                 display: 'flex',
                 alignItems: 'center',
@@ -270,9 +272,9 @@ export default function FloorplansSection() {
                 gap: 14,
               }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <span style={{ fontSize: '1.4rem' }}>🏷️</span>
+                  <span style={{ width: 4, height: 32, background: 'var(--gold)', display: 'block' }} />
                   <div>
-                    <div style={{ color: 'var(--gold)', fontWeight: 700, fontSize: '0.78rem', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                    <div style={{ color: 'var(--gold)', fontWeight: 700, fontSize: '0.74rem', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
                       Preço Chave na Mão com Impostos
                     </div>
                     <div style={{ color: '#fff', fontSize: '0.95rem', fontWeight: 600 }}>
@@ -293,13 +295,13 @@ export default function FloorplansSection() {
 
       {/* Lightbox */}
       {lightbox && (
-        <div style={{ position:'fixed', inset:0, zIndex:100, background:'rgba(10,9,8,0.95)', display:'flex', alignItems:'center', justifyContent:'center', padding:16 }}
+        <div style={{ position:'fixed', inset:0, zIndex:100, background:'rgba(10,9,8,0.96)', display:'flex', alignItems:'center', justifyContent:'center', padding:16 }}
              onClick={() => setLightbox(null)}>
           <button onClick={() => setLightbox(null)}
-            style={{ position:'absolute', top:16, right:16, background:'rgba(255,255,255,0.12)', border:'1px solid rgba(255,255,255,0.25)', borderRadius:8, color:'#fff', width:44, height:44, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'1.1rem', cursor:'pointer' }}>
+            style={{ position:'absolute', top:16, right:16, background:'rgba(255,255,255,0.1)', border:'1px solid rgba(255,255,255,0.2)', borderRadius:3, color:'#fff', width:44, height:44, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'1.1rem', cursor:'pointer' }}>
             ✕
           </button>
-          <div style={{ background:'#fff', borderRadius:16, padding:16, width:'100%', maxWidth:850, maxHeight:'90vh' }}
+          <div style={{ background:'#fff', borderRadius:4, padding:16, width:'100%', maxWidth:850, maxHeight:'90vh' }}
                onClick={e => e.stopPropagation()}>
             <div style={{ position:'relative', aspectRatio:'4/3' }}>
               <Image src={lightbox} alt="Planta" fill unoptimized style={{ objectFit:'contain' }} sizes="100vw" />

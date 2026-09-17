@@ -32,16 +32,16 @@ export default function SiteHeader() {
   return (
     <header style={{
       position: 'sticky', top: 0, zIndex: 50,
-      background: 'rgba(249,248,243,0.94)',
-      backdropFilter: 'blur(12px)',
+      background: 'rgba(250, 248, 245, 0.92)',
+      backdropFilter: 'blur(16px)',
       borderBottom: '1px solid var(--border)',
     }}>
       <div style={{ maxWidth: 1160, margin: '0 auto', padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
         <a href="#topo" style={{ textDecoration: 'none', flexShrink: 0 }}>
-          <div style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: '1.08rem', color: 'var(--text-primary)', letterSpacing: '-0.01em', lineHeight: 1 }}>
+          <div style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: '1.1rem', color: 'var(--text-primary)', letterSpacing: '-0.01em', lineHeight: 1 }}>
             Domaine XXV
           </div>
-          <div style={{ fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)', marginTop: 2 }}>
+          <div style={{ fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)', marginTop: 3 }}>
             Oliveirinha · Aveiro
           </div>
         </a>
@@ -52,7 +52,7 @@ export default function SiteHeader() {
             <a
               key={href}
               href={href}
-              style={{ fontSize: '0.84rem', fontWeight: 500, color: 'var(--text-body)', textDecoration: 'none', transition: 'color 0.15s' }}
+              style={{ fontSize: '0.82rem', fontWeight: 500, letterSpacing: '0.02em', color: 'var(--text-body)', textDecoration: 'none', transition: 'color 0.15s' }}
               onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold)')}
               onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-body)')}
             >
@@ -62,30 +62,48 @@ export default function SiteHeader() {
         </nav>
 
         {/* CTA Button */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <div className="site-nav-desktop" style={{
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            padding: '4px 10px',
+            background: 'rgba(179, 142, 70, 0.08)',
+            border: '1px solid rgba(179, 142, 70, 0.3)',
+            borderRadius: 2,
+            fontSize: '0.68rem',
+            fontWeight: 700,
+            color: 'var(--gold-dark)',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
+          }}>
+            <span style={{ width: 5, height: 5, borderRadius: 1, background: 'var(--gold)' }} />
+            2 Lotes Disponíveis
+          </div>
+
           <a
             href={WA_VISIT}
             target="_blank"
             rel="noopener noreferrer"
+            className="site-header-cta-desktop"
             onClick={() => trackWhatsAppLead('header_desktop_visita')}
             style={{
               flexShrink: 0,
-              display: 'inline-flex',
               alignItems: 'center',
               gap: 6,
               background: 'var(--gold)',
               color: '#fff',
               fontWeight: 600,
-              fontSize: '0.82rem',
-              padding: '9px 16px',
-              borderRadius: 8,
+              fontSize: '0.78rem',
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase',
+              padding: '9px 18px',
+              borderRadius: 'var(--radius-btn)',
               textDecoration: 'none',
-              boxShadow: '0 2px 10px rgba(184,146,74,0.3)',
-              transition: 'opacity 0.2s',
+              boxShadow: '0 2px 8px rgba(161, 118, 40, 0.2)',
+              transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
               whiteSpace: 'nowrap',
             }}
           >
-            <span>💬</span> <span className="hidden sm:inline">Marcar</span> Visita
+            <span>Marcar Visita →</span>
           </a>
 
           {/* Mobile Menu Toggle Button */}
@@ -96,7 +114,7 @@ export default function SiteHeader() {
             style={{
               background: 'transparent',
               border: '1px solid var(--border)',
-              borderRadius: 8,
+              borderRadius: 3,
               width: 38,
               height: 38,
               cursor: 'pointer',
@@ -149,9 +167,9 @@ export default function SiteHeader() {
               setMobileMenuOpen(false);
             }}
             className="btn btn-gold"
-            style={{ marginTop: 8, width: '100%', fontSize: '0.9rem' }}
+            style={{ marginTop: 8, width: '100%', fontSize: '0.86rem', borderRadius: 3, letterSpacing: '0.04em', textTransform: 'uppercase' }}
           >
-            <span>💬</span> Marcar Visita ao Terreno
+            Marcar Visita ao Terreno →
           </a>
         </div>
       )}

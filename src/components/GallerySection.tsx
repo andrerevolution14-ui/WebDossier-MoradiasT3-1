@@ -51,11 +51,12 @@ export default function GallerySection() {
                 style={{
                   position: 'relative',
                   aspectRatio: '4/3',
-                  borderRadius: 12,
+                  borderRadius: 3,
                   overflow: 'hidden',
                   cursor: 'pointer',
                   background: '#EAE6DD',
                   boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+                  border: '1px solid var(--border)',
                 }}
               >
                 <Image
@@ -64,12 +65,12 @@ export default function GallerySection() {
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
                   style={{ objectFit: 'cover', transition: 'transform 0.4s ease' }}
-                  onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1.04)')}
+                  onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1.03)')}
                   onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1)')}
                 />
                 {/* Label overlay */}
-                <div style={{ position:'absolute', bottom:0, left:0, right:0, padding:'32px 14px 12px', background:'linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%)' }}>
-                  <span style={{ color:'#fff', fontSize:'0.8rem', fontWeight:600, textShadow:'0 1px 3px rgba(0,0,0,0.5)' }}>{img.label}</span>
+                <div style={{ position:'absolute', bottom:0, left:0, right:0, padding:'32px 14px 12px', background:'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%)' }}>
+                  <span style={{ color:'#fff', fontSize:'0.76rem', fontWeight:600, letterSpacing:'0.04em', textTransform:'uppercase', textShadow:'0 1px 3px rgba(0,0,0,0.5)' }}>{img.label}</span>
                 </div>
               </div>
             ))}
@@ -80,21 +81,21 @@ export default function GallerySection() {
 
       {/* ── Lightbox ── */}
       {lightbox !== null && (
-        <div style={{ position:'fixed', inset:0, zIndex:100, background:'rgba(10,9,8,0.95)', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', padding:20 }}
+        <div style={{ position:'fixed', inset:0, zIndex:100, background:'rgba(10,9,8,0.96)', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', padding:20 }}
              onClick={() => setLightbox(null)}>
           <button onClick={() => setLightbox(null)}
-            style={{ position:'absolute', top:20, right:20, background:'rgba(255,255,255,0.12)', border:'1px solid rgba(255,255,255,0.25)', borderRadius:8, color:'#fff', width:44, height:44, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'1.1rem', cursor:'pointer' }}>
+            style={{ position:'absolute', top:20, right:20, background:'rgba(255,255,255,0.1)', border:'1px solid rgba(255,255,255,0.2)', borderRadius:3, color:'#fff', width:44, height:44, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'1.1rem', cursor:'pointer' }}>
             ✕
           </button>
           {lightbox > 0 && (
             <button onClick={e=>{e.stopPropagation();setLightbox(l=>(l??0)-1)}}
-              style={{ position:'absolute', left:16, top:'50%', transform:'translateY(-50%)', background:'rgba(255,255,255,0.12)', border:'1px solid rgba(255,255,255,0.25)', borderRadius:8, color:'#fff', width:48, height:48, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'1.4rem', cursor:'pointer' }}>
+              style={{ position:'absolute', left:16, top:'50%', transform:'translateY(-50%)', background:'rgba(255,255,255,0.1)', border:'1px solid rgba(255,255,255,0.2)', borderRadius:3, color:'#fff', width:48, height:48, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'1.4rem', cursor:'pointer' }}>
               ‹
             </button>
           )}
           {lightbox < ALL_IMAGES.length - 1 && (
             <button onClick={e=>{e.stopPropagation();setLightbox(l=>(l??0)+1)}}
-              style={{ position:'absolute', right:16, top:'50%', transform:'translateY(-50%)', background:'rgba(255,255,255,0.12)', border:'1px solid rgba(255,255,255,0.25)', borderRadius:8, color:'#fff', width:48, height:48, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'1.4rem', cursor:'pointer' }}>
+              style={{ position:'absolute', right:16, top:'50%', transform:'translateY(-50%)', background:'rgba(255,255,255,0.1)', border:'1px solid rgba(255,255,255,0.2)', borderRadius:3, color:'#fff', width:48, height:48, display:'flex', alignItems:'center', justifyContent:'center', fontSize:'1.4rem', cursor:'pointer' }}>
               ›
             </button>
           )}

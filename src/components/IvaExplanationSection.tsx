@@ -9,13 +9,15 @@ export default function IvaExplanationSection() {
     <section id="iva-explicacao" className="section" style={{ background: 'var(--bg)' }}>
       <div className="wrap">
 
-        <div className="section-tag mobile-center-tag" style={{ justifyContent: 'center', margin: '0 auto 14px' }}>Estrutura Financeira &amp; Transparência Fiscal</div>
+        <div className="section-tag mobile-center-tag">
+          Estrutura Financeira &amp; Transparência Fiscal
+        </div>
         <h2 className="heading mobile-center-title" style={{ maxWidth: 760, margin: '0 auto 12px', textAlign: 'center' }}>
           Justificação de Preço e{' '}
-          <span className="serif-i" style={{ color: 'var(--gold)' }}>o Reembolso do IVA</span>
+          <span style={{ color: 'var(--gold-dark)', fontWeight: 700 }}>o Reembolso do IVA</span>
         </h2>
         <p className="mobile-center-desc" style={{
-          color: 'var(--text-body)', fontSize: '0.93rem',
+          color: 'var(--text-body)', fontSize: '0.95rem',
           lineHeight: 1.65, maxWidth: 640, margin: '0 auto 40px', textAlign: 'center',
         }}>
           Como estruturamos a aquisição para que a sua família beneficie legalmente da taxa reduzida de IVA e poupe mais de 23.000€ em impostos.
@@ -29,15 +31,16 @@ export default function IvaExplanationSection() {
           marginBottom: 36,
         }}>
           {/* Item 1 */}
-          <div className="card" style={{ padding: '24px 20px', background: 'var(--white)', border: '1px solid var(--border)' }}>
+          <div className="card" style={{ padding: '24px 20px', background: 'var(--white)', border: '1px solid var(--border)', borderRadius: 'var(--radius-card-sm)' }}>
             <div style={{
-              width: 36, height: 36, borderRadius: '50%', background: 'var(--gold-pale)',
-              color: '#7A5C28', fontWeight: 800, fontSize: '0.95rem',
+              width: 28, height: 28, borderRadius: 'var(--radius-micro)', background: 'var(--gold-pale)',
+              color: 'var(--gold-dark)', fontWeight: 800, fontSize: '0.82rem',
               display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14,
+              border: '1px solid #E6D8BC',
             }}>
-              1
+              01
             </div>
-            <h3 style={{ fontSize: '0.98rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>
+            <h3 style={{ fontSize: '0.96rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>
               Processo Bancário a 360.000€
             </h3>
             <p style={{ fontSize: '0.84rem', color: 'var(--text-body)', lineHeight: 1.6, margin: 0 }}>
@@ -46,15 +49,15 @@ export default function IvaExplanationSection() {
           </div>
 
           {/* Item 2 */}
-          <div className="card" style={{ padding: '24px 20px', background: 'var(--white)', border: '1px solid var(--gold)' }}>
+          <div className="card" style={{ padding: '24px 20px', background: 'var(--white)', border: '1px solid var(--gold)', borderRadius: 'var(--radius-card-sm)' }}>
             <div style={{
-              width: 36, height: 36, borderRadius: '50%', background: 'var(--gold)',
-              color: '#fff', fontWeight: 800, fontSize: '0.95rem',
+              width: 28, height: 28, borderRadius: 'var(--radius-micro)', background: 'var(--gold)',
+              color: '#fff', fontWeight: 800, fontSize: '0.82rem',
               display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14,
             }}>
-              2
+              02
             </div>
-            <h3 style={{ fontSize: '0.98rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>
+            <h3 style={{ fontSize: '0.96rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>
               Direito à Taxa Reduzida (6%)
             </h3>
             <p style={{ fontSize: '0.84rem', color: 'var(--text-body)', lineHeight: 1.6, margin: 0 }}>
@@ -63,32 +66,33 @@ export default function IvaExplanationSection() {
           </div>
 
           {/* Item 3 */}
-          <div className="card" style={{ padding: '24px 20px', background: 'linear-gradient(135deg, #FDF6E9 0%, #F5ECD8 100%)', border: '1.5px solid var(--gold)' }}>
+          <div className="card" style={{ padding: '24px 20px', background: '#FAF6EE', border: '1px solid var(--gold)', borderRadius: 'var(--radius-card-sm)' }}>
             <div style={{
-              width: 36, height: 36, borderRadius: '50%', background: '#5C7A3E',
-              color: '#fff', fontWeight: 800, fontSize: '0.95rem',
+              width: 28, height: 28, borderRadius: 'var(--radius-micro)', background: '#2E492B',
+              color: '#fff', fontWeight: 800, fontSize: '0.82rem',
               display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14,
             }}>
-              3
+              03
             </div>
-            <h3 style={{ fontSize: '0.98rem', fontWeight: 700, color: '#2E4718', marginBottom: 8 }}>
+            <h3 style={{ fontSize: '0.96rem', fontWeight: 700, color: '#2E492B', marginBottom: 8 }}>
               Reembolso Direto do Estado
             </h3>
-            <p style={{ fontSize: '0.84rem', color: '#4A6130', lineHeight: 1.6, margin: 0 }}>
+            <p style={{ fontSize: '0.84rem', color: '#2E492B', lineHeight: 1.6, margin: 0 }}>
               Ainda <strong>antes do final da obra</strong>, recebe diretamente na sua conta a devolução da diferença de IVA. O seu custo real e líquido fica exatamente fixado nos <strong>335.000€ chave-na-mão</strong>.
             </p>
           </div>
 
           {/* Item 4 */}
-          <div className="card" style={{ padding: '24px 20px', background: 'var(--white)', border: '1px solid var(--border)' }}>
+          <div className="card" style={{ padding: '24px 20px', background: 'var(--white)', border: '1px solid var(--border)', borderRadius: 'var(--radius-card-sm)' }}>
             <div style={{
-              width: 36, height: 36, borderRadius: '50%', background: 'var(--gold-pale)',
-              color: '#7A5C28', fontWeight: 800, fontSize: '0.95rem',
+              width: 28, height: 28, borderRadius: 'var(--radius-micro)', background: 'var(--gold-pale)',
+              color: 'var(--gold-dark)', fontWeight: 800, fontSize: '0.82rem',
               display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14,
+              border: '1px solid #E6D8BC',
             }}>
-              4
+              04
             </div>
-            <h3 style={{ fontSize: '0.98rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>
+            <h3 style={{ fontSize: '0.96rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>
               Poupança de ~23.700€ no IMT
             </h3>
             <p style={{ fontSize: '0.84rem', color: 'var(--text-body)', lineHeight: 1.6, margin: 0 }}>
@@ -100,8 +104,8 @@ export default function IvaExplanationSection() {
         {/* Closing summary banner */}
         <div style={{
           background: 'var(--bg-alt)',
-          border: '1.5px solid var(--border)',
-          borderRadius: 14,
+          border: '1px solid var(--border)',
+          borderRadius: 'var(--radius-card-sm)',
           padding: '20px 24px',
           display: 'flex',
           alignItems: 'center',
@@ -110,11 +114,11 @@ export default function IvaExplanationSection() {
           gap: 16,
         }}>
           <div style={{ maxWidth: 640 }}>
-            <div style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--text-primary)', marginBottom: 4 }}>
-              🛡️ Todos os valores são auditados e blindados no contrato promessa (CPCV)
+            <div style={{ fontWeight: 700, fontSize: '0.90rem', color: 'var(--text-primary)', marginBottom: 4 }}>
+              Auditoria e Proteção Jurídica no Contrato Promessa (CPCV)
             </div>
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-              Sem letras pequenas. A nossa equipa e os intermediários de crédito acompanham a sua família em todas as fases da operação financeira.
+            <div style={{ fontSize: '0.80rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+              Sem cláusulas ocultas. A nossa equipa e os intermediários de crédito acompanham a sua família em todas as fases da operação financeira.
             </div>
           </div>
 
@@ -124,9 +128,9 @@ export default function IvaExplanationSection() {
             rel="noopener noreferrer"
             onClick={() => trackWhatsAppLead('iva_pedir_estudo')}
             className="btn btn-gold"
-            style={{ fontSize: '0.88rem', padding: '12px 22px', whiteSpace: 'nowrap' }}
+            style={{ fontSize: '0.82rem', padding: '12px 24px', whiteSpace: 'nowrap', borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase' }}
           >
-            <span>💬</span> Pedir Estudo Financeiro Completo
+            Pedir Estudo Financeiro Completo →
           </a>
         </div>
 

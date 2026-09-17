@@ -130,91 +130,106 @@ export default function HeroSection() {
       <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 20px 48px' }}>
 
         {/* ── Section tag ── */}
-        <div className="mobile-center-tag" style={{ fontSize: '0.68rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 12px', gap: 10 }}>
-          <span style={{ display: 'inline-block', width: 24, height: 1.5, background: 'var(--gold)' }} />
+        <div className="section-tag mobile-center-tag">
           Dossier Digital Exclusivo · Domaine XXV
         </div>
 
         {/* ── Badges de Urgência & Prova Social — above the fold ── */}
-        <div className="mobile-center-flex" style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center', marginBottom: 18 }}>
+        <div className="mobile-center-flex" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', marginBottom: 20 }}>
           <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: 'linear-gradient(135deg, #B8924A22 0%, #B8924A11 100%)',
-            border: '1.5px solid var(--gold)',
-            borderRadius: 100,
-            padding: '7px 18px',
-            fontSize: '0.82rem',
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            background: 'rgba(161,118,40,0.08)',
+            border: '1px solid rgba(161,118,40,0.35)',
+            borderRadius: 'var(--radius-micro)',
+            padding: '5px 14px',
+            fontSize: '0.74rem',
             fontWeight: 700,
-            color: 'var(--gold)',
-            letterSpacing: '0.02em',
+            color: 'var(--gold-dark)',
+            letterSpacing: '0.08em',
+            textTransform: 'uppercase',
           }}>
-            <span>🔥</span>
-            <span>|</span>
+            <span style={{ display: 'inline-block', width: 6, height: 6, background: 'var(--gold)' }} />
             <span>Início de Obra Imediato</span>
           </div>
 
           <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 7,
-            background: '#F0F7EB',
-            border: '1px solid #7FA864',
-            borderRadius: 100,
-            padding: '7px 16px',
-            fontSize: '0.8rem',
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            background: '#F1F5F2',
+            border: '1px solid #C8D6CD',
+            borderRadius: 'var(--radius-micro)',
+            padding: '5px 14px',
+            fontSize: '0.74rem',
             fontWeight: 700,
-            color: '#3B6B1D',
+            color: '#2B4739',
+            letterSpacing: '0.06em',
+            textTransform: 'uppercase',
           }}>
-            <span style={{ display: 'inline-block', width: 8, height: 8, borderRadius: '50%', background: '#4BA123' }} />
-            <span>Imóvel disponível para visitas esta semana</span>
+            <span style={{ display: 'inline-block', width: 6, height: 6, background: '#3D7A58' }} />
+            <span>Disponível para Visitas Esta Semana</span>
           </div>
         </div>
 
-        {/* ── Headline ── */}
-        <h1 className="hero-headline mobile-center-title" style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: 'clamp(1.9rem, 4.5vw, 3.4rem)', lineHeight: 1.14, letterSpacing: '-0.02em', color: 'var(--text-primary)', maxWidth: 840, margin: '0 auto 16px', textAlign: 'center' }}>
-          A Moradia T4 com Jardim às Portas de Aveiro Que o Mercado Dizia Ser Impossível.
+        {/* ── Headline — 100% legível, sem itálicos difíceis ── */}
+        <h1 className="hero-headline mobile-center-title" style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: 'clamp(1.9rem, 4.5vw, 3.4rem)', lineHeight: 1.16, letterSpacing: '-0.02em', color: 'var(--text-primary)', maxWidth: 880, margin: '0 auto 16px', textAlign: 'center' }}>
+          A Moradia T4 com Jardim às Portas de Aveiro que o Mercado Dizia Ser <span style={{ color: 'var(--gold-dark)', fontWeight: 700 }}>Impossível</span>.
         </h1>
 
-        {/* ── Descriptive subheadline (Esclarecimento de Risco e Oportunidade Preço/m²) ── */}
+        {/* ── Descriptive subheadline — Alta legibilidade e contraste ── */}
         <p className="hero-subheadline mobile-center-desc" style={{ fontSize: 'clamp(0.95rem, 2vw, 1.05rem)', lineHeight: 1.7, color: 'var(--text-body)', maxWidth: 760, margin: '0 auto 20px', textAlign: 'center' }}>
-          <strong>Projeto 100% aprovado pela Câmara Municipal e avaliação bancária oficial de 450.000€</strong> — sem qualquer impedimento legal ou espera por licenças. A única "impossibilidade" era encontrar no mercado uma moradia com esta área e jardim a 8 minutos de Aveiro por <strong>335.000€ chave-na-mão</strong> (~1.861€/m² ABP). Começo imediato, <strong>entrega em 10 meses</strong> e preço blindado em contrato.
+          <strong>Projeto 100% aprovado pela Câmara Municipal e avaliação bancária oficial de 450.000€</strong> — sem qualquer impedimento legal ou espera por licenças. A oportunidade real de adquirir uma moradia familiar com jardim a 8 minutos de Aveiro por <strong>335.000€ chave-na-mão</strong> (~1.861€/m² ABP). Começo imediato, <strong>entrega em 10 meses</strong> e preço blindado em contrato.
         </p>
 
-        {/* ── Destaque Financeiro ── */}
-        <div className="mobile-center-flex" style={{ marginBottom: 20, justifyContent: 'center' }}>
+        {/* ── Destaque Financeiro — Caixa com Cantos Arredondados Suaves ── */}
+        <div className="mobile-center-flex" style={{ marginBottom: 22, justifyContent: 'center' }}>
           <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: 'var(--gold-pale)',
-            border: '1.5px solid #E8D4AE',
-            borderRadius: 8,
-            padding: '10px 18px',
-            fontSize: '0.95rem',
-            fontWeight: 700,
-            color: '#7A5C28',
+            display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+            background: '#FAF6EE',
+            border: '1px solid rgba(161, 118, 40, 0.32)',
+            boxShadow: '0 2px 12px rgba(161, 118, 40, 0.05)',
+            borderRadius: 'var(--radius-card-sm)',
+            padding: '10px 20px',
+            fontSize: '0.88rem',
+            fontWeight: 500,
+            color: 'var(--text-primary)',
+            textAlign: 'center',
+            lineHeight: 1.5,
+            maxWidth: '100%',
           }}>
-            <span>💰</span>
-            <span>Necessita de apenas <strong>38.500€</strong> de capitais próprios para arrancar.</span>
+            <span>Arranque do processo com apenas <strong style={{ fontWeight: 700, color: 'var(--gold-dark)' }}>38.500€</strong> de capitais próprios · Restante em crédito habitação faseado.</span>
           </div>
         </div>
 
-        {/* ── Key badges ── */}
-        <div className="hero-badges mobile-center-flex" style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', marginBottom: 24 }}>
+        {/* ── Key badges — Cantos Retos Arquitetónicos (2px) para Contraste & Compacto no Mobile ── */}
+        <div className="hero-badges hero-badges-grid">
           {[
-            '🏷️ 335.000€ Chave na Mão',
-            '⏱️ Chave na Mão em 10 Meses',
-            '🍳 Cozinha 100% Equipada',
-            '❄️ Climatização & Bomba de Calor A+',
-            '🎨 Personalização Total de Acabamentos',
-            '🏡 ~180 m² ABP · ~146 m² Úteis',
-            '🌳 Jardim Privado ~82 m²',
-            '🚗 Garagem Coberta 30 m²',
+            { label: '335.000€ Chave na Mão', isPrimary: true },
+            { label: 'Chave na Mão em 10 Meses', isPrimary: true },
+            { label: 'Cozinha 100% Equipada', isPrimary: false },
+            { label: 'Climatização & Bomba A+', isPrimary: false },
+            { label: 'Personalização Acabamentos', isPrimary: false },
+            { label: '~180 m² ABP · ~146 m² Úteis', isPrimary: false },
+            { label: 'Jardim Privado ~82 m²', isPrimary: false },
+            { label: 'Garagem Coberta 30 m²', isPrimary: false },
           ].map(b => (
-            <span key={b} style={{ display:'inline-flex', alignItems:'center', gap:6, padding:'6px 14px', borderRadius:100, fontSize:'0.76rem', fontWeight:600, background: b.startsWith('🏷️') || b.startsWith('⏱️') ? 'var(--gold)' : 'var(--gold-pale)', border: b.startsWith('🏷️') || b.startsWith('⏱️') ? '1px solid var(--gold)' : '1px solid #E8D4AE', color: b.startsWith('🏷️') || b.startsWith('⏱️') ? '#fff' : '#7A5C28' }}>
-              {b}
-            </span>
+            <div
+              key={b.label}
+              className={`hero-badge-item ${b.isPrimary ? 'hero-badge-primary' : 'hero-badge-secondary'}`}
+            >
+              <span style={{
+                display: 'inline-block',
+                width: 4,
+                height: 4,
+                borderRadius: 1,
+                background: b.isPrimary ? 'var(--gold-light)' : 'var(--gold)',
+                flexShrink: 0,
+              }} />
+              <span>{b.label}</span>
+            </div>
           ))}
         </div>
 
-        {/* ── Primary CTA — Focado na Ação & Ganho (Apenas 1 CTA Único) ── */}
-        <div className="hero-cta-wrap mobile-center-btn-wrap" style={{ marginBottom: 24, width: '100%' }}>
+        {/* ── Primary CTA — Focado na Ação & Ganho ── */}
+        <div className="hero-cta-wrap mobile-center-btn-wrap" style={{ marginBottom: 26, width: '100%' }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center', width: '100%' }} className="mobile-center-flex">
             <a
               href={WA_VISIT}
@@ -222,13 +237,24 @@ export default function HeroSection() {
               rel="noopener noreferrer"
               onClick={() => trackWhatsAppLead('hero_agendar_visita')}
               className="btn btn-gold pulse-gold mobile-center-btn"
-              style={{ display: 'inline-flex', fontSize: '1.02rem', padding: '16px 36px', borderRadius: 10, textDecoration: 'none', textAlign: 'center', justifyContent: 'center' }}
+              style={{
+                display: 'inline-flex',
+                fontSize: '0.94rem',
+                padding: '16px 36px',
+                borderRadius: 'var(--radius-btn)',
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+                textDecoration: 'none',
+                textAlign: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 4px 16px rgba(161,118,40,0.3)',
+              }}
             >
-              <span>📅</span> Quero Agendar a Minha Visita Privada
+              <span>Agendar Visita Privada ao Lote →</span>
             </a>
 
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-body)', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: 6, flexWrap: 'wrap' }}>
-              <span>🛡️</span> Garantia: Sinal 100% protegido no CPCV · Obra chave-na-mão concluída em 10 meses.
+            <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', fontWeight: 500, display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: 6, flexWrap: 'wrap' }}>
+              <span>Sinal 100% protegido no CPCV · Conclusão de obra em 10 meses</span>
             </div>
           </div>
         </div>
@@ -241,12 +267,13 @@ export default function HeroSection() {
           gap: 16,
           flexWrap: 'wrap',
           marginBottom: 36,
-          padding: '10px 18px',
-          background: 'rgba(255,255,255,0.75)',
+          padding: '9px 18px',
+          background: 'var(--white)',
           border: '1px solid var(--border)',
-          borderRadius: 12,
-          fontSize: '0.78rem',
+          borderRadius: 'var(--radius-card-sm)',
+          fontSize: '0.76rem',
           color: 'var(--text-muted)',
+          boxShadow: 'var(--shadow-soft)',
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <span>Promotor:</span>
@@ -259,24 +286,22 @@ export default function HeroSection() {
               href="https://grupofreitasrenovacoes.pt"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: 'var(--gold)', fontWeight: 700, textDecoration: 'none' }}
+              style={{ color: 'var(--gold-dark)', fontWeight: 700, textDecoration: 'none' }}
             >
               Grupo Freitas Renovações ↗
             </a>
           </div>
           <span style={{ color: 'var(--border)' }}>•</span>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            <span>👥</span>
-            <span><strong>7 visitas</strong> realizadas este mês</span>
+            <span>Auditoria:</span>
+            <strong style={{ color: 'var(--text-primary)' }}>7 visitas este mês</strong>
           </div>
         </div>
 
         {/* ── Web Doc Presentation Video ── */}
         <div>
-          <div className="mobile-center-tag" style={{ fontSize:'0.7rem', fontWeight:700, letterSpacing:'0.12em', textTransform:'uppercase', color:'var(--text-muted)', display:'flex', alignItems:'center', gap:10, marginBottom:14 }}>
-            <span style={{ display:'block', width:28, height:1.5, background:'var(--border)' }} />
+          <div className="section-tag mobile-center-tag" style={{ marginBottom: 14 }}>
             Vídeo de Apresentação Oficial
-            <span style={{ display:'block', width:28, height:1.5, background:'var(--border)' }} />
           </div>
 
           <div
@@ -284,10 +309,11 @@ export default function HeroSection() {
             onClick={muted ? playFromStartWithSound : togglePlayPause}
             style={{
               position: 'relative',
-              borderRadius: 16,
+              borderRadius: 'var(--radius-card)',
               overflow: 'hidden',
               background: '#0a0a0a',
-              boxShadow: '0 24px 60px rgba(0,0,0,0.22)',
+              boxShadow: '0 20px 50px rgba(0,0,0,0.22)',
+              border: '1px solid rgba(255,255,255,0.08)',
               aspectRatio: '16/9',
               cursor: 'pointer',
               userSelect: 'none',
@@ -329,20 +355,20 @@ export default function HeroSection() {
                     background: 'rgba(184,146,74,0.95)',
                     backdropFilter: 'blur(8px)',
                     color: '#fff',
-                    padding: '10px 22px',
-                    borderRadius: 100,
-                    boxShadow: '0 8px 24px rgba(0,0,0,0.35)',
+                    padding: '8px 20px',
+                    borderRadius: 3,
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: 10,
-                    fontSize: '0.88rem',
+                    gap: 8,
+                    fontSize: '0.78rem',
                     fontWeight: 700,
+                    letterSpacing: '0.06em',
+                    textTransform: 'uppercase',
                     cursor: 'pointer',
-                    animation: 'shimmer 2s infinite',
                   }}
                 >
-                  <span style={{ fontSize: '1.15rem' }}>🔊</span>
-                  <span>Clique aqui para Ouvir com Som</span>
+                  <span>Ativar Áudio da Apresentação</span>
                 </div>
               </div>
             )}
@@ -358,22 +384,22 @@ export default function HeroSection() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   zIndex: 15,
-                  background: 'rgba(0,0,0,0.3)',
+                  background: 'rgba(0,0,0,0.35)',
                 }}
               >
                 <div
                   style={{
-                    width: 72,
-                    height: 72,
-                    borderRadius: '50%',
+                    width: 64,
+                    height: 64,
+                    borderRadius: 4,
                     background: 'var(--gold)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    boxShadow: '0 10px 30px rgba(184,146,74,0.55)',
+                    boxShadow: '0 8px 24px rgba(184,146,74,0.45)',
                     color: '#fff',
-                    fontSize: '1.8rem',
-                    paddingLeft: 4,
+                    fontSize: '1.5rem',
+                    paddingLeft: 3,
                     transition: 'transform 0.2s',
                   }}
                 >
@@ -389,13 +415,13 @@ export default function HeroSection() {
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  background: 'rgba(10,10,10,0.75)',
+                  background: 'rgba(10,10,10,0.85)',
                   backdropFilter: 'blur(6px)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  gap: 18,
+                  gap: 16,
                   zIndex: 30,
                   padding: 20,
                   textAlign: 'center',
@@ -406,20 +432,22 @@ export default function HeroSection() {
                   style={{
                     background: 'var(--gold)',
                     border: 'none',
-                    borderRadius: 50,
-                    padding: '14px 30px',
+                    borderRadius: 3,
+                    padding: '13px 28px',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 10,
+                    gap: 8,
                     cursor: 'pointer',
-                    fontSize: '1rem',
+                    fontSize: '0.88rem',
                     fontWeight: 700,
+                    letterSpacing: '0.04em',
+                    textTransform: 'uppercase',
                     color: '#fff',
-                    boxShadow: '0 4px 24px rgba(184,146,74,0.6)',
+                    boxShadow: '0 4px 16px rgba(184,146,74,0.4)',
                     transition: 'transform 0.15s',
                   }}
                 >
-                  <span>▶</span> Rever Apresentação com Som
+                  <span>Rever Apresentação com Som →</span>
                 </button>
 
                 <a
@@ -429,8 +457,9 @@ export default function HeroSection() {
                   onClick={() => trackWhatsAppLead('hero_video_ended_visita')}
                   style={{
                     color: 'rgba(255,255,255,0.9)',
-                    fontSize: '0.85rem',
+                    fontSize: '0.82rem',
                     fontWeight: 600,
+                    letterSpacing: '0.02em',
                     textDecoration: 'none',
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -439,7 +468,7 @@ export default function HeroSection() {
                     paddingBottom: 2,
                   }}
                 >
-                  <span>💬</span> Agendar Visita ao Terreno no WhatsApp →
+                  <span>Agendar Visita ao Terreno no WhatsApp →</span>
                 </a>
               </div>
             )}

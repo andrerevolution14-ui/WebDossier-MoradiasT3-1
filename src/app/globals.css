@@ -3,22 +3,36 @@
 
 /* ─── DESIGN TOKENS ─────────────────────────────── */
 :root {
-  --bg:            #F9F8F3;
-  --bg-alt:        #F2EDE4;
-  --bg-dark:       #1A1A1A;
-  --text-primary:  #1A1A1A;
-  --text-body:     #3D3830;
-  --text-muted:    #8C7E6E;
-  --border:        #E5DDD0;
-  --gold:          #B8924A;
-  --gold-light:    #D4A85C;
-  --gold-pale:     #F5ECD8;
+  --bg:            #FAF8F5;
+  --bg-alt:        #F4EFEA;
+  --bg-dark:       #0F172A;
+  --text-primary:  #0F172A;
+  --text-body:     #334155;
+  --text-muted:    #64748B;
+  --border:        #E2DCD1;
+  --border-light:  #EDE7DC;
+  --border-gold:   rgba(161, 118, 40, 0.35);
+  --gold:          #A17628;
+  --gold-light:    #B88B38;
+  --gold-dark:     #825A17;
+  --gold-pale:     #F7F1E6;
+  --gold-muted:    rgba(161, 118, 40, 0.08);
   --white:         #FFFFFF;
   --card:          #FFFFFF;
   --serif: 'Playfair Display', Georgia, serif;
-  --sans:  'Inter', system-ui, sans-serif;
-  --radius: 16px;
-  --radius-sm: 10px;
+  --sans:  'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  
+  /* Contraste entre cantos mais arredondados e cantos retos */
+  --radius-card:    14px;  /* Cantos suaves e modernos para cartões principais */
+  --radius-card-sm: 10px;  /* Caixas secundárias e banners */
+  --radius-btn:     8px;   /* Botões amigáveis e tácteis */
+  --radius-sharp:   0px;   /* Cantos 100% retos para especificações técnicas */
+  --radius-micro:   2px;   /* Micro-raio para tags arquitetónicas e dados */
+  --radius:         var(--radius-card);
+
+  --shadow-soft: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.02);
+  --shadow-hover: 0 14px 34px -4px rgba(15, 23, 42, 0.09), 0 2px 6px rgba(15, 23, 42, 0.03);
+  --shadow-ambient: 0 20px 48px -8px rgba(15, 23, 42, 0.09);
 }
 
 /* ─── RESET ─────────────────────────────────────── */
@@ -65,7 +79,10 @@ body {
 .section-sm { padding: 56px 0; }
 .section-xs { padding: 40px 0; }
 
-.divider { height: 1px; background: var(--border); }
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border) 15%, var(--border) 85%, transparent);
+}
 
 /* ─── TYPE HELPERS ──────────────────────────────── */
 .serif       { font-family: var(--serif); }
@@ -74,43 +91,54 @@ body {
 .display {
   font-family: var(--serif);
   font-weight: 600;
-  line-height: 1.1;
+  line-height: 1.12;
   letter-spacing: -0.02em;
   font-size: clamp(2.2rem, 5vw, 3.6rem);
+  color: var(--text-primary);
 }
 
 .heading {
   font-family: var(--serif);
   font-weight: 600;
-  line-height: 1.15;
+  line-height: 1.18;
   letter-spacing: -0.01em;
   font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+  color: var(--text-primary);
 }
 
 .label {
-  font-size: 0.68rem;
+  font-size: 0.70rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
 
-/* ─── CARDS ─────────────────────────────────────── */
+/* ─── CARDS — Cantos Arredondados Modernos (14px) ─────────────── */
 .card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
   overflow: hidden;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+  border-color: #D3C9B8;
 }
 
 .card-alt {
   background: var(--bg-alt);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
   overflow: hidden;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease;
 }
 
-/* ─── BUTTONS ──────────────────────────────────── */
+/* ─── BUTTONS — Cantos Arredondados Tácteis (8px) ──────────────── */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -118,75 +146,103 @@ body {
   gap: 8px;
   font-family: var(--sans);
   font-weight: 600;
-  font-size: 0.875rem;
-  border-radius: 8px;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: var(--radius-btn);
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
   white-space: nowrap;
-  padding: 14px 24px;
+  padding: 13px 24px;
   line-height: 1;
 }
 
 .btn-dark {
   background: var(--text-primary);
   color: #fff;
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.14);
 }
-.btn-dark:hover { background: #333; transform: translateY(-1px); }
+.btn-dark:hover {
+  background: #1E293B;
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.24);
+}
 
 .btn-gold {
   background: var(--gold);
   color: #fff;
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 2px 8px rgba(161, 118, 40, 0.2);
 }
-.btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-gold:hover {
+  background: var(--gold-light);
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(161, 118, 40, 0.32);
+}
 
 .btn-outline {
   background: transparent;
   color: var(--text-primary);
-  border: 1.5px solid var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-btn);
 }
-.btn-outline:hover { border-color: var(--text-primary); background: var(--bg-alt); }
+.btn-outline:hover {
+  border-color: var(--text-primary);
+  background: var(--bg-alt);
+  transform: translateY(-1px);
+}
 
 .btn-ghost-white {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.08);
   color: #fff;
-  border: 1.5px solid rgba(255,255,255,0.25);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-btn);
 }
-.btn-ghost-white:hover { background: rgba(255,255,255,0.2); }
+.btn-ghost-white:hover {
+  background: rgba(255,255,255,0.16);
+  transform: translateY(-1px);
+}
 
-/* ─── SECTION LABEL ─────────────────────────────── */
+/* ─── SECTION LABEL — Centrado Simétrico ─────────── */
 .section-tag {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.7rem;
+  justify-content: center;
+  gap: 12px;
+  font-size: 0.70rem;
   font-weight: 700;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--gold-dark);
   margin-bottom: 14px;
 }
-.section-tag::before {
+.section-tag::before,
+.section-tag::after {
   content: '';
-  display: block;
-  width: 24px;
+  display: inline-block;
+  width: 22px;
   height: 1.5px;
   background: var(--gold);
+  opacity: 0.75;
 }
 
-/* ─── PILL BADGE ────────────────────────────────── */
+/* ─── BADGES — Cantos Retos Arquitetónicos (2px) ───── */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 14px;
-  border-radius: 100px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: var(--radius-micro);
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   background: var(--gold-pale);
-  border: 1px solid #E8D4AE;
-  color: #7A5C28;
+  border: 1px solid #E6D8BC;
+  color: var(--gold-dark);
 }
 
 /* ─── IMAGE HOVER ────────────────────────────────── */
@@ -222,27 +278,27 @@ body {
 
 /* ─── ANIMATIONS ─────────────────────────────────── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.animate-up { animation: fadeUp 0.55s ease both; }
+.animate-up { animation: fadeUp 0.45s ease both; }
 
 @keyframes shimmer {
   0%, 100% { box-shadow: 0 0 0 0 rgba(184, 146, 74, 0); }
-  50%       { box-shadow: 0 0 0 8px rgba(184, 146, 74, 0.18); }
+  50%       { box-shadow: 0 0 0 4px rgba(184, 146, 74, 0.16); }
 }
-.pulse-gold { animation: shimmer 2.5s infinite; }
+.pulse-gold { animation: shimmer 3s infinite; }
 
 /* ─── EQUITY BARS ─────────────────────────────── */
 .equity-bar {
-  height: 12px;
-  border-radius: 100px;
+  height: 8px;
+  border-radius: 2px;
   background: var(--bg-alt);
   overflow: hidden;
 }
 .equity-bar-fill {
   height: 100%;
-  border-radius: 100px;
+  border-radius: 2px;
   transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -263,7 +319,7 @@ body {
 /* ─── VIDEO PLAYER ─────────────────────────────── */
 .video-wrapper {
   position: relative;
-  border-radius: var(--radius);
+  border-radius: var(--radius-card);
   overflow: hidden;
   background: #111;
   box-shadow: 0 24px 60px rgba(0,0,0,0.18);
@@ -278,6 +334,15 @@ body {
     display: flex;
     gap: 24px;
     align-items: center;
+  }
+}
+
+.site-header-cta-desktop {
+  display: none !important;
+}
+@media (min-width: 640px) {
+  .site-header-cta-desktop {
+    display: inline-flex !important;
   }
 }
 
@@ -301,7 +366,19 @@ body {
   text-align: center !important;
   margin-left: auto !important;
   margin-right: auto !important;
+  gap: 12px !important;
   width: fit-content !important;
+}
+.section-tag::before,
+.section-tag::after,
+.mobile-center-tag::before,
+.mobile-center-tag::after {
+  content: '' !important;
+  display: inline-block !important;
+  width: 20px !important;
+  height: 1.5px !important;
+  background: var(--gold) !important;
+  opacity: 0.75 !important;
 }
 
 .mobile-center-title,
@@ -318,14 +395,99 @@ body {
   margin-right: auto !important;
 }
 
-.mobile-center-flex,
-.hero-badges {
+.mobile-center-flex {
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
   text-align: center !important;
   margin-left: auto !important;
   margin-right: auto !important;
+}
+
+/* ─── HERO BADGES COMPACT GRID (MOBILE 2-COL, DESKTOP FLEX) ─── */
+.hero-badges,
+.hero-badges-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 6px !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 20px !important;
+}
+
+@media (min-width: 768px) {
+  .hero-badges,
+  .hero-badges-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    align-items: center !important;
+    max-width: 100% !important;
+    gap: 8px !important;
+    margin-bottom: 26px !important;
+  }
+}
+
+.hero-badge-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 10px;
+  min-height: 38px;
+  border-radius: var(--radius-micro);
+  font-size: 0.70rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.25;
+  box-sizing: border-box;
+}
+
+.hero-badge-primary {
+  background: var(--text-primary);
+  border: 1px solid rgba(161, 118, 40, 0.45);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.hero-badge-secondary {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border);
+  color: var(--text-body);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+@media (max-width: 400px) {
+  .hero-badge-item {
+    font-size: 0.67rem;
+    padding: 6px 6px;
+    gap: 4px;
+    min-height: 36px;
+  }
+}
+
+/* ─── TRIANGLE BADGES COMPACT GRID ─── */
+.triangle-badges-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto 20px auto;
+}
+
+@media (min-width: 640px) {
+  .triangle-badges-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
 }
 
 .mobile-center-btn-wrap,
