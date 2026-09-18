@@ -231,7 +231,7 @@ export default function HeroSection() {
           bottom: 0,
           left: 0,
           right: 0,
-          padding: 'clamp(24px, 5vw, 56px) clamp(20px, 5vw, 60px) clamp(110px, 18vh, 180px)',
+          padding: 'clamp(24px, 5vw, 56px) clamp(20px, 5vw, 60px) clamp(200px, 32vh, 320px)',
           zIndex: 10,
           display: 'flex',
           flexDirection: 'column',
