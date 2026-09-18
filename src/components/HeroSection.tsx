@@ -298,6 +298,72 @@ export default function HeroSection() {
           </div>
         </div>
 
+        {/* ── Hero Property Photo — Impacto Imediato, Sem Scroll ── */}
+        <div style={{
+          position: 'relative',
+          borderRadius: 'var(--radius-card)',
+          overflow: 'hidden',
+          marginBottom: 32,
+          boxShadow: '0 16px 48px rgba(0,0,0,0.13), 0 2px 0 rgba(161,118,40,0.12)',
+          border: '1px solid rgba(161,118,40,0.12)',
+          lineHeight: 0,
+        }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/exterior-noite.jpg"
+            alt="Moradia T4 Domaine XXV — Vista exterior noturna com jardim privativo iluminado, Oliveirinha, Aveiro"
+            style={{
+              width: '100%',
+              height: 'clamp(240px, 42vw, 520px)',
+              objectFit: 'cover',
+              objectPosition: 'center 55%',
+              display: 'block',
+            }}
+          />
+          {/* Gradient overlay bottom → caption */}
+          <div style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            background: 'linear-gradient(to top, rgba(10,10,12,0.72) 0%, rgba(10,10,12,0) 100%)',
+            padding: '28px 20px 14px',
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: 8,
+          }}>
+            <div style={{
+              fontSize: '0.75rem',
+              fontWeight: 600,
+              color: 'rgba(255,255,255,0.88)',
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+            }}>
+              <span style={{ color: 'var(--gold-light)', marginRight: 8 }}>●</span>
+              Lote 25 · Oliveirinha, Aveiro · Jardim Privado ~82 m²
+            </div>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              background: 'rgba(161,118,40,0.85)',
+              backdropFilter: 'blur(6px)',
+              border: '1px solid rgba(255,255,255,0.15)',
+              borderRadius: 'var(--radius-micro)',
+              padding: '4px 12px',
+              fontSize: '0.7rem',
+              fontWeight: 700,
+              color: '#fff',
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase',
+            }}>
+              Render Oficial · Domaine XXV
+            </div>
+          </div>
+        </div>
+
         {/* ── Web Doc Presentation Video ── */}
         <div>
           <div className="section-tag mobile-center-tag" style={{ marginBottom: 14 }}>
