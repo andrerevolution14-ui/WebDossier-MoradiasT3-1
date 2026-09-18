@@ -32,10 +32,10 @@ export default function SiteHeader() {
   return (
     <header style={{
       position: 'sticky', top: 0, zIndex: 50,
-      background: 'rgba(8, 8, 12, 0.80)',
-      backdropFilter: 'blur(18px)',
-      WebkitBackdropFilter: 'blur(18px)',
-      borderBottom: '1px solid rgba(255,255,255,0.08)',
+      background: 'rgba(12, 19, 34, 0.85)',
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
     }}>
       <div style={{ maxWidth: 1160, margin: '0 auto', padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
         <a href="#topo" style={{ textDecoration: 'none', flexShrink: 0 }}>
@@ -53,9 +53,9 @@ export default function SiteHeader() {
             <a
               key={href}
               href={href}
-              style={{ fontSize: '0.82rem', fontWeight: 500, letterSpacing: '0.02em', color: 'rgba(255,255,255,0.72)', textDecoration: 'none', transition: 'color 0.15s' }}
+              style={{ fontSize: '0.82rem', fontWeight: 500, letterSpacing: '0.02em', color: 'rgba(255,255,255,0.78)', textDecoration: 'none', transition: 'color 0.15s' }}
               onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold-light)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.72)')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.78)')}
             >
               {label}
             </a>
@@ -67,16 +67,16 @@ export default function SiteHeader() {
           <div className="site-nav-desktop" style={{
             display: 'inline-flex', alignItems: 'center', gap: 6,
             padding: '4px 10px',
-            background: 'rgba(179, 142, 70, 0.08)',
-            border: '1px solid rgba(179, 142, 70, 0.3)',
+            background: 'rgba(255,255,255,0.10)',
+            border: '1px solid rgba(255,255,255,0.22)',
             borderRadius: 2,
             fontSize: '0.68rem',
             fontWeight: 700,
-            color: 'var(--gold-dark)',
+            color: '#FFFFFF',
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
           }}>
-            <span style={{ width: 5, height: 5, borderRadius: 1, background: 'var(--gold)' }} />
+            <span style={{ width: 5, height: 5, borderRadius: 1, background: 'var(--gold-light)' }} />
             2 Lotes Disponíveis
           </div>
 
@@ -133,7 +133,7 @@ export default function SiteHeader() {
         <div
           className="md:hidden"
           style={{
-            background: 'rgba(10,10,14,0.96)',
+            background: 'rgba(12, 19, 34, 0.98)',
             borderBottom: '1px solid rgba(255,255,255,0.08)',
             padding: '16px 20px',
             display: 'flex',

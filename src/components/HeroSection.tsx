@@ -134,8 +134,11 @@ export default function HeroSection() {
       <div style={{
         position: 'relative',
         width: '100%',
-        height: 'clamp(520px, 90vh, 860px)',
+        minHeight: 'clamp(580px, 92vh, 890px)',
         overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
       }}>
         {/* Background photo */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -152,28 +155,26 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Multi-layer dark gradient — stronger center/bottom on mobile */}
+        {/* Multi-layer dark gradient — twilight midnight tones matching the header */}
         <div style={{
           position: 'absolute',
           inset: 0,
           background: `
-            linear-gradient(to right, rgba(5,5,8,0.88) 0%, rgba(5,5,8,0.42) 55%, rgba(5,5,8,0.10) 100%),
-            linear-gradient(to top, rgba(5,5,8,0.96) 0%, rgba(5,5,8,0.65) 40%, rgba(5,5,8,0.15) 75%)
+            linear-gradient(to right, rgba(12,19,34,0.92) 0%, rgba(12,19,34,0.52) 55%, rgba(12,19,34,0.18) 100%),
+            linear-gradient(to top, rgba(10,15,26,0.98) 0%, rgba(10,15,26,0.65) 42%, rgba(10,15,26,0.15) 75%),
+            linear-gradient(to bottom, rgba(12,19,34,0.70) 0%, transparent 22%)
           `,
         }} />
 
         {/* Top eyebrow strip */}
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          padding: 'clamp(20px, 3vw, 36px) clamp(20px, 5vw, 60px)',
+        <div className="hero-cinematic-eyebrow" style={{
+          position: 'relative',
+          padding: 'clamp(20px, 3.5vw, 36px) clamp(20px, 5vw, 60px) 16px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          gap: 10,
+          gap: 12,
           zIndex: 10,
         }}>
           <div style={{
@@ -181,7 +182,7 @@ export default function HeroSection() {
             fontWeight: 700,
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
-            color: 'rgba(255,255,255,0.55)',
+            color: 'rgba(255,255,255,0.65)',
             display: 'flex',
             alignItems: 'center',
             gap: 10,
@@ -191,7 +192,7 @@ export default function HeroSection() {
               width: 22,
               height: 1,
               background: 'var(--gold-light)',
-              opacity: 0.6,
+              opacity: 0.7,
             }} />
             Dossier Digital Exclusivo
           </div>
@@ -227,11 +228,8 @@ export default function HeroSection() {
 
         {/* Main content — anchored bottom-left on desktop, centered on mobile */}
         <div style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          padding: 'clamp(24px, 5vw, 56px) clamp(20px, 5vw, 60px) clamp(200px, 32vh, 320px)',
+          position: 'relative',
+          padding: '24px clamp(20px, 5vw, 60px) clamp(44px, 7vh, 72px)',
           zIndex: 10,
           display: 'flex',
           flexDirection: 'column',
