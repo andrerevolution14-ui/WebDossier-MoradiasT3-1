@@ -134,11 +134,11 @@ export default function HeroSection() {
       <div style={{
         position: 'relative',
         width: '100%',
-        minHeight: 'clamp(580px, 92vh, 890px)',
+        minHeight: 'clamp(500px, 80vh, 780px)',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
       }}>
         {/* Background photo */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -151,7 +151,7 @@ export default function HeroSection() {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'center 40%',
+            objectPosition: 'center 35%',
           }}
         />
 
@@ -166,9 +166,12 @@ export default function HeroSection() {
           `,
         }} />
 
-        {/* Top eyebrow strip */}
+        {/* Top eyebrow strip — pinned to top */}
         <div className="hero-cinematic-eyebrow" style={{
-          position: 'relative',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
           padding: 'clamp(14px, 2vw, 24px) clamp(20px, 5vw, 60px) 0',
           display: 'flex',
           alignItems: 'center',
@@ -227,11 +230,10 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Main content — pulled higher up on the image */}
+        {/* Main content — vertically centered in the hero */}
         <div style={{
           position: 'relative',
-          marginTop: 'clamp(14px, 2.5vh, 32px)',
-          padding: '0 clamp(20px, 5vw, 60px) clamp(32px, 5vh, 52px)',
+          padding: 'clamp(52px, 7vh, 76px) clamp(20px, 5vw, 60px) clamp(32px, 5vh, 48px)',
           zIndex: 10,
           display: 'flex',
           flexDirection: 'column',
