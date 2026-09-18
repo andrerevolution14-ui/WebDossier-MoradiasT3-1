@@ -138,7 +138,7 @@ export default function HeroSection() {
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
       }}>
         {/* Background photo */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -155,35 +155,34 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Multi-layer dark gradient — twilight midnight tones matching the header */}
+        {/* Multi-layer dark gradient — deep obsidian tones matching the header */}
         <div style={{
           position: 'absolute',
           inset: 0,
           background: `
-            linear-gradient(to right, rgba(12,19,34,0.92) 0%, rgba(12,19,34,0.52) 55%, rgba(12,19,34,0.18) 100%),
-            linear-gradient(to top, rgba(10,15,26,0.98) 0%, rgba(10,15,26,0.65) 42%, rgba(10,15,26,0.15) 75%),
-            linear-gradient(to bottom, rgba(12,19,34,0.70) 0%, transparent 22%)
+            linear-gradient(to right, rgba(5,7,12,0.92) 0%, rgba(5,7,12,0.52) 55%, rgba(5,7,12,0.18) 100%),
+            linear-gradient(to top, rgba(5,7,12,0.98) 0%, rgba(5,7,12,0.62) 42%, rgba(5,7,12,0.12) 75%),
+            linear-gradient(to bottom, rgba(5,7,12,0.85) 0%, transparent 26%)
           `,
         }} />
 
         {/* Top eyebrow strip */}
         <div className="hero-cinematic-eyebrow" style={{
           position: 'relative',
-          padding: 'clamp(20px, 3.5vw, 36px) clamp(20px, 5vw, 60px) 16px',
+          padding: 'clamp(14px, 2vw, 24px) clamp(20px, 5vw, 60px) 0',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          gap: 12,
+          gap: 10,
           zIndex: 10,
         }}>
-          <div style={{
+          <div className="hidden sm:flex" style={{
             fontSize: '0.68rem',
             fontWeight: 700,
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
             color: 'rgba(255,255,255,0.65)',
-            display: 'flex',
             alignItems: 'center',
             gap: 10,
           }}>
@@ -196,16 +195,17 @@ export default function HeroSection() {
             }} />
             Dossier Digital Exclusivo
           </div>
-          <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 6,
               background: 'rgba(161,118,40,0.18)',
               border: '1px solid rgba(161,118,40,0.45)',
               borderRadius: 2,
-              padding: '4px 12px',
-              fontSize: '0.67rem', fontWeight: 700,
+              padding: '4px 10px',
+              fontSize: '0.65rem', fontWeight: 700,
               color: 'var(--gold-light)',
-              letterSpacing: '0.1em', textTransform: 'uppercase',
+              letterSpacing: '0.08em', textTransform: 'uppercase',
+              whiteSpace: 'nowrap',
             }}>
               <span style={{ display: 'inline-block', width: 5, height: 5, background: 'var(--gold)' }} />
               Início de Obra Imediato
@@ -215,10 +215,11 @@ export default function HeroSection() {
               background: 'rgba(61,122,88,0.18)',
               border: '1px solid rgba(61,122,88,0.45)',
               borderRadius: 2,
-              padding: '4px 12px',
-              fontSize: '0.67rem', fontWeight: 700,
+              padding: '4px 10px',
+              fontSize: '0.65rem', fontWeight: 700,
               color: '#7DC4A0',
-              letterSpacing: '0.1em', textTransform: 'uppercase',
+              letterSpacing: '0.08em', textTransform: 'uppercase',
+              whiteSpace: 'nowrap',
             }}>
               <span style={{ display: 'inline-block', width: 5, height: 5, background: '#3D7A58' }} />
               Visitas Esta Semana
@@ -226,10 +227,11 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Main content — anchored bottom-left on desktop, centered on mobile */}
+        {/* Main content — pulled higher up on the image */}
         <div style={{
           position: 'relative',
-          padding: '24px clamp(20px, 5vw, 60px) clamp(44px, 7vh, 72px)',
+          marginTop: 'clamp(14px, 2.5vh, 32px)',
+          padding: '0 clamp(20px, 5vw, 60px) clamp(32px, 5vh, 52px)',
           zIndex: 10,
           display: 'flex',
           flexDirection: 'column',

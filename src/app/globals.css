@@ -566,19 +566,20 @@ body {
   }
 
   .hero-cinematic-eyebrow {
-    padding: 16px 16px 8px !important;
+    padding: 12px 14px 0 !important;
     justify-content: center !important;
-    gap: 8px !important;
+    gap: 6px !important;
   }
 
-  /* Center all content inside the hero photo on mobile */
+  /* Center all content inside the hero photo on mobile — positioned higher up */
   .hero-cinematic-content {
     align-items: center !important;
     text-align: center !important;
     padding-left: 16px !important;
     padding-right: 16px !important;
-    padding-top: 12px !important;
-    padding-bottom: 84px !important;
+    padding-top: 0 !important;
+    margin-top: 10px !important;
+    padding-bottom: 32px !important;
   }
 
   .hero-cinematic-title {

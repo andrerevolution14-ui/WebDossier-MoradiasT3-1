@@ -32,10 +32,10 @@ export default function SiteHeader() {
   return (
     <header style={{
       position: 'sticky', top: 0, zIndex: 50,
-      background: 'rgba(12, 19, 34, 0.85)',
+      background: 'rgba(5, 7, 12, 0.94)',
       backdropFilter: 'blur(20px)',
       WebkitBackdropFilter: 'blur(20px)',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
     }}>
       <div style={{ maxWidth: 1160, margin: '0 auto', padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
         <a href="#topo" style={{ textDecoration: 'none', flexShrink: 0 }}>
@@ -133,8 +133,8 @@ export default function SiteHeader() {
         <div
           className="md:hidden"
           style={{
-            background: 'rgba(12, 19, 34, 0.98)',
-            borderBottom: '1px solid rgba(255,255,255,0.08)',
+            background: 'rgba(5, 7, 12, 0.98)',
+            borderBottom: '1px solid rgba(255,255,255,0.05)',
             padding: '16px 20px',
             display: 'flex',
             flexDirection: 'column',
