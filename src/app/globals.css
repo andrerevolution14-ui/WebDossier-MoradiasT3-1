@@ -558,3 +558,42 @@ body {
   }
 }
 
+/* ─── CINEMATIC HERO — MOBILE CENTERING ─────────────────────────────── */
+@media (max-width: 639px) {
+  /* Hide the trust strip (Promotor/Construtora/etc) on mobile */
+  .hero-trust-strip {
+    display: none !important;
+  }
+
+  /* Center all content inside the hero photo on mobile */
+  .hero-cinematic-content {
+    align-items: center !important;
+    text-align: center !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    padding-bottom: 36px !important;
+  }
+
+  .hero-cinematic-title {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 100% !important;
+  }
+
+  .hero-cinematic-sub {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    max-width: 100% !important;
+  }
+
+  .hero-cinematic-cta {
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  .hero-cinematic-pills {
+    justify-content: center !important;
+  }
+}

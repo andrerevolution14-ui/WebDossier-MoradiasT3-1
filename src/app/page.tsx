@@ -38,12 +38,12 @@ export default function HomePage() {
         {/* 1 ── HERO SECTION */}
         <HeroSection />
 
-        {/* 2 ── O TRIÂNGULO IMPOSSÍVEL DE AVEIRO */}
-        <TriangleSection />
-
-        {/* 3 ── GALERIA DE FOTOS */}
-        <div className="divider" />
+        {/* 2 ── GALERIA DE FOTOS */}
         <GallerySection />
+
+        {/* 3 ── O TRIÂNGULO IMPOSSÍVEL DE AVEIRO */}
+        <div className="divider" />
+        <TriangleSection />
 
         {/* 4 ── LOCALIZAÇÃO & MAPA */}
         <div className="divider" />

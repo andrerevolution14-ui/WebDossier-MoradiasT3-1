@@ -152,13 +152,13 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Multi-layer dark gradient: strong on left/bottom, subtle on right */}
+        {/* Multi-layer dark gradient — stronger center/bottom on mobile */}
         <div style={{
           position: 'absolute',
           inset: 0,
           background: `
             linear-gradient(to right, rgba(5,5,8,0.88) 0%, rgba(5,5,8,0.42) 55%, rgba(5,5,8,0.10) 100%),
-            linear-gradient(to top, rgba(5,5,8,0.95) 0%, rgba(5,5,8,0.5) 35%, rgba(5,5,8,0.0) 70%)
+            linear-gradient(to top, rgba(5,5,8,0.96) 0%, rgba(5,5,8,0.65) 40%, rgba(5,5,8,0.15) 75%)
           `,
         }} />
 
@@ -225,7 +225,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Main content — anchored bottom-left */}
+        {/* Main content — anchored bottom-left on desktop, centered on mobile */}
         <div style={{
           position: 'absolute',
           bottom: 0,
@@ -233,9 +233,12 @@ export default function HeroSection() {
           right: 0,
           padding: 'clamp(24px, 5vw, 56px) clamp(20px, 5vw, 60px) clamp(28px, 4vw, 48px)',
           zIndex: 10,
-        }}>
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+        }} className="hero-cinematic-content">
           {/* Headline */}
-          <h1 style={{
+          <h1 className="hero-cinematic-title" style={{
             fontFamily: 'var(--serif)',
             fontWeight: 700,
             fontSize: 'clamp(2.0rem, 5.5vw, 4.2rem)',
@@ -252,7 +255,7 @@ export default function HeroSection() {
           </h1>
 
           {/* Subline */}
-          <p style={{
+          <p className="hero-cinematic-sub" style={{
             fontSize: 'clamp(0.88rem, 1.8vw, 1.02rem)',
             color: 'rgba(255,255,255,0.72)',
             lineHeight: 1.65,
@@ -264,7 +267,7 @@ export default function HeroSection() {
           </p>
 
           {/* CTA Row */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap', marginBottom: 28 }}>
+          <div className="hero-cinematic-cta" style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap', marginBottom: 28 }}>
             <a
               href={WA_VISIT}
               target="_blank"
@@ -301,7 +304,7 @@ export default function HeroSection() {
           </div>
 
           {/* Key spec pills */}
-          <div style={{
+          <div className="hero-cinematic-pills" style={{
             display: 'flex',
             flexWrap: 'wrap',
             gap: 6,
@@ -359,9 +362,9 @@ export default function HeroSection() {
       </div>
 
       {/* ═══════════════════════════════════════════════════════
-          TRUST STRIP — below the hero photo
+          TRUST STRIP — hidden on mobile, visible on desktop
           ═══════════════════════════════════════════════════════ */}
-      <div style={{
+      <div className="hero-trust-strip" style={{
         background: '#111214',
         borderBottom: '1px solid rgba(255,255,255,0.07)',
         padding: '14px clamp(20px, 5vw, 60px)',

@@ -32,16 +32,17 @@ export default function SiteHeader() {
   return (
     <header style={{
       position: 'sticky', top: 0, zIndex: 50,
-      background: 'rgba(250, 248, 245, 0.92)',
-      backdropFilter: 'blur(16px)',
-      borderBottom: '1px solid var(--border)',
+      background: 'rgba(8, 8, 12, 0.80)',
+      backdropFilter: 'blur(18px)',
+      WebkitBackdropFilter: 'blur(18px)',
+      borderBottom: '1px solid rgba(255,255,255,0.08)',
     }}>
       <div style={{ maxWidth: 1160, margin: '0 auto', padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
         <a href="#topo" style={{ textDecoration: 'none', flexShrink: 0 }}>
-          <div style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: '1.1rem', color: 'var(--text-primary)', letterSpacing: '-0.01em', lineHeight: 1 }}>
+          <div style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: '1.1rem', color: '#FFFFFF', letterSpacing: '-0.01em', lineHeight: 1 }}>
             Domaine XXV
           </div>
-          <div style={{ fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold)', marginTop: 3 }}>
+          <div style={{ fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold-light)', marginTop: 3 }}>
             Oliveirinha · Aveiro
           </div>
         </a>
@@ -52,9 +53,9 @@ export default function SiteHeader() {
             <a
               key={href}
               href={href}
-              style={{ fontSize: '0.82rem', fontWeight: 500, letterSpacing: '0.02em', color: 'var(--text-body)', textDecoration: 'none', transition: 'color 0.15s' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-body)')}
+              style={{ fontSize: '0.82rem', fontWeight: 500, letterSpacing: '0.02em', color: 'rgba(255,255,255,0.72)', textDecoration: 'none', transition: 'color 0.15s' }}
+              onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold-light)')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.72)')}
             >
               {label}
             </a>
@@ -106,19 +107,18 @@ export default function SiteHeader() {
             <span>Marcar Visita →</span>
           </a>
 
-          {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(prev => !prev)}
             aria-label="Menu de Navegação"
             className="site-menu-mobile-btn"
             style={{
-              background: 'transparent',
-              border: '1px solid var(--border)',
+              background: 'rgba(255,255,255,0.08)',
+              border: '1px solid rgba(255,255,255,0.18)',
               borderRadius: 3,
               width: 38,
               height: 38,
               cursor: 'pointer',
-              color: 'var(--text-primary)',
+              color: '#FFFFFF',
               fontSize: '1.2rem',
               lineHeight: 1,
             }}
@@ -133,8 +133,8 @@ export default function SiteHeader() {
         <div
           className="md:hidden"
           style={{
-            background: 'var(--white)',
-            borderBottom: '1px solid var(--border)',
+            background: 'rgba(10,10,14,0.96)',
+            borderBottom: '1px solid rgba(255,255,255,0.08)',
             padding: '16px 20px',
             display: 'flex',
             flexDirection: 'column',
@@ -149,10 +149,10 @@ export default function SiteHeader() {
               style={{
                 fontSize: '0.92rem',
                 fontWeight: 600,
-                color: 'var(--text-primary)',
+                color: 'rgba(255,255,255,0.85)',
                 textDecoration: 'none',
                 padding: '6px 0',
-                borderBottom: '1px solid #f2ede4',
+                borderBottom: '1px solid rgba(255,255,255,0.08)',
               }}
             >
               {label}
