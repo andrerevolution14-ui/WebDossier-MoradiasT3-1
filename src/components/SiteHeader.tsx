@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import { trackWhatsAppLead } from '@/lib/analytics';
+import { useLeadModal } from '@/components/LeadModal';
 
 // ─── WhatsApp Config — 920601070 ──────────────────────────────────────────
 export const WA_PHONE = '351920601070';
@@ -18,6 +19,7 @@ export const WA_GENERIC = `${WA_BASE}?text=${WA_MSG}`;
 export const WA_DOSSIER = `${WA_BASE}?text=${WA_MSG}`;
 
 export default function SiteHeader() {
+  const { openLeadModal } = useLeadModal();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const NAV_LINKS = [
@@ -80,12 +82,10 @@ export default function SiteHeader() {
             2 Lotes Disponíveis
           </div>
 
-          <a
-            href={WA_VISIT}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
             className="site-header-cta-desktop"
-            onClick={() => trackWhatsAppLead('header_desktop_visita')}
+            onClick={() => openLeadModal({ title: 'Agendar Visita ao Domaine XXV', source: 'header_desktop' })}
             style={{
               flexShrink: 0,
               alignItems: 'center',
@@ -98,14 +98,15 @@ export default function SiteHeader() {
               textTransform: 'uppercase',
               padding: '9px 18px',
               borderRadius: 'var(--radius-btn)',
-              textDecoration: 'none',
+              border: 'none',
+              cursor: 'pointer',
               boxShadow: '0 2px 8px rgba(161, 118, 40, 0.2)',
               transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
               whiteSpace: 'nowrap',
             }}
           >
             <span>Marcar Visita →</span>
-          </a>
+          </button>
 
           <button
             onClick={() => setMobileMenuOpen(prev => !prev)}
@@ -158,19 +159,17 @@ export default function SiteHeader() {
               {label}
             </a>
           ))}
-          <a
-            href={WA_VISIT}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
             onClick={() => {
-              trackWhatsAppLead('header_mobile_drawer_visita');
               setMobileMenuOpen(false);
+              openLeadModal({ title: 'Marcar Visita ao Terreno', source: 'header_mobile_drawer' });
             }}
             className="btn btn-gold"
-            style={{ marginTop: 8, width: '100%', fontSize: '0.86rem', borderRadius: 3, letterSpacing: '0.04em', textTransform: 'uppercase' }}
+            style={{ marginTop: 8, width: '100%', fontSize: '0.86rem', borderRadius: 3, letterSpacing: '0.04em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}
           >
             Marcar Visita ao Terreno →
-          </a>
+          </button>
         </div>
       )}
     </header>

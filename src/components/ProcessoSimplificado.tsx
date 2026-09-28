@@ -1,7 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { WA_CREDIT } from './SiteHeader';
-import { trackWhatsAppLead } from '@/lib/analytics';
+import { useLeadModal } from '@/components/LeadModal';
 
 /* ─── Merged: Processo Simples & Protegido ───────────────────────────────── */
 /* Funde: CreditSection + ProcessSection + Explicação IVA do EquitySection  */
@@ -9,10 +8,10 @@ import { trackWhatsAppLead } from '@/lib/analytics';
 const STEPS = [
   {
     n: '01',
-    title: 'Sinal Protegido (38.500€)',
-    tagline: 'O seu valor fica salvaguardado com garantia total',
+    title: 'Entrada Protegida 10% (33.500€)',
+    tagline: 'O valor de 10% fica salvaguardado com garantia total',
     bullets: [
-      <>O seu valor de <strong>38.500€</strong> fica salvaguardado desde o primeiro dia.</>,
+      <>O seu valor de entrada de 10% (<strong>33.500€</strong>) fica salvaguardado desde o primeiro dia.</>,
       <>Se por algum motivo o banco não aprovar o financiamento, <strong>o valor é devolvido na totalidade</strong>.</>,
       <><strong>Zero risco:</strong> proteção blindada por cláusula expressa no contrato promessa (CPCV).</>,
     ],
@@ -37,7 +36,7 @@ const STEPS = [
     tagline: 'Preço contratualizado sem derrapes orçamentais',
     bullets: [
       <><strong>Sem surpresas de orçamento:</strong> o preço assinado no contrato é o preço final até à entrega das chaves.</>,
-      <><strong>335.000€ fechado:</strong> inclui projeto aprovado, terreno, construção e acabamentos.</>,
+      <><strong>335.000€ com IMT e Selo incluídos:</strong> inclui projeto aprovado, terreno, construção, acabamentos e impostos de transmissão.</>,
       <>Execução rigorosa em <strong>10 meses</strong> de obra chave-na-mão.</>,
     ],
     highlight: 'Preço Blindado · Conclusão em 10 Meses',
@@ -46,6 +45,7 @@ const STEPS = [
 ];
 
 export default function ProcessoSimplificado() {
+  const { openLeadModal } = useLeadModal();
   const [openStep, setOpenStep] = useState<number | null>(null);
 
   return (
@@ -237,16 +237,17 @@ export default function ProcessoSimplificado() {
               <strong style={{ color: 'var(--gold-dark)' }}>335.000€ com IMT e Imposto de Selo incluídos</strong>.
             </span>
           </div>
-          <a
-            href={WA_CREDIT}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackWhatsAppLead('processo_simplificado')}
+          <button
+            type="button"
+            onClick={() => openLeadModal({
+              title: 'Verificar Viabilidade Gratuita · 335.000€ (c/ IMT e Selo)',
+              source: 'processo_simplificado_viabilidade',
+            })}
             className="btn btn-gold"
-            style={{ fontSize: '0.80rem', padding: '12px 22px', whiteSpace: 'nowrap', borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase' }}
+            style={{ fontSize: '0.80rem', padding: '12px 22px', whiteSpace: 'nowrap', borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}
           >
-            Verificar Viabilidade Gratuita →
-          </a>
+            Saber Mais / Verificar Viabilidade →
+          </button>
         </div>
 
       </div>

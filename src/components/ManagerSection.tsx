@@ -1,11 +1,11 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import { WA_VISIT } from './SiteHeader';
-import { trackWhatsAppLead } from '@/lib/analytics';
+import { useLeadModal } from '@/components/LeadModal';
 
 /* ─── Dedicated Manager Section & Final Action CTAs ────────────────────── */
 export default function ManagerSection() {
+  const { openLeadModal } = useLeadModal();
   return (
     <section id="gestor" className="section" style={{ background: 'var(--bg-dark)' }}>
       <div className="wrap">
@@ -49,10 +49,11 @@ export default function ManagerSection() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 32 }}>
               {[
                 'Visita guiada ao lote do terreno em Oliveirinha',
-                'Estudo de viabilidade bancária 100% gratuito (335.000€ chave-na-mão)',
+                'Estudo de viabilidade bancária 100% gratuito (335.000€ com IMT e Selo incluídos)',
+                'Apenas 10% de entrada (33.500€) com salvaguarda contratual no CPCV',
                 'Personalização total da cozinha equipada, acabamentos e climatização',
                 'Relatório fotográfico semanal durante os 10 meses de obra',
-                'Contacto direto sem intermediários pelo 920 601 070',
+                'Contacto direto sem intermediários',
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
                   <span style={{ color: 'var(--gold-light)', fontSize: '0.85rem', fontWeight: 700, flexShrink: 0, marginTop: 1 }}>—</span>
@@ -61,22 +62,23 @@ export default function ManagerSection() {
               ))}
             </div>
 
-            {/* Main Action CTA (Apenas 1 CTA) */}
+            {/* Main Action CTA */}
             <div className="mobile-center-btn-wrap" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-                <a
-                  href={WA_VISIT}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackWhatsAppLead('manager_agendar_visita')}
+                <button
+                  type="button"
+                  onClick={() => openLeadModal({
+                    title: 'Agendar Visita ao Lote com André Queirós',
+                    source: 'manager_section',
+                  })}
                   className="btn btn-gold pulse-gold mobile-center-btn"
-                  style={{ fontSize: '0.92rem', padding: '16px 36px', display: 'inline-flex', borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase' }}
+                  style={{ fontSize: '0.92rem', padding: '16px 36px', display: 'inline-flex', borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}
                 >
-                  Agendar Visita Privada ao Lote →
-                </a>
+                  Saber Mais / Agendar Visita Privada →
+                </button>
               </div>
               <div style={{ fontSize: '0.76rem', color: 'rgba(255,255,255,0.6)', marginTop: 12, display: 'flex', alignItems: 'center', gap: 6, justifyContent: 'center', textAlign: 'center', letterSpacing: '0.02em' }}>
-                <span>Conclusão da obra em 10 meses · Sinal 100% salvaguardado no CPCV</span>
+                <span>335.000€ com IMT e Selo incluídos · Entrada de 10% (33.500€)</span>
               </div>
             </div>
           </div>
@@ -125,11 +127,12 @@ export default function ManagerSection() {
                 <span>Interlocutor Único do CPCV à Escritura</span>
               </div>
 
-              <a
-                href={WA_VISIT}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackWhatsAppLead('manager_card_visita')}
+              <button
+                type="button"
+                onClick={() => openLeadModal({
+                  title: 'Agendar a Minha Visita Privada · André Queirós',
+                  source: 'manager_card_visita',
+                })}
                 className="btn btn-gold"
                 style={{
                   display: 'flex',
@@ -143,10 +146,12 @@ export default function ManagerSection() {
                   letterSpacing: '0.04em',
                   textTransform: 'uppercase',
                   marginBottom: 14,
+                  border: 'none',
+                  cursor: 'pointer',
                 }}
               >
-                Agendar a Minha Visita Privada →
-              </a>
+                Saber Mais / Agendar Visita →
+              </button>
 
               <p style={{
                 fontSize: '0.70rem',

@@ -1,15 +1,34 @@
 'use client';
-import React from 'react';
-import { WA_VISIT } from './SiteHeader';
-import { trackWhatsAppLead } from '@/lib/analytics';
+import React, { useState, useEffect } from 'react';
+import { useLeadModal } from '@/components/LeadModal';
 
-/* ─── Fixed Bottom Floating Bar — Strictly Centered & Mobile First ─────── */
+/* ─── Fixed Bottom Floating Bar — Strictly Centered & Hidden Pre-Scroll ─── */
 export default function FloatingBar() {
+  const { openLeadModal } = useLeadModal();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Appear only after user scrolls past the top fold (~360px)
+      if (window.scrollY > 360) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    // Check initial scroll position
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <aside
       id="sticky-bar-wrapper"
       role="complementary"
-      aria-label="Ação rápida WhatsApp"
+      aria-label="Ação rápida Saber Mais"
       style={{
         position: 'fixed',
         bottom: 0,
@@ -17,11 +36,12 @@ export default function FloatingBar() {
         right: 0,
         width: '100%',
         zIndex: 9999,
-        background: 'rgba(18, 19, 22, 0.95)',
+        background: 'rgba(18, 19, 22, 0.96)',
         backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
         padding: '10px 16px',
         paddingBottom: 'calc(10px + env(safe-area-inset-bottom, 0px))',
-        boxShadow: '0 -4px 28px rgba(0,0,0,0.3)',
+        boxShadow: '0 -4px 28px rgba(0,0,0,0.35)',
         borderTop: '1px solid rgba(179,142,70,0.35)',
         display: 'flex',
         flexDirection: 'column',
@@ -29,12 +49,16 @@ export default function FloatingBar() {
         justifyContent: 'center',
         boxSizing: 'border-box',
         margin: 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(110%)',
+        opacity: isVisible ? 1 : 0,
+        pointerEvents: isVisible ? 'auto' : 'none',
+        transition: 'transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease',
       }}
     >
       <div
         style={{
           width: '100%',
-          maxWidth: 520,
+          maxWidth: 480,
           margin: '0 auto',
           display: 'flex',
           flexDirection: 'column',
@@ -44,12 +68,13 @@ export default function FloatingBar() {
           boxSizing: 'border-box',
         }}
       >
-        <a
-          href={WA_VISIT}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          type="button"
           id="sticky-cta-btn"
-          onClick={() => trackWhatsAppLead('sticky_bar')}
+          onClick={() => openLeadModal({
+            title: 'Agendar Visita ao Lote · 335.000€ (c/ IMT e Selo)',
+            source: 'sticky_bar',
+          })}
           style={{
             display: 'inline-flex',
             alignItems: 'center',
@@ -61,10 +86,11 @@ export default function FloatingBar() {
             color: '#fff',
             fontFamily: 'var(--sans)',
             fontWeight: 700,
-            fontSize: 'clamp(0.78rem, 3.2vw, 0.88rem)',
-            padding: '13px 18px',
+            fontSize: 'clamp(0.82rem, 3.2vw, 0.90rem)',
+            padding: '13px 20px',
             borderRadius: 'var(--radius-btn)',
-            textDecoration: 'none',
+            border: 'none',
+            cursor: 'pointer',
             boxShadow: '0 3px 14px rgba(161,118,40,0.35)',
             letterSpacing: '0.04em',
             textTransform: 'uppercase',
@@ -74,26 +100,26 @@ export default function FloatingBar() {
             margin: '0 auto',
           }}
           onMouseEnter={e => {
-            (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-1px)';
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 4px 20px rgba(184,146,74,0.55)';
+            (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-1px)';
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 20px rgba(184,146,74,0.55)';
           }}
           onMouseLeave={e => {
-            (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)';
-            (e.currentTarget as HTMLAnchorElement).style.boxShadow = '0 3px 14px rgba(184,146,74,0.35)';
+            (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0)';
+            (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 3px 14px rgba(184,146,74,0.35)';
           }}
         >
-          <span style={{ whiteSpace: 'nowrap' }}>Agendar Visita Privada ao Lote →</span>
-        </a>
+          <span style={{ whiteSpace: 'nowrap' }}>Saber Mais · Agendar Visita ao Lote →</span>
+        </button>
 
-        {/* Micro-copy de escassez e prazo */}
+        {/* Micro-copy limpo e centrado */}
         <p
           style={{
-            fontSize: '0.66rem',
-            color: 'rgba(255,255,255,0.65)',
+            fontSize: '0.70rem',
+            color: 'rgba(255,255,255,0.72)',
             textAlign: 'center',
-            lineHeight: 1.25,
+            lineHeight: 1.3,
             margin: '5px 0 0',
-            maxWidth: 480,
+            maxWidth: 440,
             width: '100%',
             whiteSpace: 'nowrap',
             overflow: 'hidden',
@@ -101,7 +127,7 @@ export default function FloatingBar() {
             letterSpacing: '0.02em',
           }}
         >
-          Chave na mão em 10 meses · Sinal 100% salvaguardado no CPCV
+          335.000€ com IMT e Selo incluídos · Entrada 10% (33.500€) protegida
         </p>
       </div>
     </aside>

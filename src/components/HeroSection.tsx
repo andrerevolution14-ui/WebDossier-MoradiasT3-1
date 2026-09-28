@@ -1,10 +1,11 @@
 'use client';
 import React, { useRef, useState, useEffect } from 'react';
-import { WA_VISIT } from './SiteHeader';
 import { trackWhatsAppLead } from '@/lib/analytics';
+import { useLeadModal } from '@/components/LeadModal';
 
 /* ─── Hero Section — Family-focused with guaranteed presentation playback ─── */
 export default function HeroSection() {
+  const { openLeadModal } = useLeadModal();
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [muted, setMuted] = useState(true);
@@ -259,22 +260,23 @@ export default function HeroSection() {
           {/* Subline */}
           <p className="hero-cinematic-sub" style={{
             fontSize: 'clamp(0.88rem, 1.8vw, 1.02rem)',
-            color: 'rgba(255,255,255,0.72)',
+            color: 'rgba(255,255,255,0.76)',
             lineHeight: 1.65,
-            maxWidth: 540,
+            maxWidth: 580,
             margin: '0 0 28px',
             fontWeight: 400,
           }}>
-            Avaliação bancária de <strong style={{ color: 'rgba(255,255,255,0.92)', fontWeight: 600 }}>450.000€</strong> · Projeto aprovado · Chave na mão em <strong style={{ color: 'rgba(255,255,255,0.92)', fontWeight: 600 }}>10 meses</strong> · Preço blindado em contrato.
+            Preço final de <strong style={{ color: '#fff', fontWeight: 700 }}>335.000€ com IMT e Imposto de Selo já incluídos</strong> · Entrada de 10% (33.500€) com sinal 100% protegido · Chave na mão em 10 meses.
           </p>
 
           {/* CTA Row */}
           <div className="hero-cinematic-cta" style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap', marginBottom: 28 }}>
-            <a
-              href={WA_VISIT}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackWhatsAppLead('hero_agendar_visita')}
+            <button
+              type="button"
+              onClick={() => openLeadModal({
+                title: 'Saber Mais · Moradia Domaine XXV por 335.000€ (c/ IMT e Selo)',
+                source: 'hero_primary',
+              })}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -287,21 +289,22 @@ export default function HeroSection() {
                 textTransform: 'uppercase',
                 padding: '14px 30px',
                 borderRadius: 'var(--radius-btn)',
-                textDecoration: 'none',
+                border: 'none',
+                cursor: 'pointer',
                 boxShadow: '0 6px 24px rgba(161,118,40,0.45)',
                 transition: 'opacity 0.2s',
               }}
             >
-              <span>Agendar Visita Privada</span>
+              <span>Saber Mais / Agendar Visita</span>
               <span style={{ fontSize: '1rem' }}>→</span>
-            </a>
+            </button>
             <div style={{
               fontSize: '0.76rem',
-              color: 'rgba(255,255,255,0.52)',
+              color: 'rgba(255,255,255,0.60)',
               fontWeight: 500,
               letterSpacing: '0.01em',
             }}>
-              Sinal 100% protegido no CPCV
+              Entrada de 10% (33.500€) blindada no CPCV
             </div>
           </div>
 
@@ -380,7 +383,7 @@ export default function HeroSection() {
           { label: 'Promotor:', value: 'Silvermont Capital', href: undefined },
           { label: 'Construtora:', value: 'Grupo Freitas Renovações ↗', href: 'https://grupofreitasrenovacoes.pt' },
           { label: 'Auditoria:', value: '7 visitas este mês', href: undefined },
-          { label: 'Capital próprio:', value: '38.500€ para arrancar', href: undefined },
+          { label: 'Entrada 10%:', value: '33.500€ (sinal blindado)', href: undefined },
         ].map((item, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.76rem' }}>
             <span style={{ color: 'rgba(255,255,255,0.38)', fontWeight: 400 }}>{item.label}</span>
@@ -550,26 +553,29 @@ export default function HeroSection() {
                 <span>Rever Apresentação com Som →</span>
               </button>
 
-              <a
-                href={WA_VISIT}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackWhatsAppLead('hero_video_ended_visita')}
+              <button
+                type="button"
+                onClick={() => openLeadModal({
+                  title: 'Agendar Visita ao Terreno · Domaine XXV',
+                  source: 'hero_video_ended_visita',
+                })}
                 style={{
+                  background: 'none',
+                  border: 'none',
+                  borderBottom: '1px dashed var(--gold)',
                   color: 'rgba(255,255,255,0.9)',
                   fontSize: '0.82rem',
                   fontWeight: 600,
                   letterSpacing: '0.02em',
-                  textDecoration: 'none',
+                  cursor: 'pointer',
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: 6,
-                  borderBottom: '1px dashed var(--gold)',
                   paddingBottom: 2,
                 }}
               >
-                <span>Agendar Visita ao Terreno no WhatsApp →</span>
-              </a>
+                <span>Saber Mais e Agendar Visita ao Terreno →</span>
+              </button>
             </div>
           )}
 

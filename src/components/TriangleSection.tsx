@@ -1,10 +1,10 @@
 'use client';
 import React from 'react';
-import { WA_VISIT } from './SiteHeader';
-import { trackWhatsAppLead } from '@/lib/analytics';
+import { useLeadModal } from '@/components/LeadModal';
 
 /* ─── Triangle Section — "The Impossible Triangle of Aveiro" ─────────────── */
 export default function TriangleSection() {
+  const { openLeadModal } = useLeadModal();
   const BLOCKS = [
     {
       num: '01',
@@ -196,7 +196,7 @@ export default function TriangleSection() {
           }}>
             ESTA MORADIA QUEBRA O TRIÂNGULO:
             <span style={{ color: 'var(--gold-light)', display: 'block', marginTop: 6, fontWeight: 600, fontSize: '1.05rem' }}>
-              Espaço T4 com jardim a 8 min de Aveiro por 335.000€ · Chave na mão em apenas 10 meses.
+              Espaço T4 com jardim a 8 min de Aveiro por 335.000€ (com IMT e Selo incluídos) · Chave na mão em apenas 10 meses.
             </span>
           </h3>
 
@@ -206,7 +206,7 @@ export default function TriangleSection() {
               'T4 com Jardim ~82 m²',
               '8 min de Aveiro',
               'Chave na mão em 10 meses',
-              '335.000€ Chave na Mão',
+              '335.000€ c/ IMT e Selo',
             ].map(label => (
               <div key={label} style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
@@ -226,11 +226,12 @@ export default function TriangleSection() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-            <a
-              href={WA_VISIT}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => trackWhatsAppLead('triangle_agendar_visita')}
+            <button
+              type="button"
+              onClick={() => openLeadModal({
+                title: 'Saber Mais · Moradia Domaine XXV (335.000€ c/ IMT e Selo)',
+                source: 'triangle_agendar_visita',
+              })}
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
                 background: 'var(--gold)',
@@ -241,14 +242,15 @@ export default function TriangleSection() {
                 textTransform: 'uppercase',
                 padding: '14px 32px',
                 borderRadius: 'var(--radius-btn)',
-                textDecoration: 'none',
+                border: 'none',
+                cursor: 'pointer',
                 boxShadow: '0 4px 16px rgba(161,118,40,0.35)',
               }}
             >
-              Quero Agendar a Minha Visita Privada →
-            </a>
+              Saber Mais / Agendar a Minha Visita →
+            </button>
             <span style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.7)', letterSpacing: '0.02em' }}>
-              Obra com início imediato · Chave na mão em 10 meses
+              335.000€ com IMT e Selo já incluídos · Entrada de 10% (33.500€) protegida
             </span>
           </div>
         </div>

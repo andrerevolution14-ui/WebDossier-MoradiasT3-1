@@ -18,22 +18,15 @@ export interface PropertyData {
   priceFormatted: string;
   priceWithTaxes: number;
   priceWithTaxesFormatted: string;
-  bankProcessValue: number;
-  bankProcessValueFormatted: string;
+  traditionalPrice: number;
+  traditionalPriceFormatted: string;
   bankAppraisal: number;
   bankAppraisalFormatted: string;
   immediateEquity: number;
   immediateEquityFormatted: string;
-  ivaRefund: number;
-  ivaRefundFormatted: string;
   depositAmount: number;
   depositAmountFormatted: string;
-  taxSavings: number;
-  taxSavingsFormatted: string;
-  landImtTaxes: number;
-  landImtTaxesFormatted: string;
-  traditionalImtTaxes: number;
-  traditionalImtTaxesFormatted: string;
+  depositPercentage: number;
   mapsEmbed: string;
   googleMapsDirections: string;
 }
@@ -54,26 +47,19 @@ export const PROPERTY: PropertyData = {
   unitsReserved: 1,
   unitsAvailable: 2,
   deliveryMonths: 10,
-  price: 329000,
-  priceFormatted: '329.000€',
+  price: 335000,
+  priceFormatted: '335.000€',
   priceWithTaxes: 335000,
-  priceWithTaxesFormatted: '335.000€ (c/ IMT e Selo)',
-  bankProcessValue: 360000,
-  bankProcessValueFormatted: '360.000€',
+  priceWithTaxesFormatted: '335.000€ (c/ IMT e Imposto de Selo)',
+  traditionalPrice: 365000,
+  traditionalPriceFormatted: '365.000€ (+ IMT e Selo à parte)',
   bankAppraisal: 450000,
   bankAppraisalFormatted: '450.000€',
-  immediateEquity: 121000,
-  immediateEquityFormatted: '+121.000€',
-  ivaRefund: 31500,
-  ivaRefundFormatted: '31.500€',
-  depositAmount: 38500,
-  depositAmountFormatted: '38.500€',
-  taxSavings: 23700,
-  taxSavingsFormatted: '~23.700€',
-  landImtTaxes: 3480,
-  landImtTaxesFormatted: '~3.480€',
-  traditionalImtTaxes: 27180,
-  traditionalImtTaxesFormatted: '~27.180€',
+  immediateEquity: 115000,
+  immediateEquityFormatted: '+115.000€',
+  depositAmount: 33500,
+  depositAmountFormatted: '33.500€',
+  depositPercentage: 10,
   mapsEmbed:
     'https://maps.google.com/maps?q=R.+Ac%C3%A1cio+Sim%C3%B5es+Vieira,+3810-843+Oliveirinha&hl=pt&z=16&output=embed',
   googleMapsDirections:
@@ -81,30 +67,31 @@ export const PROPERTY: PropertyData = {
 };
 
 export const WHATSAPP_PHONE = '351920601070';
+export const WA_PHONE = '351920601070';
 
 export const CRITICAL_MICRO_STATS = [
   {
     badge: 'Equity Imediato',
     icon: '💎',
-    number: '+121.000€',
+    number: '+115.000€',
     label: 'Avaliação Bancária: 450.000€',
-    desc: 'Comprando em planta por 329.000€, cria um ganho patrimonial líquido instantâneo de 121k€ na escritura.',
+    desc: 'Preço final de 335.000€ com IMT e Imposto de Selo incluídos face a uma avaliação bancária de 450.000€.',
     highlight: true,
   },
   {
     badge: 'Garantia Rigorosa',
     icon: '⏱️',
     number: '10 Meses',
-    label: 'Preço Fechado Sem Desvios',
-    desc: 'Contrato de empreitada chave na mão com valor blindado e cronograma semanal de execução.',
+    label: '335.000€ c/ IMT e Selo',
+    desc: 'Preço final fechado em contrato chave-na-mão com IMT e Imposto de Selo já incluídos, sem derrapes.',
     highlight: false,
   },
   {
     badge: 'Segurança Contratual',
     icon: '🛡️',
-    number: '100%',
-    label: 'Sinal Protegido (38.500€)',
-    desc: 'Cláusula expressa de devolução integral do sinal se o banco recusar financiamento por motivos alheios.',
+    number: '10%',
+    label: 'Entrada Protegida (33.500€)',
+    desc: 'Sinal de 10% do valor final (33.500€) com salvaguarda total de devolução no CPCV caso não obtenha financiamento.',
     highlight: false,
   },
 ];

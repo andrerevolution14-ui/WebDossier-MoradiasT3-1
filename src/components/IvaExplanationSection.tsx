@@ -1,26 +1,27 @@
 'use client';
 import React from 'react';
-import { WA_VISIT } from './SiteHeader';
-import { trackWhatsAppLead } from '@/lib/analytics';
+import { useLeadModal } from '@/components/LeadModal';
 
-/* ─── Justificação de Preço & Reembolso do IVA ──────────────────────────── */
+/* ─── Explicação das Duas Formas & Estrutura Fiscal ──────────────────────────── */
 export default function IvaExplanationSection() {
+  const { openLeadModal } = useLeadModal();
+
   return (
     <section id="iva-explicacao" className="section" style={{ background: 'var(--bg)' }}>
       <div className="wrap">
 
         <div className="section-tag mobile-center-tag">
-          Estrutura Financeira &amp; Transparência Fiscal
+          Transparência Fiscal &amp; Estrutura de Preço
         </div>
         <h2 className="heading mobile-center-title" style={{ maxWidth: 760, margin: '0 auto 12px', textAlign: 'center' }}>
-          Justificação de Preço e{' '}
-          <span style={{ color: 'var(--gold-dark)', fontWeight: 700 }}>o Reembolso do IVA</span>
+          Como Funciona o Preço de{' '}
+          <span style={{ color: 'var(--gold-dark)', fontWeight: 700 }}>335.000€ com IMT e Selo</span>
         </h2>
         <p className="mobile-center-desc" style={{
           color: 'var(--text-body)', fontSize: '0.95rem',
-          lineHeight: 1.65, maxWidth: 640, margin: '0 auto 40px', textAlign: 'center',
+          lineHeight: 1.65, maxWidth: 660, margin: '0 auto 40px', textAlign: 'center',
         }}>
-          Como estruturamos a aquisição para que a sua família beneficie legalmente da taxa reduzida de IVA e poupe mais de 23.000€ em impostos.
+          Explicamos de forma simples e transparente as duas modalidades disponíveis e por que razão o método direto de 335k já inclui IMT e Imposto de Selo.
         </p>
 
         {/* 4 Pillars of Financial Transparency */}
@@ -41,15 +42,15 @@ export default function IvaExplanationSection() {
               01
             </div>
             <h3 style={{ fontSize: '0.96rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>
-              Processo Bancário a 360.000€
+              Método Tradicional (365.000€)
             </h3>
             <p style={{ fontSize: '0.84rem', color: 'var(--text-body)', lineHeight: 1.6, margin: 0 }}>
-              O processo formal junto do banco é instruído a <strong>360.000€</strong>. Este valor técnico assegura margem de liquidez e conforto absoluto na libertação das tranches de construção pelo perito bancário.
+              Na compra tradicional a <strong>365.000€</strong>, os impostos de transmissão (IMT e Imposto de Selo) são suportados à parte pelo comprador. O cliente fica responsável por aguardar a restituição posterior do diferencial de IVA pelo Estado.
             </p>
           </div>
 
           {/* Item 2 */}
-          <div className="card" style={{ padding: '24px 20px', background: 'var(--white)', border: '1px solid var(--gold)', borderRadius: 'var(--radius-card-sm)' }}>
+          <div className="card" style={{ padding: '24px 20px', background: 'var(--white)', border: '1.5px solid var(--gold)', borderRadius: 'var(--radius-card-sm)' }}>
             <div style={{
               width: 28, height: 28, borderRadius: 'var(--radius-micro)', background: 'var(--gold)',
               color: '#fff', fontWeight: 800, fontSize: '0.82rem',
@@ -58,10 +59,10 @@ export default function IvaExplanationSection() {
               02
             </div>
             <h3 style={{ fontSize: '0.96rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>
-              Direito à Taxa Reduzida (6%)
+              Método Direto (335.000€ Tudo Incluído)
             </h3>
             <p style={{ fontSize: '0.84rem', color: 'var(--text-body)', lineHeight: 1.6, margin: 0 }}>
-              Durante a obra, a faturação de materiais e mão-de-obra é emitida a 23%, mas o comprador particular de habitação própria qualifica-se legalmente para a <strong>taxa reduzida de 6%</strong> no preço final.
+              Na opção recomendada a <strong>335.000€</strong>, o valor é fechado e <strong>já inclui o IMT e Imposto de Selo</strong>. A empresa construtora assume e recebe diretamente a restituição do IVA, transferindo esse benefício imediato para o comprador.
             </p>
           </div>
 
@@ -75,10 +76,10 @@ export default function IvaExplanationSection() {
               03
             </div>
             <h3 style={{ fontSize: '0.96rem', fontWeight: 700, color: '#2E492B', marginBottom: 8 }}>
-              Reembolso Direto do Estado
+              Zero Surpresas com Impostos
             </h3>
             <p style={{ fontSize: '0.84rem', color: '#2E492B', lineHeight: 1.6, margin: 0 }}>
-              Ainda <strong>antes do final da obra</strong>, recebe diretamente na sua conta a devolução da diferença de IVA. O seu custo real e líquido fica exatamente fixado nos <strong>335.000€ chave-na-mão</strong>.
+              Ao optar pelo valor de <strong>335.000€</strong>, não tem custos inesperados de impostos no cartório. Tanto o IMT como o Imposto de Selo estão devidamente acautelados no contrato chave na mão.
             </p>
           </div>
 
@@ -93,10 +94,10 @@ export default function IvaExplanationSection() {
               04
             </div>
             <h3 style={{ fontSize: '0.96rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: 8 }}>
-              Poupança de ~23.700€ no IMT
+              Apenas 10% de Entrada (33.500€)
             </h3>
             <p style={{ fontSize: '0.84rem', color: 'var(--text-body)', lineHeight: 1.6, margin: 0 }}>
-              Ao escriturar o lote de terreno inicialmente em seu nome, o IMT e Selo incidem apenas sobre o terreno (~3.480€) em vez de incidirem sobre uma moradia pronta de 335.000€ (~27.180€).
+              O único valor inicial a disponibilizar é o sinal de <strong>10% (33.500€)</strong>, que fica protegido no CPCV com garantia de reembolso integral se o financiamento bancário não se concretizar.
             </p>
           </div>
         </div>
@@ -114,24 +115,25 @@ export default function IvaExplanationSection() {
           gap: 16,
         }}>
           <div style={{ maxWidth: 640 }}>
-            <div style={{ fontWeight: 700, fontSize: '0.90rem', color: 'var(--text-primary)', marginBottom: 4 }}>
-              Auditoria e Proteção Jurídica no Contrato Promessa (CPCV)
+            <div style={{ fontWeight: 700, fontSize: '0.92rem', color: 'var(--text-primary)', marginBottom: 4 }}>
+              Dúvidas sobre qual o melhor método para o seu caso?
             </div>
-            <div style={{ fontSize: '0.80rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-              Sem cláusulas ocultas. A nossa equipa e os intermediários de crédito acompanham a sua família em todas as fases da operação financeira.
+            <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+              Preencha o formulário para receber a simulação detalhada entre as duas opções e o cronograma de pagamentos.
             </div>
           </div>
 
-          <a
-            href={WA_VISIT}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackWhatsAppLead('iva_pedir_estudo')}
+          <button
+            type="button"
+            onClick={() => openLeadModal({
+              title: 'Pedir Estudo das Opções (335k c/ IMT e Selo)',
+              source: 'iva_explicacao_section',
+            })}
             className="btn btn-gold"
-            style={{ fontSize: '0.82rem', padding: '12px 24px', whiteSpace: 'nowrap', borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase' }}
+            style={{ fontSize: '0.82rem', padding: '12px 24px', whiteSpace: 'nowrap', borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase', cursor: 'pointer', border: 'none' }}
           >
-            Pedir Estudo Financeiro Completo →
-          </a>
+            Saber Mais e Pedir Estudo →
+          </button>
         </div>
 
       </div>

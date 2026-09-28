@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import SiteHeader from '@/components/SiteHeader';
 import HeroSection from '@/components/HeroSection';
@@ -11,11 +12,12 @@ import FaqSection from '@/components/FaqSection';
 import IvaExplanationSection from '@/components/IvaExplanationSection';
 import ManagerSection from '@/components/ManagerSection';
 import FloatingBar from '@/components/FloatingBar';
-import { WA_VISIT } from '@/components/SiteHeader';
+import SiteFooter from '@/components/SiteFooter';
+import { LeadModalProvider } from '@/components/LeadModal';
 
 export default function HomePage() {
   return (
-    <>
+    <LeadModalProvider>
       {/* ─── 0. TOP NAVIGATION ─────────────────────────────────── */}
       <SiteHeader />
 
@@ -24,14 +26,14 @@ export default function HomePage() {
           SEQUÊNCIA OTIMIZADA MOBILE-FIRST (Preço logo após o Mapa):
           ─────────────────────────────────────────────────────────────
           1. Hero Section                 → Atenção, qualificação imediata & vídeo
-          2. O Triângulo de Aveiro        → Análise de mercado & dor do comprador
-          3. Galeria de Fotos             → Desejo visual
+          2. Galeria de Fotos             → Desejo visual
+          3. O Triângulo de Aveiro        → Análise de mercado & dor do comprador
           4. Localização & Mapa           → Prova de proximidade imediata (8 min)
-          5. Preço & Ganho Patrimonial    → Ancoragem racional (abaixo do mapa)
+          5. Preço & Ganho Patrimonial    → Ancoragem racional (335k c/ IMT e Selo)
           6. Plantas & Parâmetros         → Validação racional e áreas
           7. Processo Simples & Sem Risco → 3 passos sem burocracia nem derrapes
           8. FAQs / Resposta a Objeções   → Destruição de dúvidas
-          9. Reembolso do IVA             → Justificação do preço e estrutura fiscal
+          9. O Reembolso do IVA           → Justificação das 2 formas e impostos
           10. Perfil & Fecho Agressivo    → André Queirós / Freitas Renovações Lda.
         */}
 
@@ -65,47 +67,20 @@ export default function HomePage() {
         <div className="divider" />
         <FaqSection />
 
-        {/* 9 ── O REEMBOLSO DO IVA & JUSTIFICAÇÃO DE PREÇO */}
+        {/* 9 ── O REEMBOLSO DO IVA & AS 2 FORMAS */}
         <div className="divider" />
         <IvaExplanationSection />
 
-        {/* 10 ── PERFIL & FECHO AGRESSIVO */}
+        {/* 10 ── PERFIL & FECHO */}
         <div className="divider" />
         <ManagerSection />
 
         {/* ── FOOTER ── */}
-        <footer style={{ background: 'var(--bg-alt)', padding: '48px 0 36px', borderTop: '1px solid var(--border)' }}>
-          <div className="wrap" style={{ textAlign: 'center' }}>
-            <div style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: '1.3rem', color: 'var(--text-primary)', marginBottom: 6 }}>
-              Domaine XXV
-            </div>
-            <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: 24 }}>
-              Rua Acácio Simões Vieira (Lote 25) · 3810-843 Oliveirinha · Aveiro
-            </div>
-
-            <a
-              id="footer_verificar_viabilidade"
-              data-source="footer_verificar_viabilidade"
-              href={WA_VISIT}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-gold"
-              style={{ display: 'inline-flex', fontSize: '0.86rem', marginBottom: 32, borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase' }}
-            >
-              Agendar Visita no WhatsApp →
-            </a>
-
-            <div className="divider" style={{ marginBottom: 24 }} />
-            <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', lineHeight: 1.6, maxWidth: 620, margin: '0 auto' }}>
-              © {new Date().getFullYear()} Domaine XXV · Em parceria com Freitas Renovações Lda.<br />
-              Dossier digital informativo de apresentação do projeto da Moradia em Oliveirinha.
-            </p>
-          </div>
-        </footer>
+        <SiteFooter />
       </main>
 
       {/* ─── FIXED BOTTOM BAR (Sticky Footer Mobile First) ─────── */}
       <FloatingBar />
-    </>
+    </LeadModalProvider>
   );
 }

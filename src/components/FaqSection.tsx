@@ -1,7 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { WA_VISIT } from './SiteHeader';
-import { trackWhatsAppLead } from '@/lib/analytics';
+import { useLeadModal } from '@/components/LeadModal';
 
 /* ─── FAQs Section — Destruição de Objeções ──────────────────────────────── */
 const FAQS = [
@@ -12,17 +11,28 @@ const FAQS = [
   },
   {
     num: '02',
-    q: 'O preço pode subir durante a construção?',
-    a: 'Não. O contrato de empreitada fecha o valor global de 335.000€ (com IMT e Imposto de Selo já incluídos). O preço fica blindado juridicamente do primeiro dia à entrega das chaves, sem derrapes orçamentais.',
+    q: 'O preço de 335.000€ pode subir durante a construção?',
+    a: 'Não. O valor de 335.000€ com IMT e Imposto de Selo já incluídos fica blindado por contrato de empreitada chave na mão. Não há custos surpresa nem derrapes orçamentais.',
   },
   {
     num: '03',
+    q: 'Qual a diferença entre o Método Tradicional e o Método Direto?',
+    a: 'No método tradicional (365.000€), o IMT e Selo são pagos à parte e o cliente aguarda a restituição do IVA pelo Estado. No método direto recomendado (335.000€ com IMT e Selo incluídos), a empresa construtora recebe diretamente a restituição do IVA e desconta esse benefício fiscal no preço final.',
+  },
+  {
+    num: '04',
+    q: 'Quanto tenho de dar de entrada inicial?',
+    a: 'Apenas 10% do valor final, ou seja, 33.500€. Este valor de sinal fica salvaguardado no CPCV com garantia expressa de devolução a 100% caso o financiamento bancário não se concretize.',
+  },
+  {
+    num: '05',
     q: 'Preciso de pagar comissões ao intermediário de crédito?',
     a: 'Não, o serviço de consultoria financeira é 100% gratuito para o comprador. Os intermediários de crédito são registados e supervisionados pelo Banco de Portugal e são remunerados diretamente pela entidade bancária que conceder o crédito.',
   },
 ];
 
 export default function FaqSection() {
+  const { openLeadModal } = useLeadModal();
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
   return (
@@ -123,32 +133,35 @@ export default function FaqSection() {
           })}
         </div>
 
-        {/* Subtle WhatsApp Help Box */}
+        {/* Lead Modal Trigger Box */}
         <div style={{ marginTop: 32, textAlign: 'center' }}>
-          <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: 10 }}>
-            Tem outra dúvida específica sobre o projeto ou financiamento?
+          <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: 12 }}>
+            Tem outra dúvida específica sobre o projeto ou modalidades de pagamento?
           </p>
-          <a
-            href={WA_VISIT}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackWhatsAppLead('faq_tirar_duvida')}
+          <button
+            type="button"
+            onClick={() => openLeadModal({
+              title: 'Tirar Dúvida · Domaine XXV (335k c/ IMT e Selo)',
+              source: 'faq_section',
+            })}
             style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: 8,
-              color: 'var(--gold)',
+              background: 'none',
+              border: 'none',
+              borderBottom: '1.5px solid var(--gold)',
+              color: 'var(--gold-dark)',
               fontWeight: 700,
-              fontSize: '0.86rem',
+              fontSize: '0.88rem',
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
-              textDecoration: 'none',
-              borderBottom: '1px solid var(--gold)',
-              paddingBottom: 2,
+              cursor: 'pointer',
+              paddingBottom: 3,
             }}
           >
-            Falar Diretamente com o André no WhatsApp →
-          </a>
+            Fazer Pergunta / Saber Mais →
+          </button>
         </div>
 
       </div>
