@@ -1,9 +1,12 @@
 /**
  * Telemetry and behavioral tracking system + Meta Pixel Integration
- * Meta Pixel ID: 26022738390737044
+ * Meta Pixel ID: 979841341182458
  */
 
-export const META_PIXEL_ID = '26022738390737044';
+export const META_PIXEL_ID = '979841341182458';
+
+// Valor mais alto de referência do projeto (Avaliação Bancária de 450.000€)
+export const HIGHEST_LEAD_VALUE = 450000;
 
 export interface TrackingEvent {
   event: string;
@@ -40,13 +43,29 @@ export function trackEvent(eventName: string, payload: Record<string, unknown> =
   } catch {}
 }
 
+/**
+ * Lê os cookies _fbp e _fbc do browser para passar ao CAPI
+ */
+export function getMetaCookies(): { fbp?: string; fbc?: string } {
+  if (typeof document === 'undefined') return {};
+  const cookies = document.cookie.split(';');
+  let fbp: string | undefined;
+  let fbc: string | undefined;
+  for (const cookie of cookies) {
+    const [name, val] = cookie.trim().split('=');
+    if (name === '_fbp') fbp = val;
+    if (name === '_fbc') fbc = val;
+  }
+  return { fbp, fbc };
+}
+
 // In-memory debounce timestamp to prevent rapid double-taps
 let lastClickTime = 0;
 
 /**
  * Retorna ou gera um ID de evento único por sessão para deduplicação no Meta Pixel.
  */
-function getSessionEventId(): string {
+export function getSessionEventId(): string {
   try {
     const existing = sessionStorage.getItem('domaine_meta_lead_event_id');
     if (existing) return existing;
@@ -59,9 +78,65 @@ function getSessionEventId(): string {
 }
 
 /**
+ * Disparado ao preencher e submeter o formulário de contacto / visita.
+ * Regista o evento LEAD com o valor mais alto (450.000€ - Avaliação Bancária de referência).
+ * Partilha o eventId retornado com a API (CAPI) para deduplicação perfeita de 100%.
+ */
+export function trackFormLeadSubmit(payload: {
+  name: string;
+  phone: string;
+  email?: string;
+  source?: string;
+  value?: number;
+  eventId?: string;
+}): { eventId: string } {
+  const eventId =
+    payload.eventId ||
+    `lead_form_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+  const value = payload.value ?? HIGHEST_LEAD_VALUE;
+  const source = payload.source || 'modal_form';
+
+  if (typeof window !== 'undefined') {
+    try {
+      if (typeof (window as any).fbq === 'function') {
+        (window as any).fbq(
+          'track',
+          'Lead',
+          {
+            content_name: 'Domaine XXV — Moradia T4 Familiar em Oliveirinha',
+            content_category: 'Imobiliário Aveiro',
+            currency: 'EUR',
+            value: value,
+            source: source,
+          },
+          { eventID: eventId }
+        );
+
+        console.log(
+          `🎯 [Meta Pixel] Lead de formulário registado com o valor mais alto (${value}€) (ID: ${eventId})`
+        );
+      } else {
+        console.warn('⚠️ [Meta Pixel] fbq ainda não carregado no momento da submissão.');
+      }
+    } catch (err) {
+      console.error('Erro ao disparar Meta Pixel no formulário:', err);
+    }
+
+    trackEvent('form_lead_submitted', {
+      source,
+      value,
+      eventId,
+      name: payload.name,
+      phone: payload.phone,
+    });
+  }
+
+  return { eventId };
+}
+
+/**
  * Disparado ao clicar em qualquer botão do WhatsApp.
- * Implementa DEBOUNCING (2s) e DEDUPLICAÇÃO POR SESSÃO para garantir
- * que 1 visitante real = exatamente 1 Lead registado no Facebook Ads!
+ * Implementa DEBOUNCING (2s) e DEDUPLICAÇÃO POR SESSÃO.
  */
 export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<string, unknown> = {}) {
   if (typeof window === 'undefined') return;
@@ -74,8 +149,6 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
   lastClickTime = now;
 
   // 2. Deduplicação por Sessão:
-  // Se o utilizador já clicou no WhatsApp nesta sessão, não disparamos um novo "Lead" no Meta Pixel,
-  // evitando que o mesmo cliente clicando em 2 botões conte como 2, 3 ou 4 leads no Facebook Ads.
   let isFirstLeadInSession = true;
   try {
     if (sessionStorage.getItem('meta_wa_lead_fired')) {
@@ -100,14 +173,14 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
             content_name: 'Moradia Oliveirinha Domaine XXV',
             content_category: 'Imobiliário Aveiro',
             currency: 'EUR',
-            value: 335000,
+            value: HIGHEST_LEAD_VALUE,
             source,
             ...extra,
           },
           { eventID: eventId }
         );
 
-        console.log(`🎯 [Meta Pixel] Novo Lead único registado com sucesso (Source: ${source}, ID: ${eventId})`);
+        console.log(`🎯 [Meta Pixel] Novo Lead único WhatsApp registado com sucesso (Source: ${source}, ID: ${eventId})`);
       } else {
         console.log(`ℹ️ [Meta Pixel] Clique WhatsApp registado, mas Lead já contabilizado nesta sessão (deduplicado).`);
       }
@@ -120,7 +193,7 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
           content_name: 'Contacto WhatsApp - Moradia Oliveirinha',
           content_category: 'Imobiliário Aveiro',
           currency: 'EUR',
-          value: 335000,
+          value: HIGHEST_LEAD_VALUE,
           source,
           ...extra,
         },

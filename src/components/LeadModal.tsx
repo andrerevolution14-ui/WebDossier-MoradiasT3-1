@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { WA_PHONE } from '@/lib/constants';
-import { trackWhatsAppLead } from '@/lib/analytics';
+import { trackFormLeadSubmit, getMetaCookies } from '@/lib/analytics';
 
 interface LeadModalContextType {
   isOpen: boolean;
@@ -105,16 +105,27 @@ export default function LeadModal({
     setSubmitError('');
 
     try {
-      trackWhatsAppLead(`form_${source}`, { name: name.trim(), phone });
+      const cleanPhone = phone.replace(/\D/g, '');
+      const { fbp, fbc } = getMetaCookies();
+
+      // Disparar evento LEAD no Meta Pixel com o valor mais alto e obter eventId para deduplicação
+      const { eventId } = trackFormLeadSubmit({
+        name: name.trim(),
+        phone: cleanPhone,
+        source: source || 'modal_form',
+      });
 
       const res = await fetch('/api/leads', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           nome: name.trim(),
-          telefone: phone,
+          telefone: cleanPhone,
           source: source || 'modal_form',
-          interesse: title || 'Domaine XXV (335k c/ IMT e Selo)',
+          interesse: title || 'Domaine XXV Moradia T4 (450k valorização / 335k chave na mão)',
+          eventId,
+          fbp,
+          fbc,
         }),
       });
 
