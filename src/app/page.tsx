@@ -14,10 +14,13 @@ import ManagerSection from '@/components/ManagerSection';
 import FloatingBar from '@/components/FloatingBar';
 import SiteFooter from '@/components/SiteFooter';
 import { LeadModalProvider } from '@/components/LeadModal';
+import ExitIntentModal from '@/components/ExitIntentModal';
 
 export default function HomePage() {
   return (
     <LeadModalProvider>
+      {/* ─── EXIT INTENT POPUP ─────────────────────────────────── */}
+      <ExitIntentModal />
       {/* ─── 0. TOP NAVIGATION ─────────────────────────────────── */}
       <SiteHeader />
 
