@@ -196,14 +196,14 @@ export default function TriangleSection() {
           }}>
             ESTA MORADIA QUEBRA O TRIÂNGULO:
             <span style={{ color: 'var(--gold-light)', display: 'block', marginTop: 6, fontWeight: 600, fontSize: '1.05rem' }}>
-              Espaço T4 com jardim a 8 min de Aveiro por 335.000€ (com IMT e Selo incluídos) · Chave na mão em apenas 10 meses.
+              Moradia T3 (opção T4) com jardim a 8 min de Aveiro por 335.000€ (com IMT e Selo incluídos) · Chave na mão em apenas 10 meses.
             </span>
           </h3>
 
           {/* 4 specifications items — Compacto 2x2 no Mobile */}
           <div className="triangle-badges-grid">
             {[
-              'T4 com Jardim ~82 m²',
+              'T3 com Jardim ~82 m²',
               '8 min de Aveiro',
               'Chave na mão em 10 meses',
               '335.000€ c/ IMT e Selo',

@@ -141,12 +141,12 @@ export default function LeadModal({
         throw new Error(data.error || 'Erro ao submeter');
       }
 
-      setIsSuccess(true);
+      // Apenas a página /obrigado serve de agradecimento (sem ecrã de sucesso duplicado no modal)
       const params = new URLSearchParams({ nome: name.trim().split(' ')[0], i: String(INTENT_OPTIONS.indexOf(intent)) });
       window.location.href = `/obrigado?${params.toString()}`;
+      return; // mantém o botão em 'A registar...' até a navegação
     } catch (err: any) {
       setSubmitError(err.message || 'Erro de ligação. Por favor tente novamente.');
-    } finally {
       setIsSubmitting(false);
     }
   };

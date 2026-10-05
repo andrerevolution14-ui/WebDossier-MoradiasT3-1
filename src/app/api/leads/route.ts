@@ -35,6 +35,16 @@ export async function POST(req: NextRequest) {
       `;
     } catch (dbError) {
       console.error('Database lead insert error:', dbError);
+      // Fallback: tentar novamente com valores mínimos para nunca perder o lead
+      try {
+        dbResult = await sql`
+          INSERT INTO leads (nome, telefone, source, interesse, notes)
+          VALUES (${nome.trim().slice(0, 250)}, ${cleanPhone}, ${String(source || 'site_lead_modal').slice(0, 90)}, ${'Domaine XXV'}, ${String(interesse || '').slice(0, 1000)})
+          RETURNING id, created_at;
+        `;
+      } catch (retryError) {
+        console.error('Database lead insert retry failed:', retryError);
+      }
     }
 
     // 2. Extrair metadados para máxima qualidade de correspondência Meta CAPI (Event Match Quality)

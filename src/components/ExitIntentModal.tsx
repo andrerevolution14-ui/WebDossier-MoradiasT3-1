@@ -168,7 +168,7 @@ export default function ExitIntentModal() {
           telefone: cleanPhone,
           source: 'exit_intent_popup',
           interesse:
-            'Exit Intent — Moradia T4 Oliveirinha 335k c/ IMT e Selo Incluídos (Dossier + Simulação)',
+            'Exit Intent — Moradia T3 Oliveirinha 335k c/ IMT e Selo Incluídos (Dossier + Simulação)',
           eventId,
           fbp,
           fbc,
@@ -184,10 +184,10 @@ export default function ExitIntentModal() {
         localStorage.setItem('domaine_lead_submitted', 'true');
       } catch {}
 
-      setIsSuccess(true);
+      window.location.href = `/obrigado?nome=${encodeURIComponent(name.trim().split(' ')[0])}`;
+      return;
     } catch (err: any) {
       setSubmitError(err.message || 'Erro de ligação. Por favor tente novamente.');
-    } finally {
       setIsSubmitting(false);
     }
   };
@@ -416,7 +416,7 @@ export default function ExitIntentModal() {
                 margin: '0 0 20px 0',
               }}
             >
-              Moradia T4 com jardim a 8 min de Aveiro por 335.000€ chave-na-mão. Preço final bloqueado e obra concluída em apenas 10 meses.
+              Moradia T3 com jardim a 8 min de Aveiro por 335.000€ chave-na-mão. Preço final bloqueado e obra concluída em apenas 10 meses.
             </p>
 
             {/* Checklist de Benefícios Visíveis */}

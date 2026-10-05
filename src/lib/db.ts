@@ -20,6 +20,9 @@ export async function ensureLeadsTable() {
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       );
     `;
+    // Migração: 'interesse' passou a guardar título + objetivo (>100 chars)
+    await sql`ALTER TABLE leads ALTER COLUMN interesse TYPE TEXT;`;
+    await sql`ALTER TABLE leads ALTER COLUMN source TYPE TEXT;`;
   } catch (error) {
     console.error('Error ensuring leads table exists:', error);
   }

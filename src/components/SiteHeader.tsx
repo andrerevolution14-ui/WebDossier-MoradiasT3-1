@@ -66,21 +66,6 @@ export default function SiteHeader() {
 
         {/* CTA Button */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div className="site-nav-desktop" style={{
-            display: 'inline-flex', alignItems: 'center', gap: 6,
-            padding: '4px 10px',
-            background: 'rgba(255,255,255,0.10)',
-            border: '1px solid rgba(255,255,255,0.22)',
-            borderRadius: 2,
-            fontSize: '0.68rem',
-            fontWeight: 700,
-            color: '#FFFFFF',
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-          }}>
-            <span style={{ width: 5, height: 5, borderRadius: 1, background: 'var(--gold-light)' }} />
-            2 Lotes Disponíveis
-          </div>
 
           <button
             type="button"
