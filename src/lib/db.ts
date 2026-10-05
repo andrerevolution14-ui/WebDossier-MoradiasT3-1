@@ -6,7 +6,10 @@ const connectionString =
 
 export const sql = neon(connectionString);
 
+let leadsTableReady = false;
+
 export async function ensureLeadsTable() {
+  if (leadsTableReady) return;
   try {
     await sql`
       CREATE TABLE IF NOT EXISTS leads (
@@ -23,6 +26,9 @@ export async function ensureLeadsTable() {
     // Migração: 'interesse' passou a guardar título + objetivo (>100 chars)
     await sql`ALTER TABLE leads ALTER COLUMN interesse TYPE TEXT;`;
     await sql`ALTER TABLE leads ALTER COLUMN source TYPE TEXT;`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS objetivo TEXT;`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS horario_contacto TEXT;`;
+    leadsTableReady = true;
   } catch (error) {
     console.error('Error ensuring leads table exists:', error);
   }

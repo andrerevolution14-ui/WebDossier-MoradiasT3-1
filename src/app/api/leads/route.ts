@@ -6,6 +6,8 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { nome, telefone, email, source, interesse, notes, eventId, fbp: bodyFbp, fbc: bodyFbc } = body;
+    const objetivo = body.objetivo ? String(body.objetivo).slice(0, 200) : null;
+    const horarioContacto = body.horarioContacto ? String(body.horarioContacto).slice(0, 100) : null;
 
     if (!nome || typeof nome !== 'string' || !nome.trim()) {
       return NextResponse.json(
@@ -29,8 +31,8 @@ export async function POST(req: NextRequest) {
     try {
       await ensureLeadsTable();
       dbResult = await sql`
-        INSERT INTO leads (nome, telefone, source, interesse, notes)
-        VALUES (${nome.trim()}, ${cleanPhone}, ${source || 'site_lead_modal'}, ${interesse || 'Domaine XXV Moradia T3/T4'}, ${notes || ''})
+        INSERT INTO leads (nome, telefone, source, interesse, notes, objetivo, horario_contacto)
+        VALUES (${nome.trim()}, ${cleanPhone}, ${source || 'site_lead_modal'}, ${interesse || 'Domaine XXV Moradia T3/T4'}, ${notes || ''}, ${objetivo}, ${horarioContacto})
         RETURNING id, created_at;
       `;
     } catch (dbError) {
@@ -39,7 +41,7 @@ export async function POST(req: NextRequest) {
       try {
         dbResult = await sql`
           INSERT INTO leads (nome, telefone, source, interesse, notes)
-          VALUES (${nome.trim().slice(0, 250)}, ${cleanPhone}, ${String(source || 'site_lead_modal').slice(0, 90)}, ${'Domaine XXV'}, ${String(interesse || '').slice(0, 1000)})
+          VALUES (${nome.trim().slice(0, 250)}, ${cleanPhone}, ${String(source || 'site_lead_modal').slice(0, 90)}, ${'Domaine XXV'}, ${`Objetivo: ${objetivo || '-'} | Contacto: ${horarioContacto || '-'} | ${String(interesse || '').slice(0, 800)}`})
           RETURNING id, created_at;
         `;
       } catch (retryError) {

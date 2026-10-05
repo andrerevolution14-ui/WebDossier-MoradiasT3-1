@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { trackWhatsAppLead } from '@/lib/analytics';
 import { useLeadModal } from '@/components/LeadModal';
-import { CONTACT_PHONE_TEL, CONTACT_PHONE_DISPLAY, WA_PHONE } from '@/lib/constants';
+import { WA_PHONE } from '@/lib/constants';
 
 /* ─── Hero Section — Family-focused with guaranteed presentation playback ─── */
 export default function HeroSection() {
@@ -227,7 +227,7 @@ export default function HeroSection() {
               whiteSpace: 'nowrap',
             }}>
               <span style={{ display: 'inline-block', width: 5, height: 5, background: '#3D7A58' }} />
-              Visitas Esta Semana
+              Visitas por Marcação
             </div>
           </div>
         </div>
@@ -314,12 +314,6 @@ export default function HeroSection() {
             >
               💬 WhatsApp
             </a>
-            <a
-              href={`tel:${CONTACT_PHONE_TEL}`}
-              style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'underline' }}
-            >
-              📞 {CONTACT_PHONE_DISPLAY}
-            </a>
             <div style={{
               fontSize: '0.76rem',
               color: 'rgba(255,255,255,0.60)',
@@ -404,7 +398,7 @@ export default function HeroSection() {
         {[
           { label: 'Promotor:', value: 'Silvermont Capital', href: undefined },
           { label: 'Construtora:', value: 'Grupo Freitas Renovações ↗', href: 'https://grupofreitasrenovacoes.pt' },
-          { label: 'Auditoria:', value: '7 visitas este mês', href: undefined },
+          { label: 'Visitas:', value: 'Por marcação', href: undefined },
           { label: 'Entrada 10%:', value: '33.500€ (sinal blindado)', href: undefined },
         ].map((item, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.76rem' }}>
@@ -449,7 +443,7 @@ export default function HeroSection() {
             autoPlay
             muted={muted}
             playsInline
-            preload="auto"
+            preload="metadata"
             poster="/images/exterior-capa.webp"
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}

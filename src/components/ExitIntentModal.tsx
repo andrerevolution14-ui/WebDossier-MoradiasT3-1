@@ -70,7 +70,7 @@ export default function ExitIntentModal() {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
 
       // Only trigger if user has scrolled down into content (> 300px)
-      if (docHeight > 0 && currentScrollY > 300) {
+      if (docHeight > 0 && currentScrollY > 600 && performance.now() > 20000) {
         const scrollDelta = lastScrollYRef.current - currentScrollY;
         // User is scrolling UP rapidly towards the top
         if (scrollDelta > 120) {

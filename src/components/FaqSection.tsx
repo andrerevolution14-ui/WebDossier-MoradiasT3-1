@@ -29,11 +29,21 @@ const FAQS = [
     q: 'Preciso de pagar comissões ao intermediário de crédito?',
     a: 'Não, o serviço de consultoria financeira é 100% gratuito para o comprador. Os intermediários de crédito são registados e supervisionados pelo Banco de Portugal e são remunerados diretamente pela entidade bancária que conceder o crédito.',
   },
+  {
+    num: '06',
+    q: 'Posso visitar o terreno antes de decidir?',
+    a: 'Sim. A visita ao lote em Oliveirinha é gratuita e sem compromisso. Indique no formulário o melhor horário (manhã, almoço, tarde ou noite) e o André liga-lhe para combinar o dia.',
+  },
+  {
+    num: '07',
+    q: 'Posso personalizar a moradia?',
+    a: 'Sim. Cozinha equipada, acabamentos e climatização podem ser ajustados ao seu gosto, e existe a opção de converter a moradia em T4 sem alteração de preço.',
+  },
 ];
 
 export default function FaqSection() {
   const { openLeadModal } = useLeadModal();
-  const [openIdx, setOpenIdx] = useState<number | null>(null);
+  const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   return (
     <section id="faqs" className="section" style={{ background: 'var(--bg-alt)' }}>

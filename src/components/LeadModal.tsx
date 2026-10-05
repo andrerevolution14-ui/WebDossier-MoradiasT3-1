@@ -65,6 +65,14 @@ const INTENT_OPTIONS = [
   'Receber o Dossier Digital e Plantas no WhatsApp',
 ];
 
+const TIME_OPTIONS = [
+  'Manhã (9h–12h)',
+  'Hora de almoço (12h–14h)',
+  'Tarde (14h–18h)',
+  'Fim de tarde / Noite (18h–21h)',
+  'Qualquer hora',
+];
+
 export default function LeadModal({
   isOpen,
   onClose,
@@ -76,6 +84,7 @@ export default function LeadModal({
   const [phoneError, setPhoneError] = useState('');
   const [showConfirm, setShowConfirm] = useState(false);
   const [intent, setIntent] = useState(INTENT_OPTIONS[0]);
+  const [contactTime, setContactTime] = useState(TIME_OPTIONS[4]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
@@ -129,7 +138,9 @@ export default function LeadModal({
           nome: name.trim(),
           telefone: cleanPhone,
           source: source || 'modal_form',
-          interesse: `${title || 'Domaine XXV Moradia T3'} | Objetivo: ${intent}`,
+          interesse: title || 'Domaine XXV Moradia T3',
+          objetivo: intent,
+          horarioContacto: contactTime,
           eventId,
           fbp,
           fbc,
@@ -559,6 +570,44 @@ export default function LeadModal({
                 </div>
               </fieldset>
 
+              {/* Quando prefere ser contactado */}
+              <fieldset style={{ border: 'none', padding: 0, margin: 0 }}>
+                <legend
+                  style={{
+                    fontSize: '0.76rem',
+                    fontWeight: 600,
+                    letterSpacing: '0.04em',
+                    textTransform: 'uppercase',
+                    color: 'rgba(255,255,255,0.8)',
+                    marginBottom: 8,
+                    padding: 0,
+                  }}
+                >
+                  Quando prefere ser contactado?
+                </legend>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                  {TIME_OPTIONS.map(opt => (
+                    <button
+                      type="button"
+                      key={opt}
+                      onClick={() => setContactTime(opt)}
+                      aria-pressed={contactTime === opt}
+                      style={{
+                        padding: '8px 12px',
+                        borderRadius: 20,
+                        cursor: 'pointer',
+                        fontSize: '0.78rem',
+                        color: '#fff',
+                        background: contactTime === opt ? 'rgba(184,146,74,0.28)' : 'rgba(255,255,255,0.04)',
+                        border: contactTime === opt ? '1px solid var(--gold)' : '1px solid rgba(255,255,255,0.14)',
+                      }}
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+
               {/* Campo 1: Nome */}
               <div>
                 <label
@@ -578,6 +627,7 @@ export default function LeadModal({
                 <input
                   id="lead-name"
                   type="text"
+                  autoComplete="name"
                   required
                   value={name}
                   onChange={e => setName(e.target.value)}
@@ -622,6 +672,7 @@ export default function LeadModal({
                   <input
                     id="lead-phone"
                     type="tel"
+                    autoComplete="tel-national"
                     required
                     inputMode="numeric"
                     value={phone}

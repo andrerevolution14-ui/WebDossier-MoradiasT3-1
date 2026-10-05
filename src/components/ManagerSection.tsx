@@ -33,7 +33,7 @@ export default function ManagerSection() {
                 textTransform: 'uppercase',
               }}>
                 <span style={{ display: 'inline-block', width: 6, height: 6, background: '#6EE7B7' }} />
-                <span>Disponível para visitas esta semana · 7 visitas este mês</span>
+                <span>Visitas ao lote por marcação · Escolha o seu horário</span>
               </div>
             </div>
 
