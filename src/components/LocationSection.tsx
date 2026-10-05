@@ -18,7 +18,7 @@ export default function LocationSection() {
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
   return (
-    <section id="localizacao" style={{ background: 'var(--bg-alt)', padding: '72px 0' }}>
+    <section id="localizacao" style={{ background: 'var(--bg-alt)', padding: 'clamp(42px, 5.5vw, 60px) 0', scrollMarginTop: 80 }}>
       <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 16px' }}>
 
         {/* Header */}

@@ -16,16 +16,15 @@ export async function ensureLeadsTable() {
         id SERIAL PRIMARY KEY,
         nome VARCHAR(255) NOT NULL,
         telefone VARCHAR(50) NOT NULL,
-        source VARCHAR(100),
-        interesse VARCHAR(100) DEFAULT 'Domaine XXV Moradia T3/T4',
-        status VARCHAR(50) DEFAULT 'novo',
+        objetivo TEXT,
+        horario_contacto TEXT,
         notes TEXT,
+        interesse TEXT DEFAULT 'Domaine XXV Moradia T3/T4',
+        source TEXT,
+        status VARCHAR(50) DEFAULT 'novo',
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       );
     `;
-    // Migração: 'interesse' passou a guardar título + objetivo (>100 chars)
-    await sql`ALTER TABLE leads ALTER COLUMN interesse TYPE TEXT;`;
-    await sql`ALTER TABLE leads ALTER COLUMN source TYPE TEXT;`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS objetivo TEXT;`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS horario_contacto TEXT;`;
     leadsTableReady = true;

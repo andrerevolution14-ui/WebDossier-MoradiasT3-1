@@ -104,10 +104,10 @@ export default function OptionsGuarantees() {
       {/* Parceiros */}
       <div className="mt-5 bg-[#0e121a]/60 border border-white/10 rounded-xl p-3.5 flex flex-wrap items-center justify-around gap-4">
         <div className="flex items-center gap-2 opacity-90 hover:opacity-100 transition-opacity">
-          <div className="relative w-24 h-6">
-            <Image src="/silvermont1.png" alt="Silvermont Capital" fill className="object-contain" />
+          <div className="relative w-24 h-6 bg-black px-1 rounded border border-white/20">
+            <Image src="/Social Proof/Logo freitas.png" alt="Grupo Freitas Renovações" fill className="object-contain" />
           </div>
-          <span className="text-xs font-semibold text-slate-300">Silvermont Capital</span>
+          <span className="text-xs font-semibold text-slate-300">Grupo Freitas Renovações</span>
         </div>
 
         <div className="flex items-center gap-2 opacity-90 hover:opacity-100 transition-opacity">

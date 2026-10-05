@@ -64,17 +64,51 @@ export default function ManagerSection() {
 
             {/* Main Action CTA */}
             <div className="mobile-center-btn-wrap" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
                 <button
                   type="button"
                   onClick={() => openLeadModal({
                     title: 'Agendar Visita ao Lote com André Queirós',
-                    source: 'manager_section',
+                    source: 'manager_section_visita',
+                    defaultObjective: 'Agendar Visita ao Lote',
                   })}
-                  className="btn btn-gold pulse-gold mobile-center-btn"
-                  style={{ fontSize: '0.92rem', padding: '16px 36px', display: 'inline-flex', borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}
+                  className="btn btn-gold pulse-gold"
+                  style={{
+                    fontSize: '0.88rem',
+                    padding: '15px 30px',
+                    display: 'inline-flex',
+                    borderRadius: 'var(--radius-btn)',
+                    letterSpacing: '0.04em',
+                    textTransform: 'uppercase',
+                    border: 'none',
+                    cursor: 'pointer',
+                  }}
                 >
-                  Saber Mais / Agendar Visita Privada →
+                  Agendar Visita ao Lote →
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => openLeadModal({
+                    title: 'Falar com o Promotor · Domaine XXV',
+                    source: 'manager_section_promotor',
+                    defaultObjective: 'Falar com o Promotor',
+                  })}
+                  style={{
+                    fontSize: '0.86rem',
+                    padding: '14px 24px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    borderRadius: 'var(--radius-btn)',
+                    letterSpacing: '0.03em',
+                    textTransform: 'uppercase',
+                    border: '1px solid rgba(184, 146, 74, 0.6)',
+                    background: 'rgba(255,255,255,0.06)',
+                    color: '#fff',
+                    cursor: 'pointer',
+                  }}
+                >
+                  👤 Falar com o Promotor
                 </button>
               </div>
               <div style={{ fontSize: '0.76rem', color: 'rgba(255,255,255,0.6)', marginTop: 12, display: 'flex', alignItems: 'center', gap: 6, justifyContent: 'center', textAlign: 'center', letterSpacing: '0.02em' }}>
@@ -130,8 +164,9 @@ export default function ManagerSection() {
               <button
                 type="button"
                 onClick={() => openLeadModal({
-                  title: 'Agendar a Minha Visita Privada · André Queirós',
+                  title: 'Agendar Visita ao Lote · André Queirós',
                   source: 'manager_card_visita',
+                  defaultObjective: 'Agendar Visita ao Lote',
                 })}
                 className="btn btn-gold"
                 style={{
@@ -150,7 +185,7 @@ export default function ManagerSection() {
                   cursor: 'pointer',
                 }}
               >
-                Saber Mais / Agendar Visita →
+                Agendar Visita ao Lote →
               </button>
 
               <p style={{
@@ -165,10 +200,10 @@ export default function ManagerSection() {
               </p>
             </div>
 
-            {/* Partner logos with Promotor & Grupo Freitas Renovações */}
+            {/* Entidade Construtora e Licenciamento */}
             <div style={{
-              background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.1)',
+              background: 'rgba(255,255,255,0.03)',
+              border: '1px solid rgba(184, 146, 74, 0.25)',
               borderRadius: 'var(--radius-card-sm)',
               padding: '14px 18px',
               display: 'flex',
@@ -177,38 +212,47 @@ export default function ManagerSection() {
               gap: 16,
               flexWrap: 'wrap',
             }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                <span style={{ fontSize: '0.66rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.45)' }}>
-                  Promotor
-                </span>
-                <div style={{ position: 'relative', height: 26, width: 110, flexShrink: 0 }}>
-                  <Image src="/silvermont1.webp" alt="Silvermont Capital" fill style={{ objectFit: 'contain', objectPosition: 'left' }} sizes="110px" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div style={{
+                  background: '#000000',
+                  border: '1px solid rgba(184, 146, 74, 0.4)',
+                  borderRadius: 6,
+                  padding: '4px 8px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  height: 38,
+                  width: 90,
+                }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/Social Proof/Logo freitas.png"
+                    alt="Grupo Freitas Renovações"
+                    style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+                  />
+                </div>
+                <div>
+                  <span style={{ fontSize: '0.64rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'rgba(255,255,255,0.45)', display: 'block' }}>
+                    Construtora Oficial com Alvará
+                  </span>
+                  <a
+                    href="https://grupofreitasrenovacoes.pt"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      color: 'var(--gold-light)',
+                      fontSize: '0.80rem',
+                      fontWeight: 700,
+                      textDecoration: 'none',
+                    }}
+                  >
+                    Grupo Freitas Renovações ↗
+                  </a>
                 </div>
               </div>
 
-              <div style={{ width: 1, height: 28, background: 'rgba(255,255,255,0.2)' }} />
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                <span style={{ fontSize: '0.66rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.45)' }}>
-                  Construtora Oficial
-                </span>
-                <a
-                  href="https://grupofreitasrenovacoes.pt"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 6,
-                    color: 'var(--gold-light)',
-                    fontSize: '0.82rem',
-                    fontWeight: 700,
-                    textDecoration: 'none',
-                  }}
-                >
-                  <span>Grupo Freitas Renovações</span>
-                  <span>↗</span>
-                </a>
+              <div style={{ fontSize: '0.70rem', color: 'rgba(255,255,255,0.6)', textAlign: 'right' }}>
+                <span style={{ color: 'var(--gold-light)', fontWeight: 600 }}>Licenciado</span> · Município de Aveiro
               </div>
             </div>
 

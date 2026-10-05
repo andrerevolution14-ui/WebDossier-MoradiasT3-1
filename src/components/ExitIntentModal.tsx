@@ -525,8 +525,27 @@ export default function ExitIntentModal() {
                 margin: '0 0 16px 0',
               }}
             >
-              Deixe o seu contacto para ser contactado, receber o dossier digital e uma simulação de crédito gratuita.
+              Prefere agendar visita ao lote ou falar diretamente com o promotor?
             </p>
+
+            {/* Links rápidos para plantas e localização */}
+            <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 14, flexWrap: 'wrap' }}>
+              <a
+                href="#plantas"
+                onClick={handleClose}
+                style={{ fontSize: '0.74rem', color: 'var(--gold-light)', textDecoration: 'underline', fontWeight: 600 }}
+              >
+                📐 Ver Plantas no Site
+              </a>
+              <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.74rem' }}>•</span>
+              <a
+                href="#localizacao"
+                onClick={handleClose}
+                style={{ fontSize: '0.74rem', color: 'var(--gold-light)', textDecoration: 'underline', fontWeight: 600 }}
+              >
+                📍 Ver Localização Exata
+              </a>
+            </div>
 
             {/* Formulário: Campos Nome + Número */}
             <form
@@ -674,7 +693,7 @@ export default function ExitIntentModal() {
                 </div>
               )}
 
-              {/* Botão: "Quero ser contactado" */}
+              {/* Botão com alta intenção */}
               <button
                 type="submit"
                 disabled={isSubmitting}
@@ -687,9 +706,9 @@ export default function ExitIntentModal() {
                   borderRadius: 'var(--radius-btn)',
                   padding: '14px 20px',
                   fontWeight: 700,
-                  fontSize: '0.92rem',
+                  fontSize: '0.90rem',
                   textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
+                  letterSpacing: '0.04em',
                   cursor: isSubmitting ? 'not-allowed' : 'pointer',
                   opacity: isSubmitting ? 0.75 : 1,
                   boxShadow: '0 4px 18px rgba(184, 146, 74, 0.35)',
@@ -708,7 +727,7 @@ export default function ExitIntentModal() {
                   }
                 }}
               >
-                {isSubmitting ? 'A enviar contacto...' : 'Quero ser contactado'}
+                {isSubmitting ? 'A registar contacto...' : 'Agendar Visita ao Lote / Falar com Promotor →'}
               </button>
 
               {/* Dismiss silencioso / Rodapé de garantia */}

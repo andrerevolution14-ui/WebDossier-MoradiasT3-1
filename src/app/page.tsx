@@ -11,6 +11,7 @@ import ProcessoSimplificado from '@/components/ProcessoSimplificado';
 import FaqSection from '@/components/FaqSection';
 import IvaExplanationSection from '@/components/IvaExplanationSection';
 import ManagerSection from '@/components/ManagerSection';
+import SocialProofSection from '@/components/SocialProofSection';
 import FloatingBar from '@/components/FloatingBar';
 import SiteFooter from '@/components/SiteFooter';
 import { LeadModalProvider } from '@/components/LeadModal';
@@ -26,18 +27,19 @@ export default function HomePage() {
 
       <main>
         {/*
-          SEQUÊNCIA OTIMIZADA MOBILE-FIRST (Preço logo após o Mapa):
+          SEQUÊNCIA OTIMIZADA MOBILE-FIRST:
           ─────────────────────────────────────────────────────────────
-          1. Hero Section                 → Atenção, qualificação imediata & vídeo
+          1. Hero Section                 → Qualificação imediata, sem WhatsApp acima da dobra, acesso rápido
           2. Galeria de Fotos             → Desejo visual
           3. O Triângulo de Aveiro        → Análise de mercado & dor do comprador
           4. Localização & Mapa           → Prova de proximidade imediata (8 min)
           5. Preço & Ganho Patrimonial    → Ancoragem racional (335k c/ IMT e Selo)
-          6. Plantas & Parâmetros         → Validação racional e áreas
+          6. Plantas & Parâmetros         → Validação racional e áreas no site
           7. Processo Simples & Sem Risco → 3 passos sem burocracia nem derrapes
-          8. FAQs / Resposta a Objeções   → Destruição de dúvidas
-          9. O Reembolso do IVA           → Justificação das 2 formas e impostos
-          10. Perfil & Fecho Agressivo    → André Queirós / Freitas Renovações Lda.
+          8. Autoridade & Prova Social    → Logos Câmara, Freitas Renovações, Obras Reais
+          9. FAQs / Resposta a Objeções   → Destruição de dúvidas
+          10. O Reembolso do IVA          → Justificação das 2 formas e impostos
+          11. Perfil & Fecho              → André Queirós / Interlocutor único
         */}
 
         {/* 1 ── HERO SECTION */}
@@ -66,15 +68,19 @@ export default function HomePage() {
         <div className="divider" />
         <ProcessoSimplificado />
 
-        {/* 8 ── FAQS / RESPOSTA A OBJEÇÕES */}
+        {/* 8 ── AUTORIDADE & PROVA SOCIAL (Câmara, Obras Reais, Garantias) */}
+        <div className="divider" />
+        <SocialProofSection />
+
+        {/* 9 ── FAQS / RESPOSTA A OBJEÇÕES */}
         <div className="divider" />
         <FaqSection />
 
-        {/* 9 ── O REEMBOLSO DO IVA & AS 2 FORMAS */}
+        {/* 10 ── O REEMBOLSO DO IVA & AS 2 FORMAS */}
         <div className="divider" />
         <IvaExplanationSection />
 
-        {/* 10 ── PERFIL & FECHO */}
+        {/* 11 ── PERFIL & FECHO */}
         <div className="divider" />
         <ManagerSection />
 

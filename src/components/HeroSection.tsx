@@ -270,57 +270,202 @@ export default function HeroSection() {
             Preço final de <strong style={{ color: '#fff', fontWeight: 700 }}>335.000€ com IMT e Imposto de Selo já incluídos</strong> · Entrada de 10% (33.500€) com sinal 100% protegido · Chave na mão em 10 meses.
           </p>
 
-          {/* CTA Row */}
-          <div className="hero-cinematic-cta" style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap', marginBottom: 28 }}>
+          {/* Dual High-Intent CTAs: Agendar Visita ao Lote OU Falar com o Promotor */}
+          <div className="hero-cinematic-cta" style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 20, width: '100%' }}>
             <button
               type="button"
+              id="hero_cta_agendar_visita"
               onClick={() => openLeadModal({
-                title: 'Saber Mais · Moradia Domaine XXV por 335.000€ (c/ IMT e Selo)',
-                source: 'hero_primary',
+                title: 'Agendar Visita ao Lote · Domaine XXV',
+                source: 'hero_primary_visita_lote',
+                defaultObjective: 'Agendar Visita ao Lote',
               })}
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: 10,
+                justifyContent: 'center',
+                gap: 8,
                 background: 'var(--gold)',
                 color: '#fff',
                 fontWeight: 700,
-                fontSize: '0.9rem',
-                letterSpacing: '0.06em',
+                fontSize: 'clamp(0.84rem, 2.5vw, 0.92rem)',
+                letterSpacing: '0.05em',
                 textTransform: 'uppercase',
-                padding: '14px 30px',
+                padding: '14px 26px',
                 borderRadius: 'var(--radius-btn)',
                 border: 'none',
                 cursor: 'pointer',
                 boxShadow: '0 6px 24px rgba(161,118,40,0.45)',
-                transition: 'opacity 0.2s',
+                transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                flex: '1 1 auto',
+                maxWidth: 320,
+                textAlign: 'center',
               }}
             >
-              <span>Saber Mais / Agendar Visita</span>
+              <span>Agendar Visita ao Lote</span>
               <span style={{ fontSize: '1rem' }}>→</span>
             </button>
-            <a
-              href={`https://wa.me/${WA_PHONE}?text=${encodeURIComponent('Olá André! Gostava de receber o Dossier Digital e as Plantas da moradia Domaine XXV.')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              id="hero_whatsapp"
+
+            <button
+              type="button"
+              id="hero_cta_falar_promotor"
+              onClick={() => openLeadModal({
+                title: 'Falar com o Promotor · Domaine XXV',
+                source: 'hero_secondary_promotor',
+                defaultObjective: 'Falar com o Promotor',
+              })}
               style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
-                color: '#fff', fontWeight: 600, fontSize: '0.85rem',
-                padding: '13px 22px', borderRadius: 'var(--radius-btn)',
-                border: '1px solid rgba(255,255,255,0.4)', background: 'rgba(255,255,255,0.08)',
-                textDecoration: 'none', backdropFilter: 'blur(6px)',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 8,
+                color: '#fff',
+                fontWeight: 600,
+                fontSize: 'clamp(0.82rem, 2.3vw, 0.88rem)',
+                padding: '13px 22px',
+                borderRadius: 'var(--radius-btn)',
+                border: '1px solid rgba(184, 146, 74, 0.65)',
+                background: 'rgba(21, 22, 26, 0.75)',
+                cursor: 'pointer',
+                backdropFilter: 'blur(8px)',
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+                transition: 'all 0.2s',
+                flex: '1 1 auto',
+                maxWidth: 260,
+                textAlign: 'center',
               }}
             >
-              💬 WhatsApp
-            </a>
+              <span>👤 Falar com o Promotor</span>
+            </button>
+          </div>
+
+          {/* ── BARRA DE ACESSO IMEDIATO À DOCUMENTAÇÃO NO PRÓPRIO SITE ── */}
+          {/* Evita contactos no WhatsApp para pedir plantas que já estão no site */}
+          <div style={{
+            width: '100%',
+            maxWidth: 680,
+            background: 'rgba(10, 11, 14, 0.82)',
+            border: '1px solid rgba(184, 146, 74, 0.38)',
+            borderRadius: 8,
+            padding: '12px 14px',
+            marginBottom: 20,
+            backdropFilter: 'blur(10px)',
+          }}>
             <div style={{
-              fontSize: '0.76rem',
-              color: 'rgba(255,255,255,0.60)',
-              fontWeight: 500,
-              letterSpacing: '0.01em',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 8,
+              marginBottom: 8,
+              flexWrap: 'wrap',
             }}>
-              Entrada de 10% (33.500€) blindada no CPCV
+              <span style={{
+                fontSize: '0.74rem',
+                fontWeight: 700,
+                color: 'var(--gold-light)',
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+              }}>
+                <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--gold-light)' }} />
+                Consultar Detalhes Já Disponíveis no Site:
+              </span>
+              <span style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.5)' }}>
+                (Sem precisar de pedir por mensagem)
+              </span>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+              gap: 6,
+            }}>
+              <a
+                href="#plantas"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  background: 'rgba(255,255,255,0.06)',
+                  border: '1px solid rgba(255,255,255,0.14)',
+                  padding: '7px 10px',
+                  borderRadius: 4,
+                  fontSize: '0.74rem',
+                  fontWeight: 600,
+                  color: '#FFFFFF',
+                  textDecoration: 'none',
+                  transition: 'background 0.15s, border-color 0.15s',
+                }}
+              >
+                <span>📐</span>
+                <span>Plantas Técnicas & 3D</span>
+              </a>
+
+              <a
+                href="#localizacao"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  background: 'rgba(255,255,255,0.06)',
+                  border: '1px solid rgba(255,255,255,0.14)',
+                  padding: '7px 10px',
+                  borderRadius: 4,
+                  fontSize: '0.74rem',
+                  fontWeight: 600,
+                  color: '#FFFFFF',
+                  textDecoration: 'none',
+                  transition: 'background 0.15s, border-color 0.15s',
+                }}
+              >
+                <span>📍</span>
+                <span>Localização no Mapa</span>
+              </a>
+
+              <a
+                href="#condicoes"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  background: 'rgba(255,255,255,0.06)',
+                  border: '1px solid rgba(255,255,255,0.14)',
+                  padding: '7px 10px',
+                  borderRadius: 4,
+                  fontSize: '0.74rem',
+                  fontWeight: 600,
+                  color: '#FFFFFF',
+                  textDecoration: 'none',
+                  transition: 'background 0.15s, border-color 0.15s',
+                }}
+              >
+                <span>💶</span>
+                <span>Preço & Impostos</span>
+              </a>
+
+              <a
+                href="#autoridade"
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  background: 'rgba(255,255,255,0.06)',
+                  border: '1px solid rgba(255,255,255,0.14)',
+                  padding: '7px 10px',
+                  borderRadius: 4,
+                  fontSize: '0.74rem',
+                  fontWeight: 600,
+                  color: '#FFFFFF',
+                  textDecoration: 'none',
+                  transition: 'background 0.15s, border-color 0.15s',
+                }}
+              >
+                <span>🏛️</span>
+                <span>Alvará & Obras Real</span>
+              </a>
             </div>
           </div>
 
@@ -336,6 +481,7 @@ export default function HeroSection() {
               'Garagem 30 m²',
               'Cozinha Equipada',
               '8 min Aveiro',
+              'Entrada 10% Blindada',
             ].map(tag => (
               <span key={tag} style={{
                 display: 'inline-flex',
@@ -388,7 +534,7 @@ export default function HeroSection() {
       <div className="hero-trust-strip" style={{
         background: '#111214',
         borderBottom: '1px solid rgba(255,255,255,0.07)',
-        padding: '14px clamp(20px, 5vw, 60px)',
+        padding: '12px clamp(16px, 4vw, 48px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -396,15 +542,15 @@ export default function HeroSection() {
         gap: 20,
       }}>
         {[
-          { label: 'Promotor:', value: 'Silvermont Capital', href: undefined },
-          { label: 'Construtora:', value: 'Grupo Freitas Renovações ↗', href: 'https://grupofreitasrenovacoes.pt' },
-          { label: 'Auditoria:', value: '7 visitas este mês', href: undefined },
-          { label: 'Entrada 10%:', value: '33.500€ (sinal blindado)', href: undefined },
+          { label: 'Licenciamento:', value: 'Aprovado Município de Aveiro', href: '#autoridade' },
+          { label: 'Construtora Oficial:', value: 'Grupo Freitas Renovações ↗', href: 'https://grupofreitasrenovacoes.pt' },
+          { label: 'Disponibilidade:', value: 'Visitas esta semana', href: undefined },
+          { label: 'Entrada 10%:', value: '33.500€ (sinal blindado no CPCV)', href: undefined },
         ].map((item, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.76rem' }}>
             <span style={{ color: 'rgba(255,255,255,0.38)', fontWeight: 400 }}>{item.label}</span>
             {item.href ? (
-              <a href={item.href} target="_blank" rel="noopener noreferrer"
+              <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 style={{ color: 'var(--gold-light)', fontWeight: 700, textDecoration: 'none' }}>
                 {item.value}
               </a>
@@ -418,8 +564,8 @@ export default function HeroSection() {
       {/* ═══════════════════════════════════════════════════════
           VIDEO SECTION — below the cinematic hero
           ═══════════════════════════════════════════════════════ */}
-      <div style={{ maxWidth: 1160, margin: '0 auto', padding: '48px 20px 48px' }}>
-        <div className="section-tag mobile-center-tag" style={{ marginBottom: 14 }}>
+      <div style={{ maxWidth: 1160, margin: '0 auto', padding: '28px 16px 28px' }}>
+        <div className="section-tag mobile-center-tag" style={{ marginBottom: 12 }}>
           Vídeo de Apresentação Oficial
         </div>
 
@@ -569,29 +715,52 @@ export default function HeroSection() {
                 <span>Rever Apresentação com Som →</span>
               </button>
 
-              <button
-                type="button"
-                onClick={() => openLeadModal({
-                  title: 'Agendar Visita ao Terreno · Domaine XXV',
-                  source: 'hero_video_ended_visita',
-                })}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  borderBottom: '1px dashed var(--gold)',
-                  color: 'rgba(255,255,255,0.9)',
-                  fontSize: '0.82rem',
-                  fontWeight: 600,
-                  letterSpacing: '0.02em',
-                  cursor: 'pointer',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: 6,
-                  paddingBottom: 2,
-                }}
-              >
-                <span>Saber Mais e Agendar Visita ao Terreno →</span>
-              </button>
+              <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center', marginTop: 4 }}>
+                <button
+                  type="button"
+                  onClick={() => openLeadModal({
+                    title: 'Agendar Visita ao Lote · Domaine XXV',
+                    source: 'hero_video_ended_visita',
+                    defaultObjective: 'Agendar Visita ao Lote',
+                  })}
+                  style={{
+                    background: 'var(--gold)',
+                    border: 'none',
+                    borderRadius: 'var(--radius-btn)',
+                    padding: '11px 20px',
+                    fontSize: '0.82rem',
+                    fontWeight: 700,
+                    letterSpacing: '0.04em',
+                    textTransform: 'uppercase',
+                    color: '#fff',
+                    cursor: 'pointer',
+                    boxShadow: '0 4px 14px rgba(184,146,74,0.4)',
+                  }}
+                >
+                  Agendar Visita ao Lote →
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => openLeadModal({
+                    title: 'Falar com o Promotor · Domaine XXV',
+                    source: 'hero_video_ended_promotor',
+                    defaultObjective: 'Falar com o Promotor',
+                  })}
+                  style={{
+                    background: 'rgba(255,255,255,0.12)',
+                    border: '1px solid rgba(255,255,255,0.3)',
+                    borderRadius: 'var(--radius-btn)',
+                    padding: '11px 18px',
+                    fontSize: '0.82rem',
+                    fontWeight: 600,
+                    color: '#fff',
+                    cursor: 'pointer',
+                  }}
+                >
+                  Falar com o Promotor
+                </button>
+              </div>
             </div>
           )}
 

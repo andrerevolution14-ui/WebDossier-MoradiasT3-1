@@ -72,7 +72,7 @@ export default function PresenterCard() {
             André Queirós <span className="text-[#c5a059] text-sm font-black">✓</span>
           </h4>
           <span className="text-xs sm:text-sm text-slate-400">
-            Gestor de Projeto Dedicado · Silvermont Capital
+            Gestor de Projeto Dedicado · Domaine XXV
           </span>
         </div>
       </div>

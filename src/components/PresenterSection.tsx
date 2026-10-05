@@ -73,7 +73,7 @@ export default function PresenterSection({ onContact }: PresenterProps) {
               </div>
               <div>
                 <div className="text-white font-semibold text-base">André Queirós</div>
-                <div className="text-white/50 text-xs mt-0.5">Gestor de Projeto · Silvermont Capital</div>
+                <div className="text-white/50 text-xs mt-0.5">Gestor de Projeto · Domaine XXV</div>
                 <a
                   href={WA_MANAGER}
                   target="_blank"
@@ -105,12 +105,9 @@ export default function PresenterSection({ onContact }: PresenterProps) {
             </div>
 
             {/* Partner logos */}
-            <div className="flex items-center gap-6 opacity-55 flex-wrap">
-              <div className="relative h-7 w-32">
-                <Image src="/silvermont1.png" alt="Silvermont Capital" fill className="object-contain object-left" sizes="128px" />
-              </div>
-              <div className="relative h-6 w-24">
-                <Image src="/Positive.png" alt="Positive Project & Co" fill className="object-contain object-left" sizes="96px" />
+            <div className="flex items-center gap-6 opacity-65 flex-wrap">
+              <div className="relative h-7 w-32 bg-black px-2 py-1 rounded border border-white/20">
+                <Image src="/Social Proof/Logo freitas.png" alt="Grupo Freitas Renovações" fill className="object-contain object-left" sizes="128px" />
               </div>
             </div>
           </div>

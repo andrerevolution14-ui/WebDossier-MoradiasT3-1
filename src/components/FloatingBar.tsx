@@ -69,62 +69,71 @@ export default function FloatingBar() {
           boxSizing: 'border-box',
         }}
       >
-        <div style={{ display: 'flex', gap: 8, width: '100%' }}>
-        <a
-          href={`tel:${CONTACT_PHONE_TEL}`}
-          id="sticky-call-btn"
-          aria-label="Ligar ao André"
-          style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            width: 50, flexShrink: 0, borderRadius: 'var(--radius-btn)',
-            border: '1px solid rgba(184,146,74,0.6)', color: '#fff',
-            textDecoration: 'none', fontSize: '1.15rem',
-          }}
-        >
-          📞
-        </a>
-        <button
-          type="button"
-          id="sticky-cta-btn"
-          onClick={() => openLeadModal({
-            title: 'Agendar Visita ao Lote · 335.000€ (c/ IMT e Selo)',
-            source: 'sticky_bar',
-          })}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            textAlign: 'center',
-            gap: 8,
-            flex: 1,
-            background: 'var(--gold)',
-            color: '#fff',
-            fontFamily: 'var(--sans)',
-            fontWeight: 700,
-            fontSize: 'clamp(0.82rem, 3.2vw, 0.90rem)',
-            padding: '13px 20px',
-            borderRadius: 'var(--radius-btn)',
-            border: 'none',
-            cursor: 'pointer',
-            boxShadow: '0 3px 14px rgba(161,118,40,0.35)',
-            letterSpacing: '0.04em',
-            textTransform: 'uppercase',
-            boxSizing: 'border-box',
-            whiteSpace: 'nowrap',
-            transition: 'transform 0.15s, box-shadow 0.15s',
-            margin: '0 auto',
-          }}
-          onMouseEnter={e => {
-            (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-1px)';
-            (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 4px 20px rgba(184,146,74,0.55)';
-          }}
-          onMouseLeave={e => {
-            (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0)';
-            (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 3px 14px rgba(184,146,74,0.35)';
-          }}
-        >
-          <span style={{ whiteSpace: 'nowrap' }}>Agendar Visita · Saber Mais →</span>
-        </button>
+        <div style={{ display: 'flex', gap: 6, width: '100%', alignItems: 'center' }}>
+          <button
+            type="button"
+            id="sticky-cta-visita"
+            onClick={() => openLeadModal({
+              title: 'Agendar Visita ao Lote · 335.000€ (c/ IMT e Selo)',
+              source: 'sticky_bar_visita',
+              defaultObjective: 'Agendar Visita ao Lote',
+            })}
+            style={{
+              flex: '1 1 58%',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'var(--gold)',
+              color: '#fff',
+              fontFamily: 'var(--sans)',
+              fontWeight: 700,
+              fontSize: 'clamp(0.78rem, 3.2vw, 0.88rem)',
+              padding: '12px 14px',
+              borderRadius: 'var(--radius-btn)',
+              border: 'none',
+              cursor: 'pointer',
+              boxShadow: '0 3px 14px rgba(161,118,40,0.35)',
+              letterSpacing: '0.03em',
+              textTransform: 'uppercase',
+              boxSizing: 'border-box',
+              whiteSpace: 'nowrap',
+              transition: 'transform 0.15s, box-shadow 0.15s',
+            }}
+          >
+            <span>Agendar Visita ao Lote →</span>
+          </button>
+
+          <button
+            type="button"
+            id="sticky-cta-promotor"
+            onClick={() => openLeadModal({
+              title: 'Falar com o Promotor · Domaine XXV',
+              source: 'sticky_bar_promotor',
+              defaultObjective: 'Falar com o Promotor',
+            })}
+            style={{
+              flex: '1 1 42%',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'rgba(255,255,255,0.08)',
+              border: '1px solid rgba(184,146,74,0.6)',
+              color: '#fff',
+              fontFamily: 'var(--sans)',
+              fontWeight: 600,
+              fontSize: 'clamp(0.74rem, 2.9vw, 0.84rem)',
+              padding: '12px 10px',
+              borderRadius: 'var(--radius-btn)',
+              cursor: 'pointer',
+              letterSpacing: '0.02em',
+              textTransform: 'uppercase',
+              boxSizing: 'border-box',
+              whiteSpace: 'nowrap',
+              transition: 'transform 0.15s, background 0.15s',
+            }}
+          >
+            <span>👤 Promotor</span>
+          </button>
         </div>
 
         {/* Micro-copy limpo e centrado */}

@@ -75,12 +75,13 @@ body {
 @media (min-width: 768px) { .wrap { padding: 0 32px; } }
 @media (min-width: 1200px) { .wrap { padding: 0 40px; } }
 
-.section    { padding: 80px 0; }
-.section-sm { padding: 56px 0; }
-.section-xs { padding: 40px 0; }
+.section    { padding: clamp(42px, 5.5vw, 64px) 0; }
+.section-sm { padding: clamp(32px, 4vw, 44px) 0; }
+.section-xs { padding: 24px 0; }
 
 .divider {
   height: 1px;
+  margin: 0;
   background: linear-gradient(90deg, transparent, var(--border) 15%, var(--border) 85%, transparent);
 }
 

@@ -31,17 +31,17 @@ export async function POST(req: NextRequest) {
     try {
       await ensureLeadsTable();
       dbResult = await sql`
-        INSERT INTO leads (nome, telefone, source, interesse, notes, objetivo, horario_contacto)
-        VALUES (${nome.trim()}, ${cleanPhone}, ${source || 'site_lead_modal'}, ${interesse || 'Domaine XXV Moradia T3/T4'}, ${notes || ''}, ${objetivo}, ${horarioContacto})
+        INSERT INTO leads (nome, telefone, objetivo, horario_contacto, notes, interesse, source, status)
+        VALUES (${nome.trim()}, ${cleanPhone}, ${objetivo}, ${horarioContacto}, ${notes || ''}, ${interesse || 'Domaine XXV Moradia T3/T4'}, ${source || 'site_lead_modal'}, 'novo')
         RETURNING id, created_at;
       `;
     } catch (dbError) {
       console.error('Database lead insert error:', dbError);
-      // Fallback: tentar novamente com valores mínimos para nunca perder o lead
+      // Fallback: tentar novamente
       try {
         dbResult = await sql`
-          INSERT INTO leads (nome, telefone, source, interesse, notes)
-          VALUES (${nome.trim().slice(0, 250)}, ${cleanPhone}, ${String(source || 'site_lead_modal').slice(0, 90)}, ${'Domaine XXV'}, ${`Objetivo: ${objetivo || '-'} | Contacto: ${horarioContacto || '-'} | ${String(interesse || '').slice(0, 800)}`})
+          INSERT INTO leads (nome, telefone, objetivo, horario_contacto, notes, interesse, source)
+          VALUES (${nome.trim().slice(0, 250)}, ${cleanPhone}, ${objetivo || '-'}, ${horarioContacto || '-'}, ${notes || ''}, ${'Domaine XXV'}, ${String(source || 'site_lead_modal').slice(0, 90)})
           RETURNING id, created_at;
         `;
       } catch (retryError) {

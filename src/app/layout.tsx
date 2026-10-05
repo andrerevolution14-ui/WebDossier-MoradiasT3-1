@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     'Construção LSF Aveiro',
     'Moradia chave na mão',
   ],
-  authors: [{ name: 'Silvermont Capital & André Queirós' }],
+  authors: [{ name: 'André Queirós · Grupo Freitas Renovações' }],
   openGraph: {
     title: 'Domaine XXV — Moradia T3 Familiar em Oliveirinha, Aveiro',
     description: '~180 m² ABP · ~146 m² Úteis · Jardim Privativo ~82 m² · Chave na Mão por 335.000€',

@@ -70,14 +70,18 @@ export default function SiteHeader() {
           <button
             type="button"
             className="site-header-cta-desktop"
-            onClick={() => openLeadModal({ title: 'Agendar Visita ao Domaine XXV', source: 'header_desktop' })}
+            onClick={() => openLeadModal({
+              title: 'Agendar Visita ao Lote · Domaine XXV',
+              source: 'header_desktop',
+              defaultObjective: 'Agendar Visita ao Lote',
+            })}
             style={{
               flexShrink: 0,
               alignItems: 'center',
               gap: 6,
               background: 'var(--gold)',
               color: '#fff',
-              fontWeight: 600,
+              fontWeight: 700,
               fontSize: '0.78rem',
               letterSpacing: '0.05em',
               textTransform: 'uppercase',
@@ -90,7 +94,7 @@ export default function SiteHeader() {
               whiteSpace: 'nowrap',
             }}
           >
-            <span>Marcar Visita →</span>
+            <span>Agendar Visita ao Lote →</span>
           </button>
 
           <button
@@ -148,12 +152,16 @@ export default function SiteHeader() {
             type="button"
             onClick={() => {
               setMobileMenuOpen(false);
-              openLeadModal({ title: 'Marcar Visita ao Terreno', source: 'header_mobile_drawer' });
+              openLeadModal({
+                title: 'Agendar Visita ao Lote · Domaine XXV',
+                source: 'header_mobile_drawer',
+                defaultObjective: 'Agendar Visita ao Lote',
+              });
             }}
             className="btn btn-gold"
             style={{ marginTop: 8, width: '100%', fontSize: '0.86rem', borderRadius: 3, letterSpacing: '0.04em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}
           >
-            Marcar Visita ao Terreno →
+            Agendar Visita ao Lote →
           </button>
         </div>
       )}

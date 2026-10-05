@@ -51,20 +51,36 @@ export default function FloorplansSection() {
 
   return (
     <>
-      <section id="plantas" style={{ background: 'var(--bg)', padding: '72px 0' }}>
+      <section id="plantas" style={{ background: 'var(--bg)', padding: 'clamp(42px, 5.5vw, 60px) 0', scrollMarginTop: 80 }}>
         <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 16px' }}>
 
           {/* Header */}
           <div className="section-tag mobile-center-tag">
-            Plantas &amp; Distribuição
+            Plantas &amp; Distribuição Oficial
           </div>
           <h2 className="heading mobile-center-title" style={{ maxWidth: 820, margin: '0 auto 10px', textAlign: 'center' }}>
             ~180 m² ABP pensados <span style={{ color:'var(--gold-dark)', fontWeight: 700 }}>para a sua família</span>
           </h2>
-          <p className="mobile-center-desc" style={{ fontSize:'0.90rem', color:'var(--text-body)', lineHeight:1.65, maxWidth:620, margin: '0 auto 36px', textAlign: 'center' }}>
+          <p className="mobile-center-desc" style={{ fontSize:'0.90rem', color:'var(--text-body)', lineHeight:1.65, maxWidth:620, margin: '0 auto 20px', textAlign: 'center' }}>
             ~146,34 m² de área útil habitável (R/C, Piso 1 e Sótão central), 77,65 m² de áreas dependentes úteis e jardim privativo traseiro de ~82 m².
             Toque nas plantas para ampliar em alta definição.
           </p>
+
+          {/* Banner de esclarecimento direto */}
+          <div style={{
+            maxWidth: 680,
+            margin: '0 auto 36px',
+            background: 'var(--gold-pale)',
+            border: '1px solid var(--gold)',
+            borderRadius: 6,
+            padding: '10px 16px',
+            textAlign: 'center',
+            fontSize: '0.80rem',
+            color: 'var(--gold-dark)',
+            fontWeight: 600,
+          }}>
+            📐 Documentação técnica oficial e distribuição 3D disponíveis para consulta direta abaixo.
+          </div>
 
           {/* ── Two plans side by side ── */}
           <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(280px, 1fr))', gap:20, marginBottom:40 }}>
