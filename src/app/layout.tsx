@@ -13,9 +13,9 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://domainexxv.pt'),
-  title: 'Domaine XXV — Moradia T4 com Jardim · Oliveirinha, Aveiro',
+  title: 'Domaine XXV — Moradia T3 com Jardim · 335.000€ · Oliveirinha, Aveiro',
   description:
-    'Dossier digital da Moradia T4 Domaine XXV em Oliveirinha, Aveiro. ~180 m² ABP (~146,34 m² úteis habitáveis), jardim privativo de ~82 m², garagem coberta, chave na mão em 10 meses e personalização total.',
+    'Dossier digital da Moradia T3 (opção T4) Domaine XXV em Oliveirinha, Aveiro. 335.000€ com IMT e Selo incluídos, entrada de 10% protegida, jardim privativo de ~82 m², garagem e chave na mão em 10 meses.',
   keywords: [
     'Domaine XXV',
     'Moradia Oliveirinha',
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Silvermont Capital & André Queirós' }],
   openGraph: {
-    title: 'Domaine XXV — Moradia T4 Familiar em Oliveirinha, Aveiro',
+    title: 'Domaine XXV — Moradia T3 Familiar em Oliveirinha, Aveiro',
     description: '~180 m² ABP · ~146 m² Úteis · Jardim Privativo ~82 m² · Chave na Mão por 335.000€',
     images: [{ url: '/images/exterior-capa.webp', width: 1200, height: 675, alt: 'Fachada Domaine XXV' }],
     locale: 'pt_PT',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Domaine XXV — Moradia T4 Familiar em Oliveirinha',
+    title: 'Domaine XXV — Moradia T3 Familiar em Oliveirinha',
     description: '~180 m² ABP · ~146 m² Úteis · Chave na Mão por 335.000€',
     images: ['/images/exterior-capa.webp'],
   },

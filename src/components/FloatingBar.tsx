@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useLeadModal } from '@/components/LeadModal';
+import { CONTACT_PHONE_TEL } from '@/lib/constants';
 
 /* ─── Fixed Bottom Floating Bar — Strictly Centered & Hidden Pre-Scroll ─── */
 export default function FloatingBar() {
@@ -68,6 +69,20 @@ export default function FloatingBar() {
           boxSizing: 'border-box',
         }}
       >
+        <div style={{ display: 'flex', gap: 8, width: '100%' }}>
+        <a
+          href={`tel:${CONTACT_PHONE_TEL}`}
+          id="sticky-call-btn"
+          aria-label="Ligar ao André"
+          style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            width: 50, flexShrink: 0, borderRadius: 'var(--radius-btn)',
+            border: '1px solid rgba(184,146,74,0.6)', color: '#fff',
+            textDecoration: 'none', fontSize: '1.15rem',
+          }}
+        >
+          📞
+        </a>
         <button
           type="button"
           id="sticky-cta-btn"
@@ -81,7 +96,7 @@ export default function FloatingBar() {
             justifyContent: 'center',
             textAlign: 'center',
             gap: 8,
-            width: '100%',
+            flex: 1,
             background: 'var(--gold)',
             color: '#fff',
             fontFamily: 'var(--sans)',
@@ -108,8 +123,9 @@ export default function FloatingBar() {
             (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 3px 14px rgba(184,146,74,0.35)';
           }}
         >
-          <span style={{ whiteSpace: 'nowrap' }}>Saber Mais · Agendar Visita ao Lote →</span>
+          <span style={{ whiteSpace: 'nowrap' }}>Agendar Visita · Saber Mais →</span>
         </button>
+        </div>
 
         {/* Micro-copy limpo e centrado */}
         <p

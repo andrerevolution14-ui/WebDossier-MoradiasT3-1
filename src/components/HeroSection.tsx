@@ -2,6 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { trackWhatsAppLead } from '@/lib/analytics';
 import { useLeadModal } from '@/components/LeadModal';
+import { CONTACT_PHONE_TEL, CONTACT_PHONE_DISPLAY, WA_PHONE } from '@/lib/constants';
 
 /* ─── Hero Section — Family-focused with guaranteed presentation playback ─── */
 export default function HeroSection() {
@@ -145,7 +146,7 @@ export default function HeroSection() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/images/exterior-noite.jpg"
-          alt="Moradia T4 Domaine XXV — Vista exterior noturna, Oliveirinha, Aveiro"
+          alt="Moradia T3 Domaine XXV — Vista exterior noturna, Oliveirinha, Aveiro"
           style={{
             position: 'absolute',
             inset: 0,
@@ -252,7 +253,7 @@ export default function HeroSection() {
             margin: '0 0 16px',
             textShadow: '0 2px 24px rgba(0,0,0,0.45)',
           }}>
-            A Moradia T4 com Jardim<br />
+            A Moradia T3 com Jardim<br />
             às Portas de Aveiro por{' '}
             <span style={{ color: 'var(--gold-light)' }}>335.000€</span>.
           </h1>
@@ -298,6 +299,27 @@ export default function HeroSection() {
               <span>Saber Mais / Agendar Visita</span>
               <span style={{ fontSize: '1rem' }}>→</span>
             </button>
+            <a
+              href={`https://wa.me/${WA_PHONE}?text=${encodeURIComponent('Olá André! Gostava de receber o Dossier Digital e as Plantas da moradia Domaine XXV.')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              id="hero_whatsapp"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                color: '#fff', fontWeight: 600, fontSize: '0.85rem',
+                padding: '13px 22px', borderRadius: 'var(--radius-btn)',
+                border: '1px solid rgba(255,255,255,0.4)', background: 'rgba(255,255,255,0.08)',
+                textDecoration: 'none', backdropFilter: 'blur(6px)',
+              }}
+            >
+              💬 WhatsApp
+            </a>
+            <a
+              href={`tel:${CONTACT_PHONE_TEL}`}
+              style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'underline' }}
+            >
+              📞 {CONTACT_PHONE_DISPLAY}
+            </a>
             <div style={{
               fontSize: '0.76rem',
               color: 'rgba(255,255,255,0.60)',

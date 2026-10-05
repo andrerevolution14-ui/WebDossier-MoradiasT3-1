@@ -62,7 +62,7 @@ export default async function ObrigadoPage({
           Pedido recebido{firstName ? `, ${firstName}` : ''}!
         </h1>
         <p style={{ color: 'rgba(255,255,255,0.75)', lineHeight: 1.55, margin: '0 0 24px' }}>
-          O André Queirós vai ligar-lhe em breve. Para saber que é ele a ligar, guarde já o contacto.
+          O André Moradia Quintãs vai ligar-lhe em breve. Para saber que é ele a ligar, guarde já o contacto.
         </p>
 
         <a

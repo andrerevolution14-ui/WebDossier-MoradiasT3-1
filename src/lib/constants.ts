@@ -68,6 +68,8 @@ export const PROPERTY: PropertyData = {
 
 export const WHATSAPP_PHONE = '351920601070';
 export const WA_PHONE = '351920601070';
+export const CONTACT_PHONE_TEL = '+351919367087';
+export const CONTACT_PHONE_DISPLAY = '919 367 087';
 
 export const CRITICAL_MICRO_STATS = [
   {
