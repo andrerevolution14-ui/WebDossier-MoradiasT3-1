@@ -59,6 +59,12 @@ interface LeadModalProps {
   source: string;
 }
 
+const INTENT_OPTIONS = [
+  'Agendar visita ao local/terreno',
+  'Tirar dúvidas sobre o projeto',
+  'Receber o Dossier Digital e Plantas no WhatsApp',
+];
+
 export default function LeadModal({
   isOpen,
   onClose,
@@ -69,6 +75,7 @@ export default function LeadModal({
   const [phone, setPhone] = useState('');
   const [phoneError, setPhoneError] = useState('');
   const [showConfirm, setShowConfirm] = useState(false);
+  const [intent, setIntent] = useState(INTENT_OPTIONS[0]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState('');
@@ -122,7 +129,7 @@ export default function LeadModal({
           nome: name.trim(),
           telefone: cleanPhone,
           source: source || 'modal_form',
-          interesse: title || 'Domaine XXV Moradia T4 (450k valorização / 335k chave na mão)',
+          interesse: `${title || 'Domaine XXV Moradia T3'} | Objetivo: ${intent}`,
           eventId,
           fbp,
           fbc,
@@ -135,6 +142,8 @@ export default function LeadModal({
       }
 
       setIsSuccess(true);
+      const params = new URLSearchParams({ nome: name.trim().split(' ')[0], i: String(INTENT_OPTIONS.indexOf(intent)) });
+      window.location.href = `/obrigado?${params.toString()}`;
     } catch (err: any) {
       setSubmitError(err.message || 'Erro de ligação. Por favor tente novamente.');
     } finally {
@@ -193,6 +202,8 @@ export default function LeadModal({
           color: '#FFFFFF',
           textAlign: 'center',
           boxSizing: 'border-box',
+          maxHeight: '92vh',
+          overflowY: 'auto',
         }}
       >
         {/* Close button */}
@@ -467,10 +478,87 @@ export default function LeadModal({
               </p>
             </div>
 
+            {/* Resumo Rápido */}
+            <div
+              style={{
+                textAlign: 'left',
+                background: 'rgba(184, 146, 74, 0.10)',
+                border: '1px solid rgba(184, 146, 74, 0.45)',
+                borderRadius: 12,
+                padding: '14px 16px',
+                marginBottom: 18,
+                fontSize: '0.82rem',
+                lineHeight: 1.5,
+                color: 'rgba(255,255,255,0.88)',
+              }}
+            >
+              <div style={{ fontWeight: 700, color: 'var(--gold-light)', marginBottom: 8 }}>
+                💡 3 Coisas a Saber Antes de Submeter:
+              </div>
+              <ul style={{ margin: 0, paddingLeft: 18, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                <li><strong>Preço:</strong> 335.000 € (IMT e Imposto de Selo já incluídos).</li>
+                <li><strong>Entrada:</strong> 10% (33.500 €) com devolução garantida em contrato se o banco recusar.</li>
+                <li><strong>Prazo:</strong> Conclusão em 10 meses chave-na-mão.</li>
+              </ul>
+              <div style={{ marginTop: 10, display: 'flex', gap: 14, flexWrap: 'wrap', fontWeight: 600 }}>
+                <a href="#plantas" onClick={handleResetAndClose} style={{ color: 'var(--gold-light)', textDecoration: 'underline' }}>
+                  📐 Ver Plantas
+                </a>
+                <a href="#localizacao" onClick={handleResetAndClose} style={{ color: 'var(--gold-light)', textDecoration: 'underline' }}>
+                  📍 Localização exata
+                </a>
+              </div>
+            </div>
+
             <form
               onSubmit={handleInitialSubmit}
               style={{ display: 'flex', flexDirection: 'column', gap: 14, textAlign: 'left' }}
             >
+              {/* Pergunta de qualificação */}
+              <fieldset style={{ border: 'none', padding: 0, margin: 0 }}>
+                <legend
+                  style={{
+                    fontSize: '0.76rem',
+                    fontWeight: 600,
+                    letterSpacing: '0.04em',
+                    textTransform: 'uppercase',
+                    color: 'rgba(255,255,255,0.8)',
+                    marginBottom: 8,
+                    padding: 0,
+                  }}
+                >
+                  O que pretende nesta fase?
+                </legend>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {INTENT_OPTIONS.map(opt => (
+                    <label
+                      key={opt}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 10,
+                        padding: '10px 12px',
+                        borderRadius: 8,
+                        cursor: 'pointer',
+                        fontSize: '0.85rem',
+                        color: '#fff',
+                        background: intent === opt ? 'rgba(184,146,74,0.18)' : 'rgba(255,255,255,0.04)',
+                        border: intent === opt ? '1px solid var(--gold)' : '1px solid rgba(255,255,255,0.14)',
+                      }}
+                    >
+                      <input
+                        type="radio"
+                        name="lead-intent"
+                        checked={intent === opt}
+                        onChange={() => setIntent(opt)}
+                        style={{ accentColor: '#B8924A' }}
+                      />
+                      {opt}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
               {/* Campo 1: Nome */}
               <div>
                 <label
