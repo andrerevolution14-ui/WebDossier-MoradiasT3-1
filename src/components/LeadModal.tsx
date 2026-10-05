@@ -40,10 +40,8 @@ export function LeadModalProvider({ children }: { children: ReactNode }) {
     if (options?.source) setSource(options.source);
     if (options?.defaultObjective) {
       setDefaultObjective(options.defaultObjective);
-    } else if (options?.title?.toLowerCase().includes('promotor')) {
-      setDefaultObjective('Falar com o Promotor');
     } else {
-      setDefaultObjective('Agendar Visita ao Lote');
+      setDefaultObjective('Agendar Visita');
     }
     setIsOpen(true);
   };
@@ -80,8 +78,6 @@ const INTENT_OPTIONS = [
   'Agendar Visita',
   'Esclarecer Dúvidas',
   'Mediação Imobiliária',
-  'Falar com o Promotor',
-  'Investimento',
 ];
 
 const TIME_OPTIONS = [
@@ -97,8 +93,6 @@ const normalizeIntent = (val?: string) => {
   if (lower.includes('visita')) return 'Agendar Visita';
   if (lower.includes('duvida') || lower.includes('dúvida')) return 'Esclarecer Dúvidas';
   if (lower.includes('media') || lower.includes('imobil')) return 'Mediação Imobiliária';
-  if (lower.includes('promotor')) return 'Falar com o Promotor';
-  if (lower.includes('invest')) return 'Investimento';
   return INTENT_OPTIONS.includes(val) ? val : INTENT_OPTIONS[0];
 };
 
@@ -621,7 +615,7 @@ export default function LeadModal({
                 >
                   3. Objetivo da sua Consulta
                 </legend>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(190px, 1fr))', gap: 6 }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                   {INTENT_OPTIONS.map(opt => {
                     const isSelected = intent === opt;
                     return (
@@ -630,11 +624,11 @@ export default function LeadModal({
                         style={{
                           display: 'flex',
                           alignItems: 'center',
-                          gap: 8,
-                          padding: '8px 10px',
+                          gap: 10,
+                          padding: '9px 12px',
                           borderRadius: 6,
                           cursor: 'pointer',
-                          fontSize: '0.80rem',
+                          fontSize: '0.82rem',
                           color: isSelected ? '#fff' : 'rgba(255,255,255,0.75)',
                           background: isSelected ? 'rgba(184,146,74,0.22)' : 'rgba(255,255,255,0.03)',
                           border: isSelected ? '1px solid var(--gold)' : '1px solid rgba(255,255,255,0.1)',
@@ -767,11 +761,9 @@ export default function LeadModal({
                 >
                   {intent === 'Agendar Visita'
                     ? 'Agendar Visita ao Lote →'
-                    : intent === 'Falar com o Promotor'
-                    ? 'Falar com o Promotor →'
                     : intent === 'Mediação Imobiliária'
                     ? 'Contactar como Mediador →'
-                    : 'Enviar Pedido de Contacto →'}
+                    : 'Enviar Pedido de Esclarecimento →'}
                 </button>
               </div>
 
