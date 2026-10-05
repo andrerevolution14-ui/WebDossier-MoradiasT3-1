@@ -227,7 +227,7 @@ export default function HeroSection() {
               whiteSpace: 'nowrap',
             }}>
               <span style={{ display: 'inline-block', width: 5, height: 5, background: '#3D7A58' }} />
-              Visitas por Marcação
+              Visitas Esta Semana
             </div>
           </div>
         </div>
@@ -398,7 +398,7 @@ export default function HeroSection() {
         {[
           { label: 'Promotor:', value: 'Silvermont Capital', href: undefined },
           { label: 'Construtora:', value: 'Grupo Freitas Renovações ↗', href: 'https://grupofreitasrenovacoes.pt' },
-          { label: 'Visitas:', value: 'Por marcação', href: undefined },
+          { label: 'Auditoria:', value: '7 visitas este mês', href: undefined },
           { label: 'Entrada 10%:', value: '33.500€ (sinal blindado)', href: undefined },
         ].map((item, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.76rem' }}>
