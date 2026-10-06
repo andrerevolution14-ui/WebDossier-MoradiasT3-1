@@ -18,20 +18,21 @@ function calculateLeadPriority(
 
   const hasCapital = cap.includes('mais de 35') || cap.includes('> 35');
   const isPreApproved = cred.includes('pré-aprovado') || cred.includes('pre-aprovado');
+  const isSimulation = cred.includes('simulaç') || cred.includes('limite');
   const isImmediate = horiz.includes('30 a 60') || horiz.includes('imediato');
   const isMediumTerm = horiz.includes('3 a 6');
 
-  // Top Lead: Tem capital + Crédito Pré-Aprovado + Imediato (30-60 dias)
-  if (hasCapital && isPreApproved && isImmediate) {
+  // Top Lead: Tem capital + Crédito Pré-Aprovado
+  if (hasCapital && isPreApproved && (!horiz || isImmediate)) {
     return '1. TOP LEAD (Prioridade Máxima)';
   }
 
   // Alta prioridade: Tem capital + (Pré-aprovado ou simulação) + prazo curto/médio
-  if (hasCapital && (isPreApproved || cred.includes('simulaç') || cred.includes('limite')) && (isImmediate || isMediumTerm)) {
+  if (hasCapital && (isPreApproved || isSimulation) && (!horiz || isImmediate || isMediumTerm)) {
     return '2. ALTA PRIORIDADE';
   }
 
-  // Média prioridade: Tem capital mas está a explorar mercado
+  // Média prioridade: Tem capital
   if (hasCapital) {
     return '3. MÉDIA PRIORIDADE';
   }

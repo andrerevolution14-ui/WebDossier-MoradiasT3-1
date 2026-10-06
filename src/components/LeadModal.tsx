@@ -107,24 +107,6 @@ const CREDITO_OPTIONS = [
   },
 ];
 
-const URGENCIA_OPTIONS = [
-  {
-    id: 'A',
-    label: 'Imediato / Próximos 30 a 60 dias.',
-    badge: 'Prioridade Máxima',
-  },
-  {
-    id: 'B',
-    label: 'Nos próximos 3 a 6 meses.',
-    badge: 'Prioridade Média',
-  },
-  {
-    id: 'C',
-    label: 'Apenas a explorar o mercado sem data definida.',
-    badge: 'Prioridade Baixa',
-  },
-];
-
 const INTENT_OPTIONS = [
   'Agendar Visita ao Lote',
   'Falar com o Promotor',
@@ -159,14 +141,13 @@ export default function LeadModal({
   const router = useRouter();
 
   // Fluxo de 2 passos otimizado para velocidade máxima:
-  // Passo 1: 3 cliques de filtro (sem digitação)
+  // Passo 1: 2 seleções rápidas de filtro (sem digitação)
   // Passo 2: Nome + Telemóvel + Envio imediato
   const [step, setStep] = useState<1 | 2>(1);
 
   // Perguntas de Filtro (Passo 1)
   const [capital, setCapital] = useState(CAPITAL_OPTIONS[0].label);
   const [credito, setCredito] = useState(CREDITO_OPTIONS[0].label);
-  const [urgencia, setUrgencia] = useState(URGENCIA_OPTIONS[0].label);
 
   // Dados de Contacto (Passo 2)
   const [name, setName] = useState('');
@@ -242,7 +223,6 @@ export default function LeadModal({
           objetivo: intent,
           disponibilidadeCapital: capital,
           creditoHabitacao: credito,
-          horizonteTemporal: urgencia,
           notes: notes.trim(),
           source: source || 'modal_form',
           interesse: title || 'Domaine XXV Moradia T3',
@@ -296,6 +276,7 @@ export default function LeadModal({
         alignItems: 'center',
         justifyContent: 'center',
         padding: '16px',
+        fontFamily: "var(--font-body, 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif)",
       }}
     >
       <div
@@ -315,6 +296,8 @@ export default function LeadModal({
           boxSizing: 'border-box',
           maxHeight: '92vh',
           overflowY: 'auto',
+          fontFamily: "var(--font-body, 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif)",
+          letterSpacing: '-0.01em',
         }}
       >
         {/* Botão Fechar */}
@@ -333,10 +316,11 @@ export default function LeadModal({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: 'rgba(255, 255, 255, 0.65)',
-            fontSize: '1rem',
+            color: 'rgba(255, 255, 255, 0.75)',
+            fontSize: '0.95rem',
             cursor: 'pointer',
             transition: 'background 0.15s, color 0.15s',
+            fontFamily: 'inherit',
           }}
           aria-label="Fechar"
         >
@@ -349,32 +333,32 @@ export default function LeadModal({
             background: 'rgba(239, 68, 68, 0.12)',
             border: '1.5px solid rgba(239, 68, 68, 0.45)',
             borderRadius: 12,
-            padding: '11px 14px',
+            padding: '12px 14px',
             marginBottom: 16,
             display: 'flex',
             alignItems: 'flex-start',
             gap: 10,
           }}
         >
-          <span style={{ fontSize: '1.2rem', lineHeight: 1.1, flexShrink: 0 }}>⚠️</span>
+          <span style={{ fontSize: '1.15rem', lineHeight: 1.2, flexShrink: 0 }}>⚠️</span>
           <div>
             <div
               style={{
-                fontWeight: 800,
-                fontSize: '0.78rem',
+                fontWeight: 700,
+                fontSize: '0.80rem',
                 color: '#fca5a5',
-                letterSpacing: '0.04em',
+                letterSpacing: '0.03em',
                 textTransform: 'uppercase',
-                marginBottom: 2,
+                marginBottom: 3,
               }}
             >
               AVISO: Venda direta pelo construtor/promotor
             </div>
             <div
               style={{
-                fontSize: '0.80rem',
-                color: 'rgba(255, 255, 255, 0.90)',
-                lineHeight: 1.42,
+                fontSize: '0.83rem',
+                color: 'rgba(255, 255, 255, 0.92)',
+                lineHeight: 1.45,
               }}
             >
               Não aceitamos mediação imobiliária nem fazemos parcerias com agências.
@@ -383,24 +367,22 @@ export default function LeadModal({
         </div>
 
         {/* ─── BARRA DE PROGRESSO RÁPIDA ─────────────────────────────────────── */}
-        <div style={{ marginBottom: 14 }}>
+        <div style={{ marginBottom: 16 }}>
           <div
             style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              fontSize: '0.70rem',
-              fontWeight: 700,
-              textTransform: 'uppercase',
-              letterSpacing: '0.06em',
+              fontSize: '0.78rem',
+              fontWeight: 600,
               color: 'var(--gold-light)',
-              marginBottom: 5,
+              marginBottom: 6,
             }}
           >
             <span>
               {step === 1 ? 'Passo 1 de 2: Filtro de Elegibilidade' : 'Passo 2 de 2: Contacto Direto'}
             </span>
-            <span style={{ color: 'rgba(255,255,255,0.45)' }}>
+            <span style={{ color: 'rgba(255,255,255,0.55)', fontWeight: 500 }}>
               {step === 1 ? '50%' : '100%'}
             </span>
           </div>
@@ -424,56 +406,55 @@ export default function LeadModal({
           </div>
         </div>
 
-        {/* ─── PASSO 1: AS 3 PERGUNTAS DE FILTRO RÁPIDAS (3 TOQUES) ───────── */}
+        {/* ─── PASSO 1: AS 2 PERGUNTAS DE FILTRO RÁPIDAS ───────── */}
         {step === 1 && (
           <div>
-            <div style={{ marginBottom: 12 }}>
+            <div style={{ marginBottom: 14 }}>
               <h3
                 style={{
-                  fontFamily: 'var(--serif)',
+                  fontFamily: "var(--font-heading, 'Outfit', 'Plus Jakarta Sans', sans-serif)",
                   fontWeight: 700,
-                  fontSize: 'clamp(1.15rem, 3.2vw, 1.30rem)',
+                  fontSize: 'clamp(1.2rem, 3.4vw, 1.35rem)',
                   color: '#FFFFFF',
-                  margin: '0 0 3px 0',
+                  margin: '0 0 4px 0',
                   lineHeight: 1.25,
+                  letterSpacing: '-0.02em',
                 }}
               >
                 Qualificação de Comprador
               </h3>
               <p
                 style={{
-                  fontSize: '0.78rem',
-                  color: 'rgba(255,255,255,0.65)',
+                  fontSize: '0.84rem',
+                  color: 'rgba(255,255,255,0.72)',
                   margin: 0,
-                  lineHeight: 1.35,
+                  lineHeight: 1.4,
                 }}
               >
                 Moradia T3 Chave-na-Mão · 335.000€ c/ IMT e Selo incluídos.
               </p>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              {/* PERGUNTA 2: ENTRADA E CAPITAIS PRÓPRIOS (SEM TEXTO REALITY CHECK) */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+              {/* PERGUNTA 1: ENTRADA E CAPITAIS PRÓPRIOS */}
               <div>
                 <label
                   style={{
                     display: 'block',
-                    fontSize: '0.74rem',
+                    fontSize: '0.86rem',
                     fontWeight: 700,
-                    letterSpacing: '0.04em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,0.92)',
-                    marginBottom: 3,
+                    color: '#FFFFFF',
+                    marginBottom: 4,
                   }}
                 >
                   1. Entrada e Capitais Próprios
                 </label>
                 <p
                   style={{
-                    fontSize: '0.75rem',
-                    color: 'rgba(255,255,255,0.60)',
-                    margin: '0 0 7px 0',
-                    lineHeight: 1.35,
+                    fontSize: '0.82rem',
+                    color: 'rgba(255,255,255,0.72)',
+                    margin: '0 0 9px 0',
+                    lineHeight: 1.45,
                   }}
                 >
                   Para uma moradia de 335.000€, o banco exige no mínimo 10% de entrada. Qual é a sua disponibilidade de capital hoje?
@@ -487,7 +468,7 @@ export default function LeadModal({
                         key={opt.id}
                         onClick={() => setCapital(opt.label)}
                         style={{
-                          padding: '9px 10px',
+                          padding: '10px 12px',
                           borderRadius: 8,
                           border: isSelected ? '1.5px solid var(--gold)' : '1px solid rgba(255,255,255,0.12)',
                           background: isSelected ? 'rgba(184, 146, 74, 0.22)' : 'rgba(255,255,255,0.035)',
@@ -496,26 +477,27 @@ export default function LeadModal({
                           cursor: 'pointer',
                           display: 'flex',
                           flexDirection: 'column',
-                          gap: 2,
+                          gap: 3,
                           transition: 'all 0.12s ease',
                           boxShadow: isSelected ? '0 2px 8px rgba(184, 146, 74, 0.20)' : 'none',
+                          fontFamily: 'inherit',
                         }}
                       >
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                          <span style={{ fontSize: '0.80rem', fontWeight: isSelected ? 700 : 600 }}>
+                          <span style={{ fontSize: '0.86rem', fontWeight: isSelected ? 700 : 600 }}>
                             {opt.label}
                           </span>
                           <span
                             style={{
-                              width: 13,
-                              height: 13,
+                              width: 14,
+                              height: 14,
                               borderRadius: '50%',
                               border: isSelected ? '4px solid var(--gold-light)' : '1.5px solid rgba(255,255,255,0.3)',
                               background: isSelected ? '#15161A' : 'transparent',
                             }}
                           />
                         </div>
-                        <span style={{ fontSize: '0.67rem', color: isSelected ? 'var(--gold-light)' : 'rgba(255,255,255,0.48)' }}>
+                        <span style={{ fontSize: '0.74rem', color: isSelected ? 'var(--gold-light)' : 'rgba(255,255,255,0.55)' }}>
                           {opt.badge}
                         </span>
                       </button>
@@ -524,32 +506,30 @@ export default function LeadModal({
                 </div>
               </div>
 
-              {/* PERGUNTA 3: CRÉDITO HABITAÇÃO */}
+              {/* PERGUNTA 2: CRÉDITO HABITAÇÃO */}
               <div>
                 <label
                   style={{
                     display: 'block',
-                    fontSize: '0.74rem',
+                    fontSize: '0.86rem',
                     fontWeight: 700,
-                    letterSpacing: '0.04em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,0.92)',
-                    marginBottom: 3,
+                    color: '#FFFFFF',
+                    marginBottom: 4,
                   }}
                 >
                   2. Situação do Crédito Habitação
                 </label>
                 <p
                   style={{
-                    fontSize: '0.75rem',
-                    color: 'rgba(255,255,255,0.60)',
-                    margin: '0 0 7px 0',
-                    lineHeight: 1.35,
+                    fontSize: '0.82rem',
+                    color: 'rgba(255,255,255,0.72)',
+                    margin: '0 0 9px 0',
+                    lineHeight: 1.45,
                   }}
                 >
                   Como está a sua situação em relação ao Crédito Habitação?
                 </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
                   {CREDITO_OPTIONS.map(opt => {
                     const isSelected = credito === opt.label;
                     return (
@@ -558,7 +538,7 @@ export default function LeadModal({
                         key={opt.id}
                         onClick={() => setCredito(opt.label)}
                         style={{
-                          padding: '8px 12px',
+                          padding: '10px 13px',
                           borderRadius: 8,
                           border: isSelected ? '1.5px solid var(--gold)' : '1px solid rgba(255,255,255,0.12)',
                           background: isSelected ? 'rgba(184, 146, 74, 0.22)' : 'rgba(255,255,255,0.035)',
@@ -571,113 +551,31 @@ export default function LeadModal({
                           gap: 10,
                           transition: 'all 0.12s ease',
                           boxShadow: isSelected ? '0 2px 8px rgba(184, 146, 74, 0.20)' : 'none',
+                          fontFamily: 'inherit',
                         }}
                       >
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
                           <span
                             style={{
-                              width: 13,
-                              height: 13,
+                              width: 14,
+                              height: 14,
                               flexShrink: 0,
                               borderRadius: '50%',
                               border: isSelected ? '4px solid var(--gold-light)' : '1.5px solid rgba(255,255,255,0.3)',
                               background: isSelected ? '#15161A' : 'transparent',
                             }}
                           />
-                          <span style={{ fontSize: '0.78rem', fontWeight: isSelected ? 700 : 500, lineHeight: 1.35 }}>
+                          <span style={{ fontSize: '0.84rem', fontWeight: isSelected ? 700 : 500, lineHeight: 1.4 }}>
                             {opt.label}
                           </span>
                         </div>
                         <span
                           style={{
-                            fontSize: '0.65rem',
+                            fontSize: '0.72rem',
                             fontWeight: 700,
-                            color: isSelected ? 'var(--gold-light)' : 'rgba(255,255,255,0.45)',
+                            color: isSelected ? 'var(--gold-light)' : 'rgba(255,255,255,0.55)',
                             flexShrink: 0,
-                            padding: '2px 5px',
-                            borderRadius: 4,
-                            background: isSelected ? 'rgba(184,146,74,0.25)' : 'rgba(255,255,255,0.05)',
-                          }}
-                        >
-                          {opt.badge}
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* PERGUNTA 4: URGÊNCIA / TEMPO */}
-              <div>
-                <label
-                  style={{
-                    display: 'block',
-                    fontSize: '0.74rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.04em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,0.92)',
-                    marginBottom: 3,
-                  }}
-                >
-                  3. Prazo para Fechar Negócio
-                </label>
-                <p
-                  style={{
-                    fontSize: '0.75rem',
-                    color: 'rgba(255,255,255,0.60)',
-                    margin: '0 0 7px 0',
-                    lineHeight: 1.35,
-                  }}
-                >
-                  Qual é o seu horizonte temporal para fechar negócio? Lembrando que a casa é entregue em 10 meses.
-                </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  {URGENCIA_OPTIONS.map(opt => {
-                    const isSelected = urgencia === opt.label;
-                    return (
-                      <button
-                        type="button"
-                        key={opt.id}
-                        onClick={() => setUrgencia(opt.label)}
-                        style={{
-                          padding: '8px 12px',
-                          borderRadius: 8,
-                          border: isSelected ? '1.5px solid var(--gold)' : '1px solid rgba(255,255,255,0.12)',
-                          background: isSelected ? 'rgba(184, 146, 74, 0.22)' : 'rgba(255,255,255,0.035)',
-                          color: '#fff',
-                          textAlign: 'left',
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          gap: 10,
-                          transition: 'all 0.12s ease',
-                          boxShadow: isSelected ? '0 2px 8px rgba(184, 146, 74, 0.20)' : 'none',
-                        }}
-                      >
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                          <span
-                            style={{
-                              width: 13,
-                              height: 13,
-                              flexShrink: 0,
-                              borderRadius: '50%',
-                              border: isSelected ? '4px solid var(--gold-light)' : '1.5px solid rgba(255,255,255,0.3)',
-                              background: isSelected ? '#15161A' : 'transparent',
-                            }}
-                          />
-                          <span style={{ fontSize: '0.78rem', fontWeight: isSelected ? 700 : 500 }}>
-                            {opt.label}
-                          </span>
-                        </div>
-                        <span
-                          style={{
-                            fontSize: '0.65rem',
-                            fontWeight: 700,
-                            color: isSelected ? 'var(--gold-light)' : 'rgba(255,255,255,0.45)',
-                            flexShrink: 0,
-                            padding: '2px 5px',
+                            padding: '3px 6px',
                             borderRadius: 4,
                             background: isSelected ? 'rgba(184,146,74,0.25)' : 'rgba(255,255,255,0.05)',
                           }}
@@ -692,7 +590,7 @@ export default function LeadModal({
             </div>
 
             {/* Botão de Avanço Rápido para o Passo 2 */}
-            <div style={{ marginTop: 16 }}>
+            <div style={{ marginTop: 18 }}>
               <button
                 type="button"
                 onClick={() => setStep(2)}
@@ -702,14 +600,14 @@ export default function LeadModal({
                   color: '#fff',
                   border: 'none',
                   borderRadius: 'var(--radius-btn)',
-                  padding: '13px 20px',
+                  padding: '14px 20px',
                   fontWeight: 700,
-                  fontSize: '0.88rem',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.04em',
+                  fontSize: '0.92rem',
+                  letterSpacing: '0.02em',
                   cursor: 'pointer',
                   boxShadow: '0 4px 18px rgba(184, 146, 74, 0.35)',
                   transition: 'opacity 0.15s, transform 0.15s',
+                  fontFamily: 'inherit',
                 }}
               >
                 Continuar para Contacto (Passo 2 de 2) →
@@ -727,17 +625,17 @@ export default function LeadModal({
                 background: 'rgba(255, 255, 255, 0.04)',
                 border: '1px solid rgba(184, 146, 74, 0.3)',
                 borderRadius: 9,
-                padding: '8px 12px',
-                marginBottom: 12,
+                padding: '9px 13px',
+                marginBottom: 14,
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                fontSize: '0.74rem',
+                fontSize: '0.80rem',
               }}
             >
-              <div style={{ color: 'rgba(255,255,255,0.85)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '80%' }}>
+              <div style={{ color: 'rgba(255,255,255,0.90)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '82%' }}>
                 <span style={{ color: 'var(--gold-light)', fontWeight: 700 }}>Perfil: </span>
-                <span>{capital} · {urgencia.split('/')[0].trim()}</span>
+                <span>{capital} · {credito.length > 28 ? credito.slice(0, 28) + '...' : credito}</span>
               </div>
               <button
                 type="button"
@@ -746,36 +644,38 @@ export default function LeadModal({
                   background: 'transparent',
                   border: 'none',
                   color: 'var(--gold-light)',
-                  fontSize: '0.72rem',
+                  fontSize: '0.78rem',
                   fontWeight: 600,
                   cursor: 'pointer',
                   textDecoration: 'underline',
                   padding: 0,
+                  fontFamily: 'inherit',
                 }}
               >
                 Alterar
               </button>
             </div>
 
-            <div style={{ marginBottom: 12 }}>
+            <div style={{ marginBottom: 14 }}>
               <h3
                 style={{
-                  fontFamily: 'var(--serif)',
+                  fontFamily: "var(--font-heading, 'Outfit', 'Plus Jakarta Sans', sans-serif)",
                   fontWeight: 700,
-                  fontSize: 'clamp(1.15rem, 3.2vw, 1.28rem)',
+                  fontSize: 'clamp(1.2rem, 3.4vw, 1.35rem)',
                   color: '#FFFFFF',
-                  margin: '0 0 3px 0',
+                  margin: '0 0 4px 0',
                   lineHeight: 1.25,
+                  letterSpacing: '-0.02em',
                 }}
               >
                 {title || 'Agendar Visita ao Lote · Domaine XXV'}
               </h3>
               <p
                 style={{
-                  fontSize: '0.78rem',
-                  color: 'rgba(255,255,255,0.65)',
+                  fontSize: '0.84rem',
+                  color: 'rgba(255,255,255,0.72)',
                   margin: 0,
-                  lineHeight: 1.35,
+                  lineHeight: 1.4,
                 }}
               >
                 Contacto direto com o construtor/promotor. Sem intermediários.
@@ -784,7 +684,7 @@ export default function LeadModal({
 
             <form
               onSubmit={handleFinalSubmit}
-              style={{ display: 'flex', flexDirection: 'column', gap: 11 }}
+              style={{ display: 'flex', flexDirection: 'column', gap: 12 }}
             >
               {/* NOME COMPLETO */}
               <div>
@@ -792,12 +692,10 @@ export default function LeadModal({
                   htmlFor="lead-name"
                   style={{
                     display: 'block',
-                    fontSize: '0.73rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.04em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,0.85)',
-                    marginBottom: 4,
+                    fontSize: '0.84rem',
+                    fontWeight: 600,
+                    color: 'rgba(255,255,255,0.92)',
+                    marginBottom: 5,
                   }}
                 >
                   1. Nome completo <span style={{ color: 'var(--gold)' }}>*</span>
@@ -812,12 +710,13 @@ export default function LeadModal({
                   placeholder="Ex: João Silva"
                   style={{
                     width: '100%',
-                    padding: '10px 13px',
+                    padding: '11px 13px',
                     background: 'rgba(255, 255, 255, 0.05)',
                     border: '1px solid rgba(255, 255, 255, 0.16)',
                     borderRadius: 8,
                     color: '#fff',
-                    fontSize: '0.90rem',
+                    fontSize: '0.94rem',
+                    fontFamily: 'inherit',
                     outline: 'none',
                     boxSizing: 'border-box',
                     transition: 'border-color 0.15s',
@@ -829,20 +728,18 @@ export default function LeadModal({
 
               {/* TELEMÓVEL */}
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 5 }}>
                   <label
                     htmlFor="lead-phone"
                     style={{
-                      fontSize: '0.73rem',
-                      fontWeight: 700,
-                      letterSpacing: '0.04em',
-                      textTransform: 'uppercase',
-                      color: 'rgba(255,255,255,0.85)',
+                      fontSize: '0.84rem',
+                      fontWeight: 600,
+                      color: 'rgba(255,255,255,0.92)',
                     }}
                   >
                     2. Telemóvel <span style={{ color: 'var(--gold)' }}>*</span>
                   </label>
-                  <span style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.45)' }}>
+                  <span style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.50)' }}>
                     9 dígitos · começar por 9
                   </span>
                 </div>
@@ -859,16 +756,17 @@ export default function LeadModal({
                     maxLength={9}
                     style={{
                       width: '100%',
-                      padding: '10px 13px',
+                      padding: '11px 13px',
                       background: 'rgba(255, 255, 255, 0.05)',
                       border: phoneError
                         ? '1.5px solid #ef4444'
                         : '1px solid rgba(255, 255, 255, 0.16)',
                       borderRadius: 8,
                       color: '#fff',
-                      fontSize: '0.95rem',
+                      fontSize: '0.96rem',
                       fontWeight: 600,
                       letterSpacing: '0.04em',
+                      fontFamily: 'inherit',
                       outline: 'none',
                       boxSizing: 'border-box',
                       transition: 'border-color 0.15s',
@@ -887,7 +785,7 @@ export default function LeadModal({
                         right: 12,
                         top: '50%',
                         transform: 'translateY(-50%)',
-                        fontSize: '0.70rem',
+                        fontSize: '0.74rem',
                         fontWeight: 700,
                         color: validatePhone(phone) ? '#7DC4A0' : 'rgba(255,255,255,0.4)',
                       }}
@@ -897,7 +795,7 @@ export default function LeadModal({
                   )}
                 </div>
                 {phoneError && (
-                  <p style={{ color: '#fca5a5', fontSize: '0.74rem', margin: '3px 0 0' }}>
+                  <p style={{ color: '#fca5a5', fontSize: '0.78rem', margin: '4px 0 0' }}>
                     {phoneError}
                   </p>
                 )}
@@ -907,11 +805,9 @@ export default function LeadModal({
               <fieldset style={{ border: 'none', padding: 0, margin: 0 }}>
                 <legend
                   style={{
-                    fontSize: '0.73rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.04em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,0.85)',
+                    fontSize: '0.84rem',
+                    fontWeight: 600,
+                    color: 'rgba(255,255,255,0.92)',
                     marginBottom: 6,
                     padding: 0,
                   }}
@@ -928,17 +824,18 @@ export default function LeadModal({
                         onClick={() => setContactTime(opt)}
                         aria-pressed={isSelected}
                         style={{
-                          padding: '8px 10px',
+                          padding: '9px 11px',
                           borderRadius: 7,
                           cursor: 'pointer',
-                          fontSize: '0.75rem',
+                          fontSize: '0.80rem',
                           fontWeight: isSelected ? 700 : 500,
                           textAlign: 'center',
-                          color: isSelected ? '#FFFFFF' : 'rgba(255,255,255,0.72)',
+                          color: isSelected ? '#FFFFFF' : 'rgba(255,255,255,0.75)',
                           background: isSelected ? 'rgba(184,146,74,0.30)' : 'rgba(255,255,255,0.035)',
                           border: isSelected ? '1.5px solid var(--gold)' : '1px solid rgba(255,255,255,0.12)',
                           boxShadow: isSelected ? '0 2px 8px rgba(184,146,74,0.25)' : 'none',
                           transition: 'all 0.12s ease',
+                          fontFamily: 'inherit',
                         }}
                       >
                         {opt}
@@ -952,18 +849,16 @@ export default function LeadModal({
               <fieldset style={{ border: 'none', padding: 0, margin: 0 }}>
                 <legend
                   style={{
-                    fontSize: '0.73rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.04em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,0.85)',
-                    marginBottom: 5,
+                    fontSize: '0.84rem',
+                    fontWeight: 600,
+                    color: 'rgba(255,255,255,0.92)',
+                    marginBottom: 6,
                     padding: 0,
                   }}
                 >
                   4. Objetivo da sua Consulta
                 </legend>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                   {INTENT_OPTIONS.map(opt => {
                     const isSelected = intent === opt;
                     return (
@@ -973,14 +868,15 @@ export default function LeadModal({
                           display: 'flex',
                           alignItems: 'center',
                           gap: 9,
-                          padding: '8px 11px',
+                          padding: '9px 12px',
                           borderRadius: 6,
                           cursor: 'pointer',
-                          fontSize: '0.80rem',
-                          color: isSelected ? '#fff' : 'rgba(255,255,255,0.75)',
+                          fontSize: '0.84rem',
+                          color: isSelected ? '#fff' : 'rgba(255,255,255,0.80)',
                           background: isSelected ? 'rgba(184,146,74,0.22)' : 'rgba(255,255,255,0.03)',
                           border: isSelected ? '1px solid var(--gold)' : '1px solid rgba(255,255,255,0.1)',
                           transition: 'all 0.12s',
+                          fontFamily: 'inherit',
                         }}
                       >
                         <input
@@ -1003,15 +899,13 @@ export default function LeadModal({
                   htmlFor="lead-notes"
                   style={{
                     display: 'block',
-                    fontSize: '0.73rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.04em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,0.85)',
-                    marginBottom: 4,
+                    fontSize: '0.84rem',
+                    fontWeight: 600,
+                    color: 'rgba(255,255,255,0.92)',
+                    marginBottom: 5,
                   }}
                 >
-                  5. Notas / Questões <span style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.45)', textTransform: 'none', fontWeight: 400 }}>(opcional)</span>
+                  5. Notas / Questões <span style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.50)', fontWeight: 400 }}>(opcional)</span>
                 </label>
                 <textarea
                   id="lead-notes"
@@ -1021,12 +915,12 @@ export default function LeadModal({
                   placeholder="Alguma nota sobre a visita ou questão sobre acabamentos / financiamento..."
                   style={{
                     width: '100%',
-                    padding: '8px 11px',
+                    padding: '9px 12px',
                     background: 'rgba(255, 255, 255, 0.05)',
                     border: '1px solid rgba(255, 255, 255, 0.16)',
                     borderRadius: 8,
                     color: '#fff',
-                    fontSize: '0.84rem',
+                    fontSize: '0.88rem',
                     fontFamily: 'inherit',
                     outline: 'none',
                     boxSizing: 'border-box',
@@ -1044,9 +938,9 @@ export default function LeadModal({
                     background: 'rgba(220, 38, 38, 0.2)',
                     border: '1px solid rgba(220, 38, 38, 0.5)',
                     color: '#fca5a5',
-                    padding: '8px 12px',
+                    padding: '9px 12px',
                     borderRadius: 8,
-                    fontSize: '0.78rem',
+                    fontSize: '0.82rem',
                   }}
                 >
                   {submitError}
@@ -1054,7 +948,7 @@ export default function LeadModal({
               )}
 
               {/* Botão de Registo Direto e Imediato */}
-              <div style={{ marginTop: 4, display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <div style={{ marginTop: 6, display: 'flex', flexDirection: 'column', gap: 6 }}>
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -1064,15 +958,15 @@ export default function LeadModal({
                     color: '#fff',
                     border: 'none',
                     borderRadius: 'var(--radius-btn)',
-                    padding: '13px 18px',
+                    padding: '14px 20px',
                     fontWeight: 700,
-                    fontSize: '0.88rem',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.04em',
+                    fontSize: '0.92rem',
+                    letterSpacing: '0.02em',
                     cursor: isSubmitting ? 'not-allowed' : 'pointer',
                     opacity: isSubmitting ? 0.75 : 1,
                     boxShadow: '0 4px 18px rgba(184, 146, 74, 0.35)',
                     transition: 'opacity 0.15s, transform 0.15s',
+                    fontFamily: 'inherit',
                   }}
                 >
                   {isSubmitting ? 'A registar contacto...' : 'Confirmar e Enviar Pedido →'}
@@ -1080,9 +974,10 @@ export default function LeadModal({
 
                 <div
                   style={{
-                    fontSize: '0.68rem',
-                    color: 'rgba(255,255,255,0.45)',
+                    fontSize: '0.74rem',
+                    color: 'rgba(255,255,255,0.52)',
                     textAlign: 'center',
+                    lineHeight: 1.4,
                   }}
                 >
                   🔒 Contacto direto com o promotor · Sem agências · Resposta no horário indicado

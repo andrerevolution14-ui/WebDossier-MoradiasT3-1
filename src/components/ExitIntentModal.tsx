@@ -562,12 +562,11 @@ export default function ExitIntentModal() {
                   htmlFor="exit-lead-name"
                   style={{
                     display: 'block',
-                    fontSize: '0.74rem',
+                    fontSize: '0.84rem',
                     fontWeight: 600,
-                    letterSpacing: '0.04em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(255,255,255,0.8)',
+                    color: 'rgba(255,255,255,0.92)',
                     marginBottom: 5,
+                    fontFamily: "var(--font-body, 'Plus Jakarta Sans', sans-serif)",
                   }}
                 >
                   Nome completo
@@ -586,7 +585,8 @@ export default function ExitIntentModal() {
                     border: '1px solid rgba(255, 255, 255, 0.18)',
                     borderRadius: 8,
                     color: '#fff',
-                    fontSize: '0.92rem',
+                    fontSize: '0.94rem',
+                    fontFamily: "var(--font-body, 'Plus Jakarta Sans', sans-serif)",
                     outline: 'none',
                     boxSizing: 'border-box',
                     transition: 'border-color 0.2s',
@@ -609,16 +609,15 @@ export default function ExitIntentModal() {
                   <label
                     htmlFor="exit-lead-phone"
                     style={{
-                      fontSize: '0.74rem',
+                      fontSize: '0.84rem',
                       fontWeight: 600,
-                      letterSpacing: '0.04em',
-                      textTransform: 'uppercase',
-                      color: 'rgba(255,255,255,0.8)',
+                      color: 'rgba(255,255,255,0.92)',
+                      fontFamily: "var(--font-body, 'Plus Jakarta Sans', sans-serif)",
                     }}
                   >
                     Número de Telemóvel
                   </label>
-                  <span style={{ fontSize: '0.70rem', color: 'rgba(255,255,255,0.48)' }}>
+                  <span style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.50)' }}>
                     9 dígitos · começar por 9
                   </span>
                 </div>
