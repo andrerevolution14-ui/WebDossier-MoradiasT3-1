@@ -11,13 +11,17 @@ let leadsTableReady = false;
 export async function ensureLeadsTable() {
   if (leadsTableReady) return;
   try {
+    // Tabela organizada no Neon: 1. id, 2. nome, 3. telefone, 4. horario_contacto, 5. objetivo, seguido dos filtros de capital, crédito, prazo, etc.
     await sql`
       CREATE TABLE IF NOT EXISTS leads (
         id SERIAL PRIMARY KEY,
         nome VARCHAR(255) NOT NULL,
         telefone VARCHAR(50) NOT NULL,
-        objetivo TEXT,
         horario_contacto TEXT,
+        objetivo TEXT,
+        disponibilidade_capital TEXT,
+        credito_habitacao TEXT,
+        horizonte_temporal TEXT,
         notes TEXT,
         interesse TEXT DEFAULT 'Domaine XXV Moradia T3/T4',
         source TEXT,
@@ -25,8 +29,15 @@ export async function ensureLeadsTable() {
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       );
     `;
-    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS objetivo TEXT;`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS horario_contacto TEXT;`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS objetivo TEXT;`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS disponibilidade_capital TEXT;`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS credito_habitacao TEXT;`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS horizonte_temporal TEXT;`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS notes TEXT;`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS interesse TEXT DEFAULT 'Domaine XXV Moradia T3/T4';`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS source TEXT;`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS status VARCHAR(50) DEFAULT 'novo';`;
     leadsTableReady = true;
   } catch (error) {
     console.error('Error ensuring leads table exists:', error);

@@ -2,10 +2,60 @@ import { NextRequest, NextResponse } from 'next/server';
 import { sql, ensureLeadsTable } from '@/lib/db';
 import { sendMetaLeadConversion } from '@/lib/metaConversions';
 
+function calculateLeadPriority(
+  disponibilidadeCapital?: string | null,
+  creditoHabitacao?: string | null,
+  horizonteTemporal?: string | null
+): string {
+  const cap = (disponibilidadeCapital || '').toLowerCase();
+  const cred = (creditoHabitacao || '').toLowerCase();
+  const horiz = (horizonteTemporal || '').toLowerCase();
+
+  // Filtro de Realidade: Se tem menos de 30.000€, não cumpre os 10% mínimos de entrada (33.500€)
+  if (cap.includes('menos de 30') || cap.includes('< 30')) {
+    return '4. BAIXA / DESQUALIFICADA (Capital < 30k)';
+  }
+
+  const hasCapital = cap.includes('mais de 35') || cap.includes('> 35');
+  const isPreApproved = cred.includes('pré-aprovado') || cred.includes('pre-aprovado');
+  const isImmediate = horiz.includes('30 a 60') || horiz.includes('imediato');
+  const isMediumTerm = horiz.includes('3 a 6');
+
+  // Top Lead: Tem capital + Crédito Pré-Aprovado + Imediato (30-60 dias)
+  if (hasCapital && isPreApproved && isImmediate) {
+    return '1. TOP LEAD (Prioridade Máxima)';
+  }
+
+  // Alta prioridade: Tem capital + (Pré-aprovado ou simulação) + prazo curto/médio
+  if (hasCapital && (isPreApproved || cred.includes('simulaç') || cred.includes('limite')) && (isImmediate || isMediumTerm)) {
+    return '2. ALTA PRIORIDADE';
+  }
+
+  // Média prioridade: Tem capital mas está a explorar mercado
+  if (hasCapital) {
+    return '3. MÉDIA PRIORIDADE';
+  }
+
+  return 'Normal';
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { nome, telefone, email, source, interesse, notes, eventId, fbp: bodyFbp, fbc: bodyFbc } = body;
+    const {
+      nome,
+      telefone,
+      email,
+      source,
+      interesse,
+      notes,
+      eventId,
+      disponibilidadeCapital,
+      creditoHabitacao,
+      horizonteTemporal,
+      fbp: bodyFbp,
+      fbc: bodyFbc,
+    } = body;
     const objetivo = body.objetivo ? String(body.objetivo).slice(0, 200) : null;
     const horarioContacto = body.horarioContacto ? String(body.horarioContacto).slice(0, 100) : null;
 
@@ -26,22 +76,53 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // 1. Guardar na base de dados Neon
+    const prioridade = calculateLeadPriority(
+      disponibilidadeCapital,
+      creditoHabitacao,
+      horizonteTemporal
+    );
+
+    // 1. Guardar na base de dados Neon com colunas organizadas: 2. nome, 3. telefone, 4. horario, 5. objetivo, etc.
     let dbResult = null;
     try {
       await ensureLeadsTable();
       dbResult = await sql`
-        INSERT INTO leads (nome, telefone, objetivo, horario_contacto, notes, interesse, source, status)
-        VALUES (${nome.trim()}, ${cleanPhone}, ${objetivo}, ${horarioContacto}, ${notes || ''}, ${interesse || 'Domaine XXV Moradia T3/T4'}, ${source || 'site_lead_modal'}, 'novo')
+        INSERT INTO leads (
+          nome,
+          telefone,
+          horario_contacto,
+          objetivo,
+          disponibilidade_capital,
+          credito_habitacao,
+          horizonte_temporal,
+          notes,
+          interesse,
+          source,
+          status
+        )
+        VALUES (
+          ${nome.trim()},
+          ${cleanPhone},
+          ${horarioContacto},
+          ${objetivo},
+          ${disponibilidadeCapital || null},
+          ${creditoHabitacao || null},
+          ${horizonteTemporal || null},
+          ${notes || ''},
+          ${interesse || 'Domaine XXV Moradia T3/T4'},
+          ${source || 'site_lead_modal'},
+          'novo'
+        )
         RETURNING id, created_at;
       `;
     } catch (dbError) {
       console.error('Database lead insert error:', dbError);
-      // Fallback: tentar novamente
+      // Fallback: tentar novamente com dados formatados nas notas
       try {
+        const enrichedNotes = `Capital: ${disponibilidadeCapital || '-'} | Crédito: ${creditoHabitacao || '-'} | Prazo: ${horizonteTemporal || '-'} ${notes ? `| Notas: ${notes}` : ''}`;
         dbResult = await sql`
-          INSERT INTO leads (nome, telefone, objetivo, horario_contacto, notes, interesse, source)
-          VALUES (${nome.trim().slice(0, 250)}, ${cleanPhone}, ${objetivo || '-'}, ${horarioContacto || '-'}, ${notes || ''}, ${'Domaine XXV'}, ${String(source || 'site_lead_modal').slice(0, 90)})
+          INSERT INTO leads (nome, telefone, horario_contacto, objetivo, notes, interesse, source)
+          VALUES (${nome.trim().slice(0, 250)}, ${cleanPhone}, ${horarioContacto || '-'}, ${objetivo || '-'}, ${enrichedNotes}, ${'Domaine XXV'}, ${String(source || 'site_lead_modal').slice(0, 90)})
           RETURNING id, created_at;
         `;
       } catch (retryError) {
