@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
       horizonteTemporal
     );
 
-    // 1. Guardar na base de dados Neon com colunas organizadas: 2. nome, 3. telefone, 4. horario, 5. objetivo, etc.
+    // 1. Guardar na base de dados Neon: nome, telefone, objetivo, horario, notes, capital, credito e resto
     let dbResult = null;
     try {
       await ensureLeadsTable();
@@ -91,12 +91,13 @@ export async function POST(req: NextRequest) {
         INSERT INTO leads (
           nome,
           telefone,
-          horario_contacto,
           objetivo,
+          horario_contacto,
+          notes,
           disponibilidade_capital,
           credito_habitacao,
+          prioridade,
           horizonte_temporal,
-          notes,
           interesse,
           source,
           status
@@ -104,12 +105,13 @@ export async function POST(req: NextRequest) {
         VALUES (
           ${nome.trim()},
           ${cleanPhone},
-          ${horarioContacto},
           ${objetivo},
+          ${horarioContacto},
+          ${notes || ''},
           ${disponibilidadeCapital || null},
           ${creditoHabitacao || null},
+          ${prioridade},
           ${horizonteTemporal || null},
-          ${notes || ''},
           ${interesse || 'Domaine XXV Moradia T3/T4'},
           ${source || 'site_lead_modal'},
           'novo'
@@ -120,10 +122,10 @@ export async function POST(req: NextRequest) {
       console.error('Database lead insert error:', dbError);
       // Fallback: tentar novamente com dados formatados nas notas
       try {
-        const enrichedNotes = `Capital: ${disponibilidadeCapital || '-'} | Crédito: ${creditoHabitacao || '-'} | Prazo: ${horizonteTemporal || '-'} ${notes ? `| Notas: ${notes}` : ''}`;
+        const enrichedNotes = `Capital: ${disponibilidadeCapital || '-'} | Crédito: ${creditoHabitacao || '-'}${horizonteTemporal ? ` | Prazo: ${horizonteTemporal}` : ''} ${notes ? `| Notas: ${notes}` : ''}`;
         dbResult = await sql`
-          INSERT INTO leads (nome, telefone, horario_contacto, objetivo, notes, interesse, source)
-          VALUES (${nome.trim().slice(0, 250)}, ${cleanPhone}, ${horarioContacto || '-'}, ${objetivo || '-'}, ${enrichedNotes}, ${'Domaine XXV'}, ${String(source || 'site_lead_modal').slice(0, 90)})
+          INSERT INTO leads (nome, telefone, objetivo, horario_contacto, notes, interesse, source)
+          VALUES (${nome.trim().slice(0, 250)}, ${cleanPhone}, ${objetivo || '-'}, ${horarioContacto || '-'}, ${enrichedNotes}, ${'Domaine XXV'}, ${String(source || 'site_lead_modal').slice(0, 90)})
           RETURNING id, created_at;
         `;
       } catch (retryError) {

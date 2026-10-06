@@ -11,30 +11,32 @@ let leadsTableReady = false;
 export async function ensureLeadsTable() {
   if (leadsTableReady) return;
   try {
-    // Tabela organizada no Neon: 1. id, 2. nome, 3. telefone, 4. horario_contacto, 5. objetivo, seguido dos filtros de capital, crédito, prazo, etc.
+    // Tabela organizada no Neon: 1. id, 2. nome, 3. telefone, 4. objetivo, 5. horario_contacto, 6. notes, 7. disponibilidade_capital, 8. credito_habitacao e só depois o resto
     await sql`
       CREATE TABLE IF NOT EXISTS leads (
         id SERIAL PRIMARY KEY,
         nome VARCHAR(255) NOT NULL,
         telefone VARCHAR(50) NOT NULL,
-        horario_contacto TEXT,
         objetivo TEXT,
+        horario_contacto TEXT,
+        notes TEXT,
         disponibilidade_capital TEXT,
         credito_habitacao TEXT,
+        prioridade VARCHAR(100) DEFAULT 'Normal',
         horizonte_temporal TEXT,
-        notes TEXT,
         interesse TEXT DEFAULT 'Domaine XXV Moradia T3/T4',
         source TEXT,
         status VARCHAR(50) DEFAULT 'novo',
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
       );
     `;
-    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS horario_contacto TEXT;`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS objetivo TEXT;`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS horario_contacto TEXT;`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS notes TEXT;`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS disponibilidade_capital TEXT;`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS credito_habitacao TEXT;`;
+    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS prioridade VARCHAR(100) DEFAULT 'Normal';`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS horizonte_temporal TEXT;`;
-    await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS notes TEXT;`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS interesse TEXT DEFAULT 'Domaine XXV Moradia T3/T4';`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS source TEXT;`;
     await sql`ALTER TABLE leads ADD COLUMN IF NOT EXISTS status VARCHAR(50) DEFAULT 'novo';`;
