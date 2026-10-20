@@ -2,7 +2,11 @@ import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import './globals.css';
 
-export const metadataBase = new URL('https://domainexxv.pt');
+import { getSiteUrl } from '@/lib/siteUrl';
+
+const siteUrl = getSiteUrl();
+
+export const metadataBase = new URL(siteUrl);
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -12,7 +16,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://domainexxv.pt'),
+  metadataBase: new URL(siteUrl),
   title: 'Domaine XXV — Moradia T3 com Jardim · 335.000€ · Oliveirinha, Aveiro',
   description:
     'Dossier digital da Moradia T3 (opção T4) Domaine XXV em Oliveirinha, Aveiro. 335.000€ com IMT e Selo incluídos, entrada de 10% protegida, jardim privativo de ~82 m², garagem e chave na mão em 10 meses.',
@@ -28,7 +32,24 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Domaine XXV — Moradia T3 Familiar em Oliveirinha, Aveiro',
     description: '~180 m² ABP · ~146 m² Úteis · Jardim Privativo ~82 m² · Chave na Mão por 335.000€',
-    images: [{ url: '/images/exterior-capa.webp', width: 1200, height: 675, alt: 'Fachada Domaine XXV' }],
+    url: siteUrl,
+    siteName: 'Domaine XXV',
+    images: [
+      {
+        url: '/images/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Moradia T3 Domaine XXV em Oliveirinha, Aveiro',
+        type: 'image/jpeg',
+      },
+      {
+        url: '/images/exterior-capa.webp',
+        width: 1200,
+        height: 675,
+        alt: 'Fachada Domaine XXV',
+        type: 'image/webp',
+      },
+    ],
     locale: 'pt_PT',
     type: 'website',
   },
@@ -36,7 +57,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Domaine XXV — Moradia T3 Familiar em Oliveirinha',
     description: '~180 m² ABP · ~146 m² Úteis · Chave na Mão por 335.000€',
-    images: ['/images/exterior-capa.webp'],
+    images: ['/images/og-image.jpg'],
   },
   icons: {
     icon: '/favicon.svg',

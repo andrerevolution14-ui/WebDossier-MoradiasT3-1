@@ -29,7 +29,7 @@ export default function LocationSection() {
           Oliveirinha: A 8 Minutos de Aveiro, com a Qualidade de Vida Que o Centro Perdeu.
         </h2>
         <p className="mobile-center-desc" style={{ fontSize:'0.95rem', color:'var(--text-body)', lineHeight:1.7, maxWidth:680, margin: '0 auto 36px', textAlign: 'center' }}>
-          Chegue às Glicínias ou à Universidade em escassos minutos, sem o stress do trânsito do centro nem os custos inflacionados por m². O equilíbrio perfeito entre acessibilidade e tranquilidade.
+          Chegue às Glicínias ou à Universidade em escassos minutos, sem o stress do trânsito do centro e com muito mais espaço e tranquilidade. O equilíbrio perfeito entre acessibilidade e bem-estar familiar.
         </p>
 
         <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fit, minmax(300px, 1fr))', gap:28, alignItems:'start' }}>

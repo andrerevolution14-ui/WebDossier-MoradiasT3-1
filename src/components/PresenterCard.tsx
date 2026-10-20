@@ -126,7 +126,7 @@ export default function PresenterCard() {
 
       {showTranscript && (
         <div className="mt-2 text-xs text-slate-300 border-t border-dashed border-white/10 pt-2 leading-relaxed italic">
-          &ldquo;Olá! Bem-vindo ao dossier do Domaine XXV. Preparei este material especificamente para quem procura uma moradia independente, moderna e energeticamente eficiente em Aveiro, sem pagar margens inflacionadas. Aqui encontras a explicação de como a moradia fica por 335.000€ com IMT e Imposto de Selo já incluídos (chave na mão em 10 meses), e como o teu sinal de 10% (33.500€) fica salvaguardado no CPCV caso o banco recuse crédito. Explora a página e estou disponível para uma chamada rápida.&rdquo;
+          &ldquo;Olá! Bem-vindo ao dossier do Domaine XXV. Preparei este material especificamente para quem procura uma moradia independente, moderna e energeticamente eficiente em Aveiro. Aqui encontras a explicação de como a moradia fica por 335.000€ com IMT e Imposto de Selo já incluídos (chave na mão em 10 meses), e como o teu sinal de 10% (33.500€) fica salvaguardado no CPCV caso o banco recuse crédito. Explora a página e estou disponível para uma chamada rápida.&rdquo;
         </div>
       )}
     </div>

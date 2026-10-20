@@ -118,11 +118,8 @@ export default function EquitySection() {
             <div style={{ fontSize: '0.76rem', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: 6 }}>
               Terreno + Construção
             </div>
-            <div style={{ fontFamily: 'var(--serif)', fontWeight: 700, fontSize: '1.9rem', color: 'var(--text-primary)', lineHeight: 1.2, margin: '8px 0 10px' }}>
+            <div style={{ fontFamily: 'var(--serif)', fontWeight: 700, fontSize: '1.9rem', color: 'var(--text-primary)', lineHeight: 1.2, margin: '8px 0 12px' }}>
               Preço Fechado
-            </div>
-            <div style={{ fontSize: '0.90rem', color: 'var(--gold-dark)', fontWeight: 800, marginBottom: 8 }}>
-              Sem Margens Inflacionadas
             </div>
             <div style={{ fontSize: '0.84rem', color: 'var(--text-muted)', lineHeight: 1.55 }}>
               Compra o terreno em seu nome e contrata a construção a preço fixo contratualizado, com entrega das chaves prevista em 10 meses.

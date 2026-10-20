@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sql, ensureLeadsTable } from '@/lib/db';
 import { sendMetaLeadConversion } from '@/lib/metaConversions';
+import { getSiteUrl } from '@/lib/siteUrl';
 
 function calculateLeadPriority(
   disponibilidadeCapital?: string | null,
@@ -139,7 +140,7 @@ export async function POST(req: NextRequest) {
       req.headers.get('x-real-ip') ||
       null;
     const clientUserAgent = req.headers.get('user-agent') || null;
-    const sourceUrl = req.headers.get('referer') || 'https://domainexxv.pt';
+    const sourceUrl = req.headers.get('referer') || getSiteUrl();
 
     const fbp = bodyFbp || req.cookies.get('_fbp')?.value || null;
     const fbc = bodyFbc || req.cookies.get('_fbc')?.value || null;
