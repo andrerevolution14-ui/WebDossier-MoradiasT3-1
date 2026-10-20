@@ -9,7 +9,6 @@ import EquitySection from '@/components/EquitySection';
 import FloorplansSection from '@/components/FloorplansSection';
 import ProcessoSimplificado from '@/components/ProcessoSimplificado';
 import FaqSection from '@/components/FaqSection';
-import IvaExplanationSection from '@/components/IvaExplanationSection';
 import ManagerSection from '@/components/ManagerSection';
 import SocialProofSection from '@/components/SocialProofSection';
 import FloatingBar from '@/components/FloatingBar';
@@ -27,28 +26,27 @@ export default function HomePage() {
 
       <main>
         {/*
-          SEQUÊNCIA OTIMIZADA MOBILE-FIRST:
+          SEQUÊNCIA OTIMIZADA:
           ─────────────────────────────────────────────────────────────
-          1. Hero Section                 → Qualificação imediata, sem WhatsApp acima da dobra, acesso rápido
-          2. Galeria de Fotos             → Desejo visual
-          3. O Triângulo de Aveiro        → Análise de mercado & dor do comprador
+          1. Hero Section                 → Qualificação e apresentação imediata
+          2. Galeria de Imagens 3D        → Desejo visual do projeto aprovado
+          3. O Triângulo de Aveiro        → Análise de mercado & oportunidade
           4. Localização & Mapa           → Prova de proximidade imediata (8 min)
-          5. Preço & Ganho Patrimonial    → Ancoragem racional (335k c/ IMT e Selo)
-          6. Plantas & Parâmetros         → Validação racional e áreas no site
-          7. Processo Simples & Sem Risco → 3 passos sem burocracia nem derrapes
-          8. Autoridade & Prova Social    → Logos Câmara, Freitas Renovações, Obras Reais
-          9. FAQs / Resposta a Objeções   → Destruição de dúvidas
-          10. O Reembolso do IVA          → Justificação das 2 formas e impostos
-          11. Perfil & Fecho              → André Queirós / Interlocutor único
+          5. Condições & Valores          → 335.000€ chave na mão com impostos incluídos
+          6. Plantas & Parâmetros         → Áreas habitáveis e sótão
+          7. O Processo Explicado         → Terreno em seu nome + crédito à construção faseado
+          8. Licenciamento & Obras Reais  → Câmara de Aveiro, Grupo Freitas e obras concluídas
+          9. FAQs / Perguntas Frequentes  → Dúvidas claras sobre compra e financiamento
+          10. Perfil & Contacto Direto    → André Queirós / Interlocutor único
         */}
 
         {/* 1 ── HERO SECTION */}
         <HeroSection />
 
-        {/* 2 ── GALERIA DE FOTOS */}
+        {/* 2 ── GALERIA DE IMAGENS 3D */}
         <GallerySection />
 
-        {/* 3 ── O TRIÂNGULO IMPOSSÍVEL DE AVEIRO */}
+        {/* 3 ── O TRIÂNGULO DE AVEIRO */}
         <div className="divider" />
         <TriangleSection />
 
@@ -56,7 +54,7 @@ export default function HomePage() {
         <div className="divider" />
         <LocationSection />
 
-        {/* 5 ── PREÇO TRANSPARENTE E GANHO PATRIMONIAL (Abaixo do Mapa) */}
+        {/* 5 ── CONDIÇÕES & VALORES CLAROS */}
         <div className="divider" />
         <EquitySection />
 
@@ -64,23 +62,19 @@ export default function HomePage() {
         <div className="divider" />
         <FloorplansSection />
 
-        {/* 7 ── PROCESSO SIMPLES & SEM RISCO */}
+        {/* 7 ── PROCESSO EXPLICADO: CRÉDITO À CONSTRUÇÃO */}
         <div className="divider" />
         <ProcessoSimplificado />
 
-        {/* 8 ── AUTORIDADE & PROVA SOCIAL (Câmara, Obras Reais, Garantias) */}
+        {/* 8 ── LICENCIAMENTO & OBRAS EXECUTADAS */}
         <div className="divider" />
         <SocialProofSection />
 
-        {/* 9 ── FAQS / RESPOSTA A OBJEÇÕES */}
+        {/* 9 ── FAQS / RESPOSTA A DÚVIDAS */}
         <div className="divider" />
         <FaqSection />
 
-        {/* 10 ── O REEMBOLSO DO IVA & AS 2 FORMAS */}
-        <div className="divider" />
-        <IvaExplanationSection />
-
-        {/* 11 ── PERFIL & FECHO */}
+        {/* 10 ── PERFIL & CONTACTO */}
         <div className="divider" />
         <ManagerSection />
 

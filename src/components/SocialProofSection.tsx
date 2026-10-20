@@ -20,15 +20,15 @@ export default function SocialProofSection() {
       tag: 'Obra Concluída',
     },
     {
-      src: '/Social Proof/WhatsApp Image 2026-09-12 at 22.16.56 (3).jpeg',
+      src: '/Social Proof/obra-estrutural-alvenaria.jpeg',
       title: 'Rigor Estrutural & Alvenarias',
-      desc: 'Fiscalização contínua e controlo rigoroso de materiais de betão e isolamentos térmicos/acústicos.',
+      desc: 'Acompanhamento contínuo e seleção cuidada de materiais e isolamentos térmicos e acústicos.',
       tag: 'Em Execução',
     },
     {
-      src: '/Social Proof/WhatsApp Image 2026-09-12 at 22.16.57 (3).jpeg',
-      title: 'Instalações Especiais Certificadas',
-      desc: 'Redes de climatização, águas e eletricidade executadas segundo as normas europeias mais exigentes.',
+      src: '/Social Proof/obra-instalacoes-redes.jpeg',
+      title: 'Instalações Técnicas & Redes',
+      desc: 'Redes de climatização, águas e eletricidade executadas segundo as normas técnicas mais exigentes.',
       tag: 'Em Execução',
     },
   ];
@@ -50,7 +50,7 @@ export default function SocialProofSection() {
         {/* ── HEADER CENTRADO ── */}
         <div style={{ textAlign: 'center', maxWidth: 840, margin: '0 auto 28px' }}>
           <div className="section-tag" style={{ margin: '0 auto 10px', display: 'inline-block' }}>
-            Autoridade, Licenciamento &amp; Prova Real
+            Licenciamento &amp; Obras Executadas
           </div>
           <h2
             className="heading"
@@ -61,9 +61,9 @@ export default function SocialProofSection() {
               lineHeight: 1.18,
             }}
           >
-            Construção certificada,{' '}
+            Construção de elevada qualidade,{' '}
             <span style={{ color: 'var(--gold-light)' }}>
-              projeto aprovado e obras reais executadas.
+              projeto aprovado e obras concluídas.
             </span>
           </h2>
           <p
@@ -75,7 +75,7 @@ export default function SocialProofSection() {
               margin: '0 auto',
             }}
           >
-            O Domaine XXV conta com aprovação municipal da Câmara de Aveiro e construção oficial pelo Grupo Freitas Renovações, com alvará ativo e obras de referência concluídas.
+            O Domaine XXV conta com aprovação municipal na Câmara de Aveiro e construção a cargo do Grupo Freitas Renovações, com alvará ativo e obras de referência concluídas no distrito.
           </p>
         </div>
 
@@ -118,7 +118,7 @@ export default function SocialProofSection() {
                 marginBottom: 16,
               }}
             >
-              Construtora Oficial Certificada
+              Construtora Oficial
             </span>
 
             {/* Container fundo preto com logo branco em alta visibilidade e tamanho maior */}
@@ -359,13 +359,13 @@ export default function SocialProofSection() {
           {[
             {
               icon: '🛡️',
-              title: 'Sinal 10% 100% Protegido',
-              desc: 'Cláusula expressa no CPCV com devolução integral dos 33.500€ se o banco não aprovar o crédito.',
+              title: 'Sinal de 10% Salvaguardado',
+              desc: 'Cláusula expressa no CPCV com devolução integral do sinal se o banco não aprovar o crédito.',
             },
             {
               icon: '🔒',
-              title: '335.000€ Chave-na-Mão',
-              desc: 'IMT e Imposto de Selo já incluídos no preço contratual. Zero derrapes ou custos surpresa.',
+              title: 'Preço Fechado em Contrato',
+              desc: 'IMT e Imposto de Selo já acautelados. Sem custos surpresa nem revisões de orçamento.',
             },
             {
               icon: '⏱️',

@@ -482,7 +482,7 @@ export default function ExitIntentModal() {
                   <strong style={{ color: '#FFFFFF', fontWeight: 700 }}>
                     Entrada Segura:
                   </strong>{' '}
-                  O seu sinal de 10% (33.500€) está blindado no CPCV — devolução integral se o crédito não for aprovado.
+                  O seu sinal de 10% (33.500€) fica salvaguardado no CPCV — devolução integral se o crédito não for aprovado.
                 </p>
               </div>
 
@@ -507,9 +507,9 @@ export default function ExitIntentModal() {
                   }}
                 >
                   <strong style={{ color: '#FFFFFF', fontWeight: 700 }}>
-                    Ganho Imediato:
+                    Modelo Direto:
                   </strong>{' '}
-                  Moradia com avaliação estimada de 450.000€ (ganha 115.000€ de valorização patrimonial logo na escritura).
+                  Compra o terreno em seu nome e contrata a construção a preço fechado, sem derrapes orçamentais.
                 </p>
               </div>
             </div>

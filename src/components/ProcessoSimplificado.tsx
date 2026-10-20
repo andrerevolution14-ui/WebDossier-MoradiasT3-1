@@ -2,44 +2,43 @@
 import React, { useState } from 'react';
 import { useLeadModal } from '@/components/LeadModal';
 
-/* ─── Merged: Processo Simples & Protegido ───────────────────────────────── */
-/* Funde: CreditSection + ProcessSection + Explicação IVA do EquitySection  */
+/* ─── Processo Explicado: Como Funciona a Compra & Crédito à Construção ─── */
 
 const STEPS = [
   {
     n: '01',
-    title: 'Entrada Protegida 10% (33.500€)',
-    tagline: 'O valor de 10% fica salvaguardado com garantia total',
+    title: 'Terreno Escriturado em Seu Nome',
+    tagline: 'Propriedade legal desde o início do processo',
     bullets: [
-      <>O seu valor de entrada de 10% (<strong>33.500€</strong>) fica salvaguardado desde o primeiro dia.</>,
-      <>Se por algum motivo o banco não aprovar o financiamento, <strong>o valor é devolvido na totalidade</strong>.</>,
-      <><strong>Zero risco:</strong> proteção blindada por cláusula expressa no contrato promessa (CPCV).</>,
+      <>Faz a <strong>escritura notarial do lote</strong> logo no arranque do processo.</>,
+      <>O terreno fica registado <strong>diretamente em seu nome</strong>, sendo o proprietário legal antes de iniciar a obra.</>,
+      <>O sinal inicial de 10% (33.500€) no CPCV fica <strong>salvaguardado com devolução integral</strong> se o banco não aprovar o financiamento.</>,
     ],
-    highlight: 'Garantia Contratual · Devolução Integral',
+    highlight: 'Escritura Notarial · Terreno em Seu Nome',
     highlightColor: 'var(--gold)',
   },
   {
     n: '02',
-    title: 'Financiamento Otimizado',
-    tagline: 'Instrução bancária tratada por especialistas',
+    title: 'Crédito à Construção por Tranches',
+    tagline: 'Libertação faseada mediante vistorias bancárias',
     bullets: [
-      <>Trabalhamos em parceria direta com <strong>Intermediários de Crédito registados no Banco de Portugal</strong>.</>,
-      <>Tratam de <strong>todo o processo bancário por si</strong>, sem qualquer custo para o comprador.</>,
-      <>Processo ágil com condições otimizadas e pré-aprovação rápida.</>,
+      <>Na prática, funciona como um <strong>crédito à construção</strong>, acompanhado sem custos por intermediários registados no Banco de Portugal.</>,
+      <>O banco liberta o capital <strong>de forma faseada (por tranches)</strong> à medida que os trabalhos progridem.</>,
+      <>Cada libertação é precedida por <strong>vistorias de peritos do banco</strong>, que confirmam a boa execução de cada etapa no terreno.</>,
     ],
-    highlight: 'Intermediário Registado BdP · 100% Gratuito',
+    highlight: 'Libertação por Tranches · Vistorias do Banco',
     highlightColor: '#476822',
   },
   {
     n: '03',
-    title: 'Construção & Chave na Mão',
-    tagline: 'Preço contratualizado sem derrapes orçamentais',
+    title: 'Construção a Preço Fechado',
+    tagline: 'Entrega da moradia concluída em 10 meses',
     bullets: [
-      <><strong>Sem surpresas de orçamento:</strong> o preço assinado no contrato é o preço final até à entrega das chaves.</>,
-      <><strong>335.000€ com IMT e Selo incluídos:</strong> inclui projeto aprovado, terreno, construção, acabamentos e impostos de transmissão.</>,
-      <>Execução rigorosa em <strong>10 meses</strong> de obra chave-na-mão.</>,
+      <>Contrata a obra com <strong>valor fixo estabelecido em contrato</strong> de empreitada chave na mão.</>,
+      <>Sem custos imprevistos, revisões orçamentais ou derrapes durante o decorrer da obra.</>,
+      <>Execução rigorosa com prazo previsto de <strong>10 meses</strong> a cargo do Grupo Freitas Renovações.</>,
     ],
-    highlight: 'Preço Blindado · Conclusão em 10 Meses',
+    highlight: 'Preço Fixo em Contrato · Chave na Mão',
     highlightColor: 'var(--text-primary)',
   },
 ];
@@ -53,17 +52,17 @@ export default function ProcessoSimplificado() {
       <div className="wrap">
 
         <div className="section-tag mobile-center-tag">
-          Processo Simples &amp; Sem Risco
+          Como Funciona o Processo
         </div>
         <h2 className="heading mobile-center-title" style={{ maxWidth: 740, margin: '0 auto 12px', textAlign: 'center' }}>
-          Sem Burocracia, Sem Derrapes.{' '}
-          <span style={{ color: 'var(--gold-dark)', fontWeight: 700 }}>Como Funciona o Processo:</span>
+          Simples, Transparente e Seguro:{' '}
+          <span style={{ color: 'var(--gold-dark)', fontWeight: 700 }}>O Processo Explicado em 3 Passos</span>
         </h2>
         <p className="mobile-center-desc" style={{
           color: 'var(--text-body)', fontSize: '0.93rem',
-          lineHeight: 1.65, maxWidth: 580, margin: '0 auto 40px', textAlign: 'center',
+          lineHeight: 1.65, maxWidth: 620, margin: '0 auto 40px', textAlign: 'center',
         }}>
-          Três passos simples e transparentes para a sua família conquistar a moradia sem dores de cabeça nem surpresas no caminho. Chave na mão em apenas 10 meses.
+          O comprador fica com o terreno em seu nome e a casa é construída a seguir. Na prática, trata-se de um crédito à construção com libertação faseada pelo banco, garantindo total segurança a cada etapa.
         </p>
 
         {/* ── Desktop: 3 colunas ── Mobile: accordion ── */}
@@ -232,21 +231,20 @@ export default function ProcessoSimplificado() {
           <div style={{ fontSize: '0.85rem', color: 'var(--text-body)', display: 'flex', alignItems: 'center', gap: 8 }}>
             <span style={{ color: 'var(--gold)', fontWeight: 800 }}>•</span>
             <span>
-              Da reserva à chave: <strong style={{ color: 'var(--text-primary)' }}>10 meses</strong>.
-              &nbsp;Valor fechado em contrato:{' '}
-              <strong style={{ color: 'var(--gold-dark)' }}>335.000€ com IMT e Imposto de Selo incluídos</strong>.
+              Da reserva à chave: <strong style={{ color: 'var(--text-primary)' }}>10 meses</strong> de construção com acompanhamento contínuo e sem revisões de preço.
             </span>
           </div>
           <button
             type="button"
             onClick={() => openLeadModal({
-              title: 'Verificar Viabilidade Gratuita · 335.000€ (c/ IMT e Selo)',
+              title: 'Verificar Viabilidade Gratuita · Domaine XXV',
               source: 'processo_simplificado_viabilidade',
+              defaultObjective: 'Análise de Viabilidade Financeira',
             })}
             className="btn btn-gold"
             style={{ fontSize: '0.80rem', padding: '12px 22px', whiteSpace: 'nowrap', borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}
           >
-            Saber Mais / Verificar Viabilidade →
+            Verificar Viabilidade Gratuita →
           </button>
         </div>
 

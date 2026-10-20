@@ -29,13 +29,13 @@ export default function GallerySection() {
           {/* Header */}
           <div className="mobile-center-tag" style={{ fontSize:'0.68rem', fontWeight:700, letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--gold)', display:'flex', alignItems:'center', justifyContent: 'center', margin: '0 auto 14px', gap:10 }}>
             <span style={{ display:'inline-block', width:24, height:1.5, background:'var(--gold)' }} />
-            Galeria Fotográfica &amp; Renders
+            Imagens 3D do Projeto
           </div>
           <h2 className="mobile-center-title" style={{ fontFamily:'var(--serif)', fontWeight:600, fontSize:'clamp(1.7rem, 3.5vw, 2.6rem)', lineHeight:1.15, color:'var(--text-primary)', margin: '0 auto 10px', textAlign: 'center' }}>
             Conheça cada detalhe do seu futuro lar.
           </h2>
           <p className="mobile-center-desc" style={{ fontSize:'0.88rem', color:'var(--text-muted)', margin: '0 auto 32px', textAlign: 'center' }}>
-            Clique em qualquer fotografia para abrir a galeria em ecrã inteiro.
+            Visualização 3D fidedigna do projeto de arquitetura aprovado. Toque em qualquer imagem para abrir em ecrã inteiro.
           </p>
 
           {/* ── Perfect uniform rectangle grid: 3 cols desktop, 2 cols mobile (12 items) ── */}
@@ -59,9 +59,21 @@ export default function GallerySection() {
                   border: '1px solid var(--border)',
                 }}
               >
+                {/* 3D Render Badge */}
+                <div style={{
+                  position: 'absolute', top: 10, left: 10, zIndex: 2,
+                  background: 'rgba(15, 14, 12, 0.72)', backdropFilter: 'blur(4px)',
+                  border: '1px solid rgba(255, 255, 255, 0.22)',
+                  color: 'var(--gold-light)', fontSize: '0.62rem', fontWeight: 700,
+                  letterSpacing: '0.08em', textTransform: 'uppercase',
+                  padding: '3px 8px', borderRadius: 2,
+                }}>
+                  Imagem 3D
+                </div>
+
                 <Image
                   src={img.src}
-                  alt={img.label}
+                  alt={`Imagem 3D: ${img.label}`}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
                   style={{ objectFit: 'cover', transition: 'transform 0.4s ease' }}
@@ -103,7 +115,7 @@ export default function GallerySection() {
             <Image src={ALL_IMAGES[lightbox].src} alt={ALL_IMAGES[lightbox].label} fill style={{ objectFit:'contain' }} sizes="100vw" priority />
           </div>
           <p style={{ color:'rgba(255,255,255,0.6)', fontSize:'0.85rem', marginTop:14 }}>
-            {lightbox+1} de {ALL_IMAGES.length} · {ALL_IMAGES[lightbox].label}
+            {lightbox+1} de {ALL_IMAGES.length} · Imagem 3D: {ALL_IMAGES[lightbox].label}
           </p>
         </div>
       )}

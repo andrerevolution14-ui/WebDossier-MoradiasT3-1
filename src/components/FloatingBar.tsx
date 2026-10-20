@@ -74,7 +74,7 @@ export default function FloatingBar() {
             type="button"
             id="sticky-cta-visita"
             onClick={() => openLeadModal({
-              title: 'Agendar Visita ao Lote · 335.000€ (c/ IMT e Selo)',
+              title: 'Agendar Visita ao Lote · Domaine XXV',
               source: 'sticky_bar_visita',
               defaultObjective: 'Agendar Visita ao Lote',
             })}
@@ -152,7 +152,7 @@ export default function FloatingBar() {
             letterSpacing: '0.02em',
           }}
         >
-          335.000€ com IMT e Selo incluídos · Entrada 10% (33.500€) protegida
+          Preço chave na mão c/ impostos · Entrada 10% (33.500€) salvaguardada no CPCV
         </p>
       </div>
     </aside>

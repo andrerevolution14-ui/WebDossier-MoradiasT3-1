@@ -5,8 +5,8 @@
 
 export const META_PIXEL_ID = '979841341182458';
 
-// Valor mais alto de referência do projeto (Avaliação Bancária de 450.000€)
-export const HIGHEST_LEAD_VALUE = 450000;
+// Valor de referência do projeto (Preço Chave na Mão de 335.000€)
+export const HIGHEST_LEAD_VALUE = 335000;
 
 export interface TrackingEvent {
   event: string;
@@ -79,7 +79,7 @@ export function getSessionEventId(): string {
 
 /**
  * Disparado ao preencher e submeter o formulário de contacto / visita.
- * Regista o evento LEAD com o valor mais alto (450.000€ - Avaliação Bancária de referência).
+ * Regista o evento LEAD com o valor de referência (335.000€ - Preço Chave na Mão).
  * Partilha o eventId retornado com a API (CAPI) para deduplicação perfeita de 100%.
  */
 export function trackFormLeadSubmit(payload: {

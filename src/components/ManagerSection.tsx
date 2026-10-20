@@ -49,7 +49,7 @@ export default function ManagerSection() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 32 }}>
               {[
                 'Visita guiada ao lote do terreno em Oliveirinha',
-                'Estudo de viabilidade bancária 100% gratuito (335.000€ com IMT e Selo incluídos)',
+                'Estudo de viabilidade bancária gratuito e sem compromisso',
                 'Apenas 10% de entrada (33.500€) com salvaguarda contratual no CPCV',
                 'Personalização total da cozinha equipada, acabamentos e climatização',
                 'Relatório fotográfico semanal durante os 10 meses de obra',
@@ -112,7 +112,7 @@ export default function ManagerSection() {
                 </button>
               </div>
               <div style={{ fontSize: '0.76rem', color: 'rgba(255,255,255,0.6)', marginTop: 12, display: 'flex', alignItems: 'center', gap: 6, justifyContent: 'center', textAlign: 'center', letterSpacing: '0.02em' }}>
-                <span>335.000€ com IMT e Selo incluídos · Entrada de 10% (33.500€)</span>
+                <span>Preço chave na mão fechado em contrato · Entrada de 10% salvaguardada no CPCV</span>
               </div>
             </div>
           </div>

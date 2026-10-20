@@ -78,7 +78,7 @@ export default function PresenterCard() {
       </div>
 
       <div className="mt-3.5 text-xs sm:text-sm text-slate-200 bg-black/35 p-3 rounded-xl border-l-4 border-[#c5a059] leading-relaxed">
-        &ldquo;Montei esta página interativa para te mostrar não apenas os renders 3D e as plantas, mas a <strong>engenharia financeira</strong> que torna viável adquirir uma moradia avaliada em <strong>450.000€</strong> pelo valor fechado de <strong>329.000€</strong>.&rdquo;
+        &ldquo;Montei esta página interativa para te mostrar não apenas as imagens 3D e as plantas, mas o <strong>modelo direto</strong> que torna viável adquirir uma moradia T3 chave na mão com impostos incluídos por <strong>335.000€</strong>.&rdquo;
       </div>
 
       {/* Audio Player Box */}
@@ -126,7 +126,7 @@ export default function PresenterCard() {
 
       {showTranscript && (
         <div className="mt-2 text-xs text-slate-300 border-t border-dashed border-white/10 pt-2 leading-relaxed italic">
-          &ldquo;Olá! Bem-vindo ao dossier do Domaine XXV. Preparei este material especificamente para quem procura uma moradia independente, moderna e energeticamente eficiente em Aveiro, sem pagar margens inflacionadas. Aqui encontras a explicação detalhada de como a moradia fica por 335.000€ com IMT e Imposto de Selo já incluídos (toda equipada e personalizável), como recebes a devolução do diferencial de IVA antes da conclusão da obra, e como o teu sinal de 38.500€ está 100% blindado caso o banco recuse crédito. Explora a página e estou disponível para uma chamada rápida.&rdquo;
+          &ldquo;Olá! Bem-vindo ao dossier do Domaine XXV. Preparei este material especificamente para quem procura uma moradia independente, moderna e energeticamente eficiente em Aveiro, sem pagar margens inflacionadas. Aqui encontras a explicação de como a moradia fica por 335.000€ com IMT e Imposto de Selo já incluídos (chave na mão em 10 meses), e como o teu sinal de 10% (33.500€) fica salvaguardado no CPCV caso o banco recuse crédito. Explora a página e estou disponível para uma chamada rápida.&rdquo;
         </div>
       )}
     </div>

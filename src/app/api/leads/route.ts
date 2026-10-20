@@ -147,7 +147,7 @@ export async function POST(req: NextRequest) {
     const finalEventId =
       eventId || `capi_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
 
-    // 3. Disparo Server-Side Meta Conversions API (Lead com o valor mais alto de referência: 450.000€)
+    // 3. Disparo Server-Side Meta Conversions API (Lead com o valor de referência: 335.000€)
     try {
       await sendMetaLeadConversion({
         eventId: finalEventId,

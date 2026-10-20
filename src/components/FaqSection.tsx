@@ -11,13 +11,13 @@ const FAQS = [
   },
   {
     num: '02',
-    q: 'O preço de 335.000€ pode subir durante a construção?',
-    a: 'Não. O valor de 335.000€ com IMT e Imposto de Selo já incluídos fica blindado por contrato de empreitada chave na mão. Não há custos surpresa nem derrapes orçamentais.',
+    q: 'O valor do contrato pode sofrer alterações durante a construção?',
+    a: 'Não. O preço chave na mão fica fixado em contrato de empreitada com o Grupo Freitas Renovações. Todo o caderno de encargos, acabamentos e impostos estão acautelados, não existindo custos surpresa nem revisões orçamentais.',
   },
   {
     num: '03',
-    q: 'Qual a diferença entre o Método Tradicional e o Método Direto?',
-    a: 'No método tradicional (365.000€), o IMT e Selo são pagos à parte e o cliente aguarda a restituição do IVA pelo Estado. No método direto recomendado (335.000€ com IMT e Selo incluídos), a empresa construtora recebe diretamente a restituição do IVA e desconta esse benefício fiscal no preço final.',
+    q: 'Como funciona a compra e o crédito à construção?',
+    a: 'O modelo é simples e transparente: adquire o lote de terreno diretamente em seu nome através de escritura notarial no início. De seguida, contrata a construção a preço fechado. Como se trata de um crédito à construção, o banco liberta o financiamento por fases (tranches), apenas após a vistoria do perito bancário confirmar a conclusão de cada etapa da obra.',
   },
   {
     num: '04',
@@ -151,8 +151,9 @@ export default function FaqSection() {
           <button
             type="button"
             onClick={() => openLeadModal({
-              title: 'Tirar Dúvida · Domaine XXV (335k c/ IMT e Selo)',
+              title: 'Tirar Dúvida · Domaine XXV',
               source: 'faq_section',
+              defaultObjective: 'Tirar Dúvida',
             })}
             style={{
               display: 'inline-flex',

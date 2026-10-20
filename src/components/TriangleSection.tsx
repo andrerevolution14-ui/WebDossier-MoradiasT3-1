@@ -196,7 +196,7 @@ export default function TriangleSection() {
           }}>
             ESTA MORADIA QUEBRA O TRIÂNGULO:
             <span style={{ color: 'var(--gold-light)', display: 'block', marginTop: 6, fontWeight: 600, fontSize: '1.05rem' }}>
-              Moradia T3 (opção T4) com jardim a 8 min de Aveiro por 335.000€ (com IMT e Selo incluídos) · Chave na mão em apenas 10 meses.
+              Moradia T3 (opção T4) com jardim a 8 min de Aveiro · Chave na mão em apenas 10 meses.
             </span>
           </h3>
 
@@ -206,7 +206,7 @@ export default function TriangleSection() {
               'T3 com Jardim ~82 m²',
               '8 min de Aveiro',
               'Chave na mão em 10 meses',
-              '335.000€ c/ IMT e Selo',
+              'Impostos Já Incluídos',
             ].map(label => (
               <div key={label} style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
@@ -229,7 +229,7 @@ export default function TriangleSection() {
             <button
               type="button"
               onClick={() => openLeadModal({
-                title: 'Saber Mais · Moradia Domaine XXV (335.000€ c/ IMT e Selo)',
+                title: 'Saber Mais · Moradia Domaine XXV',
                 source: 'triangle_agendar_visita',
               })}
               style={{
@@ -250,7 +250,7 @@ export default function TriangleSection() {
               Saber Mais / Agendar a Minha Visita →
             </button>
             <span style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.7)', letterSpacing: '0.02em' }}>
-              335.000€ com IMT e Selo já incluídos · Entrada de 10% (33.500€) protegida
+              Preço chave na mão fechado em contrato · Entrada de 10% (33.500€) salvaguardada no CPCV
             </span>
           </div>
         </div>

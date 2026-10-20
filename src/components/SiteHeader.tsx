@@ -23,12 +23,12 @@ export default function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const NAV_LINKS = [
-    ['#galeria', 'Galeria'],
-    ['#videos', 'Vídeos 3D'],
-    ['#plantas', 'Plantas'],
+    ['#galeria', 'Imagens 3D'],
     ['#localizacao', 'Localização'],
-    ['#credito', 'Crédito Gratuito'],
     ['#condicoes', 'Valores'],
+    ['#plantas', 'Plantas'],
+    ['#processo', 'O Processo'],
+    ['#faqs', 'Perguntas'],
   ];
 
   return (

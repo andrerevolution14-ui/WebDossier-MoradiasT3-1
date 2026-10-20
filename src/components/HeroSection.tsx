@@ -174,68 +174,45 @@ export default function HeroSection() {
           top: 0,
           left: 0,
           right: 0,
-          padding: 'clamp(14px, 2vw, 24px) clamp(20px, 5vw, 60px) 0',
+          padding: 'clamp(16px, 2.5vw, 28px) clamp(20px, 5vw, 60px) 0',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: 10,
           zIndex: 10,
         }}>
-          <div className="hidden sm:flex" style={{
-            fontSize: '0.68rem',
+          <div style={{
+            fontSize: '0.72rem',
             fontWeight: 700,
-            letterSpacing: '0.18em',
+            letterSpacing: '0.16em',
             textTransform: 'uppercase',
-            color: 'rgba(255,255,255,0.65)',
+            color: 'var(--gold-light)',
+            display: 'inline-flex',
             alignItems: 'center',
             gap: 10,
           }}>
             <span style={{
               display: 'inline-block',
-              width: 22,
-              height: 1,
-              background: 'var(--gold-light)',
-              opacity: 0.7,
+              width: 20,
+              height: 1.5,
+              background: 'var(--gold)',
             }} />
-            Dossier Digital Exclusivo
+            Moradia T3 · Oliveirinha, Aveiro
           </div>
-          <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center' }}>
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: 6,
-              background: 'rgba(161,118,40,0.18)',
-              border: '1px solid rgba(161,118,40,0.45)',
-              borderRadius: 2,
-              padding: '4px 10px',
-              fontSize: '0.65rem', fontWeight: 700,
-              color: 'var(--gold-light)',
-              letterSpacing: '0.08em', textTransform: 'uppercase',
-              whiteSpace: 'nowrap',
-            }}>
-              <span style={{ display: 'inline-block', width: 5, height: 5, background: 'var(--gold)' }} />
-              Início de Obra Imediato
-            </div>
-            <div style={{
-              display: 'inline-flex', alignItems: 'center', gap: 6,
-              background: 'rgba(61,122,88,0.18)',
-              border: '1px solid rgba(61,122,88,0.45)',
-              borderRadius: 2,
-              padding: '4px 10px',
-              fontSize: '0.65rem', fontWeight: 700,
-              color: '#7DC4A0',
-              letterSpacing: '0.08em', textTransform: 'uppercase',
-              whiteSpace: 'nowrap',
-            }}>
-              <span style={{ display: 'inline-block', width: 5, height: 5, background: '#3D7A58' }} />
-              Visitas Esta Semana
-            </div>
+          <div className="hidden sm:inline-flex" style={{
+            fontSize: '0.68rem',
+            fontWeight: 600,
+            letterSpacing: '0.10em',
+            textTransform: 'uppercase',
+            color: 'rgba(255,255,255,0.5)',
+          }}>
+            Projeto Aprovado · Chave na Mão
           </div>
         </div>
 
         {/* Main content — vertically centered in the hero */}
         <div style={{
           position: 'relative',
-          padding: 'clamp(52px, 7vh, 76px) clamp(20px, 5vw, 60px) clamp(32px, 5vh, 48px)',
+          padding: 'clamp(64px, 8vh, 90px) clamp(20px, 5vw, 60px) clamp(36px, 6vh, 52px)',
           zIndex: 10,
           display: 'flex',
           flexDirection: 'column',
@@ -245,13 +222,13 @@ export default function HeroSection() {
           <h1 className="hero-cinematic-title" style={{
             fontFamily: 'var(--serif)',
             fontWeight: 700,
-            fontSize: 'clamp(2.0rem, 5.5vw, 4.2rem)',
-            lineHeight: 1.08,
+            fontSize: 'clamp(2.1rem, 5.5vw, 4.0rem)',
+            lineHeight: 1.1,
             letterSpacing: '-0.025em',
             color: '#FFFFFF',
-            maxWidth: 740,
+            maxWidth: 720,
             margin: '0 0 16px',
-            textShadow: '0 2px 24px rgba(0,0,0,0.45)',
+            textShadow: '0 2px 24px rgba(0,0,0,0.5)',
           }}>
             A Moradia T3 com Jardim<br />
             às Portas de Aveiro por{' '}
@@ -260,18 +237,18 @@ export default function HeroSection() {
 
           {/* Subline */}
           <p className="hero-cinematic-sub" style={{
-            fontSize: 'clamp(0.88rem, 1.8vw, 1.02rem)',
-            color: 'rgba(255,255,255,0.76)',
-            lineHeight: 1.65,
-            maxWidth: 580,
+            fontSize: 'clamp(0.92rem, 1.8vw, 1.05rem)',
+            color: 'rgba(255,255,255,0.80)',
+            lineHeight: 1.6,
+            maxWidth: 560,
             margin: '0 0 28px',
             fontWeight: 400,
           }}>
-            Preço final de <strong style={{ color: '#fff', fontWeight: 700 }}>335.000€ com IMT e Imposto de Selo já incluídos</strong> · Entrada de 10% (33.500€) com sinal 100% protegido · Chave na mão em 10 meses.
+            Preço chave na mão com impostos incluídos · Conclusão em 10 meses · A 8 minutos do centro de Aveiro.
           </p>
 
           {/* Dual High-Intent CTAs: Agendar Visita ao Lote OU Falar com o Promotor */}
-          <div className="hero-cinematic-cta" style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 20, width: '100%' }}>
+          <div className="hero-cinematic-cta" style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 24, width: '100%' }}>
             <button
               type="button"
               id="hero_cta_agendar_visita"
@@ -291,14 +268,14 @@ export default function HeroSection() {
                 fontSize: 'clamp(0.84rem, 2.5vw, 0.92rem)',
                 letterSpacing: '0.05em',
                 textTransform: 'uppercase',
-                padding: '14px 26px',
+                padding: '14px 28px',
                 borderRadius: 'var(--radius-btn)',
                 border: 'none',
                 cursor: 'pointer',
                 boxShadow: '0 6px 24px rgba(161,118,40,0.45)',
                 transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-                flex: '1 1 auto',
-                maxWidth: 320,
+                flex: '0 1 auto',
+                minWidth: 220,
                 textAlign: 'center',
               }}
             >
@@ -331,8 +308,7 @@ export default function HeroSection() {
                 letterSpacing: '0.04em',
                 textTransform: 'uppercase',
                 transition: 'all 0.2s',
-                flex: '1 1 auto',
-                maxWidth: 260,
+                flex: '0 1 auto',
                 textAlign: 'center',
               }}
             >
@@ -340,191 +316,39 @@ export default function HeroSection() {
             </button>
           </div>
 
-          {/* ── BARRA DE ACESSO IMEDIATO À DOCUMENTAÇÃO NO PRÓPRIO SITE ── */}
-          {/* Evita contactos no WhatsApp para pedir plantas que já estão no site */}
-          <div style={{
-            width: '100%',
-            maxWidth: 680,
-            background: 'rgba(10, 11, 14, 0.82)',
-            border: '1px solid rgba(184, 146, 74, 0.38)',
-            borderRadius: 8,
-            padding: '12px 14px',
-            marginBottom: 20,
-            backdropFilter: 'blur(10px)',
-          }}>
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              gap: 8,
-              marginBottom: 8,
-              flexWrap: 'wrap',
-            }}>
-              <span style={{
-                fontSize: '0.74rem',
-                fontWeight: 700,
-                color: 'var(--gold-light)',
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 6,
-              }}>
-                <span style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--gold-light)' }} />
-                Consultar Detalhes Já Disponíveis no Site:
-              </span>
-              <span style={{ fontSize: '0.68rem', color: 'rgba(255,255,255,0.5)' }}>
-                (Sem precisar de pedir por mensagem)
-              </span>
-            </div>
-
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
-              gap: 6,
-            }}>
-              <a
-                href="#plantas"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                  background: 'rgba(255,255,255,0.06)',
-                  border: '1px solid rgba(255,255,255,0.14)',
-                  padding: '7px 10px',
-                  borderRadius: 4,
-                  fontSize: '0.74rem',
-                  fontWeight: 600,
-                  color: '#FFFFFF',
-                  textDecoration: 'none',
-                  transition: 'background 0.15s, border-color 0.15s',
-                }}
-              >
-                <span>📐</span>
-                <span>Plantas Técnicas & 3D</span>
-              </a>
-
-              <a
-                href="#localizacao"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                  background: 'rgba(255,255,255,0.06)',
-                  border: '1px solid rgba(255,255,255,0.14)',
-                  padding: '7px 10px',
-                  borderRadius: 4,
-                  fontSize: '0.74rem',
-                  fontWeight: 600,
-                  color: '#FFFFFF',
-                  textDecoration: 'none',
-                  transition: 'background 0.15s, border-color 0.15s',
-                }}
-              >
-                <span>📍</span>
-                <span>Localização no Mapa</span>
-              </a>
-
-              <a
-                href="#condicoes"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                  background: 'rgba(255,255,255,0.06)',
-                  border: '1px solid rgba(255,255,255,0.14)',
-                  padding: '7px 10px',
-                  borderRadius: 4,
-                  fontSize: '0.74rem',
-                  fontWeight: 600,
-                  color: '#FFFFFF',
-                  textDecoration: 'none',
-                  transition: 'background 0.15s, border-color 0.15s',
-                }}
-              >
-                <span>💶</span>
-                <span>Preço & Impostos</span>
-              </a>
-
-              <a
-                href="#autoridade"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 6,
-                  background: 'rgba(255,255,255,0.06)',
-                  border: '1px solid rgba(255,255,255,0.14)',
-                  padding: '7px 10px',
-                  borderRadius: 4,
-                  fontSize: '0.74rem',
-                  fontWeight: 600,
-                  color: '#FFFFFF',
-                  textDecoration: 'none',
-                  transition: 'background 0.15s, border-color 0.15s',
-                }}
-              >
-                <span>🏛️</span>
-                <span>Alvará & Obras Real</span>
-              </a>
-            </div>
-          </div>
-
-          {/* Key spec pills */}
+          {/* Key spec pills — Clean & Refined */}
           <div className="hero-cinematic-pills" style={{
             display: 'flex',
             flexWrap: 'wrap',
-            gap: 6,
+            gap: 8,
           }}>
             {[
               '~180 m² ABP',
               'Jardim ~82 m²',
               'Garagem 30 m²',
               'Cozinha Equipada',
-              '8 min Aveiro',
-              'Entrada 10% Blindada',
+              '8 min de Aveiro',
+              'Entrada 10% Salvaguardada',
             ].map(tag => (
               <span key={tag} style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: 5,
-                padding: '4px 11px',
-                background: 'rgba(255,255,255,0.08)',
-                border: '1px solid rgba(255,255,255,0.16)',
-                borderRadius: 2,
-                fontSize: '0.68rem',
+                gap: 6,
+                padding: '5px 12px',
+                background: 'rgba(255,255,255,0.06)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                borderRadius: 3,
+                fontSize: '0.70rem',
                 fontWeight: 600,
-                color: 'rgba(255,255,255,0.75)',
-                letterSpacing: '0.07em',
-                textTransform: 'uppercase',
+                color: 'rgba(255,255,255,0.85)',
+                letterSpacing: '0.04em',
                 backdropFilter: 'blur(6px)',
               }}>
-                <span style={{ width: 3, height: 3, background: 'var(--gold-light)', borderRadius: 1, display: 'inline-block' }} />
+                <span style={{ width: 4, height: 4, background: 'var(--gold-light)', borderRadius: '50%', display: 'inline-block' }} />
                 {tag}
               </span>
             ))}
           </div>
-        </div>
-
-        {/* Corner accent — slide number UI like references */}
-        <div style={{
-          position: 'absolute',
-          bottom: 'clamp(28px, 4vw, 48px)',
-          right: 'clamp(20px, 4vw, 48px)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 10,
-          zIndex: 10,
-        }}>
-          {['01', '02', '03'].map((n, i) => (
-            <div key={n} style={{
-              fontSize: '0.68rem',
-              fontWeight: 700,
-              letterSpacing: '0.1em',
-              color: i === 0 ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.28)',
-              lineHeight: 1,
-              transition: 'color 0.2s',
-            }}>{n}</div>
-          ))}
         </div>
       </div>
 
@@ -545,7 +369,7 @@ export default function HeroSection() {
           { label: 'Licenciamento:', value: 'Aprovado Município de Aveiro', href: '#autoridade' },
           { label: 'Construtora Oficial:', value: 'Grupo Freitas Renovações ↗', href: 'https://grupofreitasrenovacoes.pt' },
           { label: 'Disponibilidade:', value: 'Visitas esta semana', href: undefined },
-          { label: 'Entrada 10%:', value: '33.500€ (sinal blindado no CPCV)', href: undefined },
+          { label: 'Entrada 10%:', value: '33.500€ (salvaguardado no CPCV)', href: undefined },
         ].map((item, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.76rem' }}>
             <span style={{ color: 'rgba(255,255,255,0.38)', fontWeight: 400 }}>{item.label}</span>

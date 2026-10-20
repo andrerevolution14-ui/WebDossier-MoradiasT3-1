@@ -18,12 +18,6 @@ export interface PropertyData {
   priceFormatted: string;
   priceWithTaxes: number;
   priceWithTaxesFormatted: string;
-  traditionalPrice: number;
-  traditionalPriceFormatted: string;
-  bankAppraisal: number;
-  bankAppraisalFormatted: string;
-  immediateEquity: number;
-  immediateEquityFormatted: string;
   depositAmount: number;
   depositAmountFormatted: string;
   depositPercentage: number;
@@ -51,12 +45,6 @@ export const PROPERTY: PropertyData = {
   priceFormatted: '335.000€',
   priceWithTaxes: 335000,
   priceWithTaxesFormatted: '335.000€ (c/ IMT e Imposto de Selo)',
-  traditionalPrice: 365000,
-  traditionalPriceFormatted: '365.000€ (+ IMT e Selo à parte)',
-  bankAppraisal: 450000,
-  bankAppraisalFormatted: '450.000€',
-  immediateEquity: 115000,
-  immediateEquityFormatted: '+115.000€',
   depositAmount: 33500,
   depositAmountFormatted: '33.500€',
   depositPercentage: 10,
@@ -73,27 +61,27 @@ export const CONTACT_PHONE_DISPLAY = '919 367 087';
 
 export const CRITICAL_MICRO_STATS = [
   {
-    badge: 'Equity Imediato',
-    icon: '💎',
-    number: '+115.000€',
-    label: 'Avaliação Bancária: 450.000€',
-    desc: 'Preço final de 335.000€ com IMT e Imposto de Selo incluídos face a uma avaliação bancária de 450.000€.',
+    badge: 'Modelo Direto',
+    icon: '🏡',
+    number: '335.000€',
+    label: 'Chave na Mão com Impostos',
+    desc: 'Preço fechado em contrato que inclui terreno em seu nome, projeto aprovado, construção e impostos de transmissão.',
     highlight: true,
   },
   {
-    badge: 'Garantia Rigorosa',
+    badge: 'Prazo Rigoroso',
     icon: '⏱️',
     number: '10 Meses',
-    label: '335.000€ c/ IMT e Selo',
-    desc: 'Preço final fechado em contrato chave-na-mão com IMT e Imposto de Selo já incluídos, sem derrapes.',
+    label: 'Execução de Obra',
+    desc: 'Prazo contratualizado com acompanhamento contínuo e sem revisões orçamentais.',
     highlight: false,
   },
   {
     badge: 'Segurança Contratual',
     icon: '🛡️',
     number: '10%',
-    label: 'Entrada Protegida (33.500€)',
-    desc: 'Sinal de 10% do valor final (33.500€) com salvaguarda total de devolução no CPCV caso não obtenha financiamento.',
+    label: 'Entrada Salvaguardada (33.500€)',
+    desc: 'Sinal protegido por cláusula resolutiva no CPCV com devolução integral se o banco recusar crédito.',
     highlight: false,
   },
 ];

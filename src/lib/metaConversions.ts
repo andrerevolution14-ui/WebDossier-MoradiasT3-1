@@ -10,8 +10,8 @@ export const META_CAPI_ACCESS_TOKEN =
   process.env.META_CAPI_ACCESS_TOKEN ||
   'EAAT9k03bEqsBSgjVoa82Fet3Yiurus5KtnXVbjnPh6eVD42uNpHjz4uJsZAgZCRYrg4jcPZBZCIXZBPbNrCdrMzKryYhF0c07LSM2qmkIBvJ2OpsgIigbbcBVLFByCi6d8ZALAg87QREmel4XtaTh75xWR60eKdNYeYjvkTdCZAp4jZCk0dGoJiFVJAxneHXYAZDZD';
 
-// Valor mais alto de referência do projeto (Avaliação Bancária de 450.000€ / Preço Chave na Mão 335.000€)
-export const META_LEAD_VALUE = Number(process.env.META_LEAD_VALUE || 450000);
+// Valor de referência do projeto (Preço Chave na Mão 335.000€)
+export const META_LEAD_VALUE = Number(process.env.META_LEAD_VALUE || 335000);
 
 function sha256(value: string): string {
   return crypto.createHash('sha256').update(value.trim().toLowerCase()).digest('hex');
@@ -47,7 +47,7 @@ export interface MetaLeadPayload {
 /**
  * Envia evento LEAD para a Meta Conversions API (CAPI) via Server-Side.
  * Garante deduplicação perfeita com o Meta Pixel do browser através do mesmo `eventId`.
- * Valor registado: 450.000€ (Valor mais alto de referência / Avaliação Bancária do Domaine XXV).
+ * Valor registado: 335.000€ (Preço Chave na Mão do Domaine XXV).
  */
 export async function sendMetaLeadConversion(data: MetaLeadPayload) {
   try {
