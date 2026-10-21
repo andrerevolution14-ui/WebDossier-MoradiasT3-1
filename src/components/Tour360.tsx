@@ -50,16 +50,10 @@ function TourInner() {
   return (
     <div style={{ position: 'fixed', inset: 0, background: '#05070c', color: '#fff', display: 'flex', flexDirection: 'column' }}>
       {/* Top bar */}
-      <header style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 20, padding: '16px clamp(16px,4vw,40px)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, background: 'linear-gradient(to bottom, rgba(5,7,12,0.85), transparent)' }}>
-        <a href="/" style={{ ...glass, color: '#fff', textDecoration: 'none', fontSize: '0.78rem', fontWeight: 600, padding: '9px 16px', borderRadius: 100, letterSpacing: '0.03em' }}>
+      <header style={{ position: 'absolute', top: 0, left: 0, zIndex: 20, padding: '16px clamp(16px,4vw,40px)', pointerEvents: 'none' }}>
+        <a href="/" style={{ ...glass, pointerEvents: 'auto', color: '#fff', textDecoration: 'none', fontSize: '0.78rem', fontWeight: 600, padding: '9px 16px', borderRadius: 100, letterSpacing: '0.03em' }}>
           ← Voltar ao dossier
         </a>
-        <div style={{ textAlign: 'right' }}>
-          <div style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: '1.05rem', lineHeight: 1 }}>Domaine XXV</div>
-          <div style={{ fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--gold-light)', marginTop: 4 }}>
-            Visita 360° · Oliveirinha
-          </div>
-        </div>
       </header>
 
       {TOUR_360_URL ? (
