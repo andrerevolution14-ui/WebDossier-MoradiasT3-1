@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { TOUR_360_PATH } from '@/lib/constants';
 
 /* ─── Gallery — 12 curated images, uniform 4:3 rectangles ────────────────── */
 const ALL_IMAGES = [
@@ -37,6 +38,26 @@ export default function GallerySection() {
           <p className="mobile-center-desc" style={{ fontSize:'0.88rem', color:'var(--text-muted)', margin: '0 auto 32px', textAlign: 'center' }}>
             Visualização 3D fidedigna do projeto de arquitetura aprovado. Toque em qualquer imagem para abrir em ecrã inteiro.
           </p>
+
+          {/* ── Faixa Visita 360° ── */}
+          <a href={TOUR_360_PATH} id="galeria_cta_visita_360" style={{
+            position: 'relative', display: 'block', overflow: 'hidden', borderRadius: 6, marginBottom: 20,
+            textDecoration: 'none', minHeight: 'clamp(170px, 24vw, 230px)', border: '1px solid var(--border)',
+          }}>
+            <Image src="/images/sala-de-jantar.webp" alt="Render da sala da moradia T3" fill sizes="(max-width: 1160px) 100vw, 1160px" style={{ objectFit: 'cover' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(5,7,12,0.88) 0%, rgba(5,7,12,0.55) 55%, rgba(5,7,12,0.2) 100%)' }} />
+            <div style={{ position: 'relative', zIndex: 2, padding: 'clamp(22px, 4vw, 44px)', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8, maxWidth: 560 }}>
+              <div style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: 'clamp(1.4rem, 3vw, 2rem)', color: '#fff', lineHeight: 1.15 }}>
+                Prefere andar pela casa?
+              </div>
+              <p style={{ margin: 0, color: 'rgba(255,255,255,0.8)', fontSize: '0.92rem', lineHeight: 1.55 }}>
+                Visita virtual 360° com 22 pontos, do jardim ao sótão.
+              </p>
+              <span style={{ marginTop: 10, display: 'inline-flex', alignItems: 'center', gap: 8, background: 'var(--gold)', color: '#fff', fontWeight: 700, fontSize: '0.8rem', letterSpacing: '0.05em', textTransform: 'uppercase', padding: '12px 24px', borderRadius: 'var(--radius-btn)' }}>
+                Começar visita →
+              </span>
+            </div>
+          </a>
 
           {/* ── Perfect uniform rectangle grid: 3 cols desktop, 2 cols mobile (12 items) ── */}
           <div style={{

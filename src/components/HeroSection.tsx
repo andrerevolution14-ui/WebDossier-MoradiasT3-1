@@ -2,7 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { trackWhatsAppLead } from '@/lib/analytics';
 import { useLeadModal } from '@/components/LeadModal';
-import { WA_PHONE } from '@/lib/constants';
+import { WA_PHONE, TOUR_360_PATH } from '@/lib/constants';
 
 /* ─── Hero Section — Family-focused with guaranteed presentation playback ─── */
 export default function HeroSection() {
@@ -283,54 +283,78 @@ export default function HeroSection() {
               <span style={{ fontSize: '1rem' }}>→</span>
             </button>
 
-            <button
-              type="button"
-              id="hero_cta_falar_promotor"
-              onClick={() => openLeadModal({
-                title: 'Falar com o Promotor · Domaine XXV',
-                source: 'hero_secondary_promotor',
-                defaultObjective: 'Falar com o Promotor',
-              })}
+            <a
+              href={TOUR_360_PATH}
+              id="hero_cta_visita_360"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 gap: 8,
                 color: '#fff',
-                fontWeight: 600,
-                fontSize: 'clamp(0.82rem, 2.3vw, 0.88rem)',
-                padding: '13px 22px',
-                borderRadius: 'var(--radius-btn)',
-                border: '1px solid rgba(184, 146, 74, 0.65)',
-                background: 'rgba(21, 22, 26, 0.75)',
-                cursor: 'pointer',
-                backdropFilter: 'blur(8px)',
-                letterSpacing: '0.04em',
+                fontWeight: 700,
+                fontSize: 'clamp(0.84rem, 2.5vw, 0.92rem)',
+                letterSpacing: '0.05em',
                 textTransform: 'uppercase',
-                transition: 'all 0.2s',
+                padding: '13px 28px',
+                borderRadius: 'var(--radius-btn)',
+                border: '1.5px solid rgba(255,255,255,0.75)',
+                background: 'rgba(255,255,255,0.04)',
+                backdropFilter: 'blur(8px)',
+                textDecoration: 'none',
+                transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
                 flex: '0 1 auto',
+                minWidth: 220,
                 textAlign: 'center',
               }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.14)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; }}
             >
-              <span>👤 Falar com o Promotor</span>
-            </button>
+              <span>Entrar na casa em 360°</span>
+            </a>
           </div>
 
-          {/* Key spec pills — Clean & Refined */}
+          {/* Falar com o Promotor — link de texto discreto */}
+          <button
+            type="button"
+            id="hero_cta_falar_promotor"
+            onClick={() => openLeadModal({
+              title: 'Falar com o Promotor · Domaine XXV',
+              source: 'hero_secondary_promotor',
+              defaultObjective: 'Falar com o Promotor',
+            })}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              margin: '-8px 0 26px',
+              color: 'rgba(255,255,255,0.78)',
+              fontSize: '0.84rem',
+              fontWeight: 500,
+              cursor: 'pointer',
+              textDecoration: 'underline',
+              textUnderlineOffset: 4,
+              textDecorationColor: 'rgba(184,146,74,0.7)',
+            }}
+          >
+            Falar com o Promotor
+          </button>
+
+          {/* Quick navigation pills */}
           <div className="hero-cinematic-pills" style={{
             display: 'flex',
             flexWrap: 'wrap',
             gap: 8,
           }}>
-            {[
-              '~180 m² ABP',
-              'Jardim ~82 m²',
-              'Garagem 30 m²',
-              'Cozinha Equipada',
-              '8 min de Aveiro',
-              'Entrada 10% Salvaguardada',
-            ].map(tag => (
-              <span key={tag} style={{
+            {([
+              ['Visita 360°', TOUR_360_PATH],
+              ['Imagens 3D', '#galeria'],
+              ['Localização', '#localizacao'],
+              ['Valores', '#condicoes'],
+              ['Plantas', '#plantas'],
+              ['Processo', '#processo'],
+            ] as const).map(([tag, href]) => (
+              <a key={tag} href={href} style={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: 6,
@@ -343,10 +367,11 @@ export default function HeroSection() {
                 color: 'rgba(255,255,255,0.85)',
                 letterSpacing: '0.04em',
                 backdropFilter: 'blur(6px)',
+                textDecoration: 'none',
               }}>
                 <span style={{ width: 4, height: 4, background: 'var(--gold-light)', borderRadius: '50%', display: 'inline-block' }} />
                 {tag}
-              </span>
+              </a>
             ))}
           </div>
         </div>

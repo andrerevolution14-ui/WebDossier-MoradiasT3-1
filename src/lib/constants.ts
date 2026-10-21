@@ -54,6 +54,10 @@ export const PROPERTY: PropertyData = {
     'https://www.google.com/maps/dir/?api=1&destination=R.+Ac%C3%A1cio+Sim%C3%B5es+Vieira,+3810-843+Oliveirinha',
 };
 
+// URL de embed da visita virtual 360° (Matterport, 3DVista, Kuula, etc.). Vazio = pré-visualização com renders.
+export const TOUR_360_URL = 'https://visita3dmoradia-vvtu.vercel.app/';
+export const TOUR_360_PATH = '/visita-360';
+
 export const WHATSAPP_PHONE = '351920601070';
 export const WA_PHONE = '351920601070';
 export const CONTACT_PHONE_TEL = '+351919367087';

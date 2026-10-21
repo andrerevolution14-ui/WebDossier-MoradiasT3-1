@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { TOUR_360_PATH } from '@/lib/constants';
 
 /* ─── Floor Plans — Technical & 3D side by side (no tabs) ─────────────────── */
 const PLANTA_TECNICA = '/images/planta-tecnica.webp';
@@ -115,6 +116,11 @@ export default function FloorplansSection() {
                     style={{ objectFit:'contain', padding: 12 }}
                   />
                 </div>
+                {plan.label === 'Planta 3D Humanizada' && (
+                  <a href={TOUR_360_PATH} id="planta_link_visita_360" style={{ display:'block', padding:'12px 18px', borderTop:'1px solid var(--border)', fontSize:'0.82rem', fontWeight:600, color:'var(--gold-dark)', textDecoration:'none', textAlign:'center' }}>
+                    Ver esta planta em visita 360° →
+                  </a>
+                )}
               </div>
             ))}
           </div>
