@@ -14,7 +14,6 @@ const DISTANCES = [
 ];
 
 export default function LocationSection() {
-  const [mapType, setMapType] = useState<'live' | 'card'>('live');
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
   return (
@@ -59,42 +58,9 @@ export default function LocationSection() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: '0.76rem', fontWeight: 600, color: 'var(--text-primary)' }}>
                 <span style={{ color: 'var(--gold)' }}>•</span> Rua Acácio Simões Vieira, 3810-843 Oliveirinha
               </div>
-              <div style={{ display: 'flex', gap: 6 }}>
-                <button
-                  onClick={() => setMapType('live')}
-                  style={{
-                    background: mapType === 'live' ? 'var(--gold)' : 'var(--bg)',
-                    color: mapType === 'live' ? '#fff' : 'var(--text-body)',
-                    border: '1px solid var(--border)',
-                    borderRadius: 2,
-                    padding: '5px 12px',
-                    fontSize: '0.70rem',
-                    fontWeight: 600,
-                    letterSpacing: '0.04em',
-                    textTransform: 'uppercase',
-                    cursor: 'pointer',
-                  }}
-                >
-                  Mapa Interativo
-                </button>
-                <button
-                  onClick={() => setMapType('card')}
-                  style={{
-                    background: mapType === 'card' ? 'var(--gold)' : 'var(--bg)',
-                    color: mapType === 'card' ? '#fff' : 'var(--text-body)',
-                    border: '1px solid var(--border)',
-                    borderRadius: 2,
-                    padding: '5px 12px',
-                    fontSize: '0.70rem',
-                    fontWeight: 600,
-                    letterSpacing: '0.04em',
-                    textTransform: 'uppercase',
-                    cursor: 'pointer',
-                  }}
-                >
-                  Ponto de Localização
-                </button>
-              </div>
+              <span style={{ background: 'var(--gold)', color: '#fff', borderRadius: 2, padding: '5px 12px', fontSize: '0.70rem', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                Mapa Interativo
+              </span>
             </div>
 
             {/* Map Area */}
@@ -147,7 +113,7 @@ export default function LocationSection() {
               </div>
 
               {/* Live Google Maps iframe (visible when mapType === 'live') */}
-              {mapType === 'live' && (
+              {(
                 <iframe
                   title="Localização Domaine XXV — Rua Acácio Simões Vieira, 25"
                   src={MAP_EMBED}

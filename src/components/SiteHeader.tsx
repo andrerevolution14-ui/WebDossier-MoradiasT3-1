@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { trackWhatsAppLead } from '@/lib/analytics';
 import { useLeadModal } from '@/components/LeadModal';
 
@@ -21,6 +21,14 @@ export const WA_DOSSIER = `${WA_BASE}?text=${WA_MSG}`;
 export default function SiteHeader() {
   const { openLeadModal } = useLeadModal();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 360);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const NAV_LINKS = [
     ['#galeria', 'Imagens 3D'],
@@ -67,7 +75,7 @@ export default function SiteHeader() {
         {/* CTA Button */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
 
-          <button
+          {scrolled && <button
             type="button"
             className="site-header-cta-desktop"
             onClick={() => openLeadModal({
@@ -95,7 +103,7 @@ export default function SiteHeader() {
             }}
           >
             <span>Agendar Visita ao Lote →</span>
-          </button>
+          </button>}
 
           <button
             onClick={() => setMobileMenuOpen(prev => !prev)}

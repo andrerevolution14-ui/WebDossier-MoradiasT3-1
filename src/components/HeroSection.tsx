@@ -247,98 +247,38 @@ export default function HeroSection() {
             Preço chave na mão com impostos incluídos · Conclusão em 10 meses · A 8 minutos do centro de Aveiro.
           </p>
 
-          {/* Dual High-Intent CTAs: Agendar Visita ao Lote OU Falar com o Promotor */}
-          <div className="hero-cinematic-cta" style={{ display: 'flex', alignItems: 'center', gap: 12, flexWrap: 'wrap', marginBottom: 24, width: '100%' }}>
-            <button
-              type="button"
-              id="hero_cta_agendar_visita"
-              onClick={() => openLeadModal({
-                title: 'Agendar Visita ao Lote · Domaine XXV',
-                source: 'hero_primary_visita_lote',
-                defaultObjective: 'Agendar Visita ao Lote',
-              })}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 8,
-                background: 'var(--gold)',
-                color: '#fff',
-                fontWeight: 700,
-                fontSize: 'clamp(0.84rem, 2.5vw, 0.92rem)',
-                letterSpacing: '0.05em',
-                textTransform: 'uppercase',
-                padding: '14px 28px',
-                borderRadius: 'var(--radius-btn)',
-                border: 'none',
-                cursor: 'pointer',
-                boxShadow: '0 6px 24px rgba(161,118,40,0.45)',
-                transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-                flex: '0 1 auto',
-                minWidth: 220,
-                textAlign: 'center',
-              }}
-            >
-              <span>Agendar Visita ao Lote</span>
-              <span style={{ fontSize: '1rem' }}>→</span>
-            </button>
-
-            <a
-              href={TOUR_360_PATH}
-              id="hero_cta_visita_360"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 8,
-                color: '#fff',
-                fontWeight: 700,
-                fontSize: 'clamp(0.84rem, 2.5vw, 0.92rem)',
-                letterSpacing: '0.05em',
-                textTransform: 'uppercase',
-                padding: '13px 28px',
-                borderRadius: 'var(--radius-btn)',
-                border: '1.5px solid rgba(255,255,255,0.75)',
-                background: 'rgba(255,255,255,0.04)',
-                backdropFilter: 'blur(8px)',
-                textDecoration: 'none',
-                transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-                flex: '0 1 auto',
-                minWidth: 220,
-                textAlign: 'center',
-              }}
-              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.14)'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; }}
-            >
-              <span>Entrar na casa em 360°</span>
-            </a>
-          </div>
-
-          {/* Falar com o Promotor — link de texto discreto */}
-          <button
-            type="button"
-            id="hero_cta_falar_promotor"
-            onClick={() => openLeadModal({
-              title: 'Falar com o Promotor · Domaine XXV',
-              source: 'hero_secondary_promotor',
-              defaultObjective: 'Falar com o Promotor',
-            })}
+          {/* Scroll cue — sem CTAs de lead above the fold, para incentivar a exploração */}
+          <a
+            href="#galeria"
+            id="hero_scroll_cue"
             style={{
-              background: 'none',
-              border: 'none',
-              padding: 0,
-              margin: '-8px 0 26px',
-              color: 'rgba(255,255,255,0.78)',
-              fontSize: '0.84rem',
-              fontWeight: 500,
-              cursor: 'pointer',
-              textDecoration: 'underline',
-              textUnderlineOffset: 4,
-              textDecorationColor: 'rgba(184,146,74,0.7)',
+              display: 'inline-flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              gap: 8,
+              marginBottom: 24,
+              color: 'rgba(255,255,255,0.85)',
+              textDecoration: 'none',
+              fontSize: '0.78rem',
+              fontWeight: 600,
+              letterSpacing: '0.14em',
+              textTransform: 'uppercase',
             }}
           >
-            Falar com o Promotor
-          </button>
+            <span>Descubra a casa — deslize para baixo</span>
+            <span
+              aria-hidden="true"
+              style={{
+                display: 'inline-block',
+                fontSize: '1.4rem',
+                color: 'var(--gold-light)',
+                animation: 'heroScrollBounce 1.6s ease-in-out infinite',
+              }}
+            >
+              ↓
+            </span>
+          </a>
+          <style>{`@keyframes heroScrollBounce { 0%,100% { transform: translateY(0); opacity: .6; } 50% { transform: translateY(8px); opacity: 1; } }`}</style>
 
           {/* Quick navigation pills */}
           <div className="hero-cinematic-pills" style={{
