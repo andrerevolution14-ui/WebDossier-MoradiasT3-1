@@ -207,6 +207,33 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
   }
 
   trackEvent('whatsapp_click_contact', { source, isFirstLeadInSession, ...extra });
+
+  // 3. Disparo Server-Side Meta CAPI + Registo Neon DB com paridade total aos formulários
+  try {
+    const { fbp, fbc } = getMetaCookies();
+    const payload = JSON.stringify({
+      eventId,
+      source,
+      objective: (extra.objective as string) || 'Conversa Geral',
+      message: (extra.message as string) || '',
+      fbp,
+      fbc,
+    });
+
+    if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
+      const blob = new Blob([payload], { type: 'application/json' });
+      navigator.sendBeacon('/api/track-whatsapp', blob);
+    } else {
+      fetch('/api/track-whatsapp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload,
+        keepalive: true,
+      }).catch(() => {});
+    }
+  } catch (beaconErr) {
+    console.warn('Falha silenciosa ao despachar beacon WhatsApp:', beaconErr);
+  }
 }
 
 // Inicializar listener global para apanhar quaisquer links wa.me sem onClick explícito

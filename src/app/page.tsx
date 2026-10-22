@@ -15,10 +15,13 @@ import FloatingBar from '@/components/FloatingBar';
 import SiteFooter from '@/components/SiteFooter';
 import { LeadModalProvider } from '@/components/LeadModal';
 import ExitIntentModal from '@/components/ExitIntentModal';
+import WhatsAppFloatingButton from '@/components/WhatsAppFloatingButton';
 
 export default function HomePage() {
   return (
     <LeadModalProvider>
+      {/* ─── WHATSAPP FLOATING BUTTON (SEMPRE ATIVO) ──────────── */}
+      <WhatsAppFloatingButton />
       {/* ─── EXIT INTENT POPUP ─────────────────────────────────── */}
       <ExitIntentModal />
       {/* ─── 0. TOP NAVIGATION ─────────────────────────────────── */}

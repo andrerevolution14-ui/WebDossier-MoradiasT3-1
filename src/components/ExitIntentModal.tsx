@@ -153,12 +153,7 @@ export default function ExitIntentModal() {
     try {
       const cleanPhone = phone.replace(/\D/g, '');
       const { fbp, fbc } = getMetaCookies();
-
-      const { eventId } = trackFormLeadSubmit({
-        name: name.trim(),
-        phone: cleanPhone,
-        source: 'exit_intent_popup',
-      });
+      const clientEventId = `exit_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
 
       const res = await fetch('/api/leads', {
         method: 'POST',
@@ -169,7 +164,7 @@ export default function ExitIntentModal() {
           source: 'exit_intent_popup',
           interesse:
             'Exit Intent — Moradia T3 Oliveirinha 335k c/ IMT e Selo Incluídos (Dossier + Simulação)',
-          eventId,
+          eventId: clientEventId,
           fbp,
           fbc,
         }),
@@ -179,6 +174,13 @@ export default function ExitIntentModal() {
       if (!res.ok) {
         throw new Error(data.error || 'Erro ao submeter');
       }
+
+      trackFormLeadSubmit({
+        name: name.trim(),
+        phone: cleanPhone,
+        source: 'exit_intent_popup',
+        eventId: data.eventId || clientEventId,
+      });
 
       try {
         localStorage.setItem('domaine_lead_submitted', 'true');

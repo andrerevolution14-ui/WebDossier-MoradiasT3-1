@@ -205,13 +205,7 @@ export default function LeadModal({
     try {
       const cleanPhone = phone.replace(/\D/g, '');
       const { fbp, fbc } = getMetaCookies();
-
-      // Disparar evento LEAD no Meta Pixel com eventId para deduplicação CAPI
-      const { eventId } = trackFormLeadSubmit({
-        name: name.trim(),
-        phone: cleanPhone,
-        source: source || 'modal_form',
-      });
+      const clientEventId = `lead_form_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
 
       const res = await fetch('/api/leads', {
         method: 'POST',
@@ -226,7 +220,7 @@ export default function LeadModal({
           notes: notes.trim(),
           source: source || 'modal_form',
           interesse: title || 'Domaine XXV Moradia T3',
-          eventId,
+          eventId: clientEventId,
           fbp,
           fbc,
         }),
@@ -236,6 +230,14 @@ export default function LeadModal({
       if (!res.ok) {
         throw new Error(data.error || 'Erro ao submeter');
       }
+
+      // Disparar evento LEAD no Meta Pixel com o mesmo eventId validado da CAPI
+      trackFormLeadSubmit({
+        name: name.trim(),
+        phone: cleanPhone,
+        source: source || 'modal_form',
+        eventId: data.eventId || clientEventId,
+      });
 
       // Redirecionamento instantâneo para a página de obrigado
       const params = new URLSearchParams({

@@ -138,3 +138,106 @@ export async function sendMetaLeadConversion(data: MetaLeadPayload) {
     return { success: false, error: error.message };
   }
 }
+
+export interface MetaWhatsAppPayload {
+  eventId: string;
+  objective?: string;
+  source?: string;
+  sourceUrl?: string;
+  clientIp?: string | null;
+  clientUserAgent?: string | null;
+  fbp?: string | null;
+  fbc?: string | null;
+  value?: number;
+}
+
+/**
+ * Dispara eventos de Lead e Contact via Conversions API (CAPI) para cliques no WhatsApp,
+ * garantindo paridade total e deduplicação de 100% com o Meta Pixel do browser.
+ */
+export async function sendMetaWhatsAppConversion(data: MetaWhatsAppPayload) {
+  try {
+    const {
+      eventId,
+      objective = 'Conversa Geral',
+      source = 'whatsapp_floating_widget',
+      sourceUrl,
+      clientIp,
+      clientUserAgent,
+      fbp,
+      fbc,
+      value = META_LEAD_VALUE,
+    } = data;
+
+    const userData: Record<string, unknown> = {};
+    if (clientIp) userData.client_ip_address = clientIp;
+    if (clientUserAgent) userData.client_user_agent = clientUserAgent;
+    if (fbp) userData.fbp = fbp;
+    if (fbc) userData.fbc = fbc;
+
+    const nowSeconds = Math.floor(Date.now() / 1000);
+
+    const payload = {
+      data: [
+        {
+          event_name: 'Lead',
+          event_time: nowSeconds,
+          event_id: eventId,
+          event_source_url: sourceUrl || getSiteUrl(),
+          action_source: 'website',
+          user_data: userData,
+          custom_data: {
+            currency: 'EUR',
+            value: value,
+            content_name: 'Domaine XXV — Moradia T3/T4 Oliveirinha (WhatsApp)',
+            content_category: 'Imobiliário Aveiro',
+            source: source,
+            objective: objective,
+          },
+        },
+        {
+          event_name: 'Contact',
+          event_time: nowSeconds,
+          event_id: `${eventId}_contact`,
+          event_source_url: sourceUrl || getSiteUrl(),
+          action_source: 'website',
+          user_data: userData,
+          custom_data: {
+            currency: 'EUR',
+            value: value,
+            content_name: `Contacto WhatsApp - ${objective}`,
+            content_category: 'Imobiliário Aveiro',
+            source: source,
+            objective: objective,
+          },
+        },
+      ],
+    };
+
+    const url = `https://graph.facebook.com/v19.0/${META_PIXEL_ID}/events?access_token=${META_CAPI_ACCESS_TOKEN}`;
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+
+    const resJson = await response.json();
+    if (!response.ok) {
+      console.warn('⚠️ [Meta CAPI WhatsApp] Resposta não-OK:', JSON.stringify(resJson));
+      return { success: false, error: resJson };
+    }
+
+    console.log('✅ [Meta CAPI WhatsApp] Eventos enviados com sucesso:', {
+      eventId,
+      events_received: resJson.events_received,
+      fbtrace_id: resJson.fbtrace_id,
+    });
+
+    return { success: true, response: resJson };
+  } catch (error: any) {
+    console.error('❌ [Meta CAPI WhatsApp] Erro ao disparar CAPI:', error.message);
+    return { success: false, error: error.message };
+  }
+}
+
