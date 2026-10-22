@@ -208,7 +208,7 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
 
   trackEvent('whatsapp_click_contact', { source, isFirstLeadInSession, ...extra });
 
-  // 3. Disparo Server-Side Meta CAPI + Registo Neon DB com paridade total aos formulários
+  // 3. Disparo Server-Side Meta CAPI (Lead & Contact)
   try {
     const { fbp, fbc } = getMetaCookies();
     const payload = JSON.stringify({

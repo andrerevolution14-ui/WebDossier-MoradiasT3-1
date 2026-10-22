@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { sql, ensureLeadsTable } from '@/lib/db';
 import { sendMetaWhatsAppConversion } from '@/lib/metaConversions';
 import { getSiteUrl } from '@/lib/siteUrl';
 
@@ -29,7 +28,7 @@ export async function POST(req: NextRequest) {
     const fbp = bodyFbp || req.cookies.get('_fbp')?.value || null;
     const fbc = bodyFbc || req.cookies.get('_fbc')?.value || null;
 
-    // 2. Disparar Meta Conversions API (CAPI) Server-Side
+    // 2. Disparar Meta Conversions API (CAPI) Server-Side como Lead e Contact
     try {
       await sendMetaWhatsAppConversion({
         eventId: finalEventId,
@@ -45,44 +44,11 @@ export async function POST(req: NextRequest) {
       console.error('⚠️ [Meta CAPI WhatsApp] Falha ao enviar para Graph API:', metaError);
     }
 
-    // 3. Registar na base de dados Neon para que o utilizador veja imediatamente na DB
-    let dbId = null;
-    try {
-      await ensureLeadsTable();
-      const enrichedNotes = `Iniciou conversa no WhatsApp com o André. Objetivo: "${objective}". ${message ? `Mensagem: "${message}". ` : ''}EventID: ${finalEventId}`;
-      const result = await sql`
-        INSERT INTO leads (
-          nome,
-          telefone,
-          objetivo,
-          notes,
-          interesse,
-          source,
-          status,
-          prioridade
-        )
-        VALUES (
-          'Contacto WhatsApp (Iniciado)',
-          '+351 920 601 070 (WA)',
-          ${objective.slice(0, 200)},
-          ${enrichedNotes},
-          'Domaine XXV Moradia T3',
-          ${String(source).slice(0, 90)},
-          'whatsapp_iniciado',
-          'Média (WhatsApp)'
-        )
-        RETURNING id;
-      `;
-      dbId = result?.[0]?.id;
-    } catch (dbError) {
-      console.error('⚠️ [Neon DB] Falha ao registar clique WhatsApp na base de dados:', dbError);
-    }
-
+    // Apenas envia a conversão para o Meta; não insere na tabela de leads da base de dados.
     return NextResponse.json({
       success: true,
       eventId: finalEventId,
-      dbId,
-      message: 'Contacto WhatsApp rastreado com sucesso.',
+      message: 'Contacto WhatsApp rastreado para o Meta com sucesso.',
     });
   } catch (error: any) {
     console.error('Erro em /api/track-whatsapp:', error);
@@ -92,3 +58,4 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+

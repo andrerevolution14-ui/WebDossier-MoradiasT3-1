@@ -25,7 +25,7 @@ export default function WhatsAppFloatingButton() {
   }, []);
 
   const handleClick = () => {
-    // 1. Rastreamento completo (Pixel Lead/Contact + Server-Side Meta CAPI + Registo Neon DB)
+    // 1. Rastreamento Meta (Pixel Lead/Contact + Server-Side Meta CAPI)
     trackWhatsAppContact('whatsapp_floating_widget', {
       objective: 'Contacto Direto WhatsApp',
       message: DEFAULT_PRESET_MESSAGE,
