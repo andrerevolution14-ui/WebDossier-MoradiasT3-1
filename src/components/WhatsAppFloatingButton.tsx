@@ -6,9 +6,9 @@ import { trackWhatsAppContact } from '@/lib/analytics';
 const PHONE_NUMBER = '351920601070';
 const PHONE_DISPLAY = '+351 920 601 070';
 
-// Mensagem pré-definida única, aberta, cordial e alinhada aos objetivos da landing page
+// Mensagem pré-definida única, aberta, cordial e geral sobre o projeto
 const DEFAULT_PRESET_MESSAGE =
-  'Olá André! Vi as Moradias Domaine XXV em Oliveirinha (335.000€ chave na mão c/ impostos) e gostaria de obter mais informações sobre o projeto e agendar uma visita ao lote. Podemos falar?';
+  'Olá André! Vi o projeto das Moradias Domaine XXV em Oliveirinha e gostaria de obter mais informações. Podemos falar?';
 
 export default function WhatsAppFloatingButton() {
   const [hasScrolledPastTop, setHasScrolledPastTop] = useState(false);

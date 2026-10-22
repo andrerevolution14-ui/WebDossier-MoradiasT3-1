@@ -9,7 +9,7 @@ export const WA_BASE  = `https://wa.me/${WA_PHONE}`;
 
 // Mensagem automática unificada para todos os botões de contacto
 const WA_MSG = encodeURIComponent(
-  'Olá André! Vi a Moradia Domaine XXV em Oliveirinha e gostaria de agendar uma visita. Como podemos combinar?'
+  'Olá André! Vi o projeto das Moradias Domaine XXV em Oliveirinha e gostaria de obter mais informações. Podemos falar?'
 );
 
 export const WA_VISIT   = `${WA_BASE}?text=${WA_MSG}`;
