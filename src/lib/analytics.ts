@@ -135,104 +135,14 @@ export function trackFormLeadSubmit(payload: {
 }
 
 /**
- * Disparado ao clicar em qualquer botão do WhatsApp.
- * Implementa DEBOUNCING (2s) e DEDUPLICAÇÃO POR SESSÃO.
+ * Cliques ou mensagens por WhatsApp não são guardados na base de dados
+ * nem considerados Lead ou Contacto (sem tracking por solicitação explícita).
  */
-export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<string, unknown> = {}) {
-  if (typeof window === 'undefined') return;
-
-  const now = Date.now();
-  // 1. Prevenir disparos duplicados em cliques rápidos / double-tap (debounce de 2 segundos)
-  if (now - lastClickTime < 2000) {
-    return;
-  }
-  lastClickTime = now;
-
-  // 2. Deduplicação por Sessão:
-  let isFirstLeadInSession = true;
-  try {
-    if (sessionStorage.getItem('meta_wa_lead_fired')) {
-      isFirstLeadInSession = false;
-    } else {
-      sessionStorage.setItem('meta_wa_lead_fired', '1');
-    }
-  } catch {
-    // Fallback se sessionStorage estiver desativado/modo restrito
-  }
-
-  const eventId = getSessionEventId();
-
-  try {
-    if (typeof (window as any).fbq === 'function') {
-      // Disparar estritamente o evento "Contact" (e NÃO "Lead", evitando falsas leads no Meta Ads sem mensagem enviada)
-      (window as any).fbq(
-        'track',
-        'Contact',
-        {
-          content_name: 'Contacto WhatsApp - Moradia Oliveirinha',
-          content_category: 'Imobiliário Aveiro',
-          currency: 'EUR',
-          value: HIGHEST_LEAD_VALUE,
-          source,
-          ...extra,
-        },
-        { eventID: eventId }
-      );
-
-      console.log(`🎯 [Meta Pixel] Contacto WhatsApp registado (Contact) (Source: ${source}, ID: ${eventId})`);
-    } else {
-      console.warn('⚠️ [Meta Pixel] fbq ainda não carregado no momento do clique.');
-    }
-  } catch (err) {
-    console.error('Erro ao disparar Meta Pixel:', err);
-  }
-
-  trackEvent('whatsapp_click_contact', { source, isFirstLeadInSession, ...extra });
-
-  // 3. Disparo Server-Side Meta CAPI (Lead & Contact)
-  try {
-    const { fbp, fbc } = getMetaCookies();
-    const payload = JSON.stringify({
-      eventId,
-      source,
-      objective: (extra.objective as string) || 'Conversa Geral',
-      message: (extra.message as string) || '',
-      fbp,
-      fbc,
-    });
-
-    if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
-      const blob = new Blob([payload], { type: 'application/json' });
-      navigator.sendBeacon('/api/track-whatsapp', blob);
-    } else {
-      fetch('/api/track-whatsapp', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: payload,
-        keepalive: true,
-      }).catch(() => {});
-    }
-  } catch (beaconErr) {
-    console.warn('Falha silenciosa ao despachar beacon WhatsApp:', beaconErr);
-  }
+export function trackWhatsAppContact(
+  _source = 'whatsapp_cta',
+  _extra: Record<string, unknown> = {}
+) {
+  // Sem gravação na base de dados, sem Meta Pixel, sem CAPI, sem tracking.
 }
 
-// Inicializar listener global para apanhar quaisquer links wa.me sem onClick explícito
-if (typeof window !== 'undefined') {
-  window.addEventListener(
-    'click',
-    (e: MouseEvent) => {
-      const target = (e.target as HTMLElement | null)?.closest('a');
-      if (!target) return;
-      const href = target.getAttribute('href') || '';
-      if (href.includes('wa.me') || href.includes('whatsapp.com')) {
-        const source = target.id || target.getAttribute('data-source') || 'wa_link';
-        trackWhatsAppContact(source);
-      }
-    },
-    { capture: true }
-  );
-}
-
-// Alias para compatibilidade com componentes existentes
 export const trackWhatsAppLead = trackWhatsAppContact;
