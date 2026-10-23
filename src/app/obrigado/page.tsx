@@ -87,7 +87,9 @@ export default async function ObrigadoPage({
         </a>
 
         <a
-          href={`https://wa.me/${WA_PHONE}`}
+          href={`https://api.whatsapp.com/send?phone=${WA_PHONE}&text=${encodeURIComponent(
+            'Olá André! Acabei de submeter o pedido no site do Domaine XXV e gostaria de falar consigo.'
+          )}`}
           target="_blank"
           rel="noopener noreferrer"
           style={{

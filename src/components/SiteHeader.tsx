@@ -5,18 +5,18 @@ import { useLeadModal } from '@/components/LeadModal';
 
 // ─── WhatsApp Config — 920601070 ──────────────────────────────────────────
 export const WA_PHONE = '351920601070';
-export const WA_BASE  = `https://wa.me/${WA_PHONE}`;
+export const WA_BASE  = `https://api.whatsapp.com/send?phone=${WA_PHONE}`;
 
 // Mensagem automática unificada para todos os botões de contacto
 const WA_MSG = encodeURIComponent(
   'Olá André! Vi o projeto das Moradias Domaine XXV em Oliveirinha e gostaria de obter mais informações. Podemos falar?'
 );
 
-export const WA_VISIT   = `${WA_BASE}?text=${WA_MSG}`;
-export const WA_MANAGER = `${WA_BASE}?text=${WA_MSG}`;
-export const WA_CREDIT  = `${WA_BASE}?text=${WA_MSG}`;
-export const WA_GENERIC = `${WA_BASE}?text=${WA_MSG}`;
-export const WA_DOSSIER = `${WA_BASE}?text=${WA_MSG}`;
+export const WA_VISIT   = `${WA_BASE}&text=${WA_MSG}`;
+export const WA_MANAGER = `${WA_BASE}&text=${WA_MSG}`;
+export const WA_CREDIT  = `${WA_BASE}&text=${WA_MSG}`;
+export const WA_GENERIC = `${WA_BASE}&text=${WA_MSG}`;
+export const WA_DOSSIER = `${WA_BASE}&text=${WA_MSG}`;
 
 export default function SiteHeader() {
   const { openLeadModal } = useLeadModal();

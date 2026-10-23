@@ -179,26 +179,11 @@ export async function sendMetaWhatsAppConversion(data: MetaWhatsAppPayload) {
 
     const payload = {
       data: [
-        {
-          event_name: 'Lead',
-          event_time: nowSeconds,
-          event_id: eventId,
-          event_source_url: sourceUrl || getSiteUrl(),
-          action_source: 'website',
-          user_data: userData,
-          custom_data: {
-            currency: 'EUR',
-            value: value,
-            content_name: 'Domaine XXV — Moradia T3/T4 Oliveirinha (WhatsApp)',
-            content_category: 'Imobiliário Aveiro',
-            source: source,
-            objective: objective,
-          },
-        },
+        // Disparar APENAS Contact (e NUNCA Lead) em cliques de WhatsApp
         {
           event_name: 'Contact',
           event_time: nowSeconds,
-          event_id: `${eventId}_contact`,
+          event_id: eventId,
           event_source_url: sourceUrl || getSiteUrl(),
           action_source: 'website',
           user_data: userData,

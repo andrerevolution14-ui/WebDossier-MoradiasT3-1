@@ -324,7 +324,7 @@ export default function ExitIntentModal() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
               <a
-                href={`https://wa.me/${WA_PHONE}?text=${encodeURIComponent(
+                href={`https://api.whatsapp.com/send?phone=${WA_PHONE}&text=${encodeURIComponent(
                   `Olá André! Vi a proposta de 335.000€ chave-na-mão com IMT e Selo incluídos e gostaria de receber o dossier digital e simulação gratuita. (Nome: ${name.trim()} · Contacto: ${phone})`
                 )}`}
                 target="_blank"

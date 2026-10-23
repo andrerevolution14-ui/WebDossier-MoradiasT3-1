@@ -164,28 +164,7 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
 
   try {
     if (typeof (window as any).fbq === 'function') {
-      if (isFirstLeadInSession) {
-        // Evento LEAD disparado APENAS UMA VEZ por visitante/sessão para manter os números 100% fiéis
-        (window as any).fbq(
-          'track',
-          'Lead',
-          {
-            content_name: 'Moradia Oliveirinha Domaine XXV',
-            content_category: 'Imobiliário Aveiro',
-            currency: 'EUR',
-            value: HIGHEST_LEAD_VALUE,
-            source,
-            ...extra,
-          },
-          { eventID: eventId }
-        );
-
-        console.log(`🎯 [Meta Pixel] Novo Lead único WhatsApp registado com sucesso (Source: ${source}, ID: ${eventId})`);
-      } else {
-        console.log(`ℹ️ [Meta Pixel] Clique WhatsApp registado, mas Lead já contabilizado nesta sessão (deduplicado).`);
-      }
-
-      // Evento de Contacto direto (também associado ao eventID para deduplicação)
+      // Disparar estritamente o evento "Contact" (e NÃO "Lead", evitando falsas leads no Meta Ads sem mensagem enviada)
       (window as any).fbq(
         'track',
         'Contact',
@@ -197,8 +176,10 @@ export function trackWhatsAppContact(source = 'whatsapp_cta', extra: Record<stri
           source,
           ...extra,
         },
-        { eventID: `${eventId}_contact` }
+        { eventID: eventId }
       );
+
+      console.log(`🎯 [Meta Pixel] Contacto WhatsApp registado (Contact) (Source: ${source}, ID: ${eventId})`);
     } else {
       console.warn('⚠️ [Meta Pixel] fbq ainda não carregado no momento do clique.');
     }

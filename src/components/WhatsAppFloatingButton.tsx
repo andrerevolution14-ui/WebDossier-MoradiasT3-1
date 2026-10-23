@@ -1,18 +1,22 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { trackWhatsAppContact } from '@/lib/analytics';
-
-const PHONE_NUMBER = '351920601070';
-const PHONE_DISPLAY = '+351 920 601 070';
-
-// Mensagem pré-definida única, aberta, cordial e geral sobre o projeto
-const DEFAULT_PRESET_MESSAGE =
-  'Olá André! Vi o projeto das Moradias Domaine XXV em Oliveirinha e gostaria de obter mais informações. Podemos falar?';
+import {
+  WA_PHONE_NUMBER,
+  WA_PHONE_DISPLAY,
+  WA_DEFAULT_PRESET_MESSAGE,
+  openWhatsAppDirect,
+} from '@/lib/whatsapp';
 
 export default function WhatsAppFloatingButton() {
   const [hasScrolledPastTop, setHasScrolledPastTop] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+
+  // Prevenir disparos acidentais quando o utilizador está apenas a fazer scroll com o polegar
+  const touchStartY = useRef<number | null>(null);
+  const touchStartX = useRef<number | null>(null);
+  const isScrollDrag = useRef<boolean>(false);
 
   // Ajustar posição suavemente quando a barra sticky mobile (FloatingBar) aparece ao scrollar
   useEffect(() => {
@@ -24,17 +28,36 @@ export default function WhatsAppFloatingButton() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
+    touchStartX.current = e.touches[0].clientX;
+    isScrollDrag.current = false;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStartY.current !== null && touchStartX.current !== null) {
+      const deltaY = Math.abs(e.touches[0].clientY - touchStartY.current);
+      const deltaX = Math.abs(e.touches[0].clientX - touchStartX.current);
+      if (deltaY > 10 || deltaX > 10) {
+        isScrollDrag.current = true;
+      }
+    }
+  };
+
   const handleClick = () => {
+    if (isScrollDrag.current) {
+      // Ignora se foi um gesto de scroll com o polegar
+      return;
+    }
+
     // 1. Rastreamento Meta (Pixel Lead/Contact + Server-Side Meta CAPI)
     trackWhatsAppContact('whatsapp_floating_widget', {
       objective: 'Contacto Direto WhatsApp',
-      message: DEFAULT_PRESET_MESSAGE,
+      message: WA_DEFAULT_PRESET_MESSAGE,
     });
 
-    // 2. Abrir WhatsApp direto com a mensagem pré-definida única
-    const encoded = encodeURIComponent(DEFAULT_PRESET_MESSAGE);
-    const waUrl = `https://wa.me/${PHONE_NUMBER}?text=${encoded}`;
-    window.open(waUrl, '_blank', 'noopener,noreferrer');
+    // 2. Abrir WhatsApp direto com a mensagem pré-definida geral única sem fricção
+    openWhatsAppDirect(WA_DEFAULT_PRESET_MESSAGE, WA_PHONE_NUMBER);
   };
 
   return (
@@ -73,7 +96,7 @@ export default function WhatsAppFloatingButton() {
         aria-label="Contacto WhatsApp direto com o André"
         style={{
           position: 'fixed',
-          right: '18px',
+          right: '16px',
           bottom: hasScrolledPastTop
             ? 'calc(86px + env(safe-area-inset-bottom, 0px))'
             : 'calc(20px + env(safe-area-inset-bottom, 0px))',
@@ -81,12 +104,54 @@ export default function WhatsAppFloatingButton() {
           transition: 'bottom 0.32s cubic-bezier(0.16, 1, 0.3, 1)',
           display: 'flex',
           alignItems: 'center',
-          gap: '10px',
+          gap: '8px',
           fontFamily:
             "var(--font-body, 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif)",
         }}
       >
-        {/* Badge lateral (Desktop) — Clicável e elegante */}
+        {/* Pill Informativo Mobile (< 640px) para clarificar o botão e evitar toques às cegas */}
+        <button
+          type="button"
+          onClick={handleClick}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          className="wa-mobile-pill"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '6px',
+            background: 'rgba(16, 18, 22, 0.94)',
+            border: '1px solid rgba(37, 211, 102, 0.5)',
+            borderRadius: '24px',
+            padding: '7px 11px',
+            boxShadow: '0 6px 18px rgba(0, 0, 0, 0.4)',
+            cursor: 'pointer',
+            backdropFilter: 'blur(10px)',
+            WebkitBackdropFilter: 'blur(10px)',
+          }}
+        >
+          <div
+            style={{
+              width: 7,
+              height: 7,
+              borderRadius: '50%',
+              background: '#25D366',
+              boxShadow: '0 0 6px #25D366',
+            }}
+          />
+          <span
+            style={{
+              fontSize: '0.74rem',
+              fontWeight: 700,
+              color: '#FFFFFF',
+              letterSpacing: '0.01em',
+            }}
+          >
+            Falar no WhatsApp
+          </span>
+        </button>
+
+        {/* Badge lateral expandido (Desktop >= 640px) */}
         <button
           type="button"
           onClick={handleClick}
@@ -150,13 +215,15 @@ export default function WhatsAppFloatingButton() {
           type="button"
           id="wa_floating_trigger"
           onClick={handleClick}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          aria-label={`Enviar mensagem WhatsApp para ${PHONE_DISPLAY}`}
+          aria-label={`Enviar mensagem WhatsApp para ${WA_PHONE_DISPLAY}`}
           style={{
             position: 'relative',
-            width: 58,
-            height: 58,
+            width: 54,
+            height: 54,
             borderRadius: '50%',
             background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
             border: '2px solid rgba(255, 255, 255, 0.28)',
@@ -171,13 +238,14 @@ export default function WhatsAppFloatingButton() {
             outline: 'none',
             transform: isHovered ? 'scale(1.08) translateY(-2px)' : 'scale(1)',
             transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s',
+            flexShrink: 0,
           }}
         >
           {/* Anel de Pulso Radiante suave em volta */}
           <span
             style={{
               position: 'absolute',
-              inset: -6,
+              inset: -5,
               borderRadius: '50%',
               border: '2px solid rgba(37, 211, 102, 0.55)',
               animation: 'waPulseRing 2.6s infinite cubic-bezier(0.25, 0.8, 0.25, 1)',
@@ -186,16 +254,19 @@ export default function WhatsAppFloatingButton() {
           />
 
           {/* Ícone Oficial WhatsApp em SVG */}
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.312.045-.694.06-2.124-.533-1.619-.672-2.67-2.316-2.75-2.423-.08-.108-.66-.88-.66-1.678 0-.798.417-1.19.566-1.35.148-.16.324-.2.432-.2.108 0 .216.001.311.006.101.005.236-.039.37.284.14.337.478 1.168.52 1.254.042.086.07.187.012.302-.058.115-.088.187-.174.288-.087.101-.182.226-.26.304-.087.087-.177.182-.076.356.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.173.086.274.072.375-.044.101-.115.433-.504.549-.677.115-.173.231-.144.389-.086.158.058 1.002.472 1.175.558.173.086.288.13.331.202.043.072.043.418-.101.823z" />
             <path d="M12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.66 1.434 5.176L2 22l4.981-1.306C8.42 21.536 10.15 22 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.25c-1.637 0-3.167-.47-4.464-1.282l-.32-.2-2.956.775.789-2.883-.209-.333C3.967 15.011 3.5 13.547 3.5 12c0-4.687 3.813-8.5 8.5-8.5s8.5 3.813 8.5 8.5-3.813 8.5-8.5 8.5z" />
           </svg>
         </button>
       </aside>
 
-      {/* Mostrar badge de texto em ecrãs >= 640px */}
+      {/* Regras responsivas para alternar o pill mobile e o badge desktop */}
       <style jsx global>{`
         @media (min-width: 640px) {
+          .wa-mobile-pill {
+            display: none !important;
+          }
           .wa-floating-badge {
             display: inline-flex !important;
           }
