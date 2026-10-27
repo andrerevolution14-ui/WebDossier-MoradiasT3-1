@@ -81,7 +81,7 @@ export default function SiteHeader() {
             onClick={() => openLeadModal({
               title: 'Agendar Visita ao Lote · Domaine XXV',
               source: 'header_desktop',
-              defaultObjective: 'Agendar Visita ao Lote',
+              defaultObjective: 'Falar com o Promotor',
             })}
             style={{
               flexShrink: 0,
@@ -102,7 +102,7 @@ export default function SiteHeader() {
               whiteSpace: 'nowrap',
             }}
           >
-            <span>Agendar Visita ao Lote →</span>
+            <span>Falar com o Promotor →</span>
           </button>}
 
           <button
@@ -163,13 +163,13 @@ export default function SiteHeader() {
               openLeadModal({
                 title: 'Agendar Visita ao Lote · Domaine XXV',
                 source: 'header_mobile_drawer',
-                defaultObjective: 'Agendar Visita ao Lote',
+                defaultObjective: 'Falar com o Promotor',
               });
             }}
             className="btn btn-gold"
             style={{ marginTop: 8, width: '100%', fontSize: '0.86rem', borderRadius: 3, letterSpacing: '0.04em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}
           >
-            Agendar Visita ao Lote →
+            Falar com o Promotor →
           </button>
         </div>
       )}

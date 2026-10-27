@@ -68,9 +68,9 @@ export default function ManagerSection() {
                 <button
                   type="button"
                   onClick={() => openLeadModal({
-                    title: 'Agendar Visita ao Lote com André Queirós',
+                    title: 'Falar com o Promotor André Queirós',
                     source: 'manager_section_visita',
-                    defaultObjective: 'Agendar Visita ao Lote',
+                    defaultObjective: 'Falar com o Promotor',
                   })}
                   className="btn btn-gold pulse-gold"
                   style={{
@@ -84,7 +84,7 @@ export default function ManagerSection() {
                     cursor: 'pointer',
                   }}
                 >
-                  Agendar Visita ao Lote →
+                  Falar com o Promotor →
                 </button>
 
                 <button
@@ -166,7 +166,7 @@ export default function ManagerSection() {
                 onClick={() => openLeadModal({
                   title: 'Agendar Visita ao Lote · André Queirós',
                   source: 'manager_card_visita',
-                  defaultObjective: 'Agendar Visita ao Lote',
+                  defaultObjective: 'Falar com o Promotor',
                 })}
                 className="btn btn-gold"
                 style={{
@@ -185,7 +185,7 @@ export default function ManagerSection() {
                   cursor: 'pointer',
                 }}
               >
-                Agendar Visita ao Lote →
+                Falar com o Promotor →
               </button>
 
               <p style={{

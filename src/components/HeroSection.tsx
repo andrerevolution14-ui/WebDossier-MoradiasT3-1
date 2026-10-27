@@ -510,7 +510,7 @@ export default function HeroSection() {
                   onClick={() => openLeadModal({
                     title: 'Agendar Visita ao Lote · Domaine XXV',
                     source: 'hero_video_ended_visita',
-                    defaultObjective: 'Agendar Visita ao Lote',
+                    defaultObjective: 'Falar com o Promotor',
                   })}
                   style={{
                     background: 'var(--gold)',
@@ -526,7 +526,7 @@ export default function HeroSection() {
                     boxShadow: '0 4px 14px rgba(184,146,74,0.4)',
                   }}
                 >
-                  Agendar Visita ao Lote →
+                  Falar com o Promotor →
                 </button>
 
                 <button

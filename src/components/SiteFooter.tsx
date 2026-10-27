@@ -30,7 +30,7 @@ export default function SiteFooter() {
           className="btn btn-gold"
           style={{ display: 'inline-flex', fontSize: '0.86rem', marginBottom: 32, borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}
         >
-          Saber Mais / Agendar Visita →
+          Falar com o Promotor →
         </button>
 
         <div className="divider" style={{ marginBottom: 24 }} />

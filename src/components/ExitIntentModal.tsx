@@ -728,7 +728,7 @@ export default function ExitIntentModal() {
                   }
                 }}
               >
-                {isSubmitting ? 'A registar contacto...' : 'Agendar Visita ao Lote / Falar com Promotor →'}
+                {isSubmitting ? 'A registar contacto...' : 'Falar com o Promotor / Falar com Promotor →'}
               </button>
 
               {/* Dismiss silencioso / Rodapé de garantia */}

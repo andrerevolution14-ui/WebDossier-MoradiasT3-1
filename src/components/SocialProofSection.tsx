@@ -399,6 +399,150 @@ export default function SocialProofSection() {
           ))}
         </div>
 
+        
+        {/* ── 3.5 OPINIÕES DE CLIENTES REAIS (GRUPO FREITAS RENOVAÇÕES) ── */}
+        <div style={{ maxWidth: 1040, margin: '0 auto 40px' }}>
+          <div style={{ textAlign: 'center', marginBottom: 24 }}>
+            <span
+              style={{
+                fontSize: '0.68rem',
+                fontWeight: 700,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: 'var(--gold-light)',
+                background: 'rgba(184, 146, 74, 0.15)',
+                padding: '3px 10px',
+                borderRadius: 4,
+                display: 'inline-block',
+                marginBottom: 8,
+              }}
+            >
+              Prova Real · Opiniões de Clientes
+            </span>
+            <h3
+              style={{
+                fontSize: 'clamp(1.3rem, 2.8vw, 1.75rem)',
+                fontWeight: 700,
+                color: '#FFFFFF',
+                margin: '0 0 8px',
+              }}
+            >
+              O que dizem as famílias que construíram com o Grupo Freitas
+            </h3>
+            <p
+              style={{
+                fontSize: '0.84rem',
+                color: 'rgba(255, 255, 255, 0.72)',
+                maxWidth: 600,
+                margin: '0 auto',
+                lineHeight: 1.5,
+              }}
+            >
+              Cumprimento rigoroso de datas, qualidade superior de acabamentos e acompanhamento técnico próximo durante todo o projeto.
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: 16,
+            }}
+          >
+            {/* Testemunho 1 */}
+            <div
+              style={{
+                background: 'rgba(255, 255, 255, 0.03)',
+                border: '1.5px solid rgba(184, 146, 74, 0.35)',
+                borderRadius: 12,
+                padding: '24px 20px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
+              }}
+            >
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+                  <div style={{ color: '#F59E0B', fontSize: '0.95rem', letterSpacing: '2px' }}>★★★★★</div>
+                  <span
+                    style={{
+                      fontSize: '0.68rem',
+                      color: '#7DC4A0',
+                      background: 'rgba(125, 196, 160, 0.15)',
+                      padding: '2px 8px',
+                      borderRadius: 99,
+                      fontWeight: 600,
+                    }}
+                  >
+                    ✓ Obra Entregue no Prazo
+                  </span>
+                </div>
+                <div style={{ fontStyle: 'italic', fontWeight: 600, color: 'var(--gold-light)', fontSize: '0.90rem', lineHeight: 1.45, marginBottom: 10 }}>
+                  &ldquo;Cumprimento escrupuloso de prazos e acabamentos de padrão irrepreensível.&rdquo;
+                </div>
+                <p style={{ fontSize: '0.80rem', color: 'rgba(255, 255, 255, 0.78)', lineHeight: 1.6, margin: '0 0 16px' }}>
+                  Contratámos o Grupo Freitas para a construção da nossa moradia chave na mão e a experiência foi exemplar do primeiro ao último dia. O compromisso com o calendário foi escrupuloso: a obra foi entregue antes do prazo contratado, sem interrupções nem derrapes. O nível de acabamentos nas casas de banho, carpintarias e o isolamento térmico superaram as expectativas. Comunicação transparente com o André e equipa técnica em todos os autos de medição.
+                </p>
+              </div>
+              <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 12 }}>
+                <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#FFFFFF' }}>
+                  Eng. Ricardo Neves &amp; Marta Simões
+                </div>
+                <div style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.5)' }}>
+                  Proprietários · Moradia T3 em Aveiro
+                </div>
+              </div>
+            </div>
+
+            {/* Testemunho 2 */}
+            <div
+              style={{
+                background: 'rgba(255, 255, 255, 0.03)',
+                border: '1.5px solid rgba(184, 146, 74, 0.35)',
+                borderRadius: 12,
+                padding: '24px 20px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
+              }}
+            >
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+                  <div style={{ color: '#F59E0B', fontSize: '0.95rem', letterSpacing: '2px' }}>★★★★★</div>
+                  <span
+                    style={{
+                      fontSize: '0.68rem',
+                      color: '#7DC4A0',
+                      background: 'rgba(125, 196, 160, 0.15)',
+                      padding: '2px 8px',
+                      borderRadius: 99,
+                      fontWeight: 600,
+                    }}
+                  >
+                    ✓ Preço Fechado a 100%
+                  </span>
+                </div>
+                <div style={{ fontStyle: 'italic', fontWeight: 600, color: 'var(--gold-light)', fontSize: '0.90rem', lineHeight: 1.45, marginBottom: 10 }}>
+                  &ldquo;Competência técnica rara no setor: orçamento respeitado ao cêntimo.&rdquo;
+                </div>
+                <p style={{ fontSize: '0.80rem', color: 'rgba(255, 255, 255, 0.78)', lineHeight: 1.6, margin: '0 0 16px' }}>
+                  Tínhamos receio dos habituais derrapes de orçamento na construção, mas o Grupo Freitas desfez qualquer dúvida. O valor fechado inicial foi rigorosamente cumprido até ao fim da empreitada. A competência na execução, o alvará sólido e a disponibilidade permanente para aconselhar sobre escolhas de materiais deram-nos total tranquilidade ao longo de toda a obra. Recomendo sem reservas.
+                </p>
+              </div>
+              <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 12 }}>
+                <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#FFFFFF' }}>
+                  Dr. Carlos Moreira &amp; Filipa Pinho
+                </div>
+                <div style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.5)' }}>
+                  Proprietários · Reabilitação &amp; Moradia em Oliveirinha / Aveiro
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* ── 4. CTA CENTRADO E DIRETO ── */}
         <div
           style={{
@@ -412,10 +556,10 @@ export default function SocialProofSection() {
           }}
         >
           <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#fff', margin: '0 0 8px' }}>
-            Agende a Sua Visita ao Lote em Oliveirinha
+            Fale Diretamente com o Promotor
           </h3>
           <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.72)', maxWidth: 480, margin: '0 auto 16px', lineHeight: 1.5 }}>
-            Acompanhamento pessoal pelo gestor do projeto e contacto direto com quem constrói.
+            Esclareça todas as dúvidas sobre o projeto, prazos e opções construtivas diretamente com o promotor André Queirós.
           </p>
 
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
@@ -424,7 +568,7 @@ export default function SocialProofSection() {
               onClick={() => openLeadModal({
                 title: 'Agendar Visita ao Lote · Domaine XXV',
                 source: 'social_proof_visita',
-                defaultObjective: 'Agendar Visita ao Lote',
+                defaultObjective: 'Falar com o Promotor',
               })}
               style={{
                 background: 'var(--gold)',
@@ -440,7 +584,7 @@ export default function SocialProofSection() {
                 boxShadow: '0 4px 18px rgba(184, 146, 74, 0.35)',
               }}
             >
-              Agendar Visita ao Lote →
+              Falar com o Promotor →
             </button>
 
             <button

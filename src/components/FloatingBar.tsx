@@ -74,9 +74,9 @@ export default function FloatingBar() {
             type="button"
             id="sticky-cta-visita"
             onClick={() => openLeadModal({
-              title: 'Agendar Visita ao Lote · Domaine XXV',
+              title: 'Falar com o Promotor · Domaine XXV',
               source: 'sticky_bar_visita',
-              defaultObjective: 'Agendar Visita ao Lote',
+              defaultObjective: 'Falar com o Promotor',
             })}
             style={{
               flex: '1 1 58%',
@@ -100,7 +100,7 @@ export default function FloatingBar() {
               transition: 'transform 0.15s, box-shadow 0.15s',
             }}
           >
-            <span>Agendar Visita ao Lote →</span>
+            <span>Falar com o Promotor →</span>
           </button>
 
           <button
