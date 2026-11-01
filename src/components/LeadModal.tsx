@@ -21,9 +21,9 @@ interface LeadModalContextType {
 
 const LeadModalContext = createContext<LeadModalContextType>({
   isOpen: false,
-  modalTitle: 'Falar com o Promotor · Domaine XXV',
+  modalTitle: 'Verificar disponibilidade · Domaine XXV',
   source: 'direct',
-  defaultObjective: 'Falar com o Promotor',
+  defaultObjective: 'Verificar disponibilidade',
   openLeadModal: () => {},
   closeLeadModal: () => {},
 });
@@ -32,9 +32,9 @@ export const useLeadModal = () => useContext(LeadModalContext);
 
 export function LeadModalProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [modalTitle, setModalTitle] = useState('Falar com o Promotor · Domaine XXV');
+  const [modalTitle, setModalTitle] = useState('Verificar disponibilidade · Domaine XXV');
   const [source, setSource] = useState('site_button');
-  const [defaultObjective, setDefaultObjective] = useState<string | undefined>('Falar com o Promotor');
+  const [defaultObjective, setDefaultObjective] = useState<string | undefined>('Verificar disponibilidade');
 
   const openLeadModal = (options?: OpenLeadModalOptions) => {
     if (options?.title) setModalTitle(options.title);
@@ -42,7 +42,7 @@ export function LeadModalProvider({ children }: { children: ReactNode }) {
     if (options?.defaultObjective) {
       setDefaultObjective(options.defaultObjective);
     } else {
-      setDefaultObjective('Falar com o Promotor');
+      setDefaultObjective('Verificar disponibilidade');
     }
     setIsOpen(true);
   };
@@ -274,7 +274,7 @@ export default function LeadModal({
               lineHeight: 1.25,
             }}
           >
-            {title || 'Falar com o Promotor · Domaine XXV'}
+            {title || 'Verificar disponibilidade · Domaine XXV'}
           </h3>
           <p
             style={{
@@ -284,7 +284,7 @@ export default function LeadModal({
               lineHeight: 1.45,
             }}
           >
-            Deixe o seu contacto para falar diretamente com o promotor André Queirós sem intermediários.
+            Sem compromisso, resposta rápida. Deixe o seu contacto para confirmar a disponibilidade.
           </p>
         </div>
 
@@ -463,7 +463,10 @@ export default function LeadModal({
             </div>
           )}
 
-          <div style={{ marginTop: 6 }}>
+          <div style={{ marginTop: 6, textAlign: 'center' }}>
+            <span style={{ display: 'block', fontSize: '0.76rem', color: 'var(--gold-light)', fontWeight: 600, marginBottom: 6 }}>
+              Sem compromisso, resposta rápida.
+            </span>
             <button
               type="submit"
               disabled={isSubmitting}
@@ -484,7 +487,7 @@ export default function LeadModal({
                 fontFamily: 'inherit',
               }}
             >
-              {isSubmitting ? 'A registar contacto...' : 'Falar com o Promotor →'}
+              {isSubmitting ? 'A registar contacto...' : 'Confirmar disponibilidade →'}
             </button>
           </div>
 

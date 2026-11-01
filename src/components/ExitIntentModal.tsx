@@ -323,46 +323,21 @@ export default function ExitIntentModal() {
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <a
-                href={`https://api.whatsapp.com/send?phone=${WA_PHONE}&text=${encodeURIComponent(
-                  `Olá André! Vi a proposta de 335.000€ chave-na-mão com IMT e Selo incluídos e gostaria de receber o dossier digital e simulação gratuita. (Nome: ${name.trim()} · Contacto: ${phone})`
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 10,
-                  background: 'var(--gold)',
-                  color: '#fff',
-                  padding: '14px 20px',
-                  borderRadius: 'var(--radius-btn)',
-                  fontWeight: 700,
-                  fontSize: '0.88rem',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.04em',
-                  textDecoration: 'none',
-                  boxShadow: '0 4px 18px rgba(184, 146, 74, 0.35)',
-                }}
-              >
-                Falar de Imediato no WhatsApp →
-              </a>
-
               <button
                 type="button"
                 onClick={handleClose}
                 style={{
-                  background: 'transparent',
-                  border: '1px solid rgba(255,255,255,0.2)',
-                  color: 'rgba(255,255,255,0.75)',
+                  background: 'var(--gold)',
+                  border: 'none',
+                  color: '#fff',
                   padding: '12px 20px',
                   borderRadius: 'var(--radius-btn)',
-                  fontSize: '0.84rem',
+                  fontWeight: 700,
+                  fontSize: '0.86rem',
                   cursor: 'pointer',
                 }}
               >
-                Continuar a navegar no site
+                Continuar no dossier
               </button>
             </div>
           </div>
@@ -527,27 +502,8 @@ export default function ExitIntentModal() {
                 margin: '0 0 16px 0',
               }}
             >
-              Prefere agendar visita ao lote ou falar diretamente com o promotor?
+              Sem compromisso, resposta rápida:
             </p>
-
-            {/* Links rápidos para plantas e localização */}
-            <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginBottom: 14, flexWrap: 'wrap' }}>
-              <a
-                href="#plantas"
-                onClick={handleClose}
-                style={{ fontSize: '0.74rem', color: 'var(--gold-light)', textDecoration: 'underline', fontWeight: 600 }}
-              >
-                📐 Ver Plantas no Site
-              </a>
-              <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.74rem' }}>•</span>
-              <a
-                href="#localizacao"
-                onClick={handleClose}
-                style={{ fontSize: '0.74rem', color: 'var(--gold-light)', textDecoration: 'underline', fontWeight: 600 }}
-              >
-                📍 Ver Localização Exata
-              </a>
-            </div>
 
             {/* Formulário: Campos Nome + Número */}
             <form
@@ -694,13 +650,16 @@ export default function ExitIntentModal() {
                 </div>
               )}
 
+              <span style={{ display: 'block', fontSize: '0.76rem', color: 'var(--gold-light)', fontWeight: 600, textAlign: 'center', marginTop: 4 }}>
+                Sem compromisso, resposta rápida.
+              </span>
               {/* Botão com alta intenção */}
               <button
                 type="submit"
                 disabled={isSubmitting}
                 style={{
                   width: '100%',
-                  marginTop: 6,
+                  marginTop: 2,
                   background: 'linear-gradient(135deg, #B88B38 0%, #A17628 100%)',
                   color: '#FFFFFF',
                   border: 'none',
@@ -728,7 +687,7 @@ export default function ExitIntentModal() {
                   }
                 }}
               >
-                {isSubmitting ? 'A registar contacto...' : 'Falar com o Promotor / Falar com Promotor →'}
+                {isSubmitting ? 'A registar contacto...' : 'Confirmar disponibilidade →'}
               </button>
 
               {/* Dismiss silencioso / Rodapé de garantia */}

@@ -234,18 +234,23 @@ export default function ProcessoSimplificado() {
               Da reserva à chave: <strong style={{ color: 'var(--text-primary)' }}>10 meses</strong> de construção com acompanhamento contínuo e sem revisões de preço.
             </span>
           </div>
-          <button
-            type="button"
-            onClick={() => openLeadModal({
-              title: 'Verificar Viabilidade Gratuita · Domaine XXV',
-              source: 'processo_simplificado_viabilidade',
-              defaultObjective: 'Análise de Viabilidade Financeira',
-            })}
-            className="btn btn-gold"
-            style={{ fontSize: '0.80rem', padding: '12px 22px', whiteSpace: 'nowrap', borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}
-          >
-            Verificar Viabilidade Gratuita →
-          </button>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4 }}>
+            <span style={{ fontSize: '0.72rem', color: 'var(--gold-dark)', fontWeight: 600 }}>
+              Sem compromisso, resposta rápida.
+            </span>
+            <button
+              type="button"
+              onClick={() => openLeadModal({
+                title: 'Verificar disponibilidade · Domaine XXV',
+                source: 'processo_simplificado_cta',
+                defaultObjective: 'Verificar disponibilidade',
+              })}
+              className="btn btn-gold"
+              style={{ fontSize: '0.80rem', padding: '12px 22px', whiteSpace: 'nowrap', borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}
+            >
+              Verificar disponibilidade →
+            </button>
+          </div>
         </div>
 
       </div>

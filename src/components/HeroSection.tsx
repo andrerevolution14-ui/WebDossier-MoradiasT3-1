@@ -1,10 +1,9 @@
 'use client';
 import React, { useRef, useState, useEffect } from 'react';
-import { trackWhatsAppLead } from '@/lib/analytics';
 import { useLeadModal } from '@/components/LeadModal';
-import { WA_PHONE, TOUR_360_PATH } from '@/lib/constants';
+import { TOUR_360_PATH } from '@/lib/constants';
 
-/* ─── Hero Section — Family-focused with guaranteed presentation playback ─── */
+/* ─── Hero Section — Family-focused with deferred video playback ─── */
 export default function HeroSection() {
   const { openLeadModal } = useLeadModal();
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -15,24 +14,53 @@ export default function HeroSection() {
   const [hasStartedWithSound, setHasStartedWithSound] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(12);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
-  // Initialize playback on mount (always start muted so browser autoplay succeeds 100%)
+  // Carregamento diferido do vídeo (apenas quando entra no viewport após scroll ou clique)
   useEffect(() => {
+    const el = containerRef.current;
+    if (!el || videoLoaded) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVideoLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '150px' }
+    );
+
+    const timer = setTimeout(() => {
+      observer.observe(el);
+    }, 1800);
+
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, [videoLoaded]);
+
+  useEffect(() => {
+    if (!videoLoaded) return;
     const v = videoRef.current;
     if (!v) return;
 
+    v.load();
     v.muted = true;
     v.play()
       .then(() => setIsPlaying(true))
       .catch(() => {
-        // Autoplay fully blocked by browser policy — waiting for user gesture
         setIsPlaying(false);
       });
-  }, []);
+  }, [videoLoaded]);
 
   // Play with sound from start
   const playFromStartWithSound = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
+    if (!videoLoaded) {
+      setVideoLoaded(true);
+    }
     const v = videoRef.current;
     if (!v) return;
 
@@ -55,6 +83,10 @@ export default function HeroSection() {
   // Toggle play/pause
   const togglePlayPause = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
+    if (!videoLoaded) {
+      setVideoLoaded(true);
+      return;
+    }
     const v = videoRef.current;
     if (!v) return;
 
@@ -145,8 +177,10 @@ export default function HeroSection() {
         {/* Background photo */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/images/exterior-noite.jpg"
+          src="/images/exterior-noite.webp"
           alt="Moradia T3 Domaine XXV — Vista exterior noturna, Oliveirinha, Aveiro"
+          fetchPriority="high"
+          decoding="async"
           style={{
             position: 'absolute',
             inset: 0,
@@ -247,78 +281,64 @@ export default function HeroSection() {
             Preço chave na mão com impostos incluídos · Conclusão em 10 meses · A 8 minutos do centro de Aveiro.
           </p>
 
-          {/* Scroll cue — sem CTAs de lead above the fold, para incentivar a exploração */}
-          <a
-            href="#galeria"
-            id="hero_scroll_cue"
-            style={{
-              display: 'inline-flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-              gap: 8,
-              marginBottom: 24,
-              color: 'rgba(255,255,255,0.85)',
-              textDecoration: 'none',
-              fontSize: '0.78rem',
-              fontWeight: 600,
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-            }}
-          >
-            <span>Descubra a casa — deslize para baixo</span>
-            <span
-              aria-hidden="true"
-              style={{
-                display: 'inline-block',
-                fontSize: '1.4rem',
-                color: 'var(--gold-light)',
-                animation: 'heroScrollBounce 1.6s ease-in-out infinite',
-              }}
-            >
-              ↓
+          {/* CTA único + link permitido da Visita 360° */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8 }}>
+            <span style={{ fontSize: '0.76rem', color: 'var(--gold-light)', fontWeight: 600, letterSpacing: '0.02em' }}>
+              Sem compromisso, resposta rápida.
             </span>
-          </a>
-          <style>{`@keyframes heroScrollBounce { 0%,100% { transform: translateY(0); opacity: .6; } 50% { transform: translateY(8px); opacity: 1; } }`}</style>
+            <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 12 }}>
+              <button
+                type="button"
+                onClick={() => openLeadModal({
+                  title: 'Verificar disponibilidade · Domaine XXV',
+                  source: 'hero_primary_cta',
+                  defaultObjective: 'Verificar disponibilidade',
+                })}
+                style={{
+                  background: 'var(--gold)',
+                  border: 'none',
+                  borderRadius: 'var(--radius-btn)',
+                  padding: '13px 26px',
+                  fontSize: '0.84rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.04em',
+                  textTransform: 'uppercase',
+                  color: '#fff',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 16px rgba(184,146,74,0.4)',
+                }}
+              >
+                Verificar disponibilidade →
+              </button>
 
-          {/* Quick navigation pills */}
-          <div className="hero-cinematic-pills" style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 8,
-          }}>
-            {([
-              ['Visita 360°', TOUR_360_PATH],
-              ['Imagens 3D', '#galeria'],
-              ['Localização', '#localizacao'],
-              ['Valores', '#condicoes'],
-              ['Plantas', '#plantas'],
-              ['Processo', '#processo'],
-            ] as const).map(([tag, href]) => (
-              <a key={tag} href={href} style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 6,
-                padding: '5px 12px',
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(255,255,255,0.12)',
-                borderRadius: 3,
-                fontSize: '0.70rem',
-                fontWeight: 600,
-                color: 'rgba(255,255,255,0.85)',
-                letterSpacing: '0.04em',
-                backdropFilter: 'blur(6px)',
-                textDecoration: 'none',
-              }}>
-                <span style={{ width: 4, height: 4, background: 'var(--gold-light)', borderRadius: '50%', display: 'inline-block' }} />
-                {tag}
+              <a
+                href={TOUR_360_PATH}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  padding: '11px 16px',
+                  background: 'rgba(255,255,255,0.08)',
+                  border: '1px solid rgba(255,255,255,0.18)',
+                  borderRadius: 'var(--radius-btn)',
+                  fontSize: '0.76rem',
+                  fontWeight: 600,
+                  color: 'rgba(255,255,255,0.9)',
+                  letterSpacing: '0.04em',
+                  backdropFilter: 'blur(6px)',
+                  textDecoration: 'none',
+                }}
+              >
+                <span style={{ width: 6, height: 6, background: 'var(--gold-light)', borderRadius: '50%', display: 'inline-block' }} />
+                Explorar Visita 360° ↗
               </a>
-            ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* ═══════════════════════════════════════════════════════
-          TRUST STRIP — hidden on mobile, visible on desktop
+          TRUST STRIP — sem links externos nem âncoras
           ═══════════════════════════════════════════════════════ */}
       <div className="hero-trust-strip" style={{
         background: '#111214',
@@ -331,27 +351,20 @@ export default function HeroSection() {
         gap: 20,
       }}>
         {[
-          { label: 'Licenciamento:', value: 'Aprovado Município de Aveiro', href: '#autoridade' },
-          { label: 'Construtora Oficial:', value: 'Grupo Freitas Renovações ↗', href: 'https://grupofreitasrenovacoes.pt' },
-          { label: 'Disponibilidade:', value: 'Visitas esta semana', href: undefined },
-          { label: 'Entrada 10%:', value: '33.500€ (salvaguardado no CPCV)', href: undefined },
+          { label: 'Licenciamento:', value: 'Aprovado Município de Aveiro' },
+          { label: 'Construtora Oficial:', value: 'Grupo Freitas Renovações' },
+          { label: 'Disponibilidade:', value: 'Visitas esta semana' },
+          { label: 'Entrada 10%:', value: '33.500€ (salvaguardado no CPCV)' },
         ].map((item, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.76rem' }}>
             <span style={{ color: 'rgba(255,255,255,0.38)', fontWeight: 400 }}>{item.label}</span>
-            {item.href ? (
-              <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined} rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                style={{ color: 'var(--gold-light)', fontWeight: 700, textDecoration: 'none' }}>
-                {item.value}
-              </a>
-            ) : (
-              <strong style={{ color: 'rgba(255,255,255,0.82)', fontWeight: 600 }}>{item.value}</strong>
-            )}
+            <strong style={{ color: 'rgba(255,255,255,0.82)', fontWeight: 600 }}>{item.value}</strong>
           </div>
         ))}
       </div>
 
       {/* ═══════════════════════════════════════════════════════
-          VIDEO SECTION — below the cinematic hero
+          VIDEO SECTION — below the cinematic hero (carregamento diferido)
           ═══════════════════════════════════════════════════════ */}
       <div style={{ maxWidth: 1160, margin: '0 auto', padding: '28px 16px 28px' }}>
         <div className="section-tag mobile-center-tag" style={{ marginBottom: 12 }}>
@@ -375,10 +388,9 @@ export default function HeroSection() {
         >
           <video
             ref={videoRef}
-            autoPlay
             muted={muted}
             playsInline
-            preload="metadata"
+            preload="none"
             poster="/images/exterior-capa.webp"
             onPlay={() => setIsPlaying(true)}
             onPause={() => setIsPlaying(false)}
@@ -387,7 +399,7 @@ export default function HeroSection() {
             onEnded={handleEnded}
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           >
-            <source src="/videos/ApresentacaoWebDocT3.mp4" type="video/mp4" />
+            {videoLoaded && <source src="/videos/ApresentacaoWebDocT3.mp4" type="video/mp4" />}
           </video>
 
           {/* Top Sound Prompt Pill (shows when playing muted preview) */}
@@ -484,72 +496,50 @@ export default function HeroSection() {
               <button
                 onClick={playFromStartWithSound}
                 style={{
-                  background: 'var(--gold)',
-                  border: 'none',
+                  background: 'rgba(255,255,255,0.12)',
+                  border: '1px solid rgba(255,255,255,0.3)',
                   borderRadius: 3,
-                  padding: '13px 28px',
+                  padding: '10px 20px',
                   display: 'flex',
                   alignItems: 'center',
                   gap: 8,
                   cursor: 'pointer',
-                  fontSize: '0.88rem',
+                  fontSize: '0.78rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.04em',
+                  textTransform: 'uppercase',
+                  color: '#fff',
+                }}
+              >
+                <span>Rever Apresentação com Som</span>
+              </button>
+
+              <span style={{ fontSize: '0.76rem', color: 'var(--gold-light)', fontWeight: 600 }}>
+                Sem compromisso, resposta rápida.
+              </span>
+              <button
+                type="button"
+                onClick={() => openLeadModal({
+                  title: 'Verificar disponibilidade · Domaine XXV',
+                  source: 'hero_video_ended_cta',
+                  defaultObjective: 'Verificar disponibilidade',
+                })}
+                style={{
+                  background: 'var(--gold)',
+                  border: 'none',
+                  borderRadius: 'var(--radius-btn)',
+                  padding: '13px 26px',
+                  fontSize: '0.84rem',
                   fontWeight: 700,
                   letterSpacing: '0.04em',
                   textTransform: 'uppercase',
                   color: '#fff',
-                  boxShadow: '0 4px 16px rgba(184,146,74,0.4)',
-                  transition: 'transform 0.15s',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 14px rgba(184,146,74,0.4)',
                 }}
               >
-                <span>Rever Apresentação com Som →</span>
+                Verificar disponibilidade →
               </button>
-
-              <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center', marginTop: 4 }}>
-                <button
-                  type="button"
-                  onClick={() => openLeadModal({
-                    title: 'Agendar Visita ao Lote · Domaine XXV',
-                    source: 'hero_video_ended_visita',
-                    defaultObjective: 'Falar com o Promotor',
-                  })}
-                  style={{
-                    background: 'var(--gold)',
-                    border: 'none',
-                    borderRadius: 'var(--radius-btn)',
-                    padding: '11px 20px',
-                    fontSize: '0.82rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.04em',
-                    textTransform: 'uppercase',
-                    color: '#fff',
-                    cursor: 'pointer',
-                    boxShadow: '0 4px 14px rgba(184,146,74,0.4)',
-                  }}
-                >
-                  Falar com o Promotor →
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => openLeadModal({
-                    title: 'Falar com o Promotor · Domaine XXV',
-                    source: 'hero_video_ended_promotor',
-                    defaultObjective: 'Falar com o Promotor',
-                  })}
-                  style={{
-                    background: 'rgba(255,255,255,0.12)',
-                    border: '1px solid rgba(255,255,255,0.3)',
-                    borderRadius: 'var(--radius-btn)',
-                    padding: '11px 18px',
-                    fontSize: '0.82rem',
-                    fontWeight: 600,
-                    color: '#fff',
-                    cursor: 'pointer',
-                  }}
-                >
-                  Falar com o Promotor
-                </button>
-              </div>
             </div>
           )}
 

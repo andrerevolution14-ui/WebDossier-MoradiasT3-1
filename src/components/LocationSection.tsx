@@ -1,9 +1,9 @@
 'use client';
 import React, { useState } from 'react';
+import { useLeadModal } from '@/components/LeadModal';
 
-/* ─── Location Section — Live Google Maps with guaranteed Fallback ──────── */
+/* ─── Location Section — Live Google Maps with guaranteed Fallback (No external links) ─── */
 const MAP_EMBED = 'https://maps.google.com/maps?q=R.+Ac%C3%A1cio+Sim%C3%B5es+Vieira,+3810-843+Oliveirinha&t=m&z=16&output=embed';
-const MAP_DIRECTIONS = 'https://www.google.com/maps/dir/?api=1&destination=R.+Ac%C3%A1cio+Sim%C3%B5es+Vieira,+3810-843+Oliveirinha';
 
 const DISTANCES = [
   { tag: 'CENTRO', bold: '8 min',  rest: 'do Centro Histórico de Aveiro' },
@@ -14,6 +14,7 @@ const DISTANCES = [
 ];
 
 export default function LocationSection() {
+  const { openLeadModal } = useLeadModal();
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
   return (
@@ -97,22 +98,13 @@ export default function LocationSection() {
                     Rua Acácio Simões Vieira (Lote 25)<br />
                     3810-843 Oliveirinha · Aveiro
                   </div>
-                  <div style={{ fontSize: '0.73rem', fontWeight: 600, color: 'var(--text-body)', letterSpacing: '0.02em', marginBottom: 18, background: 'var(--bg-alt)', padding: '6px 10px', borderRadius: 2 }}>
+                  <div style={{ fontSize: '0.73rem', fontWeight: 600, color: 'var(--text-body)', letterSpacing: '0.02em', background: 'var(--bg-alt)', padding: '6px 10px', borderRadius: 2 }}>
                     40°34&apos;59.2&quot;N 8°37&apos;02.2&quot;W
                   </div>
-                  <a
-                    href={MAP_DIRECTIONS}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn btn-gold"
-                    style={{ width: '100%', fontSize: '0.80rem', padding: '11px 18px', textDecoration: 'none', borderRadius: 3, letterSpacing: '0.04em', textTransform: 'uppercase' }}
-                  >
-                    Abrir Rota no Google Maps →
-                  </a>
                 </div>
               </div>
 
-              {/* Live Google Maps iframe (visible when mapType === 'live') */}
+              {/* Live Google Maps iframe */}
               {(
                 <iframe
                   title="Localização Domaine XXV — Rua Acácio Simões Vieira, 25"
@@ -120,7 +112,7 @@ export default function LocationSection() {
                   width="100%"
                   height="100%"
                   onLoad={() => setIframeLoaded(true)}
-                  loading="eager"
+                  loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   style={{
                     border: 0,
@@ -136,7 +128,7 @@ export default function LocationSection() {
               )}
             </div>
 
-            {/* Bottom Direct Pin Bar */}
+            {/* Bottom Pin Bar (Sem link externo) */}
             <div style={{
               background: '#161616',
               padding: '11px 16px',
@@ -147,27 +139,8 @@ export default function LocationSection() {
               zIndex: 10,
             }}>
               <span style={{ color: '#fff', fontSize: '0.76rem', fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                Ponto de interesse certificado em Oliveirinha
+                Ponto de interesse certificado em Oliveirinha · Aveiro
               </span>
-              <a
-                href={MAP_DIRECTIONS}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: 'var(--gold-light)',
-                  fontSize: '0.74rem',
-                  fontWeight: 600,
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  textDecoration: 'none',
-                  flexShrink: 0,
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 4,
-                }}
-              >
-                Como Chegar →
-              </a>
             </div>
           </div>
 
@@ -210,15 +183,21 @@ export default function LocationSection() {
               ))}
             </div>
 
-            <a
-              href={MAP_DIRECTIONS}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-outline"
-              style={{ width: '100%', fontSize: '0.82rem', padding: '13px 20px', textDecoration: 'none', borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase' }}
+            <p style={{ fontSize: '0.76rem', color: 'var(--gold-dark)', fontWeight: 600, textAlign: 'center', margin: '0 0 6px' }}>
+              Sem compromisso, resposta rápida.
+            </p>
+            <button
+              type="button"
+              onClick={() => openLeadModal({
+                title: 'Verificar disponibilidade · Domaine XXV',
+                source: 'location_cta',
+                defaultObjective: 'Verificar disponibilidade',
+              })}
+              className="btn btn-gold"
+              style={{ width: '100%', fontSize: '0.82rem', padding: '13px 20px', borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}
             >
-              Abrir Trajeto Completo no Google Maps →
-            </a>
+              Verificar disponibilidade →
+            </button>
           </div>
 
         </div>

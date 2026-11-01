@@ -226,11 +226,14 @@ export default function TriangleSection() {
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: '0.76rem', color: 'var(--gold-light)', fontWeight: 600 }}>
+              Sem compromisso, resposta rápida.
+            </span>
             <button
               type="button"
               onClick={() => openLeadModal({
-                title: 'Saber Mais · Moradia Domaine XXV',
-                source: 'triangle_agendar_visita',
+                title: 'Verificar disponibilidade · Domaine XXV',
+                source: 'triangle_saber_mais',
               })}
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
@@ -247,7 +250,7 @@ export default function TriangleSection() {
                 boxShadow: '0 4px 16px rgba(161,118,40,0.35)',
               }}
             >
-              Saber Mais / Agendar a Minha Visita →
+              Verificar disponibilidade →
             </button>
             <span style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.7)', letterSpacing: '0.02em' }}>
               Preço chave na mão fechado em contrato · Entrada de 10% (33.500€) salvaguardada no CPCV

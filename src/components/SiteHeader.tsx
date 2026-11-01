@@ -1,26 +1,18 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { trackWhatsAppLead } from '@/lib/analytics';
 import { useLeadModal } from '@/components/LeadModal';
 
-// ─── WhatsApp Config — 920601070 ──────────────────────────────────────────
+// ─── Legacy exports kept for type compatibility ─────────────────────────────
 export const WA_PHONE = '351920601070';
-export const WA_BASE  = `https://api.whatsapp.com/send?phone=${WA_PHONE}`;
-
-// Mensagem automática unificada para todos os botões de contacto
-const WA_MSG = encodeURIComponent(
-  'Olá André! Vi o projeto das Moradias Domaine XXV em Oliveirinha e gostaria de obter mais informações. Podemos falar?'
-);
-
-export const WA_VISIT   = `${WA_BASE}&text=${WA_MSG}`;
-export const WA_MANAGER = `${WA_BASE}&text=${WA_MSG}`;
-export const WA_CREDIT  = `${WA_BASE}&text=${WA_MSG}`;
-export const WA_GENERIC = `${WA_BASE}&text=${WA_MSG}`;
-export const WA_DOSSIER = `${WA_BASE}&text=${WA_MSG}`;
+export const WA_BASE  = '';
+export const WA_VISIT   = '';
+export const WA_MANAGER = '';
+export const WA_CREDIT  = '';
+export const WA_GENERIC = '';
+export const WA_DOSSIER = '';
 
 export default function SiteHeader() {
   const { openLeadModal } = useLeadModal();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -29,15 +21,6 @@ export default function SiteHeader() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  const NAV_LINKS = [
-    ['#galeria', 'Imagens 3D'],
-    ['#localizacao', 'Localização'],
-    ['#condicoes', 'Valores'],
-    ['#plantas', 'Plantas'],
-    ['#processo', 'O Processo'],
-    ['#faqs', 'Perguntas'],
-  ];
 
   return (
     <header style={{
@@ -48,131 +31,50 @@ export default function SiteHeader() {
       borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
     }}>
       <div style={{ maxWidth: 1160, margin: '0 auto', padding: '12px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
-        <a href="#topo" style={{ textDecoration: 'none', flexShrink: 0 }}>
+        <div style={{ flexShrink: 0 }}>
           <div style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: '1.1rem', color: '#FFFFFF', letterSpacing: '-0.01em', lineHeight: 1 }}>
             Domaine XXV
           </div>
           <div style={{ fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--gold-light)', marginTop: 3 }}>
             Oliveirinha · Aveiro
           </div>
-        </a>
-
-        {/* Desktop Navigation */}
-        <nav className="site-nav-desktop">
-          {NAV_LINKS.map(([href, label]) => (
-            <a
-              key={href}
-              href={href}
-              style={{ fontSize: '0.82rem', fontWeight: 500, letterSpacing: '0.02em', color: 'rgba(255,255,255,0.78)', textDecoration: 'none', transition: 'color 0.15s' }}
-              onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold-light)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.78)')}
-            >
-              {label}
-            </a>
-          ))}
-        </nav>
-
-        {/* CTA Button */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-
-          {scrolled && <button
-            type="button"
-            className="site-header-cta-desktop"
-            onClick={() => openLeadModal({
-              title: 'Agendar Visita ao Lote · Domaine XXV',
-              source: 'header_desktop',
-              defaultObjective: 'Falar com o Promotor',
-            })}
-            style={{
-              flexShrink: 0,
-              alignItems: 'center',
-              gap: 6,
-              background: 'var(--gold)',
-              color: '#fff',
-              fontWeight: 700,
-              fontSize: '0.78rem',
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase',
-              padding: '9px 18px',
-              borderRadius: 'var(--radius-btn)',
-              border: 'none',
-              cursor: 'pointer',
-              boxShadow: '0 2px 8px rgba(161, 118, 40, 0.2)',
-              transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            <span>Falar com o Promotor →</span>
-          </button>}
-
-          <button
-            onClick={() => setMobileMenuOpen(prev => !prev)}
-            aria-label="Menu de Navegação"
-            className="site-menu-mobile-btn"
-            style={{
-              background: 'rgba(255,255,255,0.08)',
-              border: '1px solid rgba(255,255,255,0.18)',
-              borderRadius: 3,
-              width: 38,
-              height: 38,
-              cursor: 'pointer',
-              color: '#FFFFFF',
-              fontSize: '1.2rem',
-              lineHeight: 1,
-            }}
-          >
-            {mobileMenuOpen ? '✕' : '☰'}
-          </button>
         </div>
-      </div>
 
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div
-          className="md:hidden"
-          style={{
-            background: 'rgba(5, 7, 12, 0.98)',
-            borderBottom: '1px solid rgba(255,255,255,0.05)',
-            padding: '16px 20px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 14,
-          }}
-        >
-          {NAV_LINKS.map(([href, label]) => (
-            <a
-              key={href}
-              href={href}
-              onClick={() => setMobileMenuOpen(false)}
+        {/* Single CTA Button (Sem Menu de Navegação) */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          {scrolled && (
+            <button
+              type="button"
+              onClick={() => openLeadModal({
+                title: 'Verificar disponibilidade · Domaine XXV',
+                source: 'header_cta',
+                defaultObjective: 'Verificar disponibilidade',
+              })}
               style={{
-                fontSize: '0.92rem',
-                fontWeight: 600,
-                color: 'rgba(255,255,255,0.85)',
-                textDecoration: 'none',
-                padding: '6px 0',
-                borderBottom: '1px solid rgba(255,255,255,0.08)',
+                flexShrink: 0,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 6,
+                background: 'var(--gold)',
+                color: '#fff',
+                fontWeight: 700,
+                fontSize: '0.78rem',
+                letterSpacing: '0.05em',
+                textTransform: 'uppercase',
+                padding: '9px 18px',
+                borderRadius: 'var(--radius-btn)',
+                border: 'none',
+                cursor: 'pointer',
+                boxShadow: '0 2px 8px rgba(161, 118, 40, 0.2)',
+                transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                whiteSpace: 'nowrap',
               }}
             >
-              {label}
-            </a>
-          ))}
-          <button
-            type="button"
-            onClick={() => {
-              setMobileMenuOpen(false);
-              openLeadModal({
-                title: 'Agendar Visita ao Lote · Domaine XXV',
-                source: 'header_mobile_drawer',
-                defaultObjective: 'Falar com o Promotor',
-              });
-            }}
-            className="btn btn-gold"
-            style={{ marginTop: 8, width: '100%', fontSize: '0.86rem', borderRadius: 3, letterSpacing: '0.04em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}
-          >
-            Falar com o Promotor →
-          </button>
+              <span>Verificar disponibilidade →</span>
+            </button>
+          )}
         </div>
-      )}
+      </div>
     </header>
   );
 }

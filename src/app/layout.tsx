@@ -71,10 +71,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <meta name="format-detection" content="telephone=no" />
+        <link rel="preload" as="image" href="/images/exterior-noite.webp" type="image/webp" />
 
         {/* ─── Meta Pixel Code (ID: 979841341182458) ────────────────────── */}
-        <script
+        <Script
           id="meta-pixel"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               !function(f,b,e,v,n,t,s)

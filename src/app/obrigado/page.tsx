@@ -80,30 +80,10 @@ export default async function ObrigadoPage({
             lineHeight: 1.35,
             textDecoration: 'none',
             boxShadow: '0 4px 18px rgba(184,146,74,0.4)',
-            marginBottom: 12,
-          }}
-        >
-          📥 Guarde o meu contacto para saber quem lhe está a ligar - 919 367 087
-        </a>
-
-        <a
-          href={`https://api.whatsapp.com/send?phone=${WA_PHONE}&text=${encodeURIComponent(
-            'Olá André! Acabei de submeter o pedido no site do Domaine XXV e gostaria de falar consigo.'
-          )}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: 'block',
-            border: '1px solid rgba(255,255,255,0.2)',
-            color: 'rgba(255,255,255,0.85)',
-            padding: '12px 18px',
-            borderRadius: 10,
-            fontSize: '0.88rem',
-            textDecoration: 'none',
             marginBottom: 18,
           }}
         >
-          Falar já no WhatsApp →
+          📥 Guarde o meu contacto para saber quem lhe está a ligar - 919 367 087
         </a>
 
         <a href="/" style={{ color: gold, fontSize: '0.85rem' }}>

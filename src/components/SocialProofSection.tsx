@@ -8,25 +8,25 @@ export default function SocialProofSection() {
 
   const COMPLETED_WORKS = [
     {
-      src: '/Social Proof/Depois WC.jpeg',
+      src: '/Social Proof/Depois WC.webp',
       title: 'Casas de Banho de Alto Padrão',
       desc: 'Louças suspensas, torneiras embutidas, cerâmicos retificados e nichos com iluminação LED.',
       tag: 'Obra Concluída',
     },
     {
-      src: '/Social Proof/Depois Q1 Solo.jpeg',
+      src: '/Social Proof/Depois Q1 Solo.webp',
       title: 'Quartos e Pavimentos Térmicos',
       desc: 'Isolamento de elevada eficiência, carpintarias lacadas a branco e sancas de iluminação indireta.',
       tag: 'Obra Concluída',
     },
     {
-      src: '/Social Proof/obra-estrutural-alvenaria.jpeg',
+      src: '/Social Proof/obra-estrutural-alvenaria.webp',
       title: 'Rigor Estrutural & Alvenarias',
-      desc: 'Acompanhamento contínuo e seleção cuidada de materiais e isolamentos térmicos e acústicos.',
+      desc: 'Acompamento contínuo e seleção cuidada de materiais e isolamentos térmicos e acústicos.',
       tag: 'Em Execução',
     },
     {
-      src: '/Social Proof/obra-instalacoes-redes.jpeg',
+      src: '/Social Proof/obra-instalacoes-redes.webp',
       title: 'Instalações Técnicas & Redes',
       desc: 'Redes de climatização, águas e eletricidade executadas segundo as normas técnicas mais exigentes.',
       tag: 'Em Execução',
@@ -137,8 +137,10 @@ export default function SocialProofSection() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/Social Proof/Logo freitas.png"
+                src="/Social Proof/Logo freitas.webp"
                 alt="Grupo Freitas Renovações Lda — Construtora Oficial"
+                loading="lazy"
+                decoding="async"
                 style={{
                   maxWidth: '100%',
                   maxHeight: '100%',
@@ -154,23 +156,9 @@ export default function SocialProofSection() {
             <p style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.7)', lineHeight: 1.5, margin: '0 0 12px' }}>
               Mais de 15 anos de excelência em construção e remodelações de luxo no distrito de Aveiro.
             </p>
-            <a
-              href="https://grupofreitasrenovacoes.pt"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontSize: '0.76rem',
-                fontWeight: 700,
-                color: 'var(--gold-light)',
-                textDecoration: 'none',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 5,
-              }}
-            >
-              <span>Ver Portfólio da Construtora</span>
-              <span>↗</span>
-            </a>
+            <span style={{ fontSize: '0.76rem', color: 'var(--gold-light)', fontWeight: 600 }}>
+              ✓ Alvará de Construção Certificado
+            </span>
           </div>
 
           {/* Logo 2: Câmara Municipal de Aveiro */}
@@ -221,8 +209,10 @@ export default function SocialProofSection() {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/Social Proof/Camara Aveiro Logo.png"
+                src="/Social Proof/Camara Aveiro Logo.webp"
                 alt="Câmara Municipal de Aveiro — Projeto Aprovado"
+                loading="lazy"
+                decoding="async"
                 style={{
                   maxWidth: '100%',
                   maxHeight: '100%',
@@ -295,6 +285,8 @@ export default function SocialProofSection() {
                   <img
                     src={encodeURI(work.src)}
                     alt={work.title}
+                    loading="lazy"
+                    decoding="async"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                   <span
@@ -543,7 +535,7 @@ export default function SocialProofSection() {
           </div>
         </div>
 
-        {/* ── 4. CTA CENTRADO E DIRETO ── */}
+        {/* ── 4. CTA ÚNICO CENTRADO E DIRETO ── */}
         <div
           style={{
             maxWidth: 720,
@@ -556,19 +548,19 @@ export default function SocialProofSection() {
           }}
         >
           <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#fff', margin: '0 0 8px' }}>
-            Fale Diretamente com o Promotor
+            Verificar disponibilidade
           </h3>
-          <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.72)', maxWidth: 480, margin: '0 auto 16px', lineHeight: 1.5 }}>
-            Esclareça todas as dúvidas sobre o projeto, prazos e opções construtivas diretamente com o promotor André Queirós.
+          <p style={{ fontSize: '0.82rem', color: 'rgba(255,255,255,0.72)', maxWidth: 480, margin: '0 auto 12px', lineHeight: 1.5 }}>
+            Sem compromisso, resposta rápida.
           </p>
 
-          <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <button
               type="button"
               onClick={() => openLeadModal({
-                title: 'Agendar Visita ao Lote · Domaine XXV',
-                source: 'social_proof_visita',
-                defaultObjective: 'Falar com o Promotor',
+                title: 'Verificar disponibilidade · Domaine XXV',
+                source: 'social_proof_cta',
+                defaultObjective: 'Verificar disponibilidade',
               })}
               style={{
                 background: 'var(--gold)',
@@ -577,37 +569,14 @@ export default function SocialProofSection() {
                 fontSize: '0.86rem',
                 letterSpacing: '0.04em',
                 textTransform: 'uppercase',
-                padding: '13px 26px',
+                padding: '13px 28px',
                 borderRadius: 'var(--radius-btn)',
                 border: 'none',
                 cursor: 'pointer',
                 boxShadow: '0 4px 18px rgba(184, 146, 74, 0.35)',
               }}
             >
-              Falar com o Promotor →
-            </button>
-
-            <button
-              type="button"
-              onClick={() => openLeadModal({
-                title: 'Falar com o Promotor · Domaine XXV',
-                source: 'social_proof_promotor',
-                defaultObjective: 'Falar com o Promotor',
-              })}
-              style={{
-                background: 'rgba(255,255,255,0.06)',
-                color: '#fff',
-                fontWeight: 600,
-                fontSize: '0.84rem',
-                letterSpacing: '0.03em',
-                textTransform: 'uppercase',
-                padding: '12px 20px',
-                borderRadius: 'var(--radius-btn)',
-                border: '1px solid rgba(184, 146, 74, 0.6)',
-                cursor: 'pointer',
-              }}
-            >
-              👤 Falar com o Promotor
+              Verificar disponibilidade →
             </button>
           </div>
         </div>

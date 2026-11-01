@@ -42,7 +42,7 @@ export default function ManagerSection() {
               <span style={{ color: 'var(--gold-light)', fontWeight: 700 }}>não ficam disponíveis por muito tempo.</span>
             </h2>
             <p className="mobile-center-desc" style={{ color: 'rgba(255,255,255,0.75)', fontSize: '0.95rem', lineHeight: 1.7, maxWidth: 480, marginBottom: 28 }}>
-              Desenvolvido por <strong>André Queirós</strong> em parceria oficial com o <strong>Grupo Freitas Renovações</strong> (<a href="https://grupofreitasrenovacoes.pt" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--gold-light)', textDecoration: 'underline' }}>grupofreitasrenovacoes.pt</a>). Asseguramos cumprimento escrupuloso de prazos, alvará de construção certificado e apoio direto à sua família.
+              Desenvolvido por <strong>André Queirós</strong> em parceria oficial com o <strong>Grupo Freitas Renovações</strong>. Asseguramos cumprimento escrupuloso de prazos, alvará de construção certificado e apoio direto à sua família.
             </p>
 
             {/* Services */}
@@ -62,20 +62,23 @@ export default function ManagerSection() {
               ))}
             </div>
 
-            {/* Main Action CTA */}
+            {/* Single Action CTA */}
             <div className="mobile-center-btn-wrap" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
+              <span style={{ fontSize: '0.78rem', color: 'var(--gold-light)', fontWeight: 600, marginBottom: 8 }}>
+                Sem compromisso, resposta rápida.
+              </span>
+              <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
                 <button
                   type="button"
                   onClick={() => openLeadModal({
-                    title: 'Falar com o Promotor André Queirós',
-                    source: 'manager_section_visita',
-                    defaultObjective: 'Falar com o Promotor',
+                    title: 'Verificar disponibilidade · Domaine XXV',
+                    source: 'manager_section_cta',
+                    defaultObjective: 'Verificar disponibilidade',
                   })}
                   className="btn btn-gold pulse-gold"
                   style={{
                     fontSize: '0.88rem',
-                    padding: '15px 30px',
+                    padding: '15px 32px',
                     display: 'inline-flex',
                     borderRadius: 'var(--radius-btn)',
                     letterSpacing: '0.04em',
@@ -84,31 +87,7 @@ export default function ManagerSection() {
                     cursor: 'pointer',
                   }}
                 >
-                  Falar com o Promotor →
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => openLeadModal({
-                    title: 'Falar com o Promotor · Domaine XXV',
-                    source: 'manager_section_promotor',
-                    defaultObjective: 'Falar com o Promotor',
-                  })}
-                  style={{
-                    fontSize: '0.86rem',
-                    padding: '14px 24px',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    borderRadius: 'var(--radius-btn)',
-                    letterSpacing: '0.03em',
-                    textTransform: 'uppercase',
-                    border: '1px solid rgba(184, 146, 74, 0.6)',
-                    background: 'rgba(255,255,255,0.06)',
-                    color: '#fff',
-                    cursor: 'pointer',
-                  }}
-                >
-                  👤 Falar com o Promotor
+                  Verificar disponibilidade →
                 </button>
               </div>
               <div style={{ fontSize: '0.76rem', color: 'rgba(255,255,255,0.6)', marginTop: 12, display: 'flex', alignItems: 'center', gap: 6, justifyContent: 'center', textAlign: 'center', letterSpacing: '0.02em' }}>
@@ -128,9 +107,10 @@ export default function ManagerSection() {
                   boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
                 }}>
                   <Image
-                    src="/EU1.jpeg"
+                    src="/EU1.webp"
                     alt="André Queirós — Gestor do Projeto Domaine XXV"
                     fill
+                    loading="lazy"
                     sizes="72px"
                     style={{ objectFit: 'cover', objectPosition: 'center top' }}
                   />
@@ -155,52 +135,23 @@ export default function ManagerSection() {
                 borderRadius: 'var(--radius-micro)', padding: '5px 12px',
                 fontSize: '0.72rem', fontWeight: 700, color: 'var(--gold-dark)',
                 letterSpacing: '0.04em', textTransform: 'uppercase',
-                marginBottom: 20,
+                marginBottom: 16,
               }}>
                 <span style={{ display: 'inline-block', width: 6, height: 6, background: 'var(--gold)' }} />
                 <span>Interlocutor Único do CPCV à Escritura</span>
               </div>
 
-              <button
-                type="button"
-                onClick={() => openLeadModal({
-                  title: 'Agendar Visita ao Lote · André Queirós',
-                  source: 'manager_card_visita',
-                  defaultObjective: 'Falar com o Promotor',
-                })}
-                className="btn btn-gold"
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: 8,
-                  width: '100%',
-                  fontSize: '0.85rem',
-                  padding: '13px 20px',
-                  borderRadius: 'var(--radius-btn)',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  marginBottom: 14,
-                  border: 'none',
-                  cursor: 'pointer',
-                }}
-              >
-                Falar com o Promotor →
-              </button>
-
               <p style={{
-                fontSize: '0.70rem',
+                fontSize: '0.76rem',
                 color: 'var(--text-muted)',
-                textAlign: 'center',
-                lineHeight: 1.5,
+                lineHeight: 1.55,
                 margin: 0,
-                letterSpacing: '0.02em',
               }}>
-                Empreendimento exclusivo. Sem projetos adjacentes nas mesmas condições de mercado.
+                Empreendimento exclusivo com acompanhamento dedicado em todas as etapas, desde a análise do projeto até à entrega das chaves.
               </p>
             </div>
 
-            {/* Entidade Construtora e Licenciamento */}
+            {/* Entidade Construtora e Licenciamento (Sem links externos) */}
             <div style={{
               background: 'rgba(255,255,255,0.03)',
               border: '1px solid rgba(184, 146, 74, 0.25)',
@@ -226,8 +177,10 @@ export default function ManagerSection() {
                 }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/Social Proof/Logo freitas.png"
+                    src="/Social Proof/Logo freitas.webp"
                     alt="Grupo Freitas Renovações"
+                    loading="lazy"
+                    decoding="async"
                     style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
                   />
                 </div>
@@ -235,19 +188,15 @@ export default function ManagerSection() {
                   <span style={{ fontSize: '0.64rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'rgba(255,255,255,0.45)', display: 'block' }}>
                     Construtora Oficial com Alvará
                   </span>
-                  <a
-                    href="https://grupofreitasrenovacoes.pt"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <span
                     style={{
                       color: 'var(--gold-light)',
                       fontSize: '0.80rem',
                       fontWeight: 700,
-                      textDecoration: 'none',
                     }}
                   >
-                    Grupo Freitas Renovações ↗
-                  </a>
+                    Grupo Freitas Renovações
+                  </span>
                 </div>
               </div>
 

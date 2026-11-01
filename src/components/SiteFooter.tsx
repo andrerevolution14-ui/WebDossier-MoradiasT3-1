@@ -19,18 +19,22 @@ export default function SiteFooter() {
           335.000€ com IMT e Imposto de Selo incluídos · Entrada de 10% (33.500€)
         </div>
 
+        <div style={{ fontSize: '0.78rem', color: 'var(--gold-dark)', fontWeight: 600, marginBottom: 8 }}>
+          Sem compromisso, resposta rápida.
+        </div>
+
         <button
           id="footer_verificar_viabilidade"
           data-source="footer_verificar_viabilidade"
           type="button"
           onClick={() => openLeadModal({
-            title: 'Saber Mais · Agendar Visita ao Domaine XXV',
+            title: 'Verificar disponibilidade · Domaine XXV',
             source: 'footer_btn',
           })}
           className="btn btn-gold"
           style={{ display: 'inline-flex', fontSize: '0.86rem', marginBottom: 32, borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase', border: 'none', cursor: 'pointer' }}
         >
-          Falar com o Promotor →
+          Verificar disponibilidade →
         </button>
 
         <div className="divider" style={{ marginBottom: 24 }} />

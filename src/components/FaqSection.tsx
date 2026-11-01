@@ -145,15 +145,15 @@ export default function FaqSection() {
 
         {/* Lead Modal Trigger Box */}
         <div style={{ marginTop: 32, textAlign: 'center' }}>
-          <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: 12 }}>
-            Tem outra dúvida específica sobre o projeto ou modalidades de pagamento?
+          <p style={{ fontSize: '0.84rem', color: 'var(--text-muted)', marginBottom: 6 }}>
+            Sem compromisso, resposta rápida.
           </p>
           <button
             type="button"
             onClick={() => openLeadModal({
-              title: 'Tirar Dúvida · Domaine XXV',
+              title: 'Verificar disponibilidade · Domaine XXV',
               source: 'faq_section',
-              defaultObjective: 'Tirar Dúvida',
+              defaultObjective: 'Verificar disponibilidade',
             })}
             style={{
               display: 'inline-flex',
@@ -171,7 +171,7 @@ export default function FaqSection() {
               paddingBottom: 3,
             }}
           >
-            Fazer Pergunta / Saber Mais →
+            Verificar disponibilidade →
           </button>
         </div>
 

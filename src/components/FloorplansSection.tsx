@@ -109,8 +109,8 @@ export default function FloorplansSection() {
                     src={plan.src}
                     alt={plan.label}
                     fill
-                    unoptimized
-                    priority
+                    loading="lazy"
+                    quality={80}
                     onError={plan.onError}
                     sizes="(max-width: 768px) 100vw, 560px"
                     style={{ objectFit:'contain', padding: 12 }}

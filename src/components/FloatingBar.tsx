@@ -69,17 +69,17 @@ export default function FloatingBar() {
           boxSizing: 'border-box',
         }}
       >
-        <div style={{ display: 'flex', gap: 6, width: '100%', alignItems: 'center' }}>
+        <div style={{ display: 'flex', width: '100%', alignItems: 'center' }}>
           <button
             type="button"
             id="sticky-cta-visita"
             onClick={() => openLeadModal({
-              title: 'Falar com o Promotor · Domaine XXV',
-              source: 'sticky_bar_visita',
-              defaultObjective: 'Falar com o Promotor',
+              title: 'Verificar disponibilidade · Domaine XXV',
+              source: 'sticky_bar_cta',
+              defaultObjective: 'Verificar disponibilidade',
             })}
             style={{
-              flex: '1 1 58%',
+              width: '100%',
               display: 'inline-flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -87,8 +87,8 @@ export default function FloatingBar() {
               color: '#fff',
               fontFamily: 'var(--sans)',
               fontWeight: 700,
-              fontSize: 'clamp(0.78rem, 3.2vw, 0.88rem)',
-              padding: '12px 14px',
+              fontSize: 'clamp(0.80rem, 3.2vw, 0.90rem)',
+              padding: '12px 18px',
               borderRadius: 'var(--radius-btn)',
               border: 'none',
               cursor: 'pointer',
@@ -100,39 +100,7 @@ export default function FloatingBar() {
               transition: 'transform 0.15s, box-shadow 0.15s',
             }}
           >
-            <span>Falar com o Promotor →</span>
-          </button>
-
-          <button
-            type="button"
-            id="sticky-cta-promotor"
-            onClick={() => openLeadModal({
-              title: 'Falar com o Promotor · Domaine XXV',
-              source: 'sticky_bar_promotor',
-              defaultObjective: 'Falar com o Promotor',
-            })}
-            style={{
-              flex: '1 1 42%',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: 'rgba(255,255,255,0.08)',
-              border: '1px solid rgba(184,146,74,0.6)',
-              color: '#fff',
-              fontFamily: 'var(--sans)',
-              fontWeight: 600,
-              fontSize: 'clamp(0.74rem, 2.9vw, 0.84rem)',
-              padding: '12px 10px',
-              borderRadius: 'var(--radius-btn)',
-              cursor: 'pointer',
-              letterSpacing: '0.02em',
-              textTransform: 'uppercase',
-              boxSizing: 'border-box',
-              whiteSpace: 'nowrap',
-              transition: 'transform 0.15s, background 0.15s',
-            }}
-          >
-            <span>👤 Promotor</span>
+            <span>Verificar disponibilidade →</span>
           </button>
         </div>
 
@@ -152,7 +120,7 @@ export default function FloatingBar() {
             letterSpacing: '0.02em',
           }}
         >
-          Preço chave na mão c/ impostos · Entrada 10% (33.500€) salvaguardada no CPCV
+          Sem compromisso, resposta rápida · Entrada 10% (33.500€) salvaguardada no CPCV
         </p>
       </div>
     </aside>

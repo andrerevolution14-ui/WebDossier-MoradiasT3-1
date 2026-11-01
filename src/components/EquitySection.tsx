@@ -145,18 +145,21 @@ export default function EquitySection() {
         </div>
 
         {/* CTA — Opens Lead Form Modal */}
-        <div style={{ textAlign: 'center' }} className="mobile-center-flex">
+        <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }} className="mobile-center-flex">
+          <span style={{ fontSize: '0.78rem', color: 'var(--gold-dark)', fontWeight: 600 }}>
+            Sem compromisso, resposta rápida.
+          </span>
           <button
             type="button"
             onClick={() => openLeadModal({
-              title: 'Pedir Estudo Detalhado · Domaine XXV',
+              title: 'Verificar disponibilidade · Domaine XXV',
               source: 'equity_condicoes_335k',
-              defaultObjective: 'Pedir Simulação Detalhada',
+              defaultObjective: 'Verificar disponibilidade',
             })}
             className="btn btn-gold mobile-center-btn"
             style={{ fontSize: '0.88rem', padding: '15px 36px', display: 'inline-flex', borderRadius: 'var(--radius-btn)', letterSpacing: '0.04em', textTransform: 'uppercase', cursor: 'pointer', border: 'none' }}
           >
-            Pedir Estudo Detalhado e Condições →
+            Verificar disponibilidade →
           </button>
         </div>
 

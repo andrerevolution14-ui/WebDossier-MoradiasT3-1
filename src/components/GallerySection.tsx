@@ -44,7 +44,7 @@ export default function GallerySection() {
             position: 'relative', display: 'block', overflow: 'hidden', borderRadius: 6, marginBottom: 20,
             textDecoration: 'none', minHeight: 'clamp(170px, 24vw, 230px)', border: '1px solid var(--border)',
           }}>
-            <Image src="/images/sala-de-jantar.webp" alt="Render da sala da moradia T3" fill sizes="(max-width: 1160px) 100vw, 1160px" style={{ objectFit: 'cover' }} />
+            <Image src="/images/sala-de-jantar.webp" alt="Render da sala da moradia T3" fill loading="lazy" quality={75} sizes="(max-width: 1160px) 100vw, 1160px" style={{ objectFit: 'cover' }} />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(5,7,12,0.88) 0%, rgba(5,7,12,0.55) 55%, rgba(5,7,12,0.2) 100%)' }} />
             <div style={{ position: 'relative', zIndex: 2, padding: 'clamp(22px, 4vw, 44px)', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 8, maxWidth: 560 }}>
               <div style={{ fontFamily: 'var(--serif)', fontWeight: 600, fontSize: 'clamp(1.4rem, 3vw, 2rem)', color: '#fff', lineHeight: 1.15 }}>
@@ -96,6 +96,8 @@ export default function GallerySection() {
                   src={img.src}
                   alt={`Imagem 3D: ${img.label}`}
                   fill
+                  loading="lazy"
+                  quality={75}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 380px"
                   style={{ objectFit: 'cover', transition: 'transform 0.4s ease' }}
                   onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1.03)')}

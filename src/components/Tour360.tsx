@@ -109,25 +109,28 @@ function TourInner() {
               <button
                 type="button"
                 id="tour_cta_agendar_visita"
-                onClick={() => openLeadModal({ title: 'Agendar Visita ao Lote · Domaine XXV', source: 'tour360_cta', defaultObjective: 'Falar com o Promotor' })}
+                onClick={() => openLeadModal({ title: 'Verificar disponibilidade · Domaine XXV', source: 'tour360_cta', defaultObjective: 'Verificar disponibilidade' })}
                 style={{ background: 'var(--gold)', color: '#fff', border: 'none', borderRadius: 'var(--radius-btn)', padding: '13px 26px', fontWeight: 700, fontSize: '0.84rem', letterSpacing: '0.05em', textTransform: 'uppercase', cursor: 'pointer', boxShadow: '0 6px 24px rgba(161,118,40,0.45)' }}
               >
-                Falar com o Promotor →
+                Verificar disponibilidade →
               </button>
-              <span style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.6)' }}>Use as setas ← → do teclado para navegar</span>
+              <span style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.6)' }}>Sem compromisso, resposta rápida.</span>
             </div>
           </div>
         </div>
       )}
 
       {TOUR_360_URL && (
-        <div style={{ position: 'absolute', bottom: 20, left: 0, right: 0, display: 'flex', justifyContent: 'center', zIndex: 20, pointerEvents: 'none' }}>
+        <div style={{ position: 'absolute', bottom: 20, left: 0, right: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, zIndex: 20, pointerEvents: 'none' }}>
+          <span style={{ fontSize: '0.72rem', color: 'var(--gold-light)', fontWeight: 600 }}>
+            Sem compromisso, resposta rápida.
+          </span>
           <button
             type="button"
-            onClick={() => openLeadModal({ title: 'Agendar Visita ao Lote · Domaine XXV', source: 'tour360_cta', defaultObjective: 'Falar com o Promotor' })}
+            onClick={() => openLeadModal({ title: 'Verificar disponibilidade · Domaine XXV', source: 'tour360_cta', defaultObjective: 'Verificar disponibilidade' })}
             style={{ pointerEvents: 'auto', background: 'var(--gold)', color: '#fff', border: 'none', borderRadius: 'var(--radius-btn)', padding: '13px 26px', fontWeight: 700, fontSize: '0.84rem', letterSpacing: '0.05em', textTransform: 'uppercase', cursor: 'pointer' }}
           >
-            Falar com o Promotor →
+            Verificar disponibilidade →
           </button>
         </div>
       )}
