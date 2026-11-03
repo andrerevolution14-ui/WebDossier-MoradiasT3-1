@@ -111,13 +111,31 @@ export default function LeadModal({
   if (!isOpen) return null;
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const cleaned = e.target.value.replace(/\D/g, '').slice(0, 9);
-    setPhone(cleaned);
+    let val = e.target.value;
+    let digits = val.replace(/\D/g, '');
+    if (digits.startsWith('00351')) {
+      digits = digits.slice(5);
+    } else if (digits.startsWith('351') && digits.length > 9) {
+      digits = digits.slice(3);
+    }
+
+    if (!val.trim().startsWith('+') && digits.length <= 9) {
+      setPhone(digits);
+    } else {
+      setPhone(val);
+    }
     setPhoneError('');
   };
 
   const validatePhone = (value: string) => {
-    return /^9\d{8}$/.test(value);
+    let digits = value.replace(/\D/g, '');
+    if (digits.startsWith('00351')) digits = digits.slice(5);
+    else if (digits.startsWith('351') && digits.length > 9) digits = digits.slice(3);
+
+    // Aceita número nacional de 9 dígitos (começado por 9 ou 2) ou número internacional (9 a 15 dígitos)
+    if (digits.length === 9 && /^[29]\d{8}$/.test(digits)) return true;
+    if (digits.length >= 9 && digits.length <= 15) return true;
+    return false;
   };
 
   const handleFinalSubmit = async (e: React.FormEvent) => {
@@ -128,7 +146,7 @@ export default function LeadModal({
     if (!name.trim()) return;
 
     if (!validatePhone(phone)) {
-      setPhoneError('O número tem de ter 9 dígitos e começar por 9.');
+      setPhoneError('Por favor insira um número válido (9 dígitos ou indicativo internacional).');
       return;
     }
 
@@ -343,20 +361,19 @@ export default function LeadModal({
                 2. Telemóvel <span style={{ color: 'var(--gold)' }}>*</span>
               </label>
               <span style={{ fontSize: '0.74rem', color: 'rgba(255,255,255,0.50)' }}>
-                9 dígitos · começar por 9
+                Nacional ou Internacional
               </span>
             </div>
             <div style={{ position: 'relative' }}>
               <input
                 id="lead-phone"
                 type="tel"
-                autoComplete="tel-national"
+                autoComplete="tel"
                 required
-                inputMode="numeric"
+                inputMode="tel"
                 value={phone}
                 onChange={handlePhoneChange}
-                placeholder="912 345 678"
-                maxLength={9}
+                placeholder="Ex: 912 345 678 ou +351 ..."
                 style={{
                   width: '100%',
                   padding: '11px 13px',

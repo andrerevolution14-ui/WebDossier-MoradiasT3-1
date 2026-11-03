@@ -68,15 +68,22 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const cleanPhone = (telefone || '').toString().replace(/\s+/g, '').replace(/^(\+351)/, '');
-    const phoneRegex = /^9\d{8}$/;
+    let rawPhone = (telefone || '').toString().trim();
+    let digits = rawPhone.replace(/\D/g, '');
+    if (digits.startsWith('00351')) digits = digits.slice(5);
+    else if (digits.startsWith('351') && digits.length > 9) digits = digits.slice(3);
 
-    if (!phoneRegex.test(cleanPhone)) {
+    const isPtNumber = digits.length === 9 && /^[29]\d{8}$/.test(digits);
+    const isInternationalNumber = digits.length >= 9 && digits.length <= 15;
+
+    if (!isPtNumber && !isInternationalNumber) {
       return NextResponse.json(
-        { error: 'O número de telemóvel tem de ter 9 dígitos e começar por 9.' },
+        { error: 'Por favor, indique um número de contacto válido (nacional ou internacional).' },
         { status: 400 }
       );
     }
+
+    const cleanPhone = rawPhone;
 
     const prioridade = calculateLeadPriority(
       disponibilidadeCapital,
